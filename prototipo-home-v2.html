@@ -1,0 +1,620 @@
+<title>TotalFut Painéis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --paper:#EDEEE9;
+  --card:#FFFFFF;
+  --ink:#0A0B08;
+  --ink-2:#15170F;
+  --neon:#D7FF47;
+  --neon-2:#C9F53A;
+  --text:#14160E;
+  --muted:#6C7162;
+  --muted-dark:#9BA18D;
+  --hair:#DEE0D7;
+  --hair-dark:#262A1C;
+
+  --display:"Outfit","Helvetica Neue",Arial,sans-serif;
+  --body:"Figtree","Helvetica Neue",Arial,sans-serif;
+
+  --r-panel:26px;
+  --r-card:16px;
+  --pad:clamp(14px,2.4vw,26px);
+  --max:1280px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--text);
+  font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.shell{max-width:var(--max);margin:0 auto;padding:var(--pad);display:flex;flex-direction:column;gap:var(--pad)}
+
+/* ---------- tipografia ---------- */
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.022em}
+h1{font-size:clamp(34px,5.2vw,60px);font-weight:600;line-height:1.04}
+h2{font-size:clamp(26px,3.3vw,40px);font-weight:600;line-height:1.1}
+h3{font-size:18px;font-weight:600;line-height:1.28;letter-spacing:-.012em}
+p{margin:0}
+.lede{font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.6;max-width:58ch}
+.small{font-size:14px;line-height:1.55}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--body);font-size:11px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--hair);
+  color:var(--muted);background:var(--card);
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--neon)}
+.eyebrow--dark{background:transparent;border-color:var(--hair-dark);color:var(--muted-dark)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:9px;border:1px solid transparent;cursor:pointer;
+  font-family:var(--body);font-size:14.5px;font-weight:600;
+  padding:12px 22px;border-radius:999px;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.btn--neon{background:var(--neon);color:var(--ink)}
+.btn--neon:hover{background:var(--neon-2);transform:translateY(-1px)}
+.btn--dark{background:var(--ink);color:#fff}
+.btn--dark:hover{background:#20250F;transform:translateY(-1px)}
+.btn--outline{border-color:rgba(255,255,255,.22);color:#fff}
+.btn--outline:hover{border-color:var(--neon);color:var(--neon)}
+
+/* ---------- painéis ---------- */
+.panel{border-radius:var(--r-panel);padding:clamp(26px,4vw,56px);position:relative;overflow:hidden}
+.panel--light{background:var(--card)}
+.panel--dark{background:var(--ink);color:#fff}
+.panel--dark h2,.panel--dark h3{color:#fff}
+.panel--paper{background:#E4E6DE}
+
+.panel__head{display:flex;flex-direction:column;gap:16px;max-width:62ch}
+.panel__top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+
+.arrowmark{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);
+  display:grid;place-items:center;flex:none;color:var(--muted);
+}
+.panel--dark .arrowmark{border-color:var(--hair-dark);color:var(--muted-dark)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(20px,2.6vw,30px);min-height:auto}
+.hero__orbs{position:absolute;inset:0;pointer-events:none}
+.hero__orbs span{position:absolute;border-radius:50%;filter:blur(34px)}
+.hero__orbs span:nth-child(1){width:290px;height:290px;left:4%;top:12%;background:radial-gradient(circle at 35% 35%,#E6FF7A,#8FC91E 45%,rgba(60,90,10,0) 72%)}
+.hero__orbs span:nth-child(2){width:160px;height:160px;left:30%;bottom:16%;background:radial-gradient(circle at 35% 35%,#DCFF5C,#7FB81A 48%,rgba(60,90,10,0) 74%)}
+.hero__orbs span:nth-child(3){width:220px;height:220px;right:8%;top:22%;background:radial-gradient(circle at 40% 35%,#D3FF4E,#76AE16 46%,rgba(60,90,10,0) 73%)}
+.hero__waves{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+
+.hero__nav{
+  position:relative;display:flex;align-items:center;gap:22px;
+  padding:4px 6px 0;
+}
+.hero__nav img{height:24px;width:auto;flex:none}
+.hero__links{display:none;gap:24px;margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted-dark)}
+.hero__links a:hover{color:var(--neon)}
+.hero__nav .btn{margin-left:auto;padding:9px 18px;font-size:13px}
+@media(min-width:900px){.hero__links{display:flex}.hero__nav .btn{margin-left:0}}
+
+.hero__body{position:relative;padding:clamp(52px,9vw,110px) clamp(6px,3vw,40px) clamp(30px,5vw,56px);max-width:62ch}
+.hero__body h1{color:#fff;max-width:16ch}
+.hero__body .lede{color:#C6CBB8;max-width:50ch;margin-top:16px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+
+.hero__strip{
+  position:relative;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;
+  border-top:1px solid var(--hair-dark);padding:18px 6px 4px;
+  font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-dark);
+}
+.hero__strip b{color:#E7EADD;font-weight:600}
+
+/* ---------- números ---------- */
+.stats{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:860px){.stats{grid-template-columns:repeat(4,1fr)}}
+.statbox{
+  border:1px solid var(--hair);border-radius:var(--r-card);padding:22px;
+  background:var(--card);display:flex;flex-direction:column;gap:8px;position:relative;
+}
+.statbox--neon{background:var(--neon);border-color:transparent}
+.statbox__n{font-family:var(--display);font-size:clamp(34px,3.7vw,46px);font-weight:600;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.statbox__l{font-size:13px;line-height:1.4;color:var(--muted)}
+.statbox--neon .statbox__l{color:#3C4420}
+.tick{
+  position:absolute;top:16px;right:16px;width:22px;height:22px;border-radius:50%;
+  background:var(--ink);display:grid;place-items:center;
+}
+.tick svg{width:11px;height:11px;stroke:var(--neon);stroke-width:2.4;fill:none}
+
+/* ---------- cursos ---------- */
+.cursos{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:620px){.cursos{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.cursos{grid-template-columns:repeat(3,1fr)}}
+
+.curso{
+  border-radius:var(--r-card);overflow:hidden;background:var(--card);
+  border:1px solid var(--hair);display:flex;flex-direction:column;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.curso:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(20,22,14,.10)}
+.curso--neon{background:var(--neon);border-color:transparent}
+.curso--dark{background:var(--ink);border-color:transparent;color:#fff}
+.curso__art{aspect-ratio:151/227;overflow:hidden;background:#101208;margin:10px;border-radius:11px}
+.curso__art img{width:100%;height:100%;object-fit:cover}
+.curso__body{padding:6px 20px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.tagline{
+  align-self:flex-start;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 11px;border-radius:999px;background:#F1F3EC;color:var(--muted);
+}
+.curso--neon .tagline{background:rgba(10,11,8,.1);color:#3C4420}
+.curso--dark .tagline{background:rgba(255,255,255,.09);color:var(--muted-dark)}
+.curso--dark h3{color:#fff}
+.curso__prof{font-size:13.5px;color:var(--muted)}
+.curso--neon .curso__prof{color:#414A22}
+.curso--dark .curso__prof{color:var(--muted-dark)}
+.curso__foot{
+  margin-top:auto;padding-top:15px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-top:1px solid var(--hair);font-size:13px;color:var(--muted);
+}
+.curso--neon .curso__foot{border-color:rgba(10,11,8,.14);color:#414A22}
+.curso--dark .curso__foot{border-color:var(--hair-dark);color:var(--muted-dark)}
+.preco{font-family:var(--display);font-weight:600;font-size:16px;color:var(--text)}
+.curso--neon .preco{color:var(--ink)}
+.curso--dark .preco{color:#fff}
+.preco s{font-weight:400;font-size:13px;opacity:.55;margin-right:6px}
+
+/* ---------- formadores ---------- */
+.profs{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.profs{grid-template-columns:repeat(4,1fr)}}
+.prof{display:flex;flex-direction:column;gap:14px}
+.prof__frame{
+  position:relative;border-radius:var(--r-card);overflow:hidden;aspect-ratio:4/5;
+  background:var(--neon);
+}
+.prof__frame img{
+  width:100%;height:100%;object-fit:cover;
+  clip-path:inset(0 0 0 0 round 0);
+  transition:transform .5s cubic-bezier(.2,.7,.3,1);
+  mix-blend-mode:luminosity;opacity:.92;
+}
+.prof:hover .prof__frame img{transform:scale(1.04)}
+.prof__frame--plain{background:var(--ink-2)}
+.prof__frame--plain img{mix-blend-mode:normal;opacity:1}
+.prof__badge{
+  position:absolute;left:10px;top:10px;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;background:rgba(10,11,8,.82);color:#D9DECB;padding:4px 9px;border-radius:999px;
+}
+.prof__r{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--neon)}
+.prof__n{font-family:var(--display);font-size:17px;font-weight:600;color:#fff;margin-top:3px}
+.prof__c{font-size:13.5px;line-height:1.5;color:var(--muted-dark);margin-top:6px}
+
+/* ---------- método ---------- */
+.metodo{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:700px){.metodo{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.metodo{grid-template-columns:repeat(4,1fr)}}
+.mcard{
+  position:relative;border-radius:var(--r-card);padding:24px;border:1px solid var(--hair);
+  background:var(--card);display:flex;flex-direction:column;gap:9px;
+}
+.mcard--neon{background:var(--neon);border-color:transparent}
+.mcard--dark{background:var(--ink);border-color:transparent;color:#fff}
+.mcard p{font-size:14px;line-height:1.55;color:var(--muted)}
+.mcard--neon p{color:#414A22}
+.mcard--dark p{color:var(--muted-dark)}
+.mcard h3{padding-right:34px}
+
+/* ---------- depoimentos ---------- */
+.deps{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:780px){.deps{grid-template-columns:repeat(3,1fr)}}
+.dep{border-radius:var(--r-card);border:1px solid var(--hair);background:var(--card);padding:24px;display:flex;flex-direction:column;gap:18px}
+.dep--neon{background:var(--neon);border-color:transparent}
+.dep q{font-family:var(--display);font-size:17.5px;font-weight:500;line-height:1.4;letter-spacing:-.014em;quotes:"“" "”"}
+.dep__who{margin-top:auto;padding-top:16px;border-top:1px solid var(--hair)}
+.dep--neon .dep__who{border-color:rgba(10,11,8,.16)}
+.dep__n{font-weight:600;font-size:14px}
+.dep__r{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* ---------- cta tri-painel ---------- */
+.tri{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:860px){.tri{grid-template-columns:1.1fr 1.1fr .8fr}}
+.tri__cell{border-radius:var(--r-card);padding:26px;display:flex;flex-direction:column;gap:12px;position:relative;min-height:190px}
+.tri__cell--light{background:var(--card);border:1px solid var(--hair)}
+.tri__cell--neon{background:var(--neon);justify-content:flex-end}
+.tri__num{
+  position:absolute;top:18px;right:18px;width:24px;height:24px;border-radius:50%;
+  background:var(--ink);color:var(--neon);display:grid;place-items:center;font-size:11px;font-weight:700;
+}
+.tri__mark{font-family:var(--display);font-size:clamp(64px,9vw,112px);font-weight:700;line-height:.8;color:var(--ink);letter-spacing:-.05em}
+.form{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
+.form input{
+  flex:1 1 190px;border:1px solid var(--hair);background:#F7F8F4;border-radius:999px;
+  padding:12px 18px;font-family:var(--body);font-size:14.5px;color:var(--text);
+}
+.form input::placeholder{color:#9DA391}
+.form input:focus{outline:none;border-color:var(--ink)}
+
+/* ---------- footer ---------- */
+.foot{display:grid;gap:32px;grid-template-columns:1fr}
+@media(min-width:820px){.foot{grid-template-columns:1.4fr .6fr .6fr}}
+.foot img{height:46px;width:auto;margin-bottom:14px}
+.foot h4{font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-dark);margin:0 0 13px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:#C6CBB8}
+.foot a:hover{color:var(--neon)}
+.foot__legal{
+  margin-top:34px;padding-top:18px;border-top:1px solid var(--hair-dark);
+  display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;
+  font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#6E7462;
+}
+
+.nota{
+  border-radius:var(--r-card);border:1px dashed #C3C8B6;background:#E9EBE2;
+  padding:16px 20px;font-size:13px;line-height:1.65;color:var(--muted);margin-top:14px;
+}
+.nota b{color:var(--text);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+</style>
+
+<div class="shell">
+
+  <!-- HERO -->
+  <section class="panel panel--dark hero">
+    <div class="hero__orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+    <svg class="hero__waves" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke="#2A2F1E" stroke-width="1">
+      <path d="M-40 120C220 60 420 200 620 150s380-150 660-70"/>
+      <path d="M-40 200C220 140 420 280 620 230s380-150 660-70"/>
+      <path d="M-40 290C220 230 420 370 620 320s380-150 660-70"/>
+      <path d="M-40 380C220 320 420 460 620 410s380-150 660-70"/>
+      <path d="M-40 470C220 410 420 550 620 500s380-150 660-70"/>
+      <path d="M-40 560C220 500 420 640 620 590s380-150 660-70"/>
+    </svg>
+
+    <nav class="hero__nav" aria-label="Principal">
+      <img src="assets/logo-horizontal-branco.svg" alt="TotalFut">
+      <div class="hero__links">
+        <a href="#cursos">Cursos</a>
+        <a href="#formadores">Formadores</a>
+        <a href="#metodo">Como funciona</a>
+        <a href="#blog">Blog</a>
+      </div>
+      <a class="btn btn--neon" href="#cursos">Ver cursos</a>
+    </nav>
+
+    <div class="hero__body">
+      <span class="eyebrow eyebrow--dark">Cursos técnico-táticos · 100% online</span>
+      <h1 style="margin-top:18px">Análise, tática e treino no nível em que o trabalho acontece.</h1>
+      <p class="lede">Cursos conduzidos por profissionais em atividade na Seleção Brasileira, na Série A e em clubes fora do país. Bola parada, análise de desempenho, tática individual e treino de goleiros.</p>
+      <div class="hero__cta">
+        <a class="btn btn--neon" href="#cursos">Ver os cursos
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+        </a>
+        <a class="btn btn--outline" href="#formadores">Conhecer os formadores</a>
+      </div>
+    </div>
+
+    <div class="hero__strip">
+      <span>Formadores com passagem por</span>
+      <b>Seleção Brasileira</b><b>Corinthians</b><b>Athletico&#8209;PR</b><b>E.C. Vitória</b><b>CBF Academy</b>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="panel panel--light">
+    <div class="panel__top">
+      <div class="panel__head">
+        <span class="eyebrow">Em números</span>
+        <h2>Seis anos de catálogo, medidos pelo que já entregamos.</h2>
+      </div>
+      <div class="arrowmark" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10L10 4M5 4h5v5"/></svg>
+      </div>
+    </div>
+
+    <div class="stats" style="margin-top:30px">
+      <div class="statbox statbox--neon">
+        <div class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></div>
+        <span class="statbox__n">600+</span><span class="statbox__l">Profissionais formados</span>
+      </div>
+      <div class="statbox"><span class="statbox__n">06</span><span class="statbox__l">Cursos no catálogo</span></div>
+      <div class="statbox"><span class="statbox__n">09</span><span class="statbox__l">Formadores</span></div>
+      <div class="statbox"><span class="statbox__n">12</span><span class="statbox__l">Meses de acesso por curso</span></div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section class="panel panel--light" id="cursos">
+    <div class="panel__top">
+      <div class="panel__head">
+        <span class="eyebrow">Catálogo</span>
+        <h2>Um recorte por curso, tratado até o fim.</h2>
+        <p class="lede" style="color:var(--muted)">Cada curso nasce de um evento ao vivo e é reorganizado em blocos de 1 a 20 minutos, com abertura e encerramento próprios. A intenção é permitir voltar a um tema específico no meio da temporada sem reassistir à aula inteira.</p>
+      </div>
+    </div>
+
+    <div class="cursos" style="margin-top:32px">
+
+      <a class="curso curso--dark" href="#">
+        <div class="curso__art"><img src="assets/cursos/analise-desempenho-avancada.jpg" alt="Os Segredos da Análise de Desempenho Avançada, com Bruno Baquete" loading="lazy"></div>
+        <div class="curso__body">
+          <span class="tagline">Análise de desempenho</span>
+          <h3>Os Segredos da Análise de Desempenho Avançada</h3>
+          <p class="curso__prof">Bruno Baquete</p>
+          <div class="curso__foot"><span>Gravado · com bônus</span><span class="preco">Ver valores</span></div>
+        </div>
+      </a>
+
+      <a class="curso curso--neon" href="#">
+        <div class="curso__art"><img src="assets/cursos/analise-bola-parada-pombo.jpg" alt="A Análise de Desempenho da Bola Parada Ofensiva, com Ricardo Pombo" loading="lazy"></div>
+        <div class="curso__body">
+          <span class="tagline">Bola parada</span>
+          <h3>A Análise de Desempenho da Bola Parada Ofensiva</h3>
+          <p class="curso__prof">Ricardo Pombo</p>
+          <div class="curso__foot"><span>1h55 · 7 blocos</span><span class="preco"><s>R$147</s>R$97</span></div>
+        </div>
+      </a>
+
+      <a class="curso" href="#">
+        <div class="curso__art"><img src="assets/cursos/cruzamentos-no-futebol.jpg" alt="Cruzamentos no Futebol, com Thiago Mehl" loading="lazy"></div>
+        <div class="curso__body">
+          <span class="tagline">Goleiros</span>
+          <h3>Cruzamentos no Futebol</h3>
+          <p class="curso__prof">Thiago Mehl</p>
+          <div class="curso__foot"><span>Gravado</span><span class="preco">Ver valores</span></div>
+        </div>
+      </a>
+
+      <a class="curso" href="#">
+        <div class="curso__art"><img src="assets/cursos/tecnica-tatica-individual.jpg" alt="Técnica e Tática Individual, com Leandro Zago" loading="lazy"></div>
+        <div class="curso__body">
+          <span class="tagline">Tática individual</span>
+          <h3>Técnica e Tática Individual</h3>
+          <p class="curso__prof">Leandro Zago</p>
+          <div class="curso__foot"><span>Gravado</span><span class="preco">Ver valores</span></div>
+        </div>
+      </a>
+
+      <a class="curso" href="#">
+        <div class="curso__art"><img src="assets/cursos/bola-parada-ofensiva-tobar.jpg" alt="Bola Parada Ofensiva, com Julian Tobar" loading="lazy"></div>
+        <div class="curso__body">
+          <span class="tagline">Bola parada</span>
+          <h3>Bola Parada Ofensiva</h3>
+          <p class="curso__prof">Julian Tobar</p>
+          <div class="curso__foot"><span>Gravado</span><span class="preco">Ver valores</span></div>
+        </div>
+      </a>
+
+      <a class="curso" href="#">
+        <div class="curso__art"><img src="assets/cursos/bola-parada-ofensiva-burse.jpg" alt="A Bola Parada Ofensiva no acesso do E.C. Vitória à Série B, com João Burse" loading="lazy"></div>
+        <div class="curso__body">
+          <span class="tagline">Bola parada</span>
+          <h3>A Bola Parada Ofensiva no acesso do E.C. Vitória à Série B</h3>
+          <p class="curso__prof">João Burse</p>
+          <div class="curso__foot"><span>Gravado</span><span class="preco">Ver valores</span></div>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="nota"><b>Pendente:</b> preço e link de checkout de 5 dos 6 cursos. Só o do Ricardo Pombo está confirmado. Duração e número de blocos entram no lugar de “Gravado”.</p>
+  </section>
+
+  <!-- FORMADORES -->
+  <section class="panel panel--dark" id="formadores">
+    <div class="panel__top">
+      <div class="panel__head">
+        <span class="eyebrow eyebrow--dark">Formadores</span>
+        <h2>Quem dá a aula está em atividade.</h2>
+        <p class="lede" style="color:var(--muted-dark)">Nenhum conteúdo é terceirizado. Cada curso é conduzido pelo profissional que aplica aquilo no dia a dia do clube, da seleção ou da comissão técnica.</p>
+      </div>
+      <div class="arrowmark" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10L10 4M5 4h5v5"/></svg>
+      </div>
+    </div>
+
+    <div class="profs" style="margin-top:32px">
+
+      <article class="prof">
+        <div class="prof__frame"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete" loading="lazy"></div>
+        <div>
+          <p class="prof__r">Analista de desempenho</p>
+          <p class="prof__n">Bruno Baquete</p>
+          <p class="prof__c">Seleção Brasileira, com duas Copas do Mundo. Passagens por Vitória, Corinthians e Athletico-PR.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame prof__frame--plain"><img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy"></div>
+        <div>
+          <p class="prof__r">Analista de desempenho</p>
+          <p class="prof__n">Ricardo Pombo</p>
+          <p class="prof__c">Instrutor CBF Academy, Licença Pro e A. Cinco Copas do Mundo e duas Olimpíadas com a Seleção.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame"><img src="assets/professores/joao-burse.jpg" alt="João Burse" loading="lazy"></div>
+        <div>
+          <p class="prof__r">Treinador</p>
+          <p class="prof__n">João Burse</p>
+          <p class="prof__c">Acesso do E.C. Vitória à Série B.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame prof__frame--plain"><img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" loading="lazy"></div>
+        <div>
+          <p class="prof__r">Treinador</p>
+          <p class="prof__n">Leandro Zago</p>
+          <p class="prof__c">Credencial a confirmar.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame prof__frame--plain"><img src="assets/professores/thiago-mehl.jpg" alt="Thiago Mehl" loading="lazy"></div>
+        <div>
+          <p class="prof__r">Treinador de goleiros</p>
+          <p class="prof__n">Thiago Mehl</p>
+          <p class="prof__c">Credencial a confirmar.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame"><img src="assets/professores/julian-tobar.jpg" alt="Julian Tobar" loading="lazy"></div>
+        <div>
+          <p class="prof__r">Treinador</p>
+          <p class="prof__n">Julian Tobar</p>
+          <p class="prof__c">Credencial a confirmar.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame prof__frame--plain">
+          <img src="assets/professores/ramiro-rangles.jpg" alt="Ramiro Rangles" loading="lazy">
+          <span class="prof__badge">Em breve</span>
+        </div>
+        <div>
+          <p class="prof__r">Head of Kinetic Analytics</p>
+          <p class="prof__n">Ramiro Rangles</p>
+          <p class="prof__c">Curso em produção.</p>
+        </div>
+      </article>
+
+      <article class="prof">
+        <div class="prof__frame prof__frame--plain">
+          <img src="assets/professores/andre-fornaziero.jpg" alt="André Fornaziero" loading="lazy">
+          <span class="prof__badge">Em breve</span>
+        </div>
+        <div>
+          <p class="prof__r">Fisiologista</p>
+          <p class="prof__n">André Fornaziero</p>
+          <p class="prof__c">Curso em produção.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section class="panel panel--light" id="metodo">
+    <div class="panel__head">
+      <span class="eyebrow">Como funciona</span>
+      <h2>O que você recebe ao se inscrever.</h2>
+    </div>
+
+    <div class="metodo" style="margin-top:30px">
+      <div class="mcard">
+        <div class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></div>
+        <h3>Blocos curtos, não aulas longas</h3>
+        <p>O evento é dividido em partes de 1 a 20 minutos, cada uma com abertura e encerramento. Localizar um tema leva segundos.</p>
+      </div>
+      <div class="mcard mcard--neon">
+        <div class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></div>
+        <h3>Doze meses de acesso</h3>
+        <p>Hospedagem na Kiwify, vídeo e áudio em HD, no computador ou pelo aplicativo. Assista quantas vezes quiser no período.</p>
+      </div>
+      <div class="mcard">
+        <div class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></div>
+        <h3>Certificado TotalFut</h3>
+        <p>Emitido em formato digital ao concluir as aulas do curso.</p>
+      </div>
+      <div class="mcard mcard--dark">
+        <div class="tick" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></div>
+        <h3>TotalFut Connect</h3>
+        <p>Grupo de WhatsApp exclusivo de alunos, com vagas e candidaturas em clubes e comissões técnicas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="panel panel--paper" id="depoimentos">
+    <div class="panel__head">
+      <span class="eyebrow">Alunos</span>
+      <h2>O que mudou no trabalho deles.</h2>
+    </div>
+
+    <div class="deps" style="margin-top:30px">
+      <div class="dep dep--neon">
+        <q>Meses depois do curso de bolas paradas, virei o responsável pela análise de bolas paradas no clube onde trabalho.</q>
+        <div class="dep__who"><p class="dep__n">Caio Gondo</p><p class="dep__r">Analista de desempenho</p></div>
+      </div>
+      <div class="dep">
+        <q>Várias situações dos cursos de bola parada e de técnica e tática individual eu implementei no dia a dia do clube.</q>
+        <div class="dep__who"><p class="dep__n">Fábio Silveira Junior</p><p class="dep__r">Treinador</p></div>
+      </div>
+      <div class="dep">
+        <q>Sem replicar treinos. Olhando as características dos nossos goleiros e colocando em prática no dia a dia.</q>
+        <div class="dep__who"><p class="dep__n">Wandomar Dionizio</p><p class="dep__r">Preparador de goleiros</p></div>
+      </div>
+    </div>
+
+    <p class="nota"><b>Depoimentos editados</b> a partir dos originais do site: cortei para a frase que carrega o resultado concreto.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel panel--light" id="lista">
+    <div class="panel__head">
+      <span class="eyebrow">Próximo passo</span>
+      <h2>Escolha um curso ou entre na lista.</h2>
+    </div>
+
+    <div class="tri" style="margin-top:28px">
+      <div class="tri__cell tri__cell--light">
+        <span class="tri__num" aria-hidden="true">1</span>
+        <h3>Ver o catálogo</h3>
+        <p class="small" style="color:var(--muted)">Seis cursos gravados, com acesso por doze meses e certificado ao final.</p>
+        <a class="btn btn--dark" href="#cursos" style="align-self:flex-start;margin-top:auto">Ver os cursos</a>
+      </div>
+      <div class="tri__cell tri__cell--light">
+        <span class="tri__num" aria-hidden="true">2</span>
+        <h3>Aviso de curso novo</h3>
+        <p class="small" style="color:var(--muted)">Um e-mail quando entra curso novo no catálogo ou abre turma ao vivo. Nada além disso.</p>
+        <form class="form" onsubmit="return false" style="margin-top:auto">
+          <label for="email" style="position:absolute;left:-9999px">Seu e-mail</label>
+          <input id="email" type="email" placeholder="seu@email.com" autocomplete="email">
+          <button class="btn btn--neon" type="submit">Entrar</button>
+        </form>
+      </div>
+      <div class="tri__cell tri__cell--neon">
+        <span class="tri__mark" aria-hidden="true">×○</span>
+        <p class="small" style="color:#414A22;font-weight:600">Pensando o futebol brasileiro desde a primeira turma.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="panel panel--dark">
+    <div class="foot">
+      <div>
+        <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
+        <p class="small" style="color:var(--muted-dark);max-width:42ch">Plataforma de cursos e eventos para profissionais do futebol, na área técnico-tática. Público: treinadores, auxiliares, preparadores e analistas.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#formadores">Formadores</a></li>
+          <li><a href="#metodo">Como funciona</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Suporte</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__legal"><span>© 2026 TotalFut</span><span>totalfut.com.br</span></div>
+  </footer>
+
+</div>
