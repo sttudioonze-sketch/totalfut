@@ -220,15 +220,19 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
 .item{
   display:flex;gap:14px;align-items:flex-start;
-  background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 20px;
+  background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:20px 22px;
+  transition:border-color .2s ease;
 }
+.item:hover{border-color:var(--hair-2)}
+.item__texto{display:flex;flex-direction:column;gap:6px;min-width:0}
 .item__marca{
   width:26px;height:26px;border-radius:30%;background:var(--lime);flex:none;
   display:grid;place-items:center;color:var(--lime-ink);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
 }
 .item__marca svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.item p{font-size:14.5px;line-height:1.5;color:var(--mute)}
+.item h3{font-size:16px}
+.item p{font-size:14px;line-height:1.55;color:var(--dim);max-width:44ch}
 
 /* ---------- professor ---------- */
 .prof{display:grid;gap:clamp(26px,4vw,52px);grid-template-columns:1fr;align-items:start}
@@ -408,18 +412,18 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
   <section>
     <div class="wrap">
       <div class="center" style="margin-bottom:34px">
-        <h2>O que o curso cobre.</h2>
+        <h2>Conteúdo do curso.</h2>
         <p class="lede">Temas que raramente aparecem em formação de analista, tratados por quem faz isso em seleção.</p>
       </div>
       <div class="cobre">
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Como preparar análises no nível em que elas chegam à comissão técnica</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Sportscode, Wyscout, Hudl, Studio e Insight — as ferramentas das maiores ligas</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Alternativas de análise para quem ainda não tem acesso a esses softwares</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Como as métricas são efetivamente consumidas pela comissão</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Integração e comunicação do analista com a comissão técnica</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>A interação com os atletas e as melhores práticas de apresentação</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Participar ou não do campo: quando faz diferença e quando atrapalha</p></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Análise em tempo real e a comunicação com o banco de reservas</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise no nível da comissão</h3><p>O que entra no material, o que fica de fora e em que formato ele chega ao treinador.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>As ferramentas do mercado</h3><p>Sportscode, Wyscout, Hudl, Studio e Insight — o que as maiores ligas usam e para quê.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise sem os softwares pagos</h3><p>Caminhos para produzir análise de nível alto antes de ter acesso a essas ferramentas.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Como as métricas são consumidas</h3><p>Quais números a comissão efetivamente usa e quais deles mudam uma decisão de jogo.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Comunicação com a comissão</h3><p>A integração do analista com o treinador e os auxiliares na rotina do clube.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Interação com os atletas</h3><p>O que mostrar para jogador, como mostrar e as melhores práticas de apresentação.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Estar no campo ou não</h3><p>Quando a presença do analista no treino contribui e quando ela atrapalha o processo.</p></div></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise em tempo real</h3><p>O trabalho durante a partida e a comunicação com o banco de reservas.</p></div></div>
       </div>
       <p class="nota"><b>Pendente:</b> a lista de módulos com os nomes e a duração de cada bloco. Os oito temas acima vieram do texto publicado hoje, não da ementa.</p>
     </div>
