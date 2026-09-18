@@ -1,0 +1,585 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Análise de Desempenho Avançada</title>
+
+<!--
+  MODELO DE PÁGINA DE CURSO — trocar por curso:
+  título · subtítulo · capa · tema (fase do jogo)
+  professor: nome, função, foto, credencial, biografia
+  duração · número de blocos · lista de temas cobertos · bônus
+  quatro perfis de "para quem é"
+  preço cheio, preço com desconto, parcelamento, link de checkout Kiwify
+  Tudo o mais — entrega, certificado, dúvidas, depoimentos — é igual em todos.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --void:#060705;
+  --card:#0F110C;
+  --card-2:#151810;
+  --hair:#23271A;
+  --hair-2:#2E3324;
+  --lime:#D7FF47;
+  --lime-2:#C5F132;
+  --lime-ink:#0A0C05;
+  --azul:#015AFF;
+  --azul-2:#2A72FF;
+  --text:#FFFFFF;
+  --mute:#9AA08C;
+  --dim:#676C5C;
+
+  --display:"Sora","Helvetica Neue",Arial,sans-serif;
+  --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+
+  --r:16px;
+  --max:1120px;
+  --pad:clamp(20px,5vw,48px);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--void);color:var(--mute);
+  font-family:var(--body);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+::selection{background:var(--azul);color:#fff}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+section{padding-block:clamp(52px,7vw,96px);position:relative;overflow-x:clip}
+
+h1,h2,h3{font-family:var(--display);color:var(--text);margin:0;text-wrap:balance;letter-spacing:-.028em}
+h1{font-size:clamp(30px,4.6vw,52px);font-weight:700;line-height:1.05}
+h2{font-size:clamp(24px,3.2vw,38px);font-weight:700;line-height:1.12}
+h3{font-size:17px;font-weight:600;line-height:1.3;letter-spacing:-.014em}
+p{margin:0}
+.lede{font-size:clamp(15px,1.15vw,17px);line-height:1.65;color:var(--mute)}
+.small{font-size:13.5px;line-height:1.55;color:var(--dim)}
+.center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:15px}
+.center .lede{max-width:56ch}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+  font-family:var(--body);font-size:15px;font-weight:600;
+  padding:15px 30px;border-radius:999px;border:1px solid transparent;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.btn--lime{background:var(--lime);color:var(--lime-ink)}
+.btn--lime:hover{background:var(--lime-2);transform:translateY(-1px)}
+.btn--wire{border-color:var(--hair-2);color:var(--text);background:transparent}
+.btn--wire:hover{border-color:var(--lime);color:var(--lime)}
+.btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
+.btn--azul:hover{background:var(--azul-2)}
+.btn--full{width:100%}
+
+/* ---------- cabeçalho ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.nav img{height:24px;width:auto;flex:none}
+.nav__voltar{
+  margin-left:auto;display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);
+}
+.nav__voltar:hover{color:var(--lime)}
+.nav__voltar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nav .btn--azul{flex:none}
+@media(max-width:620px){.nav__voltar span{display:none}}
+
+/* ---------- topo do curso ---------- */
+.topo{padding-block:clamp(36px,5vw,64px) clamp(44px,6vw,80px)}
+.topo__grade{display:grid;gap:clamp(28px,4vw,54px);grid-template-columns:1fr;align-items:center}
+@media(min-width:900px){.topo__grade{grid-template-columns:1fr .8fr}}
+
+.fase{
+  display:inline-flex;align-self:flex-start;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);
+  border:1px solid rgba(215,255,71,.3);padding:6px 13px;border-radius:999px;
+}
+.topo__copy{display:flex;flex-direction:column;gap:18px;align-items:flex-start;min-width:0}
+.topo__copy h1{max-width:16ch}
+.topo__com{font-size:15.5px;color:var(--mute)}
+.topo__com b{color:var(--text);font-weight:600}
+
+.ficha{
+  display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--hair);border-radius:14px;
+  background:var(--card);overflow:hidden;width:100%;
+}
+.ficha div{
+  flex:1 1 128px;padding:15px 18px;display:flex;flex-direction:column;gap:3px;
+  border-right:1px solid var(--hair);
+}
+.ficha div:last-child{border-right:0}
+.ficha b{font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.02em}
+.ficha span{font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+
+.capa{
+  border-radius:20px;overflow:hidden;border:1px solid var(--hair-2);
+  box-shadow:0 30px 70px rgba(0,0,0,.6);aspect-ratio:151/227;max-width:340px;
+  margin-inline:auto;width:100%;
+}
+.capa img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- caixa de oferta ---------- */
+.oferta{
+  background:linear-gradient(180deg,#161A0F 0%,#0D100A 65%);
+  border:1px solid rgba(215,255,71,.28);border-radius:20px;
+  padding:clamp(24px,3.4vw,34px);display:flex;flex-direction:column;gap:16px;
+  max-width:520px;width:100%;
+}
+.oferta__preco{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
+.oferta__preco s{font-size:16px;color:var(--dim)}
+.oferta__preco b{font-family:var(--display);font-size:clamp(34px,4.6vw,46px);font-weight:700;color:var(--text);letter-spacing:-.04em}
+.oferta__preco i{font-style:normal;font-size:14px;color:var(--mute)}
+.oferta ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.oferta li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--mute)}
+.oferta li svg{width:16px;height:16px;flex:none;margin-top:2px}
+.oferta li circle{fill:var(--lime)}
+.oferta li path{stroke:var(--lime-ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- barra fixa de compra ---------- */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:rgba(8,10,6,.94);backdrop-filter:blur(16px);
+  border-top:1px solid var(--hair-2);
+  padding:12px var(--pad);
+  padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:16px;
+  transform:translateY(110%);transition:transform .28s cubic-bezier(.3,.9,.3,1);
+}
+.barra[data-visivel="true"]{transform:translateY(0)}
+.barra__info{display:flex;flex-direction:column;min-width:0}
+.barra__info b{font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra__info span{font-size:12.5px;color:var(--dim)}
+.barra .btn{margin-left:auto;flex:none;padding:13px 24px;font-size:14.5px}
+@media(max-width:560px){
+  .barra__info b{font-size:14px}
+  .barra .btn{padding:12px 18px;font-size:14px}
+}
+
+/* ---------- para quem é ---------- */
+.perfis{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.perfis{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.perfis{grid-template-columns:repeat(4,1fr)}}
+.perfil{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  padding:24px 22px;display:flex;flex-direction:column;gap:11px;
+}
+.perfil__tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.perfil p{font-size:13.5px;line-height:1.55;color:var(--dim)}
+
+/* ---------- o que o curso cobre ---------- */
+.cobre{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
+.item{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 20px;
+}
+.item__marca{
+  width:26px;height:26px;border-radius:30%;background:var(--lime);flex:none;
+  display:grid;place-items:center;color:var(--lime-ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+}
+.item__marca svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.item p{font-size:14.5px;line-height:1.5;color:var(--mute)}
+
+/* ---------- professor ---------- */
+.prof{display:grid;gap:clamp(26px,4vw,52px);grid-template-columns:1fr;align-items:start}
+@media(min-width:840px){.prof{grid-template-columns:.62fr 1fr}}
+.prof__foto{
+  border-radius:20px;overflow:hidden;border:1px solid var(--hair-2);aspect-ratio:4/5;
+  max-width:330px;width:100%;box-shadow:0 26px 60px rgba(0,0,0,.55);
+}
+.prof__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
+.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
+.credenciais{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.credenciais span{
+  font-size:12.5px;font-weight:600;color:var(--mute);
+  border:1px solid var(--hair-2);border-radius:999px;padding:7px 14px;
+}
+
+/* ---------- entrega ---------- */
+.entrega{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.entrega{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.entrega{grid-template-columns:repeat(4,1fr)}}
+.ent{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  padding:26px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
+}
+.ent__ico{
+  width:52px;height:52px;border-radius:30%;background:var(--lime);flex:none;
+  display:grid;place-items:center;color:var(--lime-ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 6px 16px rgba(0,0,0,.4);
+}
+.ent__ico svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ent p{font-size:13.5px;line-height:1.5;color:var(--dim)}
+
+/* ---------- bônus ---------- */
+.bonus{
+  background:var(--lime);border-radius:20px;padding:clamp(26px,4vw,40px);color:var(--lime-ink);
+  display:grid;gap:22px;grid-template-columns:1fr;
+}
+@media(min-width:820px){.bonus{grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}}
+.bonus h2{color:var(--lime-ink)}
+.bonus p{font-size:15px;line-height:1.6;font-weight:500;opacity:.82;max-width:46ch}
+.bonus ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.bonus li{display:flex;gap:11px;align-items:flex-start;font-size:15px;font-weight:600;line-height:1.4}
+.bonus li svg{width:17px;height:17px;flex:none;margin-top:2px;fill:none;stroke:var(--lime-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- depoimentos ---------- */
+.deps{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:800px){.deps{grid-template-columns:repeat(3,1fr)}}
+.dep{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:26px;
+  display:flex;flex-direction:column;gap:18px}
+.dep q{font-family:var(--display);font-size:16.5px;font-weight:500;line-height:1.45;color:var(--text);letter-spacing:-.018em;quotes:"“" "”"}
+.dep__who{margin-top:auto;padding-top:16px;border-top:1px solid var(--hair)}
+.dep__n{font-size:13.5px;font-weight:600;color:#D6DBC6}
+.dep__r{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+
+/* ---------- fechamento ---------- */
+.fecha{
+  background:linear-gradient(180deg,#161A0F 0%,#0C0F08 70%);
+  border:1px solid rgba(215,255,71,.26);border-radius:22px;
+  padding:clamp(30px,4.6vw,56px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;
+}
+.fecha .oferta{background:none;border:0;padding:0;align-items:center;text-align:center}
+.fecha .oferta__preco{justify-content:center}
+.fecha .oferta ul{align-items:flex-start;text-align:left}
+
+/* ---------- dúvidas ---------- */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:780px;margin-inline:auto}
+.faq details{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);transition:border-color .2s ease}
+.faq details[open]{border-color:var(--hair-2)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:18px 22px;display:flex;align-items:center;gap:16px;
+  font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--text);letter-spacing:-.012em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";margin-left:auto;flex:none;width:11px;height:11px;
+  border-right:1.7px solid var(--lime);border-bottom:1.7px solid var(--lime);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s ease;
+}
+.faq details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
+.faq p{padding:0 22px 20px;font-size:14px;line-height:1.6;color:var(--dim)}
+
+/* ---------- rodapé ---------- */
+footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:var(--card);margin-bottom:76px}
+.foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.foot img{height:40px;width:auto}
+.foot__links{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px}
+.foot a:hover{color:var(--lime)}
+.foot__legal{margin-top:26px;padding-top:18px;border-top:1px solid var(--hair);
+  font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
+
+.nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
+  font-size:13px;line-height:1.65;color:var(--dim);margin-top:22px}
+.nota b{color:var(--lime);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+</style>
+
+<header>
+  <nav class="nav wrap" aria-label="Principal">
+    <a href="#"><img src="assets/logo-horizontal-branco.svg" alt="TotalFut"></a>
+    <a class="nav__voltar" href="#"><svg viewBox="0 0 14 14"><path d="M12 7H2M6 3L2 7l4 4"/></svg><span>Todos os cursos</span></a>
+    <a class="btn btn--azul" href="#">Área do aluno</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- TOPO -->
+  <section class="topo">
+    <div class="wrap topo__grade">
+      <div class="topo__copy">
+        <span class="fase">Análise de desempenho</span>
+        <h1>Os Segredos da Análise de Desempenho Avançada</h1>
+        <p class="lede" style="max-width:48ch">Conceitos, práticas e estratégias de análise no futebol de alto rendimento — das ferramentas ao que se fala com a comissão durante o jogo.</p>
+        <p class="topo__com">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
+
+        <div class="ficha">
+          <div><b>Gravado</b><span>Formato</span></div>
+          <div><b>12 meses</b><span>Acesso</span></div>
+          <div><b>Incluso</b><span>Certificado</span></div>
+          <div><b>Sim</b><span>Bônus</span></div>
+        </div>
+
+        <div class="oferta" id="ofertaTopo">
+          <div class="oferta__preco">
+            <s>R$ —</s><b>R$ —</b><i>ou em até 12×</i>
+          </div>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail após a inscrição</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado digital TotalFut ao concluir</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Entrada no grupo de alunos e no TotalFut Connect</li>
+          </ul>
+          <a class="btn btn--lime btn--full" href="#" id="ctaTopo">Comprar o curso</a>
+          <p class="small" style="text-align:center">Pagamento pela Kiwify. Cartão, Pix ou boleto.</p>
+        </div>
+      </div>
+
+      <div class="capa">
+        <img src="assets/cursos/analise-desempenho-avancada.jpg" alt="Capa do curso Os Segredos da Análise de Desempenho Avançada, com Bruno Baquete">
+      </div>
+    </div>
+
+    <div class="wrap"><p class="nota"><b>Pendente:</b> preço cheio, preço com desconto, parcelamento, link de checkout Kiwify, duração total e número de blocos. Os quatro campos da ficha acima dependem disso.</p></div>
+  </section>
+
+  <!-- PARA QUEM É -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <h2>Para quem é este curso.</h2>
+        <p class="lede">Quatro funções tiram proveitos diferentes do mesmo conteúdo.</p>
+      </div>
+      <div class="perfis">
+        <div class="perfil">
+          <span class="perfil__tag">Analista de elite</span>
+          <p>Já trabalha em nível avançado e quer qualificar o processo, com acesso ao nível de informação usado nas duas últimas Copas do Mundo.</p>
+        </div>
+        <div class="perfil">
+          <span class="perfil__tag">Analista iniciante</span>
+          <p>Está começando ou em nível intermediário e quer descobrir os pilares da análise de alto nível e como escalar para o próximo degrau.</p>
+        </div>
+        <div class="perfil">
+          <span class="perfil__tag">Treinador</span>
+          <p>Quer participar do processo de análise da própria equipe e entender as estratégias usadas para obter vantagem sobre o adversário.</p>
+        </div>
+        <div class="perfil">
+          <span class="perfil__tag">Auxiliar técnico</span>
+          <p>Busca uma ferramenta de diferenciação em relação aos outros profissionais da área técnica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE O CURSO COBRE -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <h2>O que o curso cobre.</h2>
+        <p class="lede">Temas que raramente aparecem em formação de analista, tratados por quem faz isso em seleção.</p>
+      </div>
+      <div class="cobre">
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Como preparar análises no nível em que elas chegam à comissão técnica</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Sportscode, Wyscout, Hudl, Studio e Insight — as ferramentas das maiores ligas</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Alternativas de análise para quem ainda não tem acesso a esses softwares</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Como as métricas são efetivamente consumidas pela comissão</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Integração e comunicação do analista com a comissão técnica</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>A interação com os atletas e as melhores práticas de apresentação</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Participar ou não do campo: quando faz diferença e quando atrapalha</p></div>
+        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><p>Análise em tempo real e a comunicação com o banco de reservas</p></div>
+      </div>
+      <p class="nota"><b>Pendente:</b> a lista de módulos com os nomes e a duração de cada bloco. Os oito temas acima vieram do texto publicado hoje, não da ementa.</p>
+    </div>
+  </section>
+
+  <!-- PROFESSOR -->
+  <section>
+    <div class="wrap prof">
+      <div class="prof__foto"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete"></div>
+      <div class="prof__texto">
+        <p class="prof__funcao">Analista de desempenho</p>
+        <h2>Bruno Baquete</h2>
+        <p>Atua há mais de dez anos como analista de desempenho. Passou pelo E.C. Vitória, pelo S.C. Corinthians e pelo C. Athletico Paranaense, e hoje está na Seleção Brasileira, onde participou das duas últimas Copas do Mundo.</p>
+        <p>Trabalhou em todas as categorias do futebol, como analista de clube e como consultor de treinadores — os dois lados do mesmo processo. Tem graduação e mestrado na área, e passou por comissões de nomes como Tite, Fernando Diniz e Paulo Autuori.</p>
+        <div class="credenciais">
+          <span>Seleção Brasileira</span>
+          <span>Duas Copas do Mundo</span>
+          <span>Corinthians</span>
+          <span>Athletico-PR</span>
+          <span>E.C. Vitória</span>
+          <span>Mestrado</span>
+        </div>
+        <p class="nota" style="margin-top:8px"><b>Confirmar:</b> a relação com Tite, Diniz e Autuori — o texto atual do site diz que ele teve a oportunidade de aprender com eles, sem detalhar em que função.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BÔNUS -->
+  <section>
+    <div class="wrap">
+      <div class="bonus">
+        <div>
+          <h2>Os bônus.</h2>
+          <p style="margin-top:12px">Temas complementares que sozinhos já seriam um curso à parte, reunidos aqui porque se completam.</p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Conteúdo bônus 1 — a confirmar</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Conteúdo bônus 2 — a confirmar</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Conteúdo bônus 3 — a confirmar</li>
+        </ul>
+      </div>
+      <p class="nota"><b>Pendente:</b> os nomes dos bônus. A página atual promete bônus valiosos mas não diz quais — é o tipo de promessa vaga que enfraquece a oferta em vez de reforçar.</p>
+    </div>
+  </section>
+
+  <!-- ENTREGA -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <h2>Como você recebe.</h2>
+      </div>
+      <div class="entrega">
+        <div class="ent">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><path d="M13 2.5L4.5 13.5H11l-.8 8L19.5 10H13z"/></svg></div>
+          <h3>Acesso imediato</h3>
+          <p>O e-mail da Kiwify com o link chega assim que a inscrição é confirmada.</p>
+        </div>
+        <div class="ent">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 18.2h2"/></svg></div>
+          <h3>Computador ou celular</h3>
+          <p>Pelo navegador ou pelo aplicativo, com vídeo e áudio em HD.</p>
+        </div>
+        <div class="ent">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
+          <h3>Doze meses</h3>
+          <p>Quantas revisões você quiser dentro do período.</p>
+        </div>
+        <div class="ent">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="5"/><path d="M8.5 14l-1 6.5 4.5-2.5 4.5 2.5-1-6.5"/></svg></div>
+          <h3>Certificado</h3>
+          <p>Digital e exclusivo, emitido ao concluir as aulas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:32px">
+        <h2>O que mudou no trabalho deles.</h2>
+      </div>
+      <div class="deps">
+        <div class="dep">
+          <q>Meses depois do curso de bolas paradas, virei o responsável pela análise de bolas paradas no clube onde trabalho.</q>
+          <div class="dep__who"><p class="dep__n">Caio Gondo</p><p class="dep__r">Analista de desempenho</p></div>
+        </div>
+        <div class="dep">
+          <q>Várias situações dos cursos de bola parada e de técnica e tática individual eu implementei no dia a dia do clube.</q>
+          <div class="dep__who"><p class="dep__n">Fábio Silveira Junior</p><p class="dep__r">Treinador</p></div>
+        </div>
+        <div class="dep">
+          <q>Os professores abriram um debate entre os participantes, o que contribuiu tanto quanto o conteúdo proposto.</q>
+          <div class="dep__who"><p class="dep__n">Walmir Israel</p><p class="dep__r">Treinador</p></div>
+        </div>
+      </div>
+      <p class="nota"><b>Observação:</b> estes depoimentos são de outros cursos da TotalFut. Depoimentos deste curso específico convertem bem mais — vale coletar entre quem já fez.</p>
+    </div>
+  </section>
+
+  <!-- FECHAMENTO -->
+  <section id="fechamento">
+    <div class="wrap">
+      <div class="fecha">
+        <h2 style="max-width:20ch">Os Segredos da Análise de Desempenho Avançada</h2>
+        <p class="lede" style="max-width:48ch">com Bruno Baquete, analista da Seleção Brasileira</p>
+        <div class="oferta">
+          <div class="oferta__preco"><s>R$ —</s><b>R$ —</b><i>ou em até 12×</i></div>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato e doze meses de consulta</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado digital TotalFut</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos e TotalFut Connect</li>
+          </ul>
+          <a class="btn btn--lime btn--full" href="#">Comprar o curso</a>
+          <p class="small" style="text-align:center">Pagamento pela Kiwify. Cartão, Pix ou boleto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section id="duvidas">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:32px">
+        <h2>Dúvidas antes de se inscrever.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>O curso é ao vivo ou gravado?</summary>
+          <p>Gravado. Ele nasceu de um evento online ao vivo e foi reorganizado em blocos curtos para consulta. Você assiste no seu ritmo, a partir do momento da inscrição.</p>
+        </details>
+        <details>
+          <summary>Por quanto tempo tenho acesso?</summary>
+          <p>Doze meses a partir da inscrição, com quantas revisões você quiser dentro do período.</p>
+        </details>
+        <details>
+          <summary>Como acesso o conteúdo?</summary>
+          <p>Logo após a inscrição chega um e-mail da Kiwify, a plataforma onde o material fica hospedado. Dá para assistir pelo navegador no computador ou pelo aplicativo no celular.</p>
+        </details>
+        <details>
+          <summary>Preciso ter os softwares citados?</summary>
+          <p>Não para acompanhar. O curso mostra Sportscode, Wyscout, Hudl, Studio e Insight, e apresenta alternativas para quem ainda não tem acesso. A recomendação é ter os primeiros contatos com essas ferramentas, porque elas são o padrão de mercado.</p>
+        </details>
+        <details>
+          <summary>Tem certificado?</summary>
+          <p>Sim, certificado digital exclusivo TotalFut, emitido ao concluir as aulas.</p>
+        </details>
+        <details>
+          <summary>E se eu não gostar?</summary>
+          <p>Política de reembolso a definir.</p>
+        </details>
+      </div>
+      <p class="nota" style="max-width:780px;margin-inline:auto"><b>Pendente:</b> a política de reembolso. É a última objeção antes da compra e hoje não tem resposta em nenhuma página do site.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
+      <div class="foot__links">
+        <a href="#">Todos os cursos</a>
+        <a href="#">Professores</a>
+        <a href="#">Suporte</a>
+        <a href="#">Área do aluno</a>
+      </div>
+    </div>
+    <div class="foot__legal">© 2026 TotalFut · totalfut.com.br</div>
+  </div>
+</footer>
+
+<div class="barra" id="barra">
+  <div class="barra__info">
+    <b>Análise de Desempenho Avançada</b>
+    <span>com Bruno Baquete</span>
+  </div>
+  <a class="btn btn--lime" href="#fechamento">Comprar o curso</a>
+</div>
+
+<script>
+(function(){
+  // a barra de compra entra só depois que o botão do topo sai da tela,
+  // e some de novo quando o bloco de fechamento aparece
+  var barra = document.getElementById('barra');
+  var topo  = document.getElementById('ctaTopo');
+  var fim   = document.getElementById('fechamento');
+  if (!barra || !topo || !fim || !('IntersectionObserver' in window)) return;
+
+  var topoVisivel = true, fimVisivel = false;
+  function atualizar(){
+    barra.dataset.visivel = String(!topoVisivel && !fimVisivel);
+  }
+  new IntersectionObserver(function(e){
+    topoVisivel = e[0].isIntersecting; atualizar();
+  }, { rootMargin: '-10px 0px 0px 0px' }).observe(topo);
+
+  new IntersectionObserver(function(e){
+    fimVisivel = e[0].isIntersecting; atualizar();
+  }, { threshold: 0.18 }).observe(fim);
+})();
+</script>
