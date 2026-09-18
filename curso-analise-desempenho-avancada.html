@@ -95,7 +95,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 /* topo: retrato à direita, informação à esquerda sobre o degradê.
    No celular o retrato vira faixa superior e o texto começa no degradê. */
 .topo{position:relative;padding-block:0;overflow:hidden}
-.topo__foto{position:relative;width:100%;aspect-ratio:5/4;overflow:hidden}
+.topo__foto{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
 .topo__foto img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
 .topo__foto::after{
   content:"";position:absolute;inset:0;pointer-events:none;
@@ -105,10 +105,11 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 }
 .topo__grade{
   position:relative;z-index:2;display:grid;grid-template-columns:1fr;
-  margin-top:-19%;padding-bottom:clamp(40px,6vw,72px);
+  margin-top:-17%;padding-bottom:clamp(32px,5vw,52px);
 }
 @media(min-width:900px){
-  .topo{min-height:640px;display:flex;align-items:center;padding-block:clamp(48px,5vw,80px)}
+  /* grid em vez de flex: como item flex o .wrap encolhia para o tamanho do conteúdo */
+  .topo{min-height:clamp(440px,56vh,540px);display:grid;align-content:center;padding-block:clamp(32px,3.6vw,52px)}
   .topo__foto{
     position:absolute;inset:0 0 0 auto;width:64%;aspect-ratio:auto;height:100%;
   }
@@ -119,7 +120,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
       linear-gradient(0deg, var(--void) 0%, rgba(6,7,5,0) 26%);
   }
   .topo__grade{margin-top:0;padding-bottom:0;width:100%}
-  .topo__copy{max-width:min(560px,52vw)}
+  .topo__copy{max-width:min(600px,55vw)}
 }
 
 .fase{
@@ -127,9 +128,9 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
   font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);
   border:1px solid rgba(215,255,71,.3);padding:6px 13px;border-radius:999px;
 }
-.topo__copy{display:flex;flex-direction:column;gap:18px;align-items:flex-start;min-width:0}
-.topo__copy h1{max-width:16ch}
-.topo__com{font-size:15.5px;color:var(--mute)}
+.topo__copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
+.topo__copy h1{font-size:clamp(27px,3.6vw,40px);line-height:1.04;max-width:23ch}
+.topo__com{font-size:15px;color:var(--mute)}
 .topo__com b{color:var(--text);font-weight:600}
 
 .ficha{
@@ -137,23 +138,30 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
   background:var(--card);overflow:hidden;width:100%;
 }
 .ficha div{
-  flex:1 1 128px;padding:15px 18px;display:flex;flex-direction:column;gap:3px;
+  flex:1 1 86px;padding:9px 14px;display:flex;flex-direction:column;gap:1px;
   border-right:1px solid var(--hair);
 }
 .ficha div:last-child{border-right:0}
-.ficha b{font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.02em}
-.ficha span{font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.ficha b{font-family:var(--display);font-size:14.5px;font-weight:600;color:var(--text);letter-spacing:-.02em}
+.ficha span{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
 
 /* ---------- caixa de oferta ---------- */
 .oferta{
   background:linear-gradient(180deg,#161A0F 0%,#0D100A 65%);
-  border:1px solid rgba(215,255,71,.28);border-radius:20px;
-  padding:clamp(24px,3.4vw,34px);display:flex;flex-direction:column;gap:16px;
+  border:1px solid rgba(215,255,71,.28);border-radius:18px;
+  padding:clamp(18px,2.4vw,24px);display:flex;flex-direction:column;gap:13px;
   max-width:520px;width:100%;
 }
+/* no topo a oferta é só preço e botão; a lista completa fica no fechamento */
+.oferta--topo{flex-direction:row;align-items:center;flex-wrap:wrap;gap:12px 20px}
+.oferta--topo .oferta__valor{flex:1 1 150px;display:flex;flex-direction:column;gap:1px}
+.oferta--topo .oferta__preco{gap:9px}
+.oferta--topo .oferta__parcela{font-size:12.5px;color:var(--dim)}
+.oferta--topo .btn{flex:none;width:auto;padding:13px 26px}
+.oferta--topo .small{flex-basis:100%;text-align:left;font-size:12.5px;line-height:1.45}
 .oferta__preco{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
 .oferta__preco s{font-size:16px;color:var(--dim)}
-.oferta__preco b{font-family:var(--display);font-size:clamp(34px,4.6vw,46px);font-weight:700;color:var(--text);letter-spacing:-.04em}
+.oferta__preco b{font-family:var(--display);font-size:clamp(30px,3.8vw,40px);font-weight:700;color:var(--text);letter-spacing:-.04em}
 .oferta__preco i{font-style:normal;font-size:14px;color:var(--mute)}
 .oferta ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .oferta li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--mute)}
@@ -327,7 +335,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
       <div class="topo__copy">
         <span class="fase">Análise de desempenho</span>
         <h1>Os Segredos da Análise de Desempenho Avançada</h1>
-        <p class="lede" style="max-width:48ch">Conceitos, práticas e estratégias de análise no futebol de alto rendimento — das ferramentas ao que se fala com a comissão durante o jogo.</p>
+        <p class="lede" style="max-width:44ch;font-size:15.5px">Das ferramentas de análise ao que se fala com a comissão durante o jogo.</p>
         <p class="topo__com">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
 
         <div class="ficha">
@@ -337,17 +345,13 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
           <div><b>Sim</b><span>Bônus</span></div>
         </div>
 
-        <div class="oferta" id="ofertaTopo">
-          <div class="oferta__preco">
-            <s>R$ —</s><b>R$ —</b><i>ou em até 12×</i>
+        <div class="oferta oferta--topo" id="ofertaTopo">
+          <div class="oferta__valor">
+            <div class="oferta__preco"><s>R$ —</s><b>R$ —</b></div>
+            <span class="oferta__parcela">ou em até 12×</span>
           </div>
-          <ul>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail após a inscrição</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado digital TotalFut ao concluir</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Entrada no grupo de alunos e no TotalFut Connect</li>
-          </ul>
-          <a class="btn btn--lime btn--full" href="#" id="ctaTopo">Comprar o curso</a>
-          <p class="small" style="text-align:center">Pagamento pela Kiwify. Cartão, Pix ou boleto.</p>
+          <a class="btn btn--lime" href="#" id="ctaTopo">Comprar o curso</a>
+          <p class="small">Acesso imediato, doze meses de consulta e certificado. Pagamento pela Kiwify.</p>
         </div>
       </div>
     </div>
