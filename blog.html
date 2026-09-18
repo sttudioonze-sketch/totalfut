@@ -1,0 +1,315 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog TotalFut</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --void:#060705;
+  --card:#0F110C;
+  --hair:#23271A;
+  --hair-2:#2E3324;
+  --lime:#D7FF47;
+  --lime-2:#C5F132;
+  --lime-ink:#0A0C05;
+  --azul:#015AFF;
+  --azul-2:#2A72FF;
+  --text:#FFFFFF;
+  --mute:#9AA08C;
+  --dim:#676C5C;
+  --display:"Sora","Helvetica Neue",Arial,sans-serif;
+  --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+  --r:16px;
+  --max:1120px;
+  --pad:clamp(20px,5vw,48px);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--void);color:var(--mute);font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+::selection{background:var(--azul);color:#fff}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+section{padding-block:clamp(40px,5vw,64px);position:relative;overflow-x:clip}
+
+h1,h2,h3{font-family:var(--display);color:var(--text);margin:0;text-wrap:balance;letter-spacing:-.028em}
+h1{font-size:clamp(30px,4.4vw,50px);font-weight:700;line-height:1.05}
+h3{font-size:17px;font-weight:600;line-height:1.28;letter-spacing:-.014em}
+p{margin:0}
+.lede{font-size:clamp(15px,1.15vw,17px);line-height:1.65;color:var(--mute)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+  font-family:var(--body);font-size:14.5px;font-weight:600;
+  padding:13px 26px;border-radius:999px;border:1px solid transparent;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.btn--wire{border-color:var(--hair-2);color:var(--text);background:transparent}
+.btn--wire:hover{border-color:var(--lime);color:var(--lime)}
+.btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
+.btn--azul:hover{background:var(--azul-2);transform:translateY(-1px)}
+
+/* ---------- cabeçalho ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.nav img{height:24px;width:auto;flex:none}
+.nav__voltar{
+  margin-left:auto;display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);
+}
+.nav__voltar:hover{color:var(--lime)}
+.nav__voltar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:620px){.nav__voltar span{display:none}}
+
+/* ---------- topo ---------- */
+.topo{padding-block:clamp(40px,5.5vw,72px) clamp(24px,3vw,34px)}
+.topo__inner{display:flex;flex-direction:column;gap:14px;max-width:56ch}
+
+/* ---------- filtro ---------- */
+.seg{
+  display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  padding:6px;border-radius:999px;flex:none;
+  background:linear-gradient(180deg,#0B0D08 0%,#13170C 100%);
+  border:1px solid #1C2015;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.65), 0 10px 26px rgba(0,0,0,.45);
+}
+.seg button{
+  height:44px;min-width:44px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  font-family:var(--body);font-size:14px;font-weight:600;color:#7C8270;white-space:nowrap;
+  background:linear-gradient(180deg,#15190F 0%,#0C0F08 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -3px 6px rgba(0,0,0,.45);
+  transition:background .26s ease,color .26s ease,box-shadow .26s ease,
+             padding .28s cubic-bezier(.3,.9,.3,1),gap .28s cubic-bezier(.3,.9,.3,1);
+}
+.seg button:hover{color:#AEB59C}
+.seg button svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.seg button span{max-width:0;overflow:hidden;opacity:0;transition:max-width .28s cubic-bezier(.3,.9,.3,1),opacity .18s ease}
+.seg button[aria-selected="true"]{
+  padding-inline:20px 24px;gap:10px;color:var(--lime-ink);
+  background:linear-gradient(105deg,#E8FF8E 0%,#CFFB4E 44%,#A9E62B 100%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.65), inset 0 -4px 8px rgba(72,108,6,.38),
+             0 0 32px rgba(215,255,71,.24), 0 6px 16px rgba(0,0,0,.4);
+}
+.seg button[aria-selected="true"] svg{stroke-width:2}
+.seg button[aria-selected="true"] span{max-width:230px;opacity:1}
+.seg-trilha{display:flex;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
+.seg-trilha::-webkit-scrollbar{display:none}
+
+/* ---------- matérias ---------- */
+.materias{display:grid;gap:14px;grid-template-columns:1fr;margin-top:26px}
+@media(min-width:700px){.materias{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.materias{grid-template-columns:repeat(3,1fr)}}
+.materia{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:border-color .2s ease,transform .2s ease;
+}
+.materia:hover{border-color:rgba(215,255,71,.3);transform:translateY(-3px)}
+.materia__capa{
+  aspect-ratio:16/10;border-bottom:1px solid var(--hair);
+  background:radial-gradient(120% 120% at 20% 0%, #1A1F12 0%, #0C0F08 70%);
+  display:grid;place-items:center;
+}
+.materia__capa svg{width:44%;height:auto;opacity:.16;stroke:var(--lime);fill:none;stroke-width:1.2}
+.materia__corpo{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.materia__tema{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.materia p{font-size:13.5px;line-height:1.5;color:var(--dim)}
+.materia__pe{
+  margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:12.5px;color:var(--dim);
+}
+
+.vazio{
+  margin-top:20px;padding:30px;border:1px dashed var(--hair-2);border-radius:16px;
+  text-align:center;font-size:14.5px;color:var(--mute);
+}
+.vazio[hidden]{display:none}
+.vazio button{background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- rodapé ---------- */
+footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:var(--card);margin-top:clamp(40px,6vw,80px)}
+.foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.foot img{height:40px;width:auto}
+.foot__links{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px}
+.foot a:hover{color:var(--lime)}
+.foot__legal{margin-top:26px;padding-top:18px;border-top:1px solid var(--hair);
+  font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
+
+.nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
+  font-size:13px;line-height:1.65;color:var(--dim);margin-top:26px}
+.nota b{color:var(--lime);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+</style>
+
+<header>
+  <nav class="nav wrap" aria-label="Principal">
+    <a href="index.html"><img src="assets/logo-horizontal-branco.svg" alt="TotalFut"></a>
+    <a class="nav__voltar" href="index.html"><svg viewBox="0 0 14 14"><path d="M12 7H2M6 3L2 7l4 4"/></svg><span>Voltar ao site</span></a>
+    <a class="btn btn--azul" href="#">Área do aluno</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="topo">
+    <div class="wrap topo__inner">
+      <h1>Blog TotalFut.</h1>
+      <p class="lede">Textos curtos sobre o que aparece no trabalho de quem analisa e treina, escritos pelos próprios formadores. Sem teoria solta: cada um sai de uma situação que aconteceu.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="seg-trilha">
+        <div class="seg" id="segBlog" role="tablist" aria-label="Tema das matérias">
+          <button type="button" role="tab" aria-selected="true" data-blog="todos">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h11"/></svg><span>Todos</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="analise">
+            <svg viewBox="0 0 24 24"><path d="M4 18V10M9.5 18V5M15 18v-5M20.5 18V8"/></svg><span>Análise</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="bola-parada">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5v7.5"/><circle cx="12" cy="15.5" r="4.8"/><path d="M8.5 6.5h7"/></svg><span>Bola parada</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="treino">
+            <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17.5" cy="16.5" r="2.4"/><path d="M8.8 8.8l7 6"/></svg><span>Treino</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="goleiros">
+            <svg viewBox="0 0 24 24"><path d="M4.5 9.5h15v8h-15z"/><path d="M8 9.5V7a4 4 0 0 1 8 0v2.5"/></svg><span>Goleiros</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="carreira">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/></svg><span>Carreira</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="materias" id="grade">
+
+        <article class="materia" data-blog="analise">
+          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Análise</span>
+            <h3>O relatório pré-jogo que cabe em uma página</h3>
+            <p>O que a comissão realmente lê antes da partida, e o que costuma ser descartado no caminho.</p>
+            <div class="materia__pe"><span>6 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="bola-parada">
+          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Bola parada</span>
+            <h3>Escanteio curto: quando ele rende mais que o cruzamento</h3>
+            <p>As condições de marcação que tornam a cobrança curta a melhor escolha, com exemplos.</p>
+            <div class="materia__pe"><span>8 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="treino">
+          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Treino</span>
+            <h3>O que muda no treino quando o analista entra em campo</h3>
+            <p>Ganhos e custos de tirar o analista da sala e colocá-lo ao lado do treinador.</p>
+            <div class="materia__pe"><span>5 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="goleiros">
+          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Goleiros</span>
+            <h3>Ler o cruzamento antes da bola sair do pé</h3>
+            <p>Os indícios de corpo e de apoio que antecipam o tipo de bola que vem.</p>
+            <div class="materia__pe"><span>7 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="carreira">
+          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Carreira</span>
+            <h3>Do amador ao profissional: o que o clube pergunta</h3>
+            <p>O que costuma pesar numa entrevista para comissão técnica, na prática.</p>
+            <div class="materia__pe"><span>9 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="analise">
+          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Análise</span>
+            <h3>Métricas que a comissão usa e métricas que ela ignora</h3>
+            <p>Por que alguns números nunca saem do relatório e outros mudam a escalação.</p>
+            <div class="materia__pe"><span>6 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="vazio" id="semResultado" hidden>Nenhuma matéria nesse tema ainda. <button type="button" id="limparFiltro">Ver todas</button></p>
+
+      <p class="nota"><b>Pendente:</b> esta página está com seis espaços reservados para dimensionar a grade. Faltam os textos, as capas, os autores e as datas. Quando os primeiros saírem, os temas sem matéria somem do filtro em vez de virarem lista vazia.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
+      <div class="foot__links">
+        <a href="index.html#cursos">Cursos</a>
+        <a href="index.html#professores">Professores</a>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#suporte">Suporte</a>
+      </div>
+    </div>
+    <div class="foot__legal">© 2026 TotalFut · totalfut.com.br</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var seg = document.getElementById('segBlog');
+  var cards = [].slice.call(document.querySelectorAll('.materia[data-blog]'));
+  var vazio = document.getElementById('semResultado');
+  var limpar = document.getElementById('limparFiltro');
+
+  function aplicar(tema){
+    var visiveis = 0;
+    cards.forEach(function(c){
+      var ok = tema === 'todos' || c.dataset.blog === tema;
+      c.hidden = !ok;
+      if (ok) visiveis++;
+    });
+    if (vazio) vazio.hidden = visiveis > 0;
+  }
+
+  if (seg) seg.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    [].forEach.call(this.querySelectorAll('button'), function(x){
+      x.setAttribute('aria-selected', String(x === b));
+    });
+    aplicar(b.dataset.blog);
+    b.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+  });
+
+  if (limpar) limpar.addEventListener('click', function(){
+    [].forEach.call(seg.querySelectorAll('button'), function(x, i){
+      x.setAttribute('aria-selected', String(i === 0));
+    });
+    aplicar('todos');
+  });
+})();
+</script>

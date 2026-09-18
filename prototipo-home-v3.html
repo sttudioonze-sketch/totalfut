@@ -96,15 +96,15 @@ p{margin:0}
 header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
 .nav{display:flex;align-items:center;gap:26px;height:66px}
 .nav img{height:25px;width:auto;flex:none}
-.nav__links{display:none;gap:26px;margin-left:auto;font-size:13px;font-weight:600;
+.nav__links{display:none;gap:22px;margin-left:auto;font-size:13px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .nav__links a{transition:color .16s ease}
 .nav__links a:hover{color:var(--lime)}
-.nav__right{display:none;align-items:center;gap:10px;margin-left:24px;padding-left:24px;
+.nav__right{display:none;align-items:center;gap:10px;margin-left:20px;padding-left:20px;
   border-left:1px solid var(--hair)}
 
 /* área do aluno: azul sólido com texto branco (5,4:1) — separa entrar na conta de comprar */
-.btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
+.btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px;white-space:nowrap}
 .btn--azul:hover{background:var(--azul-2);transform:translateY(-1px)}
 .btn--azul svg{opacity:.85}
 
@@ -193,7 +193,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .menu a{padding:13px 2px;font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--text);border-bottom:1px solid var(--hair)}
 .menu .btn{margin-top:14px}
-@media(min-width:980px){
+/* cinco itens mais idioma e conta não cabem em 980 */
+@media(min-width:1080px){
   .nav__links{display:flex}
   .nav__right{display:flex}
   .burger{display:none}
@@ -275,6 +276,33 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .plano__prof{font-size:13.5px;color:var(--mute)}
 .plano__dur{font-size:12.5px;color:var(--dim);margin-top:-6px}
 
+/* ---------- blog ---------- */
+.materias{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:700px){.materias{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.materias{grid-template-columns:repeat(3,1fr)}}
+.materia{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:border-color .2s ease,transform .2s ease;
+}
+.materia:hover{border-color:rgba(215,255,71,.3);transform:translateY(-3px)}
+.materia__capa{
+  aspect-ratio:16/10;background:
+    radial-gradient(120% 120% at 20% 0%, #1A1F12 0%, #0C0F08 70%);
+  border-bottom:1px solid var(--hair);position:relative;display:grid;place-items:center;
+}
+/* marca d'água de prancheta enquanto não há foto de capa */
+.materia__capa svg{width:44%;height:auto;opacity:.16;stroke:var(--lime);fill:none;stroke-width:1.2}
+.materia__corpo{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.materia__tema{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.materia h3{font-size:17px;line-height:1.28}
+.materia p{font-size:13.5px;line-height:1.5;color:var(--dim)}
+.materia__pe{
+  margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:12.5px;color:var(--dim);
+}
+
 /* ---------- eventos ---------- */
 .evento{
   background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
@@ -350,6 +378,15 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .canal .btn{margin-top:6px}
 
 /* ---------- sobre ---------- */
+/* só a prancheta do logo: a janela corta o letreiro, que repetiria
+   o nome logo acima de um título que já diz "TotalFut" */
+/* janela sobre o arquivo do logo mostrando só a prancheta: medida no
+   render, o campo ocupa x 26,3%–73,5% e y 6,9%–67,9% do quadrado */
+.sobre__marca{
+  position:relative;width:clamp(54px,5.4vw,66px);aspect-ratio:1/1.291;
+  overflow:hidden;line-height:0;margin-bottom:20px;
+}
+.sobre__marca img{position:absolute;width:211.5%;left:-55.5%;top:-14.5%;height:auto;max-width:none}
 .sobre{display:grid;gap:clamp(24px,4vw,56px);grid-template-columns:1fr}
 @media(min-width:900px){.sobre{grid-template-columns:.9fr 1.1fr}}
 .sobre p + p{margin-top:16px}
@@ -432,6 +469,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
       <a href="#professores">Professores</a>
       <a href="#cursos">Cursos</a>
       <a href="#sobre">Sobre</a>
+      <a href="#blog">Blog</a>
       <a href="#suporte">Suporte</a>
     </div>
 
@@ -459,6 +497,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     <a href="#professores">Professores</a>
     <a href="#cursos">Cursos</a>
     <a href="#sobre">Sobre</a>
+    <a href="#blog">Blog</a>
     <a href="#suporte">Suporte</a>
     <a class="btn btn--azul" href="#">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -764,6 +803,87 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     </div>
   </section>
 
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:30px">
+        <h2>Blog TotalFut.</h2>
+        <p class="lede">Textos curtos sobre o que aparece no trabalho de quem analisa e treina. Escritos pelos próprios formadores.</p>
+      </div>
+
+      <div class="seg-trilha">
+        <div class="seg" id="segBlog" role="tablist" aria-label="Tema das matérias">
+          <button type="button" role="tab" aria-selected="true" data-blog="todos">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h11"/></svg>
+            <span>Todos</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="analise">
+            <svg viewBox="0 0 24 24"><path d="M4 18V10M9.5 18V5M15 18v-5M20.5 18V8"/></svg>
+            <span>Análise</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="bola-parada">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5v7.5"/><circle cx="12" cy="15.5" r="4.8"/><path d="M8.5 6.5h7"/></svg>
+            <span>Bola parada</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="treino">
+            <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17.5" cy="16.5" r="2.4"/><path d="M8.8 8.8l7 6"/></svg>
+            <span>Treino</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-blog="carreira">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/></svg>
+            <span>Carreira</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="materias" style="margin-top:26px">
+
+        <article class="materia" data-blog="analise">
+          <div class="materia__capa" aria-hidden="true">
+            <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
+          </div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Análise</span>
+            <h3>O relatório pré-jogo que cabe em uma página</h3>
+            <p>O que a comissão realmente lê antes da partida, e o que costuma ser descartado no caminho.</p>
+            <div class="materia__pe"><span>6 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="bola-parada">
+          <div class="materia__capa" aria-hidden="true">
+            <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
+          </div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Bola parada</span>
+            <h3>Escanteio curto: quando ele rende mais que o cruzamento</h3>
+            <p>As condições de marcação que tornam a cobrança curta a melhor escolha, com exemplos.</p>
+            <div class="materia__pe"><span>8 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+        <article class="materia" data-blog="treino">
+          <div class="materia__capa" aria-hidden="true">
+            <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
+          </div>
+          <div class="materia__corpo">
+            <span class="materia__tema">Treino</span>
+            <h3>O que muda no treino quando o analista entra em campo</h3>
+            <p>Ganhos e custos de tirar o analista da sala e colocá-lo ao lado do treinador.</p>
+            <div class="materia__pe"><span>5 min de leitura</span><span>Em produção</span></div>
+          </div>
+        </article>
+
+      </div>
+
+      <div style="display:flex;justify-content:center;margin-top:30px">
+        <a class="btn btn--wire" href="blog.html" target="_blank" rel="noopener">Ver todas as matérias</a>
+      </div>
+
+      <p class="nota"><b>Pendente:</b> as três matérias acima são espaços reservados — títulos, temas e tempos de leitura servem para dimensionar o card. Faltam os textos, as capas e a data de publicação.</p>
+    </div>
+  </section>
+
   <!-- EVENTOS -->
   <section id="eventos">
     <div class="wrap">
@@ -815,7 +935,12 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   <!-- SOBRE -->
   <section id="sobre">
     <div class="wrap sobre">
-      <h2>O que é a TotalFut.</h2>
+      <div>
+        <div class="sobre__marca" aria-hidden="true">
+          <img src="assets/logo-vertical-branco.svg" alt="">
+        </div>
+        <h2>O que é a TotalFut.</h2>
+      </div>
       <div>
         <p class="sobre__texto">Uma plataforma de cursos e eventos para profissionais do futebol, concentrada na área técnico-tática. O público é quem trabalha no jogo: treinadores, auxiliares técnicos, preparadores e analistas de desempenho.</p>
         <p class="sobre__texto">Os formadores são profissionais em atividade, e os temas saem do que eles fazem no clube ou na seleção — não de uma ementa montada de fora. Produzimos em parceria com alguns dos maiores nomes do futebol brasileiro, e a filosofia é a valorização do conhecimento de quem já está dentro.</p>
@@ -916,6 +1041,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <li><a href="#cursos">Cursos</a></li>
           <li><a href="#eventos">Eventos</a></li>
           <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#blog">Blog</a></li>
           <li><a href="#suporte">Suporte</a></li>
         </ul>
       </div>
@@ -1246,7 +1372,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     setMenu(burger.getAttribute('aria-expanded') !== 'true');
   });
   menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
-  matchMedia('(min-width:980px)').addEventListener('change', function(e){ if (e.matches) setMenu(false); });
+  matchMedia('(min-width:1080px)').addEventListener('change', function(e){ if (e.matches) setMenu(false); });
 
   /* ---------- idioma ---------- */
   // troca só o estado da interface e o atributo lang;
@@ -1301,6 +1427,23 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   }
   ligarTrilha(segTema, 'tema');
   ligarTrilha(segProf, 'prof');
+
+  /* ---------- filtro do blog ---------- */
+  const segBlog   = document.getElementById('segBlog');
+  const materias  = [].slice.call(document.querySelectorAll('.materia[data-blog]'));
+  if (segBlog){
+    segBlog.addEventListener('click', function(e){
+      const b = e.target.closest('button'); if (!b) return;
+      [].forEach.call(this.querySelectorAll('button'), function(x){
+        x.setAttribute('aria-selected', String(x === b));
+      });
+      const tema = b.dataset.blog;
+      materias.forEach(function(m){
+        m.hidden = tema !== 'todos' && m.dataset.blog !== tema;
+      });
+      b.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+    });
+  }
 
   const limpar = document.getElementById('limparFiltro');
   if (limpar) limpar.addEventListener('click', function(){
