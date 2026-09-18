@@ -42,7 +42,8 @@ a{color:inherit;text-decoration:none}
 ::selection{background:var(--azul);color:#fff}
 
 .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
-section{padding-block:clamp(60px,8vw,110px);position:relative}
+section{padding-block:clamp(60px,8vw,110px);position:relative;overflow-x:clip}
+/* os clarões decorativos passam da borda de propósito; clip evita scroll lateral */
 
 h1,h2,h3{font-family:var(--display);color:var(--text);margin:0;text-wrap:balance;letter-spacing:-.028em}
 h1{font-size:clamp(34px,5.4vw,62px);font-weight:700;line-height:1.05}
@@ -82,7 +83,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
   letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .nav__links a{transition:color .16s ease}
 .nav__links a:hover{color:var(--lime)}
-.nav__right{display:none;align-items:center;gap:12px;margin-left:26px}
+.nav__right{display:none;align-items:center;gap:10px;margin-left:24px;padding-left:24px;
+  border-left:1px solid var(--hair)}
 
 /* área do aluno: azul sólido com texto branco (5,4:1) — separa entrar na conta de comprar */
 .btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
@@ -161,9 +163,10 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
   position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
   padding-block:clamp(58px,8vw,96px) clamp(200px,26vw,320px);
 }
-.wordmark{
-  font-family:var(--display);font-size:12px;font-weight:700;
-  letter-spacing:.32em;text-transform:uppercase;color:var(--lime);margin:0 0 -2px;
+/* o logo é a âncora do hero: a prancheta da marca em cima do campo desenhado atrás */
+.hero__logo{
+  width:clamp(104px,13vw,150px);height:auto;margin-bottom:4px;
+  filter:drop-shadow(0 0 34px rgba(215,255,71,.20));
 }
 .hero__inner h1{max-width:17ch}
 .hero__inner .lede{max-width:52ch;color:#B3B9A4}
@@ -172,6 +175,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 /* celular deitado: o hero não pode passar da altura da janela */
 @media(orientation:landscape) and (max-height:600px){
   .hero__inner{padding-block:clamp(22px,5svh,40px) clamp(120px,34svh,190px);gap:11px}
+  .hero__logo{width:clamp(70px,9vw,92px)}
   .hero__inner h1{font-size:clamp(24px,4.2vw,36px);max-width:24ch}
   .hero__inner .lede{font-size:14px;max-width:60ch}
 }
@@ -287,6 +291,39 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .evento__aviso h3{font-size:15px}
 .evento__aviso p{font-size:13.5px;color:var(--dim);max-width:34ch}
 
+/* ---------- suporte ---------- */
+.suporte{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:900px){.suporte{grid-template-columns:1.35fr .65fr;gap:20px;align-items:start}}
+
+.faq{display:flex;flex-direction:column;gap:10px}
+.faq details{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  transition:border-color .2s ease;
+}
+.faq details[open]{border-color:var(--hair-2)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:18px 22px;
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--text);letter-spacing:-.012em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";margin-left:auto;flex:none;width:11px;height:11px;
+  border-right:1.7px solid var(--lime);border-bottom:1.7px solid var(--lime);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s ease;
+}
+.faq details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
+.faq p{padding:0 22px 20px;font-size:14px;line-height:1.6;color:var(--dim);max-width:62ch}
+
+.canais{display:flex;flex-direction:column;gap:14px}
+.canal{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  padding:22px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;
+}
+.canal--conta{border-left:2px solid var(--azul)}
+.canal p{font-size:13.5px;line-height:1.55;color:var(--dim);max-width:34ch}
+.canal .btn{margin-top:6px}
+
 /* ---------- sobre ---------- */
 .sobre{display:grid;gap:clamp(24px,4vw,56px);grid-template-columns:1fr}
 @media(min-width:900px){.sobre{grid-template-columns:.9fr 1.1fr}}
@@ -367,10 +404,10 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     <img src="assets/logo-horizontal-branco.svg" alt="TotalFut">
 
     <div class="nav__links">
-      <a href="#sobre">TotalFut</a>
-      <a href="#formadores">Formadores</a>
+      <a href="#professores">Professores</a>
       <a href="#cursos">Cursos</a>
-      <a href="#eventos">Eventos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#suporte">Suporte</a>
     </div>
 
     <div class="nav__right">
@@ -403,10 +440,10 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   </nav>
 
   <div class="menu" id="menu" hidden>
-    <a href="#sobre">TotalFut</a>
-    <a href="#formadores">Formadores</a>
+    <a href="#professores">Professores</a>
     <a href="#cursos">Cursos</a>
-    <a href="#eventos">Eventos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#suporte">Suporte</a>
     <a class="btn btn--azul" href="#">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
@@ -427,12 +464,12 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   <section class="hero">
     <canvas id="pitch" aria-hidden="true"></canvas>
     <div class="wrap hero__inner">
-      <p class="wordmark">TotalFut</p>
+      <img class="hero__logo" src="assets/logo-vertical-branco.svg" alt="TotalFut" width="150" height="150">
       <h1>Cursos e eventos avançados para profissionais do futebol.</h1>
       <p class="lede">Aprenda com profissionais de elite — analistas e treinadores em atividade na Seleção Brasileira, na Série A e em seleções e clubes da Europa e das Américas.</p>
       <div class="hero__cta">
         <a class="btn btn--lime" href="#cursos">Ver os cursos</a>
-        <a class="btn btn--wire" href="#formadores">Conhecer os formadores</a>
+        <a class="btn btn--wire" href="#professores">Conhecer os formadores</a>
       </div>
     </div>
 
@@ -441,6 +478,190 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
         <span>Formadores com passagem por</span>
         <b>Seleção Brasileira</b><b>Corinthians</b><b>Athletico&#8209;PR</b><b>E.C. Vitória</b><b>CBF Academy</b>
       </div>
+    </div>
+  </section>
+
+  <!-- PROFESSORES -->
+  <section id="professores">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:38px">
+        <h2>Quem dá a aula está em atividade.</h2>
+        <p class="lede">Nenhum conteúdo é terceirizado. Cada curso é conduzido pelo profissional que aplica aquilo no dia a dia do clube, da seleção ou da comissão técnica.</p>
+      </div>
+
+      <div class="profs">
+
+        <article class="prof">
+          <div class="prof__art"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete" loading="lazy"></div>
+          <div class="prof__body">
+            <p class="prof__r">Analista de desempenho</p>
+            <p class="prof__n">Bruno Baquete</p>
+            <p class="prof__c">Seleção Brasileira, com duas Copas do Mundo. Passagens por Vitória, Corinthians e Athletico-PR.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art"><img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy"></div>
+          <div class="prof__body">
+            <p class="prof__r">Analista de desempenho</p>
+            <p class="prof__n">Ricardo Pombo</p>
+            <p class="prof__c">Instrutor CBF Academy, Licença Pro e A. Cinco Copas do Mundo e duas Olimpíadas.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art"><img src="assets/professores/joao-burse.jpg" alt="João Burse" loading="lazy"></div>
+          <div class="prof__body">
+            <p class="prof__r">Treinador</p>
+            <p class="prof__n">João Burse</p>
+            <p class="prof__c">Acesso do E.C. Vitória à Série B.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art"><img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" loading="lazy"></div>
+          <div class="prof__body">
+            <p class="prof__r">Treinador</p>
+            <p class="prof__n">Leandro Zago</p>
+            <p class="prof__c">Credencial a confirmar.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art"><img src="assets/professores/thiago-mehl.jpg" alt="Thiago Mehl" loading="lazy"></div>
+          <div class="prof__body">
+            <p class="prof__r">Treinador de goleiros</p>
+            <p class="prof__n">Thiago Mehl</p>
+            <p class="prof__c">Credencial a confirmar.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art"><img src="assets/professores/julian-tobar.jpg" alt="Julian Tobar" loading="lazy"></div>
+          <div class="prof__body">
+            <p class="prof__r">Treinador</p>
+            <p class="prof__n">Julian Tobar</p>
+            <p class="prof__c">Credencial a confirmar.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art">
+            <img src="assets/professores/ramiro-rangles.jpg" alt="Ramiro Rangles" loading="lazy">
+            <span class="prof__badge">Em breve</span>
+          </div>
+          <div class="prof__body">
+            <p class="prof__r">Head of Kinetic Analytics</p>
+            <p class="prof__n">Ramiro Rangles</p>
+            <p class="prof__c">Curso em produção.</p>
+          </div>
+        </article>
+
+        <article class="prof">
+          <div class="prof__art">
+            <img src="assets/professores/andre-fornaziero.jpg" alt="André Fornaziero" loading="lazy">
+            <span class="prof__badge">Em breve</span>
+          </div>
+          <div class="prof__body">
+            <p class="prof__r">Fisiologista</p>
+            <p class="prof__n">André Fornaziero</p>
+            <p class="prof__c">Curso em produção.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section id="cursos">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:38px">
+        <h2>Seis cursos no catálogo.</h2>
+        <p class="lede">Todos gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
+      </div>
+
+      <div class="planos">
+
+        <div class="plano plano--destaque">
+          <span class="plano__tema">Bola parada</span>
+          <h3>A Análise de Desempenho da Bola Parada Ofensiva</h3>
+          <p class="plano__prof">Ricardo Pombo</p>
+          <p class="plano__dur">1h55 em 7 blocos</p>
+          <div class="plano__preco"><s>R$147</s><b>R$97</b><i>ou 12× R$9,74</i></div>
+          <div class="inclui">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Escanteios, faltas laterais e arremessos</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Exemplos práticos e exercícios</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
+          </div>
+          <a class="btn btn--lime btn--full" href="#">Ver o curso</a>
+        </div>
+
+        <div class="plano">
+          <span class="plano__tema">Análise de desempenho</span>
+          <h3>Os Segredos da Análise de Desempenho Avançada</h3>
+          <p class="plano__prof">Bruno Baquete</p>
+          <p class="plano__dur">Inclui bônus</p>
+          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
+          <div class="inclui">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Sportscode, Wyscout, Hudl e Studio</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Comunicação com a comissão e o banco</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Análise em tempo real</div>
+          </div>
+          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
+        </div>
+
+        <div class="plano">
+          <span class="plano__tema">Goleiros</span>
+          <h3>Cruzamentos no Futebol</h3>
+          <p class="plano__prof">Thiago Mehl</p>
+          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
+          <div class="inclui">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Defesa dos diferentes tipos de cruzamento</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
+          </div>
+          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
+        </div>
+
+        <div class="plano">
+          <span class="plano__tema">Tática individual</span>
+          <h3>Técnica e Tática Individual</h3>
+          <p class="plano__prof">Leandro Zago</p>
+          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
+          <div class="inclui">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>O jogo coletivo por uma abordagem individual</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
+          </div>
+          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
+        </div>
+
+        <div class="plano">
+          <span class="plano__tema">Bola parada</span>
+          <h3>Bola Parada Ofensiva</h3>
+          <p class="plano__prof">Julian Tobar</p>
+          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
+          <div class="inclui">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Estruturação da bola parada ofensiva</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
+          </div>
+          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
+        </div>
+
+        <div class="plano">
+          <span class="plano__tema">Bola parada</span>
+          <h3>A Bola Parada no acesso do E.C. Vitória à Série B</h3>
+          <p class="plano__prof">João Burse</p>
+          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
+          <div class="inclui">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Estudo de caso de uma temporada de acesso</div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
+          </div>
+          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
+        </div>
+
+      </div>
+
+      <p class="nota"><b>Pendente:</b> preço e link de checkout de 5 dos 6 cursos, e a lista real do que cada um inclui. Os itens acima saíram do conteúdo publicado hoje — precisam de conferência.</p>
     </div>
   </section>
 
@@ -564,98 +785,6 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     </div>
   </section>
 
-  <!-- CURSOS -->
-  <section id="cursos">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:38px">
-        <h2>Seis cursos no catálogo.</h2>
-        <p class="lede">Todos gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
-      </div>
-
-      <div class="planos">
-
-        <div class="plano plano--destaque">
-          <span class="plano__tema">Bola parada</span>
-          <h3>A Análise de Desempenho da Bola Parada Ofensiva</h3>
-          <p class="plano__prof">Ricardo Pombo</p>
-          <p class="plano__dur">1h55 em 7 blocos</p>
-          <div class="plano__preco"><s>R$147</s><b>R$97</b><i>ou 12× R$9,74</i></div>
-          <div class="inclui">
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Escanteios, faltas laterais e arremessos</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Exemplos práticos e exercícios</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
-          </div>
-          <a class="btn btn--lime btn--full" href="#">Ver o curso</a>
-        </div>
-
-        <div class="plano">
-          <span class="plano__tema">Análise de desempenho</span>
-          <h3>Os Segredos da Análise de Desempenho Avançada</h3>
-          <p class="plano__prof">Bruno Baquete</p>
-          <p class="plano__dur">Inclui bônus</p>
-          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
-          <div class="inclui">
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Sportscode, Wyscout, Hudl e Studio</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Comunicação com a comissão e o banco</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Análise em tempo real</div>
-          </div>
-          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
-        </div>
-
-        <div class="plano">
-          <span class="plano__tema">Goleiros</span>
-          <h3>Cruzamentos no Futebol</h3>
-          <p class="plano__prof">Thiago Mehl</p>
-          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
-          <div class="inclui">
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Defesa dos diferentes tipos de cruzamento</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
-          </div>
-          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
-        </div>
-
-        <div class="plano">
-          <span class="plano__tema">Tática individual</span>
-          <h3>Técnica e Tática Individual</h3>
-          <p class="plano__prof">Leandro Zago</p>
-          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
-          <div class="inclui">
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>O jogo coletivo por uma abordagem individual</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
-          </div>
-          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
-        </div>
-
-        <div class="plano">
-          <span class="plano__tema">Bola parada</span>
-          <h3>Bola Parada Ofensiva</h3>
-          <p class="plano__prof">Julian Tobar</p>
-          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
-          <div class="inclui">
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Estruturação da bola parada ofensiva</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
-          </div>
-          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
-        </div>
-
-        <div class="plano">
-          <span class="plano__tema">Bola parada</span>
-          <h3>A Bola Parada no acesso do E.C. Vitória à Série B</h3>
-          <p class="plano__prof">João Burse</p>
-          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
-          <div class="inclui">
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Estudo de caso de uma temporada de acesso</div>
-            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado e grupo de alunos</div>
-          </div>
-          <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
-        </div>
-
-      </div>
-
-      <p class="nota"><b>Pendente:</b> preço e link de checkout de 5 dos 6 cursos, e a lista real do que cada um inclui. Os itens acima saíram do conteúdo publicado hoje — precisam de conferência.</p>
-    </div>
-  </section>
-
   <!-- EVENTOS -->
   <section id="eventos">
     <div class="wrap">
@@ -678,98 +807,6 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
       </div>
 
       <p class="nota"><b>Pendente:</b> se houver evento marcado, este bloco vira a ficha da turma — data, formador, tema, valor e inscrição. O estado acima é o de catálogo sem data aberta.</p>
-    </div>
-  </section>
-
-  <!-- FORMADORES -->
-  <section id="formadores">
-    <div class="wrap">
-      <div class="center" style="margin-bottom:38px">
-        <h2>Quem dá a aula está em atividade.</h2>
-        <p class="lede">Nenhum conteúdo é terceirizado. Cada curso é conduzido pelo profissional que aplica aquilo no dia a dia do clube, da seleção ou da comissão técnica.</p>
-      </div>
-
-      <div class="profs">
-
-        <article class="prof">
-          <div class="prof__art"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete" loading="lazy"></div>
-          <div class="prof__body">
-            <p class="prof__r">Analista de desempenho</p>
-            <p class="prof__n">Bruno Baquete</p>
-            <p class="prof__c">Seleção Brasileira, com duas Copas do Mundo. Passagens por Vitória, Corinthians e Athletico-PR.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art"><img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy"></div>
-          <div class="prof__body">
-            <p class="prof__r">Analista de desempenho</p>
-            <p class="prof__n">Ricardo Pombo</p>
-            <p class="prof__c">Instrutor CBF Academy, Licença Pro e A. Cinco Copas do Mundo e duas Olimpíadas.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art"><img src="assets/professores/joao-burse.jpg" alt="João Burse" loading="lazy"></div>
-          <div class="prof__body">
-            <p class="prof__r">Treinador</p>
-            <p class="prof__n">João Burse</p>
-            <p class="prof__c">Acesso do E.C. Vitória à Série B.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art"><img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" loading="lazy"></div>
-          <div class="prof__body">
-            <p class="prof__r">Treinador</p>
-            <p class="prof__n">Leandro Zago</p>
-            <p class="prof__c">Credencial a confirmar.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art"><img src="assets/professores/thiago-mehl.jpg" alt="Thiago Mehl" loading="lazy"></div>
-          <div class="prof__body">
-            <p class="prof__r">Treinador de goleiros</p>
-            <p class="prof__n">Thiago Mehl</p>
-            <p class="prof__c">Credencial a confirmar.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art"><img src="assets/professores/julian-tobar.jpg" alt="Julian Tobar" loading="lazy"></div>
-          <div class="prof__body">
-            <p class="prof__r">Treinador</p>
-            <p class="prof__n">Julian Tobar</p>
-            <p class="prof__c">Credencial a confirmar.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art">
-            <img src="assets/professores/ramiro-rangles.jpg" alt="Ramiro Rangles" loading="lazy">
-            <span class="prof__badge">Em breve</span>
-          </div>
-          <div class="prof__body">
-            <p class="prof__r">Head of Kinetic Analytics</p>
-            <p class="prof__n">Ramiro Rangles</p>
-            <p class="prof__c">Curso em produção.</p>
-          </div>
-        </article>
-
-        <article class="prof">
-          <div class="prof__art">
-            <img src="assets/professores/andre-fornaziero.jpg" alt="André Fornaziero" loading="lazy">
-            <span class="prof__badge">Em breve</span>
-          </div>
-          <div class="prof__body">
-            <p class="prof__r">Fisiologista</p>
-            <p class="prof__n">André Fornaziero</p>
-            <p class="prof__c">Curso em produção.</p>
-          </div>
-        </article>
-
-      </div>
     </div>
   </section>
 
@@ -823,6 +860,64 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     </div>
   </section>
 
+  <!-- SUPORTE -->
+  <section id="suporte">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <h2>Dúvidas antes de se inscrever.</h2>
+        <p class="lede">O que mais perguntam sobre formato, acesso e certificado. Se a sua não estiver aqui, fale com a gente.</p>
+      </div>
+
+      <div class="suporte">
+        <div class="faq">
+          <details open>
+            <summary>O curso é ao vivo ou gravado?</summary>
+            <p>Gravado. Cada curso do catálogo nasceu de um evento online ao vivo e foi reorganizado em blocos para consulta. Quando abrimos turma nova ao vivo, o anúncio sai antes para a lista e para os alunos.</p>
+          </details>
+          <details>
+            <summary>Por quanto tempo tenho acesso?</summary>
+            <p>Doze meses a partir da inscrição, com quantas revisões você quiser dentro do período.</p>
+          </details>
+          <details>
+            <summary>Como acesso o conteúdo?</summary>
+            <p>Logo após a inscrição você recebe um e-mail da Kiwify, a plataforma onde o material fica hospedado. Dá para assistir pelo navegador no computador ou pelo aplicativo no celular, em HD.</p>
+          </details>
+          <details>
+            <summary>Tem certificado?</summary>
+            <p>Sim, certificado digital TotalFut, emitido ao concluir as aulas do curso.</p>
+          </details>
+          <details>
+            <summary>Como o conteúdo é dividido?</summary>
+            <p>Em blocos de 1 a 20 minutos, cada um com abertura e encerramento próprios. Os blocos não são aulas soltas: são partes nomeadas do evento, para você voltar a um tema específico sem reassistir tudo.</p>
+          </details>
+          <details>
+            <summary>Preciso dos softwares citados no curso?</summary>
+            <p>Não para acompanhar. O curso de análise mostra Sportscode, Wyscout e Hudl, e apresenta alternativas para quem ainda não tem acesso a essas ferramentas.</p>
+          </details>
+          <details>
+            <summary>O que é o TotalFut Connect?</summary>
+            <p>Um grupo de WhatsApp aberto aos alunos, com vagas e candidaturas em clubes e comissões técnicas.</p>
+          </details>
+        </div>
+
+        <div class="canais">
+          <div class="canal">
+            <h3>Falar com o suporte</h3>
+            <p>Dúvida sobre curso, pagamento ou acesso. Respondemos em horário comercial.</p>
+            <a class="btn btn--lime" href="#">WhatsApp</a>
+          </div>
+          <div class="canal canal--conta">
+            <h3>Já é aluno?</h3>
+            <p>Acesso ao conteúdo, certificado e histórico ficam na sua conta.</p>
+            <a class="btn btn--azul" href="#">Área do aluno</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="nota"><b>Pendente:</b> número do WhatsApp de suporte, horário de atendimento e a política de reembolso — a pergunta sobre devolução costuma aparecer e hoje não tem resposta no site.</p>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site">
@@ -835,11 +930,11 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
       <div>
         <h4>Navegação</h4>
         <ul>
-          <li><a href="#sobre">TotalFut</a></li>
-          <li><a href="#formadores">Formadores</a></li>
+          <li><a href="#professores">Professores</a></li>
           <li><a href="#cursos">Cursos</a></li>
           <li><a href="#eventos">Eventos</a></li>
-          <li><a href="#metodo">Como funciona</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#suporte">Suporte</a></li>
         </ul>
       </div>
       <div>
