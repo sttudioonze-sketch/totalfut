@@ -91,30 +91,50 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .btn--azul:hover{background:var(--azul-2);transform:translateY(-1px)}
 .btn--azul svg{opacity:.85}
 
-/* seletor de idioma */
-.lang{position:relative}
-.lang__btn{
-  display:inline-flex;align-items:center;gap:7px;cursor:pointer;
-  font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.06em;
-  padding:9px 13px;border-radius:999px;border:1px solid var(--hair-2);
-  background:transparent;color:var(--mute);transition:border-color .16s ease,color .16s ease;
+/* controle segmentado: trilho rebaixado, inativo em círculo,
+   selecionado vira pílula e ganha o nome por extenso */
+.seg{
+  display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  padding:6px;border-radius:999px;flex:none;
+  background:linear-gradient(180deg,#0B0D08 0%,#13170C 100%);
+  border:1px solid #1C2015;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.65), 0 10px 26px rgba(0,0,0,.45);
 }
-.lang__btn:hover{border-color:var(--lime);color:var(--lime)}
-.lang__btn svg{flex:none}
-.lang__menu{
-  position:absolute;right:0;top:calc(100% + 8px);min-width:168px;z-index:40;
-  background:var(--card);border:1px solid var(--hair-2);border-radius:12px;padding:6px;
-  display:flex;flex-direction:column;gap:2px;box-shadow:0 18px 40px rgba(0,0,0,.55);
+.seg button{
+  height:44px;min-width:44px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  font-family:var(--body);font-size:14px;font-weight:600;color:#7C8270;white-space:nowrap;
+  background:linear-gradient(180deg,#15190F 0%,#0C0F08 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -3px 6px rgba(0,0,0,.45);
+  transition:background .26s ease,color .26s ease,box-shadow .26s ease,
+             padding .28s cubic-bezier(.3,.9,.3,1),gap .28s cubic-bezier(.3,.9,.3,1);
 }
-.lang__menu[hidden]{display:none}
-.lang__menu button{
-  display:flex;align-items:center;gap:10px;width:100%;cursor:pointer;text-align:left;
-  font-family:var(--body);font-size:14px;font-weight:500;color:var(--mute);
-  background:transparent;border:0;border-radius:8px;padding:9px 11px;transition:background .14s ease,color .14s ease;
+.seg button:hover{color:#AEB59C}
+.seg button svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.seg button span{max-width:0;overflow:hidden;opacity:0;
+  transition:max-width .28s cubic-bezier(.3,.9,.3,1),opacity .18s ease}
+.seg button[aria-selected="true"]{
+  padding-inline:20px 24px;gap:10px;color:var(--lime-ink);
+  background:linear-gradient(105deg,#E8FF8E 0%,#CFFB4E 44%,#A9E62B 100%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.65), inset 0 -4px 8px rgba(72,108,6,.38),
+             0 0 32px rgba(215,255,71,.24), 0 6px 16px rgba(0,0,0,.4);
 }
-.lang__menu button:hover{background:var(--void);color:var(--text)}
-.lang__menu button[aria-selected="true"]{color:var(--lime)}
-.lang__menu i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--dim);margin-left:auto}
+.seg button[aria-selected="true"] svg{stroke-width:2}
+.seg button[aria-selected="true"] span{max-width:230px;opacity:1}
+
+/* trilha de temas: rola no celular em vez de quebrar linha */
+.seg-trilha{display:flex;justify-content:center;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
+.seg-trilha::-webkit-scrollbar{display:none}
+
+/* idioma no cabeçalho: só as siglas, na altura dos outros controles */
+.seg--idioma button{height:36px;min-width:40px;font-size:12.5px;letter-spacing:.06em}
+.seg--idioma button[aria-selected="true"]{padding-inline:14px;gap:0}
+.seg--idioma button span{display:none}
+
+/* idioma no painel do celular: nomes por extenso, ocupando a largura */
+.menu .seg{display:flex;width:100%;margin-top:16px}
+.menu .seg button{flex:1;font-size:13px}
+.menu .seg button span{max-width:none;opacity:1;overflow:visible}
 
 .burger{
   margin-left:auto;width:42px;height:42px;flex:none;cursor:pointer;
@@ -135,14 +155,6 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .menu a{padding:13px 2px;font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--text);border-bottom:1px solid var(--hair)}
 .menu .btn{margin-top:14px}
-.menu__lang{display:flex;gap:7px;margin-top:16px}
-.menu__lang button{
-  flex:1;cursor:pointer;font-family:var(--body);font-size:13px;font-weight:600;
-  padding:10px 8px;border-radius:999px;border:1px solid var(--hair-2);
-  background:transparent;color:var(--mute);
-}
-.menu__lang button[aria-selected="true"]{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
-
 @media(min-width:980px){
   .nav__links{display:flex}
   .nav__right{display:flex}
@@ -200,9 +212,12 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
   transition:border-color .2s ease,background .2s ease;
 }
 .feat:hover{border-color:var(--hair-2);background:var(--card-2)}
+/* squircle sóbrio: a forma da referência sem o brilho, que brigaria
+   com o acabamento chapado do resto da página */
 .feat__icon{
-  width:46px;height:46px;border-radius:50%;background:var(--lime);
+  width:54px;height:54px;border-radius:30%;background:var(--lime);
   display:grid;place-items:center;color:var(--lime-ink);flex:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 6px 16px rgba(0,0,0,.4);
 }
 .feat__icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .feat p{font-size:14px;line-height:1.55;color:var(--dim);max-width:32ch}
@@ -321,6 +336,29 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
   padding:22px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;
 }
 .canal--conta{border-left:2px solid var(--azul)}
+/* único lugar com o acabamento tridimensional: aqui o volume ajuda,
+   porque o bloco imita a entrada de um aplicativo */
+.ico-conta{
+  position:relative;width:56px;height:56px;border-radius:29%;flex:none;
+  display:grid;place-items:center;color:#fff;isolation:isolate;
+  background:radial-gradient(118% 92% at 50% -6%, #A9CCFF 0%, #4C8DFF 24%, #0E5DFF 56%, #0140C4 100%);
+  box-shadow:
+    inset 0 2px 1px rgba(255,255,255,.75),
+    inset 0 0 0 1px rgba(255,255,255,.26),
+    inset 0 -8px 12px rgba(0,26,90,.5),
+    0 1px 2px rgba(0,0,0,.6),
+    0 14px 26px rgba(0,0,0,.5),
+    0 0 40px rgba(1,90,255,.22);
+}
+.ico-conta::before{
+  content:"";position:absolute;z-index:1;left:11%;right:11%;top:5%;height:36%;
+  border-radius:50%/60%;
+  background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,0));
+  filter:blur(1.5px);pointer-events:none;
+}
+.ico-conta svg{position:relative;z-index:2;width:24px;height:24px;fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 1px 1px rgba(0,26,90,.5))}
 .canal p{font-size:13.5px;line-height:1.55;color:var(--dim);max-width:34ch}
 .canal .btn{margin-top:6px}
 
@@ -411,19 +449,10 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     </div>
 
     <div class="nav__right">
-      <div class="lang">
-        <button class="lang__btn" id="langBtn" type="button" aria-expanded="false" aria-controls="langMenu">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
-            <circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c1.7 1.9 2.6 4 2.6 6.2S9.7 12.3 8 14.2C6.3 12.3 5.4 10.2 5.4 8S6.3 3.7 8 1.8z"/>
-          </svg>
-          <span id="langLabel">PT</span>
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
-        </button>
-        <div class="lang__menu" id="langMenu" role="listbox" aria-label="Idioma" hidden>
-          <button type="button" role="option" data-lang="PT" aria-selected="true">Português <i>PT</i></button>
-          <button type="button" role="option" data-lang="EN" aria-selected="false">English <i>EN</i></button>
-          <button type="button" role="option" data-lang="ES" aria-selected="false">Español <i>ES</i></button>
-        </div>
+      <div class="seg seg--idioma" id="segIdioma" role="tablist" aria-label="Idioma">
+        <button type="button" role="tab" aria-selected="true" data-lang="PT">PT<span>Português</span></button>
+        <button type="button" role="tab" aria-selected="false" data-lang="EN">EN<span>English</span></button>
+        <button type="button" role="tab" aria-selected="false" data-lang="ES">ES<span>Español</span></button>
       </div>
 
       <a class="btn btn--azul" href="#">
@@ -450,10 +479,10 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
       </svg>
       Área do aluno
     </a>
-    <div class="menu__lang" id="menuLang" role="group" aria-label="Idioma">
-      <button type="button" data-lang="PT" aria-selected="true">Português</button>
-      <button type="button" data-lang="EN" aria-selected="false">English</button>
-      <button type="button" data-lang="ES" aria-selected="false">Español</button>
+    <div class="seg" id="menuLang" role="tablist" aria-label="Idioma">
+      <button type="button" role="tab" aria-selected="true" data-lang="PT"><span>Português</span></button>
+      <button type="button" role="tab" aria-selected="false" data-lang="EN"><span>English</span></button>
+      <button type="button" role="tab" aria-selected="false" data-lang="ES"><span>Español</span></button>
     </div>
   </div>
 </header>
@@ -581,9 +610,34 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
         <p class="lede">Todos gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
       </div>
 
+      <div class="seg-trilha">
+        <div class="seg" id="segTema" role="tablist" aria-label="Tema do curso">
+          <button type="button" role="tab" aria-selected="true" data-tema="todos">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14"/><circle cx="12" cy="12" r="2.6"/></svg>
+            <span>Todos</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tema="bola-parada">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5v7.5"/><circle cx="12" cy="15.5" r="4.8"/><path d="M8.5 6.5h7"/></svg>
+            <span>Bola parada</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tema="analise">
+            <svg viewBox="0 0 24 24"><path d="M4 18V10M9.5 18V5M15 18v-5M20.5 18V8"/></svg>
+            <span>Análise</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tema="tatica">
+            <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17.5" cy="16.5" r="2.4"/><path d="M8.8 8.8l7 6"/></svg>
+            <span>Tática individual</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tema="goleiros">
+            <svg viewBox="0 0 24 24"><path d="M4.5 9.5h15v8h-15z"/><path d="M8 9.5V7a4 4 0 0 1 8 0v2.5"/></svg>
+            <span>Goleiros</span>
+          </button>
+        </div>
+      </div>
+
       <div class="planos">
 
-        <div class="plano plano--destaque">
+        <div data-tema="bola-parada" class="plano plano--destaque">
           <span class="plano__tema">Bola parada</span>
           <h3>A Análise de Desempenho da Bola Parada Ofensiva</h3>
           <p class="plano__prof">Ricardo Pombo</p>
@@ -597,7 +651,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--lime btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div class="plano">
+        <div data-tema="analise" class="plano">
           <span class="plano__tema">Análise de desempenho</span>
           <h3>Os Segredos da Análise de Desempenho Avançada</h3>
           <p class="plano__prof">Bruno Baquete</p>
@@ -611,7 +665,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div class="plano">
+        <div data-tema="goleiros" class="plano">
           <span class="plano__tema">Goleiros</span>
           <h3>Cruzamentos no Futebol</h3>
           <p class="plano__prof">Thiago Mehl</p>
@@ -623,7 +677,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div class="plano">
+        <div data-tema="tatica" class="plano">
           <span class="plano__tema">Tática individual</span>
           <h3>Técnica e Tática Individual</h3>
           <p class="plano__prof">Leandro Zago</p>
@@ -635,7 +689,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div class="plano">
+        <div data-tema="bola-parada" class="plano">
           <span class="plano__tema">Bola parada</span>
           <h3>Bola Parada Ofensiva</h3>
           <p class="plano__prof">Julian Tobar</p>
@@ -647,7 +701,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div class="plano">
+        <div data-tema="bola-parada" class="plano">
           <span class="plano__tema">Bola parada</span>
           <h3>A Bola Parada no acesso do E.C. Vitória à Série B</h3>
           <p class="plano__prof">João Burse</p>
@@ -907,6 +961,9 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
             <a class="btn btn--lime" href="#">WhatsApp</a>
           </div>
           <div class="canal canal--conta">
+            <div class="ico-conta">
+              <svg viewBox="0 0 24 24"><path d="M9.5 3h4A2.5 2.5 0 0 1 16 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-4"/><path d="M6.5 16L10 12 6.5 8"/><path d="M10 12H2"/></svg>
+            </div>
             <h3>Já é aluno?</h3>
             <p>Acesso ao conteúdo, certificado e histórico ficam na sua conta.</p>
             <a class="btn btn--azul" href="#">Área do aluno</a>
@@ -1266,44 +1323,43 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
   matchMedia('(min-width:980px)').addEventListener('change', function(e){ if (e.matches) setMenu(false); });
 
-  /* ---------- seletor de idioma ---------- */
-  const langBtn   = document.getElementById('langBtn');
-  const langMenu  = document.getElementById('langMenu');
-  const langLabel = document.getElementById('langLabel');
-  const menuLang  = document.getElementById('menuLang');
+  /* ---------- idioma ---------- */
+  // troca só o estado da interface e o atributo lang;
+  // o roteamento por idioma entra na migração
+  const segsIdioma = [document.getElementById('segIdioma'), document.getElementById('menuLang')].filter(Boolean);
 
-  function setLangMenu(open){
-    langBtn.setAttribute('aria-expanded', String(open));
-    langMenu.hidden = !open;
-  }
-  // troca só o estado da interface; o roteamento por idioma entra na migração
   function pickLang(code){
-    langLabel.textContent = code;
-    [].forEach.call(langMenu.querySelectorAll('button'), function(b){
-      b.setAttribute('aria-selected', String(b.dataset.lang === code));
-    });
-    [].forEach.call(menuLang.querySelectorAll('button'), function(b){
-      b.setAttribute('aria-selected', String(b.dataset.lang === code));
+    segsIdioma.forEach(function(seg){
+      [].forEach.call(seg.querySelectorAll('button'), function(b){
+        b.setAttribute('aria-selected', String(b.dataset.lang === code));
+      });
     });
     document.documentElement.lang = { PT:'pt-BR', EN:'en', ES:'es' }[code] || 'pt-BR';
   }
+  segsIdioma.forEach(function(seg){
+    seg.addEventListener('click', function(e){
+      const b = e.target.closest('button'); if (!b) return;
+      pickLang(b.dataset.lang);
+    });
+  });
 
-  langBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    setLangMenu(langBtn.getAttribute('aria-expanded') !== 'true');
-  });
-  langMenu.addEventListener('click', function(e){
-    const b = e.target.closest('button'); if (!b) return;
-    pickLang(b.dataset.lang); setLangMenu(false);
-  });
-  menuLang.addEventListener('click', function(e){
-    const b = e.target.closest('button'); if (!b) return;
-    pickLang(b.dataset.lang);
-  });
-  addEventListener('click', function(e){ if (!e.target.closest('.lang')) setLangMenu(false); });
-  addEventListener('keydown', function(e){
-    if (e.key !== 'Escape') return;
-    setLangMenu(false); setMenu(false);
-  });
+  /* ---------- filtro de tema do catálogo ---------- */
+  const segTema = document.getElementById('segTema');
+  const cards = [].slice.call(document.querySelectorAll('.plano[data-tema]'));
+
+  if (segTema){
+    segTema.addEventListener('click', function(e){
+      const b = e.target.closest('button'); if (!b) return;
+      [].forEach.call(this.querySelectorAll('button'), function(x){
+        x.setAttribute('aria-selected', String(x === b));
+      });
+      const tema = b.dataset.tema;
+      cards.forEach(function(c){
+        c.hidden = tema !== 'todos' && c.dataset.tema !== tema;
+      });
+      // mantém o botão escolhido à vista quando a trilha rolou no celular
+      b.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+    });
+  }
 })();
 </script>
