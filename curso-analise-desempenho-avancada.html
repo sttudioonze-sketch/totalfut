@@ -158,9 +158,13 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 
 /* bandeiras de pagamento: vêm em cinza médio sobre transparência,
    clareadas para ler no fundo escuro sem competir com o botão */
-.pagamentos{flex-basis:100%;margin-top:2px}
+.pagamentos{flex-basis:100%;margin-top:-2px}
 .pagamentos img{width:100%;max-width:300px;height:auto;filter:brightness(1.6);opacity:.8}
 .fecha .pagamentos img{margin-inline:auto}
+/* no topo as bandeiras são só referência: ficam bem pequenas, logo sob o botão */
+.oferta--topo .pagamentos img{max-width:188px;opacity:.62}
+.oferta--topo ul{flex-basis:100%;gap:8px}
+.oferta--topo li{font-size:13.5px}
 
 /* especificações na própria caixa de preço, em faixa de filetes */
 .specs{
@@ -293,12 +297,6 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 .prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
 .prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
 .prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
-.credenciais{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
-.credenciais span{
-  font-size:12.5px;font-weight:600;color:var(--mute);
-  border:1px solid var(--hair-2);border-radius:999px;padding:7px 14px;
-}
-
 /* ---------- entrega ---------- */
 .entrega{display:grid;gap:14px;grid-template-columns:1fr}
 @media(min-width:640px){.entrega{grid-template-columns:repeat(2,1fr)}}
@@ -418,41 +416,22 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
             <img src="assets/formas-de-pagamento.webp" alt="Formas de pagamento: Kiwify, Pix, Visa, Mastercard, American Express, Hipercard, boleto e PayPal" loading="lazy" width="460" height="174">
           </div>
 
+          <ul>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail, assim que o pagamento é confirmado</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos no WhatsApp para dúvidas sobre o conteúdo</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Entrada no TotalFut Connect, com vagas em clubes e comissões</li>
+          </ul>
+
           <dl class="specs">
             <div><dt>Acesso</dt><dd>12 meses</dd></div>
             <div><dt>Certificado</dt><dd>Incluso</dd></div>
             <div><dt>Bônus</dt><dd>Sim</dd></div>
           </dl>
-
-          <p class="small">Acesso imediato por e-mail, assim que o pagamento é confirmado.</p>
         </div>
       </div>
     </div>
 
     <div class="wrap" style="padding-bottom:clamp(32px,4vw,56px)"><p class="nota" style="margin-top:0"><b>Pendente:</b> preço cheio, preço com desconto, parcelamento e link de checkout Kiwify. A duração total e o número de blocos entram como uma quarta coluna nas especificações.</p></div>
-  </section>
-
-  <!-- PASSAGENS -->
-  <section class="passagens" aria-label="Clubes e seleções por onde o professor passou">
-    <p class="passagens__rotulo">Bruno Baquete passou por</p>
-    <div class="esteira">
-      <div class="esteira__trilho">
-        <div class="esteira__grupo">
-          <div class="esteira__item"><span>Seleção Brasileira</span></div>
-          <div class="esteira__item"><span>S.C. Corinthians</span></div>
-          <div class="esteira__item"><span>C. Athletico Paranaense</span></div>
-          <div class="esteira__item"><span>E.C. Vitória</span></div>
-          <div class="esteira__item"><span>CBF Academy</span></div>
-        </div>
-        <div class="esteira__grupo" aria-hidden="true">
-          <div class="esteira__item"><span>Seleção Brasileira</span></div>
-          <div class="esteira__item"><span>S.C. Corinthians</span></div>
-          <div class="esteira__item"><span>C. Athletico Paranaense</span></div>
-          <div class="esteira__item"><span>E.C. Vitória</span></div>
-          <div class="esteira__item"><span>CBF Academy</span></div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- PARA QUEM É -->
@@ -513,15 +492,30 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
         <h2>Bruno Baquete</h2>
         <p>Atua há mais de dez anos como analista de desempenho. Passou pelo E.C. Vitória, pelo S.C. Corinthians e pelo C. Athletico Paranaense, e hoje está na Seleção Brasileira, onde participou das duas últimas Copas do Mundo.</p>
         <p>Trabalhou em todas as categorias do futebol, como analista de clube e como consultor de treinadores — os dois lados do mesmo processo. Tem graduação e mestrado na área, e passou por comissões de nomes como Tite, Fernando Diniz e Paulo Autuori.</p>
-        <div class="credenciais">
-          <span>Seleção Brasileira</span>
-          <span>Duas Copas do Mundo</span>
-          <span>Corinthians</span>
-          <span>Athletico-PR</span>
-          <span>E.C. Vitória</span>
-          <span>Mestrado</span>
-        </div>
         <p class="nota" style="margin-top:8px"><b>Confirmar:</b> a relação com Tite, Diniz e Autuori — o texto atual do site diz que ele teve a oportunidade de aprender com eles, sem detalhar em que função.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASSAGENS -->
+  <section class="passagens" aria-label="Clubes e seleções por onde o professor passou">
+    <p class="passagens__rotulo">Bruno Baquete passou por</p>
+    <div class="esteira">
+      <div class="esteira__trilho">
+        <div class="esteira__grupo">
+          <div class="esteira__item"><span>Seleção Brasileira</span></div>
+          <div class="esteira__item"><span>S.C. Corinthians</span></div>
+          <div class="esteira__item"><span>C. Athletico Paranaense</span></div>
+          <div class="esteira__item"><span>E.C. Vitória</span></div>
+          <div class="esteira__item"><span>CBF Academy</span></div>
+        </div>
+        <div class="esteira__grupo" aria-hidden="true">
+          <div class="esteira__item"><span>Seleção Brasileira</span></div>
+          <div class="esteira__item"><span>S.C. Corinthians</span></div>
+          <div class="esteira__item"><span>C. Athletico Paranaense</span></div>
+          <div class="esteira__item"><span>E.C. Vitória</span></div>
+          <div class="esteira__item"><span>CBF Academy</span></div>
+        </div>
       </div>
     </div>
   </section>
