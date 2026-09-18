@@ -123,27 +123,23 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
   .topo__copy{max-width:min(600px,55vw)}
 }
 
-.fase{
-  display:inline-flex;align-self:flex-start;
-  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);
-  border:1px solid rgba(215,255,71,.3);padding:6px 13px;border-radius:999px;
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.fase,.formato{
+  display:inline-flex;align-items:center;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 13px;border-radius:999px;
+}
+.fase{color:var(--lime);border:1px solid rgba(215,255,71,.3)}
+/* formato é informação secundária: mesma forma, peso visual menor */
+.formato{color:var(--mute);border:1px solid var(--hair-2);background:rgba(15,17,12,.6)}
+.formato::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--mute);
+  margin-right:8px;flex:none;
 }
 .topo__copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
 .topo__copy h1{font-size:clamp(27px,3.6vw,40px);line-height:1.04;max-width:23ch}
 .topo__com{font-size:15px;color:var(--mute)}
 .topo__com b{color:var(--text);font-weight:600}
-
-.ficha{
-  display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--hair);border-radius:14px;
-  background:var(--card);overflow:hidden;width:100%;
-}
-.ficha div{
-  flex:1 1 86px;padding:9px 14px;display:flex;flex-direction:column;gap:1px;
-  border-right:1px solid var(--hair);
-}
-.ficha div:last-child{border-right:0}
-.ficha b{font-family:var(--display);font-size:14.5px;font-weight:600;color:var(--text);letter-spacing:-.02em}
-.ficha span{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
 
 /* ---------- caixa de oferta ---------- */
 .oferta{
@@ -159,6 +155,24 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 .oferta--topo .oferta__parcela{font-size:12.5px;color:var(--dim)}
 .oferta--topo .btn{flex:none;width:auto;padding:13px 26px}
 .oferta--topo .small{flex-basis:100%;text-align:left;font-size:12.5px;line-height:1.45}
+
+/* especificações na própria caixa de preço, em faixa de filetes */
+.specs{
+  flex-basis:100%;display:flex;flex-wrap:wrap;
+  margin-top:2px;padding-top:15px;border-top:1px solid rgba(215,255,71,.16);
+}
+.specs div{
+  flex:1 1 92px;padding-inline:16px;display:flex;flex-direction:column;gap:3px;
+  border-left:1px solid var(--hair);
+}
+.specs div:first-child{padding-left:0;border-left:0}
+.specs dt{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0;
+}
+.specs dd{
+  margin:0;font-family:var(--display);font-size:15px;font-weight:600;
+  color:var(--text);letter-spacing:-.02em;line-height:1.2;
+}
 .oferta__preco{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
 .oferta__preco s{font-size:16px;color:var(--dim)}
 .oferta__preco b{font-family:var(--display);font-size:clamp(30px,3.8vw,40px);font-weight:700;color:var(--text);letter-spacing:-.04em}
@@ -333,17 +347,13 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
 
     <div class="wrap topo__grade">
       <div class="topo__copy">
-        <span class="fase">Análise de desempenho</span>
+        <div class="tags">
+          <span class="fase">Análise de desempenho</span>
+          <span class="formato">Gravado</span>
+        </div>
         <h1>Os Segredos da Análise de Desempenho Avançada</h1>
         <p class="lede" style="max-width:44ch;font-size:15.5px">Das ferramentas de análise ao que se fala com a comissão durante o jogo.</p>
         <p class="topo__com">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
-
-        <div class="ficha">
-          <div><b>Gravado</b><span>Formato</span></div>
-          <div><b>12 meses</b><span>Acesso</span></div>
-          <div><b>Incluso</b><span>Certificado</span></div>
-          <div><b>Sim</b><span>Bônus</span></div>
-        </div>
 
         <div class="oferta oferta--topo" id="ofertaTopo">
           <div class="oferta__valor">
@@ -351,12 +361,19 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
             <span class="oferta__parcela">ou em até 12×</span>
           </div>
           <a class="btn btn--lime" href="#" id="ctaTopo">Comprar o curso</a>
-          <p class="small">Acesso imediato, doze meses de consulta e certificado. Pagamento pela Kiwify.</p>
+
+          <dl class="specs">
+            <div><dt>Acesso</dt><dd>12 meses</dd></div>
+            <div><dt>Certificado</dt><dd>Incluso</dd></div>
+            <div><dt>Bônus</dt><dd>Sim</dd></div>
+          </dl>
+
+          <p class="small">Acesso imediato por e-mail. Pagamento pela Kiwify, em cartão, Pix ou boleto.</p>
         </div>
       </div>
     </div>
 
-    <div class="wrap" style="padding-bottom:clamp(32px,4vw,56px)"><p class="nota" style="margin-top:0"><b>Pendente:</b> preço cheio, preço com desconto, parcelamento, link de checkout Kiwify, duração total e número de blocos. Os quatro campos da ficha acima dependem disso.</p></div>
+    <div class="wrap" style="padding-bottom:clamp(32px,4vw,56px)"><p class="nota" style="margin-top:0"><b>Pendente:</b> preço cheio, preço com desconto, parcelamento e link de checkout Kiwify. A duração total e o número de blocos entram como uma quarta coluna nas especificações.</p></div>
   </section>
 
   <!-- PARA QUEM É -->
