@@ -120,6 +120,27 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
 .seg button[aria-selected="true"] svg{stroke-width:2}
 .seg button[aria-selected="true"] span{max-width:230px;opacity:1}
 
+/* filtro por profissional: inativo é só o rosto, selecionado ganha o nome */
+.seg--rostos button{padding:0 4px}
+.seg--rostos button img{
+  width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 18%;
+  flex:none;filter:grayscale(1) contrast(1.05);opacity:.65;
+  transition:filter .26s ease,opacity .26s ease;
+}
+.seg--rostos button:hover img{opacity:.9}
+.seg--rostos button[aria-selected="true"]{padding-inline:6px 22px;gap:11px}
+.seg--rostos button[aria-selected="true"] img{filter:none;opacity:1;box-shadow:0 0 0 2px rgba(10,12,5,.35)}
+
+.vazio{
+  margin-top:20px;padding:26px;border:1px dashed var(--hair-2);border-radius:16px;
+  text-align:center;font-size:14.5px;color:var(--mute);
+}
+.vazio[hidden]{display:none}
+.vazio button{
+  background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  color:var(--lime);text-decoration:underline;text-underline-offset:3px;
+}
+
 /* trilha de temas: rola no celular em vez de quebrar linha */
 .seg-trilha{display:flex;justify-content:center;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
 .seg-trilha::-webkit-scrollbar{display:none}
@@ -247,6 +268,10 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.86);backdrop-filt
   display:flex;flex-direction:column;gap:10px;align-items:flex-start;
 }
 .evento__aviso h3{font-size:15px}
+.evento__estado{
+  font-family:var(--display);font-size:clamp(21px,2.6vw,28px);font-weight:600;
+  color:var(--text);letter-spacing:-.022em;line-height:1.15;
+}
 .evento__aviso p{font-size:13.5px;color:var(--dim);max-width:34ch}
 
 /* ---------- suporte ---------- */
@@ -549,8 +574,8 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   <section id="cursos">
     <div class="wrap">
       <div class="center" style="margin-bottom:38px">
-        <h2>Seis cursos no catálogo.</h2>
-        <p class="lede">Todos gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
+        <h2>Catálogo de cursos e eventos.</h2>
+        <p class="lede">Filtre por fase do jogo ou pelo profissional que conduz. Todos os cursos são gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
       </div>
 
       <div class="seg-trilha">
@@ -578,9 +603,21 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
         </div>
       </div>
 
+      <div class="seg-trilha">
+        <div class="seg seg--rostos" id="segProf" role="tablist" aria-label="Profissional">
+          <button type="button" role="tab" aria-selected="true" data-prof="todos"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.6"/><path d="M15.5 14.6A4.8 4.8 0 0 1 21 19"/></svg><span>Todos</span></button>
+          <button type="button" role="tab" aria-selected="false" data-prof="pombo"><img src="assets/professores/ricardo-pombo.jpg" alt="" loading="lazy"><span>Ricardo Pombo</span></button>
+          <button type="button" role="tab" aria-selected="false" data-prof="baquete"><img src="assets/professores/bruno-baquete.jpg" alt="" loading="lazy"><span>Bruno Baquete</span></button>
+          <button type="button" role="tab" aria-selected="false" data-prof="mehl"><img src="assets/professores/thiago-mehl.jpg" alt="" loading="lazy"><span>Thiago Mehl</span></button>
+          <button type="button" role="tab" aria-selected="false" data-prof="zago"><img src="assets/professores/leandro-zago.jpg" alt="" loading="lazy"><span>Leandro Zago</span></button>
+          <button type="button" role="tab" aria-selected="false" data-prof="tobar"><img src="assets/professores/julian-tobar.jpg" alt="" loading="lazy"><span>Julian Tobar</span></button>
+          <button type="button" role="tab" aria-selected="false" data-prof="burse"><img src="assets/professores/joao-burse.jpg" alt="" loading="lazy"><span>João Burse</span></button>
+        </div>
+      </div>
+
       <div class="planos">
 
-        <div data-tema="bola-parada" class="plano plano--destaque">
+        <div data-prof="pombo" data-tema="bola-parada" class="plano plano--destaque">
           <span class="plano__tema">Bola parada</span>
           <h3>A Análise de Desempenho da Bola Parada Ofensiva</h3>
           <p class="plano__prof">Ricardo Pombo</p>
@@ -594,7 +631,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--lime btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div data-tema="analise" class="plano">
+        <div data-prof="baquete" data-tema="analise" class="plano">
           <span class="plano__tema">Análise de desempenho</span>
           <h3>Os Segredos da Análise de Desempenho Avançada</h3>
           <p class="plano__prof">Bruno Baquete</p>
@@ -608,7 +645,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div data-tema="goleiros" class="plano">
+        <div data-prof="mehl" data-tema="goleiros" class="plano">
           <span class="plano__tema">Goleiros</span>
           <h3>Cruzamentos no Futebol</h3>
           <p class="plano__prof">Thiago Mehl</p>
@@ -620,7 +657,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div data-tema="tatica" class="plano">
+        <div data-prof="zago" data-tema="tatica" class="plano">
           <span class="plano__tema">Tática individual</span>
           <h3>Técnica e Tática Individual</h3>
           <p class="plano__prof">Leandro Zago</p>
@@ -632,7 +669,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div data-tema="bola-parada" class="plano">
+        <div data-prof="tobar" data-tema="bola-parada" class="plano">
           <span class="plano__tema">Bola parada</span>
           <h3>Bola Parada Ofensiva</h3>
           <p class="plano__prof">Julian Tobar</p>
@@ -644,7 +681,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <a class="btn btn--wire btn--full" href="#">Ver o curso</a>
         </div>
 
-        <div data-tema="bola-parada" class="plano">
+        <div data-prof="burse" data-tema="bola-parada" class="plano">
           <span class="plano__tema">Bola parada</span>
           <h3>A Bola Parada no acesso do E.C. Vitória à Série B</h3>
           <p class="plano__prof">João Burse</p>
@@ -658,43 +695,50 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
 
       </div>
 
+      <p class="vazio" id="semResultado" hidden>Nenhum curso com essa combinação. <button type="button" id="limparFiltro">Ver todos os cursos</button></p>
+
       <p class="nota"><b>Pendente:</b> preço e link de checkout de 5 dos 6 cursos, e a lista real do que cada um inclui. Os itens acima saíram do conteúdo publicado hoje — precisam de conferência.</p>
     </div>
   </section>
 
-  <!-- O QUE VOCÊ RECEBE -->
+  <!-- VANTAGENS -->
   <section id="metodo">
     <div class="wrap">
+      <div class="center" style="margin-bottom:36px">
+        <h2>Vantagens TotalFut.</h2>
+        <p class="lede">O que acompanha qualquer curso do catálogo, do primeiro ao último.</p>
+      </div>
+
       <div class="features">
         <div class="feat">
-          <div class="feat__icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-          <h3>Blocos de 1 a 20 minutos</h3>
-          <p>O evento é dividido em partes curtas, cada uma com abertura e encerramento próprios.</p>
-        </div>
-        <div class="feat">
-          <div class="feat__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
-          <h3>Doze meses de acesso</h3>
-          <p>Assista quantas vezes quiser dentro do período contratado.</p>
-        </div>
-        <div class="feat">
-          <div class="feat__icon"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 18.2h2"/></svg></div>
-          <h3>Computador ou celular</h3>
-          <p>Plataforma Kiwify no navegador ou pelo aplicativo, com vídeo e áudio em HD.</p>
+          <div class="feat__icon"><svg viewBox="0 0 24 24"><path d="M13 2.5L4.5 13.5H11l-.8 8L19.5 10H13z"/></svg></div>
+          <h3>Acesso imediato</h3>
+          <p>O e-mail com o link do curso chega assim que a inscrição é confirmada. Não há turma para esperar.</p>
         </div>
         <div class="feat">
           <div class="feat__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="5"/><path d="M8.5 14l-1 6.5 4.5-2.5 4.5 2.5-1-6.5"/></svg></div>
           <h3>Certificado TotalFut</h3>
-          <p>Emitido em formato digital ao concluir as aulas do curso.</p>
+          <p>Digital e exclusivo, emitido ao concluir as aulas do curso.</p>
         </div>
         <div class="feat">
-          <div class="feat__icon"><svg viewBox="0 0 24 24"><path d="M9 10h6M9 13.5h4"/><path d="M4.5 6.5h15v10h-9l-4 3.5v-3.5h-2z"/></svg></div>
-          <h3>Grupo de alunos</h3>
-          <p>Canal fechado no WhatsApp para dúvidas e troca entre quem fez o mesmo curso.</p>
+          <div class="feat__icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.2-2.9 7.6-7 9.5-4.1-1.9-7-5.3-7-9.5V6z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></svg></div>
+          <h3>Profissionais de elite</h3>
+          <p>Quem dá a aula está em atividade em clube ou seleção. Nenhum conteúdo é terceirizado.</p>
         </div>
         <div class="feat">
-          <div class="feat__icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M3.5 8.5h17M3.5 15.5h17"/></svg></div>
+          <div class="feat__icon"><svg viewBox="0 0 24 24"><path d="M12 3.2L21 8l-9 4.8L3 8z"/><path d="M4.5 12.2L12 16.2l7.5-4"/><path d="M4.5 16.2L12 20.2l7.5-4"/></svg></div>
+          <h3>Conteúdo aprofundado</h3>
+          <p>Cada curso trata um recorte até o fim, com exemplos práticos e exercícios — não uma visão geral do tema.</p>
+        </div>
+        <div class="feat">
+          <div class="feat__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="3.6"/><path d="M12 3.8v2.4M12 17.8v2.4M3.8 12h2.4M17.8 12h2.4"/></svg></div>
+          <h3>Temas específicos</h3>
+          <p>Escanteios, faltas laterais, cruzamentos, tática individual. Um assunto por curso, nomeado no título.</p>
+        </div>
+        <div class="feat">
+          <div class="feat__icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="17.5" r="2.6"/><circle cx="18" cy="17.5" r="2.6"/><circle cx="12" cy="5.5" r="2.6"/><path d="M10.7 7.9L7.3 15.1M13.3 7.9l3.4 7.2M8.6 17.5h6.8"/></svg></div>
           <h3>TotalFut Connect</h3>
-          <p>Vagas e candidaturas em clubes e comissões técnicas, abertas aos alunos.</p>
+          <p>Grupo com vagas e candidaturas em clubes e comissões técnicas, aberto a quem é aluno.</p>
         </div>
       </div>
     </div>
@@ -704,14 +748,14 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
   <section id="eventos">
     <div class="wrap">
       <div class="center" style="margin-bottom:34px">
-        <h2>Os cursos começam como eventos ao vivo.</h2>
-        <p class="lede">Cada tema do catálogo nasce de um encontro online com o formador, com perguntas abertas dos participantes. A gravação vira o curso; quem participa ao vivo debate na hora.</p>
+        <h2>Próximo evento.</h2>
+        <p class="lede">Cada tema do catálogo nasce de um encontro online ao vivo com o formador, com perguntas abertas dos participantes. A gravação vira o curso; quem está ao vivo debate na hora.</p>
       </div>
 
       <div class="evento">
         <div>
-          <h3>Nenhuma data aberta no momento</h3>
-          <p class="small" style="margin-top:10px">Quando abrimos turma, o anúncio sai primeiro para quem está na lista e para quem já é aluno. As vagas ao vivo são limitadas pelo formato de debate.</p>
+          <p class="evento__estado">Em breve, novidades</p>
+          <p class="small" style="margin-top:10px">Ainda não há data aberta. Quando abrimos turma, o anúncio sai primeiro para quem está na lista e para quem já é aluno — as vagas ao vivo são limitadas pelo formato de debate.</p>
           <a class="btn btn--lime" href="#lista" style="margin-top:20px">Avisar quando abrir</a>
         </div>
         <div class="evento__aviso">
@@ -1204,23 +1248,50 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
     });
   });
 
-  /* ---------- filtro de tema do catálogo ---------- */
-  const segTema = document.getElementById('segTema');
-  const cards = [].slice.call(document.querySelectorAll('.plano[data-tema]'));
+  /* ---------- filtros do catálogo: tema e profissional, combinados ---------- */
+  const segTema  = document.getElementById('segTema');
+  const segProf  = document.getElementById('segProf');
+  const cards    = [].slice.call(document.querySelectorAll('.plano[data-tema]'));
+  const semResultado = document.getElementById('semResultado');
+  let fTema = 'todos', fProf = 'todos';
 
-  if (segTema){
-    segTema.addEventListener('click', function(e){
+  function aplicarFiltros(){
+    let visiveis = 0;
+    cards.forEach(function(c){
+      const ok = (fTema === 'todos' || c.dataset.tema === fTema)
+              && (fProf === 'todos' || c.dataset.prof === fProf);
+      c.hidden = !ok;
+      if (ok) visiveis++;
+    });
+    if (semResultado) semResultado.hidden = visiveis > 0;
+  }
+
+  function ligarTrilha(seg, chave){
+    if (!seg) return;
+    seg.addEventListener('click', function(e){
       const b = e.target.closest('button'); if (!b) return;
       [].forEach.call(this.querySelectorAll('button'), function(x){
         x.setAttribute('aria-selected', String(x === b));
       });
-      const tema = b.dataset.tema;
-      cards.forEach(function(c){
-        c.hidden = tema !== 'todos' && c.dataset.tema !== tema;
-      });
-      // mantém o botão escolhido à vista quando a trilha rolou no celular
+      if (chave === 'tema') fTema = b.dataset.tema; else fProf = b.dataset.prof;
+      aplicarFiltros();
+      // mantém o escolhido à vista quando a trilha rolou no celular
       b.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
     });
   }
+  ligarTrilha(segTema, 'tema');
+  ligarTrilha(segProf, 'prof');
+
+  const limpar = document.getElementById('limparFiltro');
+  if (limpar) limpar.addEventListener('click', function(){
+    fTema = 'todos'; fProf = 'todos';
+    [segTema, segProf].forEach(function(seg){
+      if (!seg) return;
+      [].forEach.call(seg.querySelectorAll('button'), function(x, i){
+        x.setAttribute('aria-selected', String(i === 0));
+      });
+    });
+    aplicarFiltros();
+  });
 })();
 </script>
