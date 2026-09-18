@@ -59,8 +59,27 @@ p{margin:0}
   padding:13px 26px;border-radius:999px;border:1px solid transparent;
   transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
 }
-.btn--lime{background:var(--lime);color:var(--lime-ink)}
-.btn--lime:hover{background:var(--lime-2);transform:translateY(-1px)}
+/* botão de compra: gradiente interno com brilho no topo e sombra na base */
+.btn--lime{
+  color:var(--lime-ink);background-color:var(--lime);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 48%),
+    linear-gradient(162deg, #E6FF8C 0%, #D3FB4E 46%, #AFE32B 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    inset 0 -7px 13px rgba(86,124,8,.28),
+    0 6px 20px rgba(215,255,71,.16);
+}
+.btn--lime:hover{
+  transform:translateY(-1px);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.68) 0%, rgba(255,255,255,0) 52%),
+    linear-gradient(162deg, #F0FFA6 0%, #DEFF6A 46%, #BCEF3A 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -7px 13px rgba(86,124,8,.24),
+    0 10px 26px rgba(215,255,71,.24);
+}
 .btn--wire{border-color:var(--hair-2);color:var(--text);background:transparent}
 .btn--wire:hover{border-color:var(--lime);color:var(--lime)}
 .btn--full{width:100%}
@@ -636,7 +655,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           <h3>Os Segredos da Análise de Desempenho Avançada</h3>
           <p class="plano__prof">Bruno Baquete</p>
           <p class="plano__dur">Inclui bônus</p>
-          <div class="plano__preco plano__preco--pendente">Valor na página do curso</div>
+          <div class="plano__preco"><b>R$447</b><i>ou 12× R$46,23</i></div>
           <div class="inclui">
             <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Sportscode, Wyscout, Hudl e Studio</div>
             <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Comunicação com a comissão e o banco</div>
@@ -738,7 +757,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
         <div class="feat">
           <div class="feat__icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="17.5" r="2.6"/><circle cx="18" cy="17.5" r="2.6"/><circle cx="12" cy="5.5" r="2.6"/><path d="M10.7 7.9L7.3 15.1M13.3 7.9l3.4 7.2M8.6 17.5h6.8"/></svg></div>
           <h3>TotalFut Connect</h3>
-          <p>Grupo com vagas e candidaturas em clubes e comissões técnicas, aberto a quem é aluno.</p>
+          <p>Canal onde publicamos vagas, lançamentos de cursos e descontos para quem já é aluno.</p>
         </div>
       </div>
     </div>
@@ -855,7 +874,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:50px 36px;background:
           </details>
           <details>
             <summary>O que é o TotalFut Connect?</summary>
-            <p>Um grupo de WhatsApp aberto aos alunos, com vagas e candidaturas em clubes e comissões técnicas.</p>
+            <p>O canal onde publicamos vagas, lançamentos de cursos e descontos para quem já é aluno TotalFut.</p>
           </details>
         </div>
 

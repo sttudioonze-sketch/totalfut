@@ -70,8 +70,28 @@ p{margin:0}
   padding:15px 30px;border-radius:999px;border:1px solid transparent;
   transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
 }
-.btn--lime{background:var(--lime);color:var(--lime-ink)}
-.btn--lime:hover{background:var(--lime-2);transform:translateY(-1px)}
+/* botão de compra: gradiente interno com brilho no topo e sombra na base,
+   para o lime ganhar volume sem perder a leitura do texto */
+.btn--lime{
+  color:var(--lime-ink);background-color:var(--lime);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 48%),
+    linear-gradient(162deg, #E6FF8C 0%, #D3FB4E 46%, #AFE32B 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    inset 0 -7px 13px rgba(86,124,8,.28),
+    0 6px 20px rgba(215,255,71,.16);
+}
+.btn--lime:hover{
+  transform:translateY(-1px);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.68) 0%, rgba(255,255,255,0) 52%),
+    linear-gradient(162deg, #F0FFA6 0%, #DEFF6A 46%, #BCEF3A 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -7px 13px rgba(86,124,8,.24),
+    0 10px 26px rgba(215,255,71,.24);
+}
 .btn--wire{border-color:var(--hair-2);color:var(--text);background:transparent}
 .btn--wire:hover{border-color:var(--lime);color:var(--lime)}
 .btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
@@ -159,10 +179,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 /* bandeiras de pagamento: vêm em cinza médio sobre transparência,
    clareadas para ler no fundo escuro sem competir com o botão */
 .pagamentos{flex-basis:100%;margin-top:-2px}
-.pagamentos img{width:100%;max-width:300px;height:auto;filter:brightness(1.6);opacity:.8}
+.pagamentos img{width:100%;max-width:188px;height:auto;filter:brightness(1.6);opacity:.62}
 .fecha .pagamentos img{margin-inline:auto}
-/* no topo as bandeiras são só referência: ficam bem pequenas, logo sob o botão */
-.oferta--topo .pagamentos img{max-width:188px;opacity:.62}
 .oferta--topo ul{flex-basis:100%;gap:8px}
 .oferta--topo li{font-size:13.5px}
 
@@ -407,8 +425,8 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
 
         <div class="oferta oferta--topo" id="ofertaTopo">
           <div class="oferta__valor">
-            <div class="oferta__preco"><s>R$ —</s><b>R$ —</b></div>
-            <span class="oferta__parcela">ou em até 12×</span>
+            <div class="oferta__preco"><b>R$ 447</b></div>
+            <span class="oferta__parcela">ou em até 12× de R$ 46,23</span>
           </div>
           <a class="btn btn--lime" href="#" id="ctaTopo">Comprar o curso</a>
 
@@ -419,7 +437,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
           <ul>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail, assim que o pagamento é confirmado</li>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos no WhatsApp para dúvidas sobre o conteúdo</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Entrada no TotalFut Connect, com vagas em clubes e comissões</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Entrada no TotalFut Connect, o canal de vagas, lançamentos e descontos</li>
           </ul>
 
           <dl class="specs">
@@ -600,11 +618,11 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
         <h2 style="max-width:20ch">Os Segredos da Análise de Desempenho Avançada</h2>
         <p class="lede" style="max-width:48ch">com Bruno Baquete, analista da Seleção Brasileira</p>
         <div class="oferta">
-          <div class="oferta__preco"><s>R$ —</s><b>R$ —</b><i>ou em até 12×</i></div>
+          <div class="oferta__preco"><b>R$ 447</b><i>ou em até 12× de R$ 46,23</i></div>
           <ul>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato e doze meses de consulta</li>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado digital TotalFut</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos e TotalFut Connect</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos e entrada no TotalFut Connect</li>
           </ul>
           <a class="btn btn--lime btn--full" href="#">Comprar o curso</a>
           <div class="pagamentos">
