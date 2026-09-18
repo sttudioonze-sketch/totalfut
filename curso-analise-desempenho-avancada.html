@@ -210,6 +210,48 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
   .barra .btn{padding:12px 18px;font-size:14px}
 }
 
+/* ---------- passagens do professor ---------- */
+.passagens{
+  padding-block:clamp(22px,3vw,34px);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  background:linear-gradient(180deg,#0A0C07,var(--void));
+  display:flex;flex-direction:column;gap:16px;overflow:hidden;
+}
+.passagens__rotulo{
+  text-align:center;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+}
+.esteira{
+  position:relative;overflow:hidden;
+  /* desvanece nas laterais em vez de cortar seco */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 11%,#000 89%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 11%,#000 89%,transparent 100%);
+}
+.esteira__trilho{
+  display:flex;width:max-content;
+  animation:desliza 38s linear infinite;
+}
+.esteira:hover .esteira__trilho{animation-play-state:paused}
+.esteira__grupo{display:flex;align-items:center;gap:clamp(38px,5vw,64px);padding-right:clamp(38px,5vw,64px)}
+.esteira__item{
+  display:flex;align-items:center;justify-content:center;flex:none;
+  height:46px;color:var(--dim);transition:color .24s ease,opacity .24s ease;
+}
+.esteira__item:hover{color:var(--mute)}
+/* quando entrarem os escudos, a imagem ocupa o mesmo slot */
+.esteira__item img{height:100%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.55}
+.esteira__item:hover img{filter:grayscale(0);opacity:1}
+.esteira__item span{
+  font-family:var(--display);font-size:clamp(15px,1.5vw,18px);font-weight:600;
+  letter-spacing:.02em;white-space:nowrap;
+}
+@keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .esteira__trilho{animation:none}
+  .esteira{overflow-x:auto;scrollbar-width:none}
+  .esteira::-webkit-scrollbar{display:none}
+}
+
 /* ---------- para quem é ---------- */
 .perfis{display:grid;gap:14px;grid-template-columns:1fr}
 @media(min-width:640px){.perfis{grid-template-columns:repeat(2,1fr)}}
@@ -388,6 +430,29 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
     </div>
 
     <div class="wrap" style="padding-bottom:clamp(32px,4vw,56px)"><p class="nota" style="margin-top:0"><b>Pendente:</b> preço cheio, preço com desconto, parcelamento e link de checkout Kiwify. A duração total e o número de blocos entram como uma quarta coluna nas especificações.</p></div>
+  </section>
+
+  <!-- PASSAGENS -->
+  <section class="passagens" aria-label="Clubes e seleções por onde o professor passou">
+    <p class="passagens__rotulo">Bruno Baquete passou por</p>
+    <div class="esteira">
+      <div class="esteira__trilho">
+        <div class="esteira__grupo">
+          <div class="esteira__item"><span>Seleção Brasileira</span></div>
+          <div class="esteira__item"><span>S.C. Corinthians</span></div>
+          <div class="esteira__item"><span>C. Athletico Paranaense</span></div>
+          <div class="esteira__item"><span>E.C. Vitória</span></div>
+          <div class="esteira__item"><span>CBF Academy</span></div>
+        </div>
+        <div class="esteira__grupo" aria-hidden="true">
+          <div class="esteira__item"><span>Seleção Brasileira</span></div>
+          <div class="esteira__item"><span>S.C. Corinthians</span></div>
+          <div class="esteira__item"><span>C. Athletico Paranaense</span></div>
+          <div class="esteira__item"><span>E.C. Vitória</span></div>
+          <div class="esteira__item"><span>CBF Academy</span></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- PARA QUEM É -->
