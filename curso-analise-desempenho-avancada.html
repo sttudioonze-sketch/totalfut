@@ -156,6 +156,12 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 .oferta--topo .btn{flex:none;width:auto;padding:13px 26px}
 .oferta--topo .small{flex-basis:100%;text-align:left;font-size:12.5px;line-height:1.45}
 
+/* bandeiras de pagamento: vêm em cinza médio sobre transparência,
+   clareadas para ler no fundo escuro sem competir com o botão */
+.pagamentos{flex-basis:100%;margin-top:2px}
+.pagamentos img{width:100%;max-width:300px;height:auto;filter:brightness(1.6);opacity:.8}
+.fecha .pagamentos img{margin-inline:auto}
+
 /* especificações na própria caixa de preço, em faixa de filetes */
 .specs{
   flex-basis:100%;display:flex;flex-wrap:wrap;
@@ -366,13 +372,17 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
           </div>
           <a class="btn btn--lime" href="#" id="ctaTopo">Comprar o curso</a>
 
+          <div class="pagamentos">
+            <img src="assets/formas-de-pagamento.webp" alt="Formas de pagamento: Kiwify, Pix, Visa, Mastercard, American Express, Hipercard, boleto e PayPal" loading="lazy" width="460" height="174">
+          </div>
+
           <dl class="specs">
             <div><dt>Acesso</dt><dd>12 meses</dd></div>
             <div><dt>Certificado</dt><dd>Incluso</dd></div>
             <div><dt>Bônus</dt><dd>Sim</dd></div>
           </dl>
 
-          <p class="small">Acesso imediato por e-mail. Pagamento pela Kiwify, em cartão, Pix ou boleto.</p>
+          <p class="small">Acesso imediato por e-mail, assim que o pagamento é confirmado.</p>
         </div>
       </div>
     </div>
@@ -538,7 +548,10 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos e TotalFut Connect</li>
           </ul>
           <a class="btn btn--lime btn--full" href="#">Comprar o curso</a>
-          <p class="small" style="text-align:center">Pagamento pela Kiwify. Cartão, Pix ou boleto.</p>
+          <div class="pagamentos">
+            <img src="assets/formas-de-pagamento.webp" alt="Formas de pagamento: Kiwify, Pix, Visa, Mastercard, American Express, Hipercard, boleto e PayPal" loading="lazy" width="460" height="174">
+          </div>
+          <p class="small" style="text-align:center">Acesso imediato por e-mail, assim que o pagamento é confirmado.</p>
         </div>
       </div>
     </div>
