@@ -39,6 +39,10 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEl
   --display:"Sora","Helvetica Neue",Arial,sans-serif;
   --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
 
+  --vidro:rgba(255,255,255,.042);
+  --vidro-borda:rgba(255,255,255,.10);
+  --vidro-luz:inset 0 1px 0 rgba(255,255,255,.08);
+
   --r:16px;
   --max:1120px;
   --pad:clamp(20px,5vw,48px);
@@ -49,6 +53,15 @@ body{
   margin:0;background:var(--void);color:var(--mute);
   font-family:var(--body);font-size:16px;line-height:1.62;
   -webkit-font-smoothing:antialiased;
+}
+/* camada de cor ambiente: sem algo atrás, vidro em fundo escuro
+   vira apenas um cinza mais claro */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(46vw 40vw at 10% 14%, rgba(215,255,71,.10), transparent 62%),
+    radial-gradient(42vw 36vw at 90% 52%, rgba(1,90,255,.085), transparent 64%),
+    radial-gradient(40vw 36vw at 38% 94%, rgba(215,255,71,.07), transparent 62%);
 }
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -103,7 +116,7 @@ p{margin:0}
 .btn--full{width:100%}
 
 /* ---------- cabeçalho ---------- */
-header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
 .nav{display:flex;align-items:center;gap:18px;height:64px}
 .nav img{height:24px;width:auto;flex:none}
 .nav__voltar{
@@ -167,8 +180,10 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 
 /* ---------- caixa de oferta ---------- */
 .oferta{
-  background:linear-gradient(180deg,#161A0F 0%,#0D100A 65%);
-  border:1px solid rgba(215,255,71,.28);border-radius:18px;
+  background:linear-gradient(180deg,rgba(215,255,71,.07),rgba(255,255,255,.03));
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid rgba(215,255,71,.30);border-radius:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 16px 40px rgba(0,0,0,.45);
   padding:clamp(18px,2.4vw,24px);display:flex;flex-direction:column;gap:13px;
   max-width:520px;width:100%;
 }
@@ -283,7 +298,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 @media(min-width:640px){.perfis{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1000px){.perfis{grid-template-columns:repeat(4,1fr)}}
 .perfil{
-  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-luz),0 12px 32px rgba(0,0,0,.38);border-radius:var(--r);
   padding:24px 22px;display:flex;flex-direction:column;gap:11px;
 }
 .perfil__tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
@@ -294,7 +309,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
 .item{
   display:flex;gap:14px;align-items:flex-start;
-  background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:20px 22px;
+  background:var(--vidro);backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-luz),0 12px 32px rgba(0,0,0,.38);border-radius:14px;padding:20px 22px;
   transition:border-color .2s ease;
 }
 .item:hover{border-color:var(--hair-2)}
@@ -324,7 +339,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 @media(min-width:640px){.entrega{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1000px){.entrega{grid-template-columns:repeat(4,1fr)}}
 .ent{
-  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-luz),0 12px 32px rgba(0,0,0,.38);border-radius:var(--r);
   padding:26px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
 }
 .ent__ico{
@@ -350,7 +365,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 /* ---------- depoimentos ---------- */
 .deps{display:grid;gap:14px;grid-template-columns:1fr}
 @media(min-width:800px){.deps{grid-template-columns:repeat(3,1fr)}}
-.dep{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:26px;
+.dep{background:var(--vidro);backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-luz),0 12px 32px rgba(0,0,0,.38);border-radius:var(--r);padding:26px;
   display:flex;flex-direction:column;gap:18px}
 .dep q{font-family:var(--display);font-size:16.5px;font-weight:500;line-height:1.45;color:var(--text);letter-spacing:-.018em;quotes:"“" "”"}
 .dep__who{margin-top:auto;padding-top:16px;border-top:1px solid var(--hair)}
@@ -359,8 +374,10 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 
 /* ---------- fechamento ---------- */
 .fecha{
-  background:linear-gradient(180deg,#161A0F 0%,#0C0F08 70%);
+  background:linear-gradient(180deg,rgba(215,255,71,.06),rgba(255,255,255,.025));
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
   border:1px solid rgba(215,255,71,.26);border-radius:22px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 50px rgba(0,0,0,.45);
   padding:clamp(30px,4.6vw,56px);
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;
 }
@@ -370,7 +387,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 
 /* ---------- dúvidas ---------- */
 .faq{display:flex;flex-direction:column;gap:10px;max-width:780px;margin-inline:auto}
-.faq details{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);transition:border-color .2s ease}
+.faq details{background:var(--vidro);backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-luz),0 12px 32px rgba(0,0,0,.38);border-radius:var(--r);transition:border-color .2s ease}
 .faq details[open]{border-color:var(--hair-2)}
 .faq summary{
   cursor:pointer;list-style:none;padding:18px 22px;display:flex;align-items:center;gap:16px;
@@ -418,14 +435,20 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
   position:absolute;left:-3%;right:-3%;width:106%;bottom:-.22em;height:.42em;
   overflow:visible;pointer-events:none;
 }
-.giz path{
-  fill:none;stroke:var(--lime);stroke-width:7;stroke-linecap:round;
-  filter:url(#giz-textura);opacity:.9;
-}
+.giz path{fill:none;stroke:var(--lime);stroke-linecap:round;filter:url(#giz-textura)}
+.giz .g1{stroke-width:7;opacity:.9}
+/* segunda passada, mais fina e mais fraca: é o gesto de voltar sobre o traço */
+.giz .g2{stroke-width:4;opacity:.45}
+
 [data-js] .entra .giz path{stroke-dasharray:1;stroke-dashoffset:1}
-[data-js] .entra.dentro .giz path{
+[data-js] .entra.dentro .giz .g1{
   stroke-dashoffset:0;
-  transition:stroke-dashoffset .75s cubic-bezier(.4,.5,.3,1) .35s;
+  /* rápido no começo e freando no fim, como a mão que termina o traço */
+  transition:stroke-dashoffset .40s cubic-bezier(.22,.62,.3,1) .30s;
+}
+[data-js] .entra.dentro .giz .g2{
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset .34s cubic-bezier(.35,.5,.25,1) .70s;
 }
 
 /* ==================== efeitos ====================
@@ -510,7 +533,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
           <span class="fase">Análise de desempenho</span>
           <span class="formato">Gravado</span>
         </div>
-        <h1 class="entra" style="--atraso:.13s">Os Segredos da Análise de Desempenho Avançada</h1>
+        <h1 class="entra" style="--atraso:.13s">Os Segredos da Análise de Desempenho <span class="giz">Avançada<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10C40 5.6 82 4.4 122 5.6c27 .8 50 2.8 74 4.8"/><path class="g2" pathLength="1" d="M188 12.4C150 9.2 104 8.4 62 9.4c-19 .5-36 1.6-52 3"/></svg></span></h1>
         <p class="lede entra" style="--atraso:.21s;max-width:44ch;font-size:15.5px">Das ferramentas de análise ao que se fala com a comissão durante o jogo.</p>
         <p class="topo__com entra" style="--atraso:.27s">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
 
@@ -544,7 +567,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
     <div class="wrap">
       <div class="center" style="margin-bottom:34px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.2 19a5.8 5.8 0 0 1 11.6 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M16 14.6A4.9 4.9 0 0 1 21 19"/></svg></div>
-        <h2 class="entra"><span class="giz">Para quem<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 9.5C38 5.5 78 4.2 118 5.4c28 .8 52 2.6 78 4.6"/></svg></span> é este curso.</h2>
+        <h2 class="entra"><span class="giz">Para quem<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10.4C38 6 84 4.6 126 6c25 .8 46 2.4 70 4.2"/><path class="g2" pathLength="1" d="M186 12C148 9.4 102 8.6 60 9.6c-18 .4-34 1.4-50 2.8"/></svg></span> é este curso.</h2>
         <p class="lede">Quatro funções tiram proveitos diferentes do mesmo conteúdo.</p>
       </div>
       <div class="perfis revela">
@@ -573,7 +596,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
     <div class="wrap">
       <div class="center" style="margin-bottom:34px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M12 4.5v15"/><circle cx="12" cy="12" r="2.6"/><path d="M3 9h3v6H3M21 9h-3v6h3"/></svg></div>
-        <h2>Conteúdo do curso.</h2>
+        <h2 class="entra"><span class="giz">Conteúdo<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> do curso.</h2>
         <p class="lede">Temas que raramente aparecem em formação de analista, tratados por quem faz isso em seleção.</p>
       </div>
       <div class="cobre revela">
@@ -652,7 +675,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
     <div class="wrap">
       <div class="center" style="margin-bottom:34px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 8.5L12 4l8.5 4.5v7L12 20l-8.5-4.5z"/><path d="M3.5 8.5L12 13l8.5-4.5M12 13v7"/></svg></div>
-        <h2>Como você recebe.</h2>
+        <h2 class="entra">Como você <span class="giz">recebe<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10.4C38 6 84 4.6 126 6c25 .8 46 2.4 70 4.2"/><path class="g2" pathLength="1" d="M186 12C148 9.4 102 8.6 60 9.6c-18 .4-34 1.4-50 2.8"/></svg></span>.</h2>
       </div>
       <div class="entrega revela">
         <div class="ent luz">
@@ -684,7 +707,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
     <div class="wrap">
       <div class="center" style="margin-bottom:32px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 6.5C6.5 8 5 10.3 5 13.2c0 2.4 1.5 4 3.5 4s3.3-1.4 3.3-3.3c0-1.8-1.2-3.1-2.9-3.1-.3 0-.6 0-.8.1.3-1.4 1.3-2.6 2.8-3.5z"/><path d="M19 6.5c-3 1.5-4.5 3.8-4.5 6.7 0 2.4 1.5 4 3.5 4s3.3-1.4 3.3-3.3c0-1.8-1.2-3.1-2.9-3.1-.3 0-.6 0-.8.1.3-1.4 1.3-2.6 2.8-3.5z"/></svg></div>
-        <h2>O que mudou no trabalho deles.</h2>
+        <h2 class="entra">O que dizem nossos <span class="giz">alunos<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10C40 5.6 82 4.4 122 5.6c27 .8 50 2.8 74 4.8"/><path class="g2" pathLength="1" d="M188 12.4C150 9.2 104 8.4 62 9.4c-19 .5-36 1.6-52 3"/></svg></span>.</h2>
       </div>
       <div class="deps revela">
         <div class="dep luz">
@@ -732,7 +755,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
     <div class="wrap">
       <div class="center" style="margin-bottom:32px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.6 9.6a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2-2.4 3.5"/><path d="M12 17.1h.01"/></svg></div>
-        <h2>Dúvidas antes de se inscrever.</h2>
+        <h2 class="entra"><span class="giz">Dúvidas<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> antes de se inscrever.</h2>
       </div>
       <div class="faq">
         <details open>
