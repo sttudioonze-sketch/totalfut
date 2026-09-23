@@ -265,7 +265,7 @@ header{
 }
 .hero__inner{
   position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
-  padding-block:clamp(58px,8vw,96px) clamp(200px,26vw,320px);
+  padding-block:clamp(48px,7vw,96px) clamp(300px,52vw,340px);
 }
 /* o logo é a âncora do hero: a prancheta da marca em cima do campo desenhado atrás */
 .hero__logo{
@@ -283,16 +283,6 @@ header{
   .hero__inner h1{font-size:clamp(24px,4.2vw,36px);max-width:24ch}
   .hero__inner .lede{font-size:14px;max-width:60ch}
 }
-
-.hero__clubs{
-  position:relative;z-index:5;border-top:1px solid var(--hair);
-  background:linear-gradient(to bottom, rgba(6,7,5,.75), var(--void));
-}
-.hero__clubs > div{
-  padding-block:20px;display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;align-items:center;
-  font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
-}
-.hero__clubs b{color:#D6DBC6;font-weight:600}
 
 /* ---------- grid de features ---------- */
 .features{display:grid;gap:14px;grid-template-columns:1fr}
@@ -552,6 +542,61 @@ footer.site .wrap{position:relative;z-index:1}
 [data-js] .entra.dentro .giz .g1{stroke-dashoffset:0;transition:stroke-dashoffset .40s cubic-bezier(.22,.62,.3,1) .30s}
 [data-js] .entra.dentro .giz .g2{stroke-dashoffset:0;transition:stroke-dashoffset .34s cubic-bezier(.35,.5,.25,1) .70s}
 
+
+/* ==================== grade de telas ====================
+   widescreen ≥1600 · desktop 1080–1599 · tablet 768–1079 · celular <768 */
+
+/* --- widescreen: o conteúdo respira em vez de ficar numa ilha central --- */
+@media(min-width:1600px){
+  :root{--max:1320px;--pad:72px}
+  h1{font-size:clamp(46px,4.4vw,74px)}
+  h2{font-size:clamp(34px,3vw,52px)}
+  .lede{font-size:18px}
+  .planos,.materias{gap:18px}
+  .profs{grid-template-columns:repeat(4,1fr);gap:18px}
+  .features{gap:18px}
+  .hero__inner{padding-block:clamp(80px,6vw,120px) clamp(260px,20vw,380px)}
+}
+
+/* --- tablet: quatro colunas de professor ficam estreitas demais --- */
+@media(min-width:768px) and (max-width:1079px){
+  .profs{grid-template-columns:repeat(3,1fr)}
+  .deps{grid-template-columns:repeat(2,1fr)}
+  .deps > :last-child{grid-column:1 / -1}
+  .suporte{grid-template-columns:1fr}
+  .canais{flex-direction:row}
+  .canal{flex:1 1 0}
+}
+
+/* --- celular: títulos e botões centralizados, parágrafos como estão --- */
+@media(max-width:767px){
+  section{padding-block:clamp(46px,11vw,64px)}
+
+  h2,.sobre__texto-bloco h2{text-align:center}
+  .sec-ico{margin-inline:auto}
+
+  /* qualquer botão solto vira bloco centralizado */
+  .evento .btn,.canal .btn,.sobre__texto-bloco .btn{align-self:center}
+  .evento > div,.canal{align-items:center;text-align:center}
+  .evento__aviso{border-left:0;border-top:2px solid var(--azul);padding-left:0;padding-top:18px;align-items:center}
+  .canal p,.evento p{max-width:38ch}
+
+  /* cartões de curso: título centralizado, lista de inclusos alinhada */
+  .plano h3,.materia h3,.dep q{text-align:center}
+  .plano__tema,.plano__prof,.plano__dur,.materia__tema{text-align:center;align-self:center}
+  .plano__preco{justify-content:center}
+  .dep__who{text-align:center}
+
+  .prof__body{text-align:center}
+  .foot__marca{flex-direction:column;text-align:center;align-items:center}
+  .foot{justify-items:center;text-align:center}
+  .foot ul{align-items:center}
+  .foot__legal{justify-content:center;text-align:center}
+
+  .news h2,.news .lede{text-align:center}
+  .form{justify-content:center}
+}
+
 /* ==================== efeitos ====================
    Só entram quando há JS e o visitante não pediu menos movimento.
    Sem JS, ou com prefers-reduced-motion, tudo nasce visível e parado. */
@@ -680,12 +725,6 @@ footer.site .wrap{position:relative;z-index:1}
       </div>
     </div>
 
-    <div class="hero__clubs">
-      <div class="wrap">
-        <span>Formadores com passagem por</span>
-        <b>Seleção Brasileira</b><b>Corinthians</b><b>Athletico&#8209;PR</b><b>E.C. Vitória</b><b>CBF Academy</b>
-      </div>
-    </div>
   </section>
 
   <!-- PROFESSORES -->
@@ -1241,7 +1280,7 @@ footer.site .wrap{position:relative;z-index:1}
 
     // horizonte ancorado na base real dos botões, não numa fração cega da altura:
     // acompanha o refluxo do título em qualquer tela sem nunca cortar o conteúdo
-    const folga = W < 700 ? 20 : 30;
+    const folga = W < 700 ? 14 : 30;
     const base  = ctaEl.getBoundingClientRect().bottom - r.top + folga;
     HZ = Math.min(Math.max(base, H * 0.34), H * 0.74);
 
@@ -1317,13 +1356,16 @@ footer.site .wrap{position:relative;z-index:1}
   }
 
   function drawPitch(){
+    // em tela estreita o campo é o elemento que segura a atenção:
+    // linha mais grossa e mais opaca para ele não sumir
+    const m = W < 700;
     const g = ctx.createLinearGradient(0, HZ, 0, H);
-    g.addColorStop(0,    'rgba(215,255,71,0.05)');
-    g.addColorStop(0.30, 'rgba(215,255,71,0.15)');
-    g.addColorStop(0.72, 'rgba(215,255,71,0.13)');
-    g.addColorStop(1,    'rgba(215,255,71,0.02)');
+    g.addColorStop(0,    m ? 'rgba(215,255,71,0.08)' : 'rgba(215,255,71,0.05)');
+    g.addColorStop(0.30, m ? 'rgba(215,255,71,0.26)' : 'rgba(215,255,71,0.15)');
+    g.addColorStop(0.72, m ? 'rgba(215,255,71,0.22)' : 'rgba(215,255,71,0.13)');
+    g.addColorStop(1,    m ? 'rgba(215,255,71,0.04)' : 'rgba(215,255,71,0.02)');
     ctx.strokeStyle = g;
-    ctx.lineWidth = 1.1;
+    ctx.lineWidth = m ? 1.5 : 1.1;
     ctx.beginPath();
 
     const zc = (Z_NEAR + Z_FAR) / 2;
@@ -1367,8 +1409,9 @@ footer.site .wrap{position:relative;z-index:1}
     ctx.scale(1, 0.40);
     const R = W * 0.82;
     const g = ctx.createRadialGradient(0, 0, R * 0.04, 0, 0, R);
-    g.addColorStop(0,    'rgba(215,255,71,0.24)');
-    g.addColorStop(0.30, 'rgba(179,222,54,0.11)');
+    const m = W < 700;
+    g.addColorStop(0,    m ? 'rgba(215,255,71,0.34)' : 'rgba(215,255,71,0.24)');
+    g.addColorStop(0.30, m ? 'rgba(179,222,54,0.17)' : 'rgba(179,222,54,0.11)');
     g.addColorStop(0.66, 'rgba(110,150,28,0.035)');
     g.addColorStop(1,    'rgba(110,150,28,0)');
     ctx.fillStyle = g;
@@ -1439,9 +1482,10 @@ footer.site .wrap{position:relative;z-index:1}
       const ativo = (l[0] === bDe && l[1] === bPara) || (l[1] === bDe && l[0] === bPara);
       const p = proj(a.x, a.z), q = proj(b.x, b.z);
       const depth = Math.min(p.s, q.s) / (F / Z_NEAR);
+      const base = W < 700 ? 0.18 : 0.10;
       ctx.strokeStyle = ativo
         ? 'rgba(1,90,255,' + (0.45 + depth * 0.40).toFixed(3) + ')'
-        : 'rgba(215,255,71,' + (0.10 + depth * 0.30).toFixed(3) + ')';
+        : 'rgba(215,255,71,' + (base + depth * 0.30).toFixed(3) + ')';
       ctx.lineWidth = Math.max(0.6, Math.min(ativo ? 2.4 : 1.8, depth * (ativo ? 3 : 2.2)));
       ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
     });
@@ -1449,9 +1493,9 @@ footer.site .wrap{position:relative;z-index:1}
     // nós
     pts.forEach(function(pt, i){
       const p = proj(pt.x, pt.z);
-      const r = Math.max(2.4, Math.min(7, p.s * 0.0125));
+      const r = Math.max(W < 700 ? 3.2 : 2.4, Math.min(W < 700 ? 8.5 : 7, p.s * (W < 700 ? 0.017 : 0.0125)));
       const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 5);
-      halo.addColorStop(0,   'rgba(215,255,71,0.42)');
+      halo.addColorStop(0,   W < 700 ? 'rgba(215,255,71,0.58)' : 'rgba(215,255,71,0.42)');
       halo.addColorStop(0.5, 'rgba(215,255,71,0.10)');
       halo.addColorStop(1,   'rgba(215,255,71,0)');
       ctx.fillStyle = halo;

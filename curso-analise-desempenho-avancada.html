@@ -495,6 +495,47 @@ footer.site .wrap{position:relative;z-index:1}
   transition:stroke-dashoffset .34s cubic-bezier(.35,.5,.25,1) .70s;
 }
 
+
+/* ==================== grade de telas ==================== */
+@media(min-width:1600px){
+  :root{--max:1320px;--pad:72px}
+  h1{font-size:clamp(40px,3.4vw,58px)}
+  h2{font-size:clamp(32px,2.8vw,48px)}
+  .lede{font-size:18px}
+  .topo__copy{max-width:min(680px,50vw)}
+  .topo{min-height:clamp(520px,52vh,620px)}
+}
+@media(min-width:768px) and (max-width:1079px){
+  .perfis{grid-template-columns:repeat(2,1fr)}
+  .entrega{grid-template-columns:repeat(2,1fr)}
+  .deps{grid-template-columns:repeat(2,1fr)}
+  .deps > :last-child{grid-column:1 / -1}
+}
+@media(max-width:767px){
+  section{padding-block:clamp(44px,10vw,62px)}
+  h2{text-align:center}
+  .sec-ico{margin-inline:auto}
+  .topo__copy{align-items:center;text-align:center}
+  .topo__copy h1,.topo__copy .lede{text-align:center}
+  .tags{justify-content:center}
+  .fase{align-self:auto}
+  .oferta--topo{justify-content:center;text-align:center}
+  .oferta--topo .oferta__valor{align-items:center;flex-basis:100%}
+  .oferta--topo .oferta__preco{justify-content:center}
+  .oferta--topo .btn{width:100%}
+  .oferta--topo .small{text-align:center}
+  .oferta li,.item__texto,.perfil{text-align:left}
+  .perfil__tag{align-self:center}
+  .perfil h3,.item h3,.ent h3{text-align:center}
+  .prof__texto{align-items:center;text-align:center}
+  .prof__foto{margin-inline:auto}
+  .bonus{text-align:center}
+  .bonus li{text-align:left}
+  .dep q,.dep__who{text-align:center}
+  .foot{flex-direction:column;text-align:center}
+  .foot__links{justify-content:center}
+}
+
 /* ==================== efeitos ====================
    Só entram quando há JS e o visitante não pediu menos movimento.
    Sem JS, ou com prefers-reduced-motion, tudo nasce visível e parado. */

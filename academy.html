@@ -201,6 +201,27 @@ footer.site .wrap{position:relative;z-index:1}
 
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
 
+
+/* ==================== grade de telas ==================== */
+@media(min-width:1600px){
+  :root{--max:1320px;--pad:72px}
+  h1{font-size:clamp(40px,3.4vw,62px)}
+  .lede{font-size:18px}
+  .materias{gap:18px}
+}
+@media(min-width:768px) and (max-width:1079px){
+  .materias{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:767px){
+  section{padding-block:clamp(40px,9vw,58px)}
+  .topo__inner{align-items:center;text-align:center}
+  .seg-trilha{justify-content:flex-start}
+  .materia h3,.materia__tema{text-align:center}
+  .materia__corpo{align-items:center;text-align:center}
+  .foot{flex-direction:column;text-align:center}
+  .foot__links{justify-content:center}
+}
+
 /* ==================== efeitos ====================
    Só entram quando há JS e o visitante não pediu menos movimento.
    Sem JS, ou com prefers-reduced-motion, tudo nasce visível e parado. */
