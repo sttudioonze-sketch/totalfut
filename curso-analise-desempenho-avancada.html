@@ -212,34 +212,33 @@ header::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(
 .topo__com b{color:var(--text);font-weight:600}
 
 /* ---------- caixa de oferta ---------- */
+/* A caixa tem um ritmo vertical único: os blocos são separados sempre pelo
+   mesmo gap, e nenhum elemento carrega margem própria. Onde o assunto muda,
+   entra um filete — não um espaço maior. */
 .oferta{
   background:linear-gradient(180deg,rgba(215,255,71,.12),rgba(255,255,255,.06));
   backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
   border:1px solid rgba(215,255,71,.34);border-radius:18px;
   box-shadow:var(--vidro-sombra);
-  padding:clamp(18px,2.4vw,24px);display:flex;flex-direction:column;gap:13px;
+  padding:clamp(22px,2.8vw,28px);display:flex;flex-direction:column;gap:20px;
   max-width:520px;width:100%;
 }
-/* no topo a oferta é só preço e botão; a lista completa fica no fechamento */
-.oferta--topo{flex-direction:row;align-items:center;flex-wrap:wrap;gap:12px 20px}
-.oferta--topo .oferta__valor{flex:1 1 150px;display:flex;flex-direction:column;gap:1px}
-.oferta--topo .oferta__preco{gap:9px}
-.oferta--topo .oferta__parcela{font-size:12.5px;color:var(--dim)}
-.oferta--topo .btn{flex:none;width:auto;padding:13px 26px}
-.oferta--topo .small{flex-basis:100%;text-align:left;font-size:12.5px;line-height:1.45}
+.oferta--topo{align-items:stretch}
+/* preço e ação dividem a primeira linha, com o valor à esquerda */
+.oferta__linha{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
+.oferta__valor{display:flex;flex-direction:column;gap:4px;min-width:0}
+.oferta__parcela{font-size:13px;color:var(--mute)}
+.oferta--topo .btn{flex:none}
 
 /* bandeiras de pagamento: vêm em cinza médio sobre transparência,
    clareadas para ler no fundo escuro sem competir com o botão */
-.pagamentos{flex-basis:100%;margin-top:-2px}
 .pagamentos img{width:100%;max-width:188px;height:auto;filter:brightness(1.6);opacity:.62}
 .fecha .pagamentos img{margin-inline:auto}
-.oferta--topo ul{flex-basis:100%;gap:8px}
-.oferta--topo li{font-size:13.5px}
 
 /* especificações na própria caixa de preço, em faixa de filetes */
 .specs{
-  flex-basis:100%;display:flex;flex-wrap:wrap;
-  margin-top:2px;padding-top:15px;border-top:1px solid rgba(215,255,71,.16);
+  display:flex;flex-wrap:wrap;margin:0;
+  padding-top:20px;border-top:1px solid rgba(215,255,71,.18);
 }
 .specs div{
   flex:1 1 92px;padding-inline:16px;display:flex;flex-direction:column;gap:3px;
@@ -253,12 +252,12 @@ header::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(
   margin:0;font-family:var(--display);font-size:15px;font-weight:600;
   color:var(--text);letter-spacing:-.02em;line-height:1.2;
 }
-.oferta__preco{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
+.oferta__preco{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;line-height:1}
 .oferta__preco s{font-size:16px;color:var(--dim)}
 .oferta__preco b{font-family:var(--display);font-size:clamp(30px,3.8vw,40px);font-weight:700;color:var(--text);letter-spacing:-.04em}
 .oferta__preco i{font-style:normal;font-size:14px;color:var(--mute)}
-.oferta ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.oferta li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--mute)}
+.oferta ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.oferta li{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--mute)}
 .oferta li svg{width:16px;height:16px;flex:none;margin-top:2px}
 .oferta li circle{fill:var(--lime)}
 .oferta li path{stroke:var(--lime-ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -416,7 +415,7 @@ header::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(
   padding:clamp(30px,4.6vw,56px);
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;
 }
-.fecha .oferta{background:none;border:0;padding:0;align-items:center;text-align:center}
+.fecha .oferta{background:none;border:0;padding:0;gap:20px;align-items:center;text-align:center;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .fecha .oferta__preco{justify-content:center}
 .fecha .oferta ul{align-items:flex-start;text-align:left}
 
@@ -522,11 +521,11 @@ footer.site .wrap{position:relative;z-index:1}
   .topo__copy h1,.topo__copy .lede{text-align:center}
   .tags{justify-content:center}
   .fase{align-self:auto}
-  .oferta--topo{justify-content:center;text-align:center}
-  .oferta--topo .oferta__valor{align-items:center;flex-basis:100%}
-  .oferta--topo .oferta__preco{justify-content:center}
+  .oferta--topo{text-align:center}
+  .oferta__linha{flex-direction:column;align-items:stretch;gap:18px}
+  .oferta__valor{align-items:center}
+  .oferta__preco{justify-content:center}
   .oferta--topo .btn{width:100%}
-  .oferta--topo .small{text-align:center}
   .oferta li,.item__texto,.perfil{text-align:left}
   .perfil__tag{align-self:center}
   .perfil h3,.item h3,.ent h3{text-align:center}
@@ -626,11 +625,13 @@ footer.site .wrap{position:relative;z-index:1}
         <p class="topo__com entra" style="--atraso:.27s">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
 
         <div class="oferta oferta--topo luz entra" id="ofertaTopo" style="--atraso:.34s">
-          <div class="oferta__valor">
-            <div class="oferta__preco"><b>R$ 447</b></div>
-            <span class="oferta__parcela">ou em até 12× de R$ 46,23</span>
+          <div class="oferta__linha">
+            <div class="oferta__valor">
+              <div class="oferta__preco"><b>R$ 447</b></div>
+              <span class="oferta__parcela">ou em até 12× de R$ 46,23</span>
+            </div>
+            <a class="btn btn--lime" href="#" id="ctaTopo">Comprar o curso</a>
           </div>
-          <a class="btn btn--lime" href="#" id="ctaTopo">Comprar o curso</a>
 
           <ul>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail, assim que o pagamento é confirmado</li>
@@ -822,7 +823,10 @@ footer.site .wrap{position:relative;z-index:1}
         <h2 style="max-width:20ch">Os Segredos da Análise de Desempenho Avançada</h2>
         <p class="lede" style="max-width:48ch">com Bruno Baquete, analista da Seleção Brasileira</p>
         <div class="oferta">
-          <div class="oferta__preco"><b>R$ 447</b><i>ou em até 12× de R$ 46,23</i></div>
+          <div class="oferta__valor" style="align-items:center">
+            <div class="oferta__preco"><b>R$ 447</b></div>
+            <span class="oferta__parcela">ou em até 12× de R$ 46,23</span>
+          </div>
           <ul>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato e doze meses de consulta</li>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado digital TotalFut</li>
@@ -832,7 +836,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="pagamentos">
             <img src="assets/formas-de-pagamento.webp" alt="Formas de pagamento: Kiwify, Pix, Visa, Mastercard, American Express, Hipercard, boleto e PayPal" loading="lazy" width="460" height="174">
           </div>
-          <p class="small" style="text-align:center">Acesso imediato por e-mail, assim que o pagamento é confirmado.</p>
+          <p class="small" style="text-align:center;margin:0">Acesso imediato por e-mail, assim que o pagamento é confirmado.</p>
         </div>
       </div>
     </div>
