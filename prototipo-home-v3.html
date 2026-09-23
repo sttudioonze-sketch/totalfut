@@ -185,15 +185,23 @@ header{
 .seg button[aria-selected="true"] span{max-width:230px;opacity:1}
 
 /* filtro por profissional: inativo é só o rosto, selecionado ganha o nome */
-.seg--rostos button{padding:0 4px}
+/* rosto e nome sempre visíveis: com sete professores, só a foto não
+   identifica quem é. O selecionado muda de cor, não de conteúdo. */
+.seg--rostos button{padding:0 18px 0 5px;gap:10px}
 .seg--rostos button img{
   width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 18%;
-  flex:none;filter:grayscale(1) contrast(1.05);opacity:.65;
+  flex:none;filter:grayscale(1) contrast(1.05);opacity:.7;
   transition:filter .26s ease,opacity .26s ease;
 }
-.seg--rostos button:hover img{opacity:.9}
-.seg--rostos button[aria-selected="true"]{padding-inline:6px 22px;gap:11px}
-.seg--rostos button[aria-selected="true"] img{filter:none;opacity:1;box-shadow:0 0 0 2px rgba(10,12,5,.35)}
+.seg--rostos button > svg{
+  width:34px;height:34px;padding:8px;border-radius:50%;box-sizing:border-box;
+  background:rgba(255,255,255,.07);
+}
+.seg--rostos button:hover img{opacity:.92}
+.seg--rostos button span{max-width:none;opacity:1;overflow:visible}
+.seg--rostos button[aria-selected="true"]{padding-inline:5px 20px;gap:10px}
+.seg--rostos button[aria-selected="true"] img{filter:none;opacity:1;box-shadow:0 0 0 2px rgba(10,12,5,.3)}
+.seg--rostos button[aria-selected="true"] > svg{background:rgba(10,12,5,.12)}
 
 .vazio{
   margin-top:20px;padding:26px;border:1px dashed var(--hair-2);border-radius:16px;
@@ -206,7 +214,7 @@ header{
 }
 
 /* trilha de temas: rola no celular em vez de quebrar linha */
-.seg-trilha{display:flex;justify-content:center;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
+.seg-trilha{display:flex;justify-content:safe center;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
 .seg-trilha::-webkit-scrollbar{display:none}
 
 /* idioma no cabeçalho: só as siglas, na altura dos outros controles */
