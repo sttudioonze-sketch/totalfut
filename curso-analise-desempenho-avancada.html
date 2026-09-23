@@ -1,3 +1,7 @@
+<script>
+/* marca antes de pintar: sem isto o conteúdo pisca antes de esconder */
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.js = '1';
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Análise de Desempenho Avançada</title>
@@ -395,6 +399,58 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
 .nota b{color:var(--lime);font-weight:600}
 
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+
+/* ==================== efeitos ====================
+   Só entram quando há JS e o visitante não pediu menos movimento.
+   Sem JS, ou com prefers-reduced-motion, tudo nasce visível e parado. */
+
+/* 1. entrada orquestrada do topo: um momento só, na ordem de leitura */
+[data-js] .entra{opacity:0;transform:translateY(13px)}
+[data-js] .entra.dentro{
+  opacity:1;transform:none;
+  transition:opacity .55s cubic-bezier(.2,.7,.3,1) var(--atraso,0s),
+             transform .55s cubic-bezier(.2,.7,.3,1) var(--atraso,0s);
+}
+
+/* 2. revelação em cascata, só nas grades */
+[data-js] .revela > *{opacity:0;transform:translateY(16px)}
+[data-js] .revela.dentro > *{
+  opacity:1;transform:none;
+  transition:opacity .5s cubic-bezier(.2,.7,.3,1), transform .5s cubic-bezier(.2,.7,.3,1);
+}
+[data-js] .revela.dentro > :nth-child(2){transition-delay:.06s}
+[data-js] .revela.dentro > :nth-child(3){transition-delay:.12s}
+[data-js] .revela.dentro > :nth-child(4){transition-delay:.18s}
+[data-js] .revela.dentro > :nth-child(5){transition-delay:.24s}
+[data-js] .revela.dentro > :nth-child(6){transition-delay:.30s}
+[data-js] .revela.dentro > :nth-child(7){transition-delay:.36s}
+[data-js] .revela.dentro > :nth-child(8){transition-delay:.42s}
+
+/* 3. luz de refletor seguindo o cursor sobre os cartões */
+.luz{position:relative}
+.luz::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;z-index:3;opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),
+             rgba(215,255,71,.085), rgba(215,255,71,0) 62%);
+}
+.luz:hover::after{opacity:1}
+@media(hover:none){.luz::after{content:none}}
+
+/* 4. brilho varrendo o botão de compra ao passar o mouse */
+.btn--lime{position:relative;overflow:hidden;isolation:isolate}
+.btn--lime::after{
+  content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;width:40%;left:-50%;
+  transform:skewX(-15deg);pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+}
+.btn--lime:hover::after{animation:varredura .8s cubic-bezier(.3,.7,.4,1)}
+@keyframes varredura{from{left:-50%}to{left:120%}}
+
+@media(prefers-reduced-motion:reduce){
+  .btn--lime:hover::after{animation:none}
+  .luz::after{content:none}
+}
 </style>
 
 <header>
@@ -415,15 +471,15 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
 
     <div class="wrap topo__grade">
       <div class="topo__copy">
-        <div class="tags">
+        <div class="tags entra" style="--atraso:.05s">
           <span class="fase">Análise de desempenho</span>
           <span class="formato">Gravado</span>
         </div>
-        <h1>Os Segredos da Análise de Desempenho Avançada</h1>
-        <p class="lede" style="max-width:44ch;font-size:15.5px">Das ferramentas de análise ao que se fala com a comissão durante o jogo.</p>
-        <p class="topo__com">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
+        <h1 class="entra" style="--atraso:.13s">Os Segredos da Análise de Desempenho Avançada</h1>
+        <p class="lede entra" style="--atraso:.21s;max-width:44ch;font-size:15.5px">Das ferramentas de análise ao que se fala com a comissão durante o jogo.</p>
+        <p class="topo__com entra" style="--atraso:.27s">com <b>Bruno Baquete</b>, analista da Seleção Brasileira</p>
 
-        <div class="oferta oferta--topo" id="ofertaTopo">
+        <div class="oferta oferta--topo luz entra" id="ofertaTopo" style="--atraso:.34s">
           <div class="oferta__valor">
             <div class="oferta__preco"><b>R$ 447</b></div>
             <span class="oferta__parcela">ou em até 12× de R$ 46,23</span>
@@ -459,20 +515,20 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
         <h2>Para quem é este curso.</h2>
         <p class="lede">Quatro funções tiram proveitos diferentes do mesmo conteúdo.</p>
       </div>
-      <div class="perfis">
-        <div class="perfil">
+      <div class="perfis revela">
+        <div class="perfil luz">
           <span class="perfil__tag">Analista de elite</span>
           <p>Já trabalha em nível avançado e quer qualificar o processo, com acesso ao nível de informação usado nas duas últimas Copas do Mundo.</p>
         </div>
-        <div class="perfil">
+        <div class="perfil luz">
           <span class="perfil__tag">Analista iniciante</span>
           <p>Está começando ou em nível intermediário e quer descobrir os pilares da análise de alto nível e como escalar para o próximo degrau.</p>
         </div>
-        <div class="perfil">
+        <div class="perfil luz">
           <span class="perfil__tag">Treinador</span>
           <p>Quer participar do processo de análise da própria equipe e entender as estratégias usadas para obter vantagem sobre o adversário.</p>
         </div>
-        <div class="perfil">
+        <div class="perfil luz">
           <span class="perfil__tag">Auxiliar técnico</span>
           <p>Busca uma ferramenta de diferenciação em relação aos outros profissionais da área técnica.</p>
         </div>
@@ -487,15 +543,15 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
         <h2>Conteúdo do curso.</h2>
         <p class="lede">Temas que raramente aparecem em formação de analista, tratados por quem faz isso em seleção.</p>
       </div>
-      <div class="cobre">
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise no nível da comissão</h3><p>O que entra no material, o que fica de fora e em que formato ele chega ao treinador.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>As ferramentas do mercado</h3><p>Sportscode, Wyscout, Hudl, Studio e Insight — o que as maiores ligas usam e para quê.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise sem os softwares pagos</h3><p>Caminhos para produzir análise de nível alto antes de ter acesso a essas ferramentas.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Como as métricas são consumidas</h3><p>Quais números a comissão efetivamente usa e quais deles mudam uma decisão de jogo.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Comunicação com a comissão</h3><p>A integração do analista com o treinador e os auxiliares na rotina do clube.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Interação com os atletas</h3><p>O que mostrar para jogador, como mostrar e as melhores práticas de apresentação.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Estar no campo ou não</h3><p>Quando a presença do analista no treino contribui e quando ela atrapalha o processo.</p></div></div>
-        <div class="item"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise em tempo real</h3><p>O trabalho durante a partida e a comunicação com o banco de reservas.</p></div></div>
+      <div class="cobre revela">
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise no nível da comissão</h3><p>O que entra no material, o que fica de fora e em que formato ele chega ao treinador.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>As ferramentas do mercado</h3><p>Sportscode, Wyscout, Hudl, Studio e Insight — o que as maiores ligas usam e para quê.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise sem os softwares pagos</h3><p>Caminhos para produzir análise de nível alto antes de ter acesso a essas ferramentas.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Como as métricas são consumidas</h3><p>Quais números a comissão efetivamente usa e quais deles mudam uma decisão de jogo.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Comunicação com a comissão</h3><p>A integração do analista com o treinador e os auxiliares na rotina do clube.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Interação com os atletas</h3><p>O que mostrar para jogador, como mostrar e as melhores práticas de apresentação.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Estar no campo ou não</h3><p>Quando a presença do analista no treino contribui e quando ela atrapalha o processo.</p></div></div>
+        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise em tempo real</h3><p>O trabalho durante a partida e a comunicação com o banco de reservas.</p></div></div>
       </div>
       <p class="nota"><b>Pendente:</b> a lista de módulos com os nomes e a duração de cada bloco. Os oito temas acima vieram do texto publicado hoje, não da ementa.</p>
     </div>
@@ -504,7 +560,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
   <!-- PROFESSOR -->
   <section>
     <div class="wrap prof">
-      <div class="prof__foto"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete"></div>
+      <div class="prof__foto luz"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete"></div>
       <div class="prof__texto">
         <p class="prof__funcao">Analista de desempenho</p>
         <h2>Bruno Baquete</h2>
@@ -562,23 +618,23 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
       <div class="center" style="margin-bottom:34px">
         <h2>Como você recebe.</h2>
       </div>
-      <div class="entrega">
-        <div class="ent">
+      <div class="entrega revela">
+        <div class="ent luz">
           <div class="ent__ico"><svg viewBox="0 0 24 24"><path d="M13 2.5L4.5 13.5H11l-.8 8L19.5 10H13z"/></svg></div>
           <h3>Acesso imediato</h3>
           <p>O e-mail da Kiwify com o link chega assim que a inscrição é confirmada.</p>
         </div>
-        <div class="ent">
+        <div class="ent luz">
           <div class="ent__ico"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 18.2h2"/></svg></div>
           <h3>Computador ou celular</h3>
           <p>Pelo navegador ou pelo aplicativo, com vídeo e áudio em HD.</p>
         </div>
-        <div class="ent">
+        <div class="ent luz">
           <div class="ent__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
           <h3>Doze meses</h3>
           <p>Quantas revisões você quiser dentro do período.</p>
         </div>
-        <div class="ent">
+        <div class="ent luz">
           <div class="ent__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="5"/><path d="M8.5 14l-1 6.5 4.5-2.5 4.5 2.5-1-6.5"/></svg></div>
           <h3>Certificado</h3>
           <p>Digital e exclusivo, emitido ao concluir as aulas.</p>
@@ -593,16 +649,16 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
       <div class="center" style="margin-bottom:32px">
         <h2>O que mudou no trabalho deles.</h2>
       </div>
-      <div class="deps">
-        <div class="dep">
+      <div class="deps revela">
+        <div class="dep luz">
           <q>Meses depois do curso de bolas paradas, virei o responsável pela análise de bolas paradas no clube onde trabalho.</q>
           <div class="dep__who"><p class="dep__n">Caio Gondo</p><p class="dep__r">Analista de desempenho</p></div>
         </div>
-        <div class="dep">
+        <div class="dep luz">
           <q>Várias situações dos cursos de bola parada e de técnica e tática individual eu implementei no dia a dia do clube.</q>
           <div class="dep__who"><p class="dep__n">Fábio Silveira Junior</p><p class="dep__r">Treinador</p></div>
         </div>
-        <div class="dep">
+        <div class="dep luz">
           <q>Os professores abriram um debate entre os participantes, o que contribuiu tanto quanto o conteúdo proposto.</q>
           <div class="dep__who"><p class="dep__n">Walmir Israel</p><p class="dep__r">Treinador</p></div>
         </div>
@@ -614,7 +670,7 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
   <!-- FECHAMENTO -->
   <section id="fechamento">
     <div class="wrap">
-      <div class="fecha">
+      <div class="fecha luz">
         <h2 style="max-width:20ch">Os Segredos da Análise de Desempenho Avançada</h2>
         <p class="lede" style="max-width:48ch">com Bruno Baquete, analista da Seleção Brasileira</p>
         <div class="oferta">
@@ -715,5 +771,51 @@ footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:
   new IntersectionObserver(function(e){
     fimVisivel = e[0].isIntersecting; atualizar();
   }, { threshold: 0.18 }).observe(fim);
+})();
+</script>
+
+<script>
+(function(){
+  if (document.documentElement.dataset.js !== '1') return;
+
+  /* entrada e revelação */
+  var alvos = [].slice.call(document.querySelectorAll('.entra,.revela'));
+  function mostrar(el){ el.classList.add('dentro'); }
+
+  // rootMargin em porcentagem combinado com threshold não dispara em todos os
+  // motores: margem em pixels e threshold padrão são o que se pode garantir
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if (!e.isIntersecting) return;
+        mostrar(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -60px 0px' });
+    alvos.forEach(function(el){ obs.observe(el); });
+  } else {
+    alvos.forEach(mostrar);
+  }
+
+  // rede de segurança: se por qualquer motivo o observer não entregar,
+  // o conteúdo aparece mesmo assim em vez de ficar invisível
+  setTimeout(function(){ alvos.forEach(mostrar); }, 1500);
+
+  /* refletor: posição do cursor vira variável de CSS */
+  var pendente = false, alvo = null, px = 0, py = 0;
+  document.addEventListener('pointermove', function(e){
+    var c = e.target.closest && e.target.closest('.luz');
+    if (!c) return;
+    alvo = c; px = e.clientX; py = e.clientY;
+    if (pendente) return;
+    pendente = true;
+    requestAnimationFrame(function(){
+      pendente = false;
+      if (!alvo) return;
+      var r = alvo.getBoundingClientRect();
+      alvo.style.setProperty('--mx', ((px - r.left) / r.width * 100).toFixed(1) + '%');
+      alvo.style.setProperty('--my', ((py - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+  }, { passive: true });
 })();
 </script>
