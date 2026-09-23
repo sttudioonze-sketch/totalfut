@@ -1328,11 +1328,13 @@ footer.site .wrap{position:relative;z-index:1}
 
   // cada mancha tem período próprio nos dois eixos, então o conjunto
   // nunca volta ao mesmo arranjo
+  // concentradas na faixa do logo e da headline, com deriva curta para
+  // não escaparem da área central
   const focos = [
-    { x:0.24, y:0.28, r:0.46, cor:'215,255,71',  i:0.30, px:31, py:23, ax:0.11, ay:0.07, pr:41 },
-    { x:0.78, y:0.40, r:0.40, cor:'1,90,255',    i:0.26, px:27, py:19, ax:0.13, ay:0.09, pr:35 },
-    { x:0.52, y:0.74, r:0.54, cor:'176,240,92',  i:0.20, px:37, py:29, ax:0.15, ay:0.06, pr:47 },
-    { x:0.10, y:0.76, r:0.32, cor:'128,246,206', i:0.15, px:23, py:33, ax:0.10, ay:0.08, pr:29 }
+    { x:0.41, y:0.21, r:0.34, cor:'215,255,71',  i:0.36, px:31, py:23, ax:0.07, ay:0.05, pr:41 },
+    { x:0.62, y:0.29, r:0.30, cor:'1,90,255',    i:0.28, px:27, py:19, ax:0.08, ay:0.06, pr:35 },
+    { x:0.50, y:0.39, r:0.38, cor:'176,240,92',  i:0.26, px:37, py:29, ax:0.09, ay:0.05, pr:47 },
+    { x:0.33, y:0.33, r:0.26, cor:'128,246,206', i:0.18, px:23, py:33, ax:0.07, ay:0.06, pr:29 }
   ];
 
   function drawLuzes(t){
