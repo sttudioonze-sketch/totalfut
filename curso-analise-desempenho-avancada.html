@@ -112,10 +112,23 @@ p{margin:0}
     inset 0 -7px 13px rgba(86,124,8,.24),
     0 10px 26px rgba(215,255,71,.24);
 }
-.btn--wire{border-color:var(--hair-2);color:var(--text);background:transparent}
-.btn--wire:hover{border-color:var(--lime);color:var(--lime)}
-.btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
-.btn--azul:hover{background:var(--azul-2)}
+/* o botão secundário vira vidro; o de compra fica opaco de propósito,
+   porque translúcido ele perde contraste e deixa de parecer clicável */
+.btn--wire{
+  border:1px solid var(--vidro-borda);color:var(--text);
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),var(--vidro-sombra);
+}
+.btn--wire:hover{border-color:rgba(215,255,71,.45);color:var(--lime);background:rgba(255,255,255,.12)}
+.btn--azul{
+  background:linear-gradient(180deg,rgba(42,114,255,.92),rgba(1,90,255,.78));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(255,255,255,.22);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--vidro-sombra);
+  padding:10px 18px;font-size:13.5px;white-space:nowrap;
+}
+.btn--azul:hover{background:linear-gradient(180deg,rgba(74,138,255,.96),rgba(20,104,255,.85));transform:translateY(-1px)}
 .btn--full{width:100%}
 
 /* ---------- cabeçalho ---------- */

@@ -26,6 +26,12 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEl
   --dim:#676C5C;
   --display:"Sora","Helvetica Neue",Arial,sans-serif;
   --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+  /* mesmo sistema de vidro do Portfólio Digital */
+  --vidro-desfoque:blur(16px) saturate(180%);
+  --vidro:rgba(255,255,255,.08);
+  --vidro-borda:rgba(255,255,255,.16);
+  --vidro-sombra:0 8px 28px rgba(0,0,0,.18);
+
   --r:16px;
   --max:1120px;
   --pad:clamp(20px,5vw,48px);
@@ -33,6 +39,15 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEl
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--void);color:var(--mute);font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+/* camada de cor ambiente: sem algo atrás, vidro em fundo escuro
+   vira apenas um cinza mais claro */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(46vw 40vw at 10% 14%, rgba(215,255,71,.14), transparent 62%),
+    radial-gradient(42vw 36vw at 90% 52%, rgba(1,90,255,.12), transparent 64%),
+    radial-gradient(40vw 36vw at 38% 94%, rgba(215,255,71,.10), transparent 62%);
+}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--lime);outline-offset:3px}
@@ -53,13 +68,36 @@ p{margin:0}
   padding:13px 26px;border-radius:999px;border:1px solid transparent;
   transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
 }
-.btn--wire{border-color:var(--hair-2);color:var(--text);background:transparent}
-.btn--wire:hover{border-color:var(--lime);color:var(--lime)}
-.btn--azul{background:var(--azul);color:#fff;padding:10px 18px;font-size:13.5px}
-.btn--azul:hover{background:var(--azul-2);transform:translateY(-1px)}
+/* o botão secundário vira vidro; o de compra fica opaco de propósito,
+   porque translúcido ele perde contraste e deixa de parecer clicável */
+.btn--wire{
+  border:1px solid var(--vidro-borda);color:var(--text);
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),var(--vidro-sombra);
+}
+.btn--wire:hover{border-color:rgba(215,255,71,.45);color:var(--lime);background:rgba(255,255,255,.12)}
+.btn--azul{
+  background:linear-gradient(180deg,rgba(42,114,255,.92),rgba(1,90,255,.78));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(255,255,255,.22);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--vidro-sombra);
+  padding:10px 18px;font-size:13.5px;white-space:nowrap;
+}
+.btn--azul:hover{background:linear-gradient(180deg,rgba(74,138,255,.96),rgba(20,104,255,.85));transform:translateY(-1px)}
 
 /* ---------- cabeçalho ---------- */
-header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+header{
+  position:sticky;top:0;z-index:60;overflow:hidden;
+  background:linear-gradient(180deg,rgba(24,27,19,.70),rgba(12,14,10,.54));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-bottom:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),var(--vidro-sombra);
+}
+header::before,header::after{content:"";position:absolute;border-radius:50%;filter:blur(52px);pointer-events:none}
+header::before{width:280px;height:130px;left:-50px;top:-64px;background:rgba(215,255,71,.30)}
+header::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(1,90,255,.28)}
+.nav{position:relative;z-index:1}
 .nav{display:flex;align-items:center;gap:18px;height:64px}
 .nav img{height:24px;width:auto;flex:none}
 .nav__voltar{
@@ -110,7 +148,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 @media(min-width:700px){.materias{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1020px){.materias{grid-template-columns:repeat(3,1fr)}}
 .materia{
-  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
   display:flex;flex-direction:column;overflow:hidden;
   transition:border-color .2s ease,transform .2s ease;
 }
@@ -123,7 +161,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
 .materia__capa svg{width:44%;height:auto;opacity:.16;stroke:var(--lime);fill:none;stroke-width:1.2}
 .materia__corpo{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
 .materia__tema{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
-.materia p{font-size:13.5px;line-height:1.5;color:var(--dim)}
+.materia p{font-size:13.5px;line-height:1.5;color:#A7AE97}
 .materia__pe{
   margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);
   display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -139,7 +177,17 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.88);backdrop-filt
   color:var(--lime);text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- rodapé ---------- */
-footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:var(--card);margin-top:clamp(40px,6vw,80px)}
+footer.site{
+  position:relative;overflow:hidden;margin-top:clamp(40px,6vw,80px);padding-block:44px 32px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-top:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+}
+footer.site::before,footer.site::after{content:"";position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none}
+footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
+footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
+footer.site .wrap{position:relative;z-index:1}
 .foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
 .foot img{height:40px;width:auto}
 .foot__links{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px}
