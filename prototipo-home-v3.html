@@ -41,6 +41,9 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEl
 }
 
 *{box-sizing:border-box}
+/* display:flex nos cartões vence o [hidden] padrão do navegador:
+   sem isto, esconder um card pelo atributo não esconde nada */
+[hidden]{display:none!important}
 body{
   margin:0;background:var(--void);color:var(--mute);
   font-family:var(--body);font-size:16px;line-height:1.62;
@@ -269,7 +272,7 @@ header{
 }
 /* o logo é a âncora do hero: a prancheta da marca em cima do campo desenhado atrás */
 .hero__logo{
-  width:clamp(104px,13vw,150px);height:auto;margin-bottom:4px;
+  width:clamp(150px,34vw,150px);height:auto;margin-bottom:6px;
   filter:drop-shadow(0 0 34px rgba(215,255,71,.20));
 }
 .hero__inner h1{max-width:17ch}
@@ -304,6 +307,45 @@ header{
 .feat__icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .feat p{font-size:14px;line-height:1.55;color:#A7AE97;max-width:32ch}
 
+/* ---------- áreas de especialização ---------- */
+.areas{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.areas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.areas{grid-template-columns:repeat(4,1fr)}}
+.area{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);
+  -webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);
+  border-radius:var(--r);padding:26px 22px;cursor:pointer;text-align:left;
+  display:flex;flex-direction:column;gap:11px;align-items:flex-start;
+  font-family:var(--body);color:inherit;
+  transition:border-color .2s ease,transform .2s ease;
+}
+.area:hover{border-color:rgba(215,255,71,.34);transform:translateY(-3px)}
+.area__ico{
+  width:46px;height:46px;border-radius:30%;flex:none;display:grid;place-items:center;
+  border:1px solid rgba(215,255,71,.28);background:rgba(215,255,71,.06);color:var(--lime);
+}
+.area__ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.area h3{font-size:17px}
+.area p{font-size:13.5px;line-height:1.5;color:#A7AE97}
+.area__conta{
+  margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);width:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:12.5px;font-weight:600;color:var(--lime);
+}
+.area__conta svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.catalogo-acoes{display:flex;justify-content:center;margin-top:28px}
+.voltar-areas{
+  display:none;align-items:center;gap:8px;margin-bottom:18px;cursor:pointer;
+  background:none;border:0;padding:0;font:inherit;font-size:13.5px;font-weight:600;color:var(--mute);
+}
+.voltar-areas:hover{color:var(--lime)}
+.voltar-areas svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+[data-vista="cursos"] .voltar-areas{display:inline-flex}
+[data-vista="cursos"] .areas,[data-vista="cursos"] .catalogo-acoes{display:none}
+[data-vista="areas"] .seg-trilha,[data-vista="areas"] .planos,[data-vista="areas"] .vazio{display:none}
+
 /* ---------- cursos (cards de plano) ---------- */
 .planos{display:grid;gap:14px;grid-template-columns:1fr}
 @media(min-width:700px){.planos{grid-template-columns:repeat(2,1fr)}}
@@ -320,6 +362,20 @@ header{
 .plano__dur{font-size:12.5px;color:var(--dim);margin-top:-6px}
 
 /* ---------- blog ---------- */
+.em-breve{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);
+  -webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);
+  border-radius:20px;padding:clamp(34px,6vw,60px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
+}
+.em-breve__marca{width:clamp(90px,14vw,130px);opacity:.22}
+.em-breve__marca svg{width:100%;height:auto;fill:none;stroke:var(--lime);stroke-width:1.2}
+.em-breve__estado{
+  font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:700;
+  color:var(--text);letter-spacing:-.028em;line-height:1.1;
+}
+
 .materias{display:grid;gap:14px;grid-template-columns:1fr}
 @media(min-width:700px){.materias{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1020px){.materias{grid-template-columns:repeat(3,1fr)}}
@@ -491,7 +547,7 @@ header{
 
 /* ---------- footer ---------- */
 footer.site{
-  position:relative;overflow:hidden;padding-block:50px 36px;
+  position:relative;overflow:hidden;padding-block:38px 24px;
   background:var(--vidro);
   backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
   border-top:1px solid var(--vidro-borda);
@@ -501,15 +557,15 @@ footer.site::before,footer.site::after{content:"";position:absolute;border-radiu
 footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
 footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
 footer.site .wrap{position:relative;z-index:1}
-.foot{display:grid;gap:34px;grid-template-columns:1fr}
+.foot{display:grid;gap:26px;grid-template-columns:1fr}
 @media(min-width:820px){.foot{grid-template-columns:1.4fr .6fr .6fr}}
-.foot__marca{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.foot__marca{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .foot__marca img{height:88px;width:auto;flex:none}
 .foot__marca p{flex:1 1 260px;min-width:0}
-.foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 13px;font-family:var(--body)}
+.foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-family:var(--body)}
 .foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--mute)}
 .foot a:hover{color:var(--lime)}
-.foot__legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
+.foot__legal{margin-top:24px;padding-top:14px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
   gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
 
 .nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
@@ -572,6 +628,14 @@ footer.site .wrap{position:relative;z-index:1}
 @media(max-width:767px){
   section{padding-block:clamp(46px,11vw,64px)}
 
+  /* no celular a fileira rola: botões com altura e recuo fixos,
+     senão cada um sai de um tamanho conforme o comprimento do nome */
+  .seg{padding:5px;gap:5px}
+  .seg--rostos button{height:46px;padding:0 16px 0 5px;gap:9px;font-size:13.5px}
+  .seg--rostos button img,.seg--rostos button > svg{width:36px;height:36px}
+  .seg--rostos button[aria-selected="true"]{padding-inline:5px 18px}
+  .seg-trilha{justify-content:flex-start;padding-inline:2px}
+
   h2,.sobre__texto-bloco h2{text-align:center}
   .sec-ico{margin-inline:auto}
 
@@ -587,7 +651,14 @@ footer.site .wrap{position:relative;z-index:1}
   .plano__preco{justify-content:center}
   .dep__who{text-align:center}
 
-  .prof__body{text-align:center}
+  /* professor vira linha: foto à esquerda, dados à direita */
+  .profs{grid-template-columns:1fr;gap:10px}
+  .prof{flex-direction:row;align-items:center;gap:14px;padding:12px}
+  .prof__art{width:92px;flex:none;aspect-ratio:1;border-radius:12px}
+  .prof__body{padding:0;text-align:left;flex:1 1 auto;min-width:0}
+  .prof__n{margin-top:3px}
+  .prof__c{margin-top:5px}
+  .prof__badge{left:6px;top:6px;font-size:9px;padding:2px 6px}
   .foot__marca{flex-direction:column;text-align:center;align-items:center}
   .foot{justify-items:center;text-align:center}
   .foot ul{align-items:center}
@@ -721,7 +792,6 @@ footer.site .wrap{position:relative;z-index:1}
       <p class="lede entra" style="--atraso:.22s">Aprenda com profissionais de elite — analistas e treinadores em atividade na Seleção Brasileira, na Série A e em seleções e clubes da Europa e das Américas.</p>
       <div class="hero__cta entra" style="--atraso:.30s">
         <a class="btn btn--lime" href="#cursos">Ver os cursos</a>
-        <a class="btn btn--wire" href="#professores">Conhecer os formadores</a>
       </div>
     </div>
 
@@ -821,13 +891,51 @@ footer.site .wrap{position:relative;z-index:1}
   </section>
 
   <!-- CURSOS -->
-  <section id="cursos">
+  <section id="cursos" data-vista="areas">
     <div class="wrap">
       <div class="center" style="margin-bottom:38px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M12 4.5v15"/><circle cx="12" cy="12" r="2.6"/><path d="M3 9h3v6H3M21 9h-3v6h3"/></svg></div>
         <h2 class="entra"><span class="giz">Catálogo<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> de cursos e eventos.</h2>
         <p class="lede">Filtre por fase do jogo ou pelo profissional que conduz. Todos os cursos são gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
       </div>
+
+      <div class="areas">
+        <button type="button" class="area" data-area="analise">
+          <span class="area__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18V10M9.5 18V5M15 18v-5M20.5 18V8"/></svg></span>
+          <h3>Análise de Desempenho</h3>
+          <p>Preparação de material, ferramentas de mercado e a comunicação com a comissão técnica.</p>
+          <span class="area__conta">1 curso <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+        </button>
+
+        <button type="button" class="area" data-area="bola-parada">
+          <span class="area__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5v7.5"/><circle cx="12" cy="15.5" r="4.8"/><path d="M8.5 6.5h7"/></svg></span>
+          <h3>Bola Parada</h3>
+          <p>Escanteios, faltas laterais, arremessos e saída de meio, do planejamento à execução.</p>
+          <span class="area__conta">3 cursos <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+        </button>
+
+        <button type="button" class="area" data-area="tatica">
+          <span class="area__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17.5" cy="16.5" r="2.4"/><path d="M8.8 8.8l7 6"/></svg></span>
+          <h3>Técnica e Tática Individual</h3>
+          <p>Como o repertório individual do atleta sustenta o que a equipe faz em conjunto.</p>
+          <span class="area__conta">1 curso <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+        </button>
+
+        <button type="button" class="area" data-area="goleiros">
+          <span class="area__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 9.5h15v8h-15z"/><path d="M8 9.5V7a4 4 0 0 1 8 0v2.5"/></svg></span>
+          <h3>Treinamento de Goleiros</h3>
+          <p>Leitura e defesa das diferentes bolas que chegam à área, com foco em cruzamento.</p>
+          <span class="area__conta">1 curso <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+        </button>
+      </div>
+
+      <div class="catalogo-acoes">
+        <button type="button" class="btn btn--wire" id="verTodos">Ver todos os cursos</button>
+      </div>
+
+      <button type="button" class="voltar-areas" id="voltarAreas">
+        <svg viewBox="0 0 14 14"><path d="M12 7H2M6 3L2 7l4 4"/></svg> Voltar para as áreas
+      </button>
 
       <div class="seg-trilha">
         <div class="seg" id="segTema" role="tablist" aria-label="Tema do curso">
@@ -1006,76 +1114,16 @@ footer.site .wrap{position:relative;z-index:1}
         <p class="lede">Textos curtos sobre o que aparece no trabalho de quem analisa e treina. Escritos pelos próprios formadores.</p>
       </div>
 
-      <div class="seg-trilha">
-        <div class="seg" id="segBlog" role="tablist" aria-label="Tema das matérias">
-          <button type="button" role="tab" aria-selected="true" data-blog="todos">
-            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h11"/></svg>
-            <span>Todos</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="analise">
-            <svg viewBox="0 0 24 24"><path d="M4 18V10M9.5 18V5M15 18v-5M20.5 18V8"/></svg>
-            <span>Análise</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="bola-parada">
-            <svg viewBox="0 0 24 24"><path d="M12 3.5v7.5"/><circle cx="12" cy="15.5" r="4.8"/><path d="M8.5 6.5h7"/></svg>
-            <span>Bola parada</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="treino">
-            <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17.5" cy="16.5" r="2.4"/><path d="M8.8 8.8l7 6"/></svg>
-            <span>Treino</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="carreira">
-            <svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/></svg>
-            <span>Carreira</span>
-          </button>
+      <div class="em-breve">
+        <div class="em-breve__marca" aria-hidden="true">
+          <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
         </div>
+        <p class="em-breve__estado">Em breve</p>
+        <p class="lede" style="max-width:46ch">Os primeiros textos estão em produção, escritos pelos próprios formadores. Quem está na lista recebe o aviso quando o primeiro sair.</p>
+        <a class="btn btn--wire" href="#lista">Entrar na lista</a>
       </div>
 
-      <div class="materias revela" style="margin-top:26px">
 
-        <article class="materia luz" data-blog="analise">
-          <div class="materia__capa" aria-hidden="true">
-            <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
-          </div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Análise</span>
-            <h3>O relatório pré-jogo que cabe em uma página</h3>
-            <p>O que a comissão realmente lê antes da partida, e o que costuma ser descartado no caminho.</p>
-            <div class="materia__pe"><span>6 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="bola-parada">
-          <div class="materia__capa" aria-hidden="true">
-            <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
-          </div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Bola parada</span>
-            <h3>Escanteio curto: quando ele rende mais que o cruzamento</h3>
-            <p>As condições de marcação que tornam a cobrança curta a melhor escolha, com exemplos.</p>
-            <div class="materia__pe"><span>8 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="treino">
-          <div class="materia__capa" aria-hidden="true">
-            <svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg>
-          </div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Treino</span>
-            <h3>O que muda no treino quando o analista entra em campo</h3>
-            <p>Ganhos e custos de tirar o analista da sala e colocá-lo ao lado do treinador.</p>
-            <div class="materia__pe"><span>5 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-      </div>
-
-      <div style="display:flex;justify-content:center;margin-top:30px">
-        <a class="btn btn--wire" href="academy.html" target="_blank" rel="noopener">Ver todas as matérias</a>
-      </div>
-
-      <p class="nota"><b>Pendente:</b> as três matérias acima são espaços reservados — títulos, temas e tempos de leitura servem para dimensionar o card. Faltam os textos, as capas e a data de publicação.</p>
     </div>
   </section>
 
@@ -1648,6 +1696,29 @@ footer.site .wrap{position:relative;z-index:1}
       b.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
     });
   }
+
+  /* ---------- catálogo: áreas primeiro, cursos sob demanda ---------- */
+  const secaoCursos = document.getElementById('cursos');
+  function abrirCursos(area){
+    fTema = area || 'todos';
+    if (segTema){
+      [].forEach.call(segTema.querySelectorAll('button'), function(b){
+        b.setAttribute('aria-selected', String(b.dataset.tema === fTema));
+      });
+    }
+    aplicarFiltros();
+    secaoCursos.dataset.vista = 'cursos';
+  }
+  [].forEach.call(document.querySelectorAll('.area'), function(b){
+    b.addEventListener('click', function(){ abrirCursos(b.dataset.area); });
+  });
+  const verTodos = document.getElementById('verTodos');
+  if (verTodos) verTodos.addEventListener('click', function(){ abrirCursos('todos'); });
+  const voltarAreas = document.getElementById('voltarAreas');
+  if (voltarAreas) voltarAreas.addEventListener('click', function(){
+    secaoCursos.dataset.vista = 'areas';
+    secaoCursos.scrollIntoView({ block:'start', behavior:'smooth' });
+  });
 
   const limpar = document.getElementById('limparFiltro');
   if (limpar) limpar.addEventListener('click', function(){
