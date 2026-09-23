@@ -119,8 +119,22 @@ p{margin:0}
 .btn--full{width:100%}
 
 /* ---------- cabeçalho ---------- */
-header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
-.nav{display:flex;align-items:center;gap:18px;height:64px}
+/* barra de vidro: fundo translúcido em duas paradas, borda clara e
+   dois focos de cor desfocados por dentro, como no Portfólio Digital.
+   overflow:hidden é seguro aqui porque este cabeçalho não abre painel. */
+header{
+  position:sticky;top:0;z-index:60;overflow:hidden;
+  background:linear-gradient(180deg,rgba(24,27,19,.66),rgba(12,14,10,.50));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-bottom:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),var(--vidro-sombra);
+}
+header::before,header::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(52px);pointer-events:none;
+}
+header::before{width:280px;height:130px;left:-50px;top:-64px;background:rgba(215,255,71,.30)}
+header::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(1,90,255,.28)}
+.nav{position:relative;z-index:1;display:flex;align-items:center;gap:18px;height:64px}
 .nav img{height:24px;width:auto;flex:none}
 .nav__voltar{
   margin-left:auto;display:inline-flex;align-items:center;gap:8px;
@@ -236,8 +250,10 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.72);backdrop-filt
 /* ---------- barra fixa de compra ---------- */
 .barra{
   position:fixed;left:0;right:0;bottom:0;z-index:70;
-  background:rgba(8,10,6,.94);backdrop-filter:blur(16px);
-  border-top:1px solid var(--hair-2);
+  background:linear-gradient(180deg,rgba(24,27,19,.80),rgba(10,12,8,.88));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-top:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 -8px 28px rgba(0,0,0,.28);
   padding:12px var(--pad);
   padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
   display:flex;align-items:center;gap:16px;
@@ -406,7 +422,19 @@ header{position:sticky;top:0;z-index:60;background:rgba(6,7,5,.72);backdrop-filt
 .faq p{padding:0 22px 20px;font-size:14px;line-height:1.6;color:#A7AE97}
 
 /* ---------- rodapé ---------- */
-footer.site{border-top:1px solid var(--hair);padding-block:44px 32px;background:var(--card);margin-bottom:76px}
+footer.site{
+  position:relative;overflow:hidden;margin-bottom:76px;padding-block:44px 32px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-top:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+}
+footer.site::before,footer.site::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none;
+}
+footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
+footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
+footer.site .wrap{position:relative;z-index:1}
 .foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
 .foot img{height:40px;width:auto}
 .foot__links{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px}
