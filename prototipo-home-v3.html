@@ -1317,6 +1317,55 @@ footer.site .wrap{position:relative;z-index:1}
 
   const ctaEl = document.querySelector('.hero__cta');
 
+  /* ---------- refletores ----------
+     Desenhados numa tela auxiliar a 1/4 da resolução e ampliados na hora de
+     compor: a interpolação da ampliação já entrega a borda macia, o que sai
+     muito mais barato que aplicar desfoque a cada quadro. */
+  const lux = document.createElement('canvas');
+  const lctx = lux.getContext('2d');
+  let LW = 0, LH = 0;
+
+  const refletores = [
+    { x:0.08, alvo:0.34, amp:0.11, p:23, fase:0.0,  i:0.95 },
+    { x:0.34, alvo:0.54, amp:0.08, p:31, fase:1.7,  i:0.72 },
+    { x:0.66, alvo:0.46, amp:0.08, p:19, fase:3.1,  i:0.78 },
+    { x:0.92, alvo:0.66, amp:0.11, p:27, fase:4.4,  i:0.9  }
+  ];
+
+  function drawLuzes(t){
+    if (!LW) return;
+    lctx.clearRect(0, 0, LW, LH);
+    lctx.globalCompositeOperation = 'lighter';
+    refletores.forEach(function(r){
+      const ax = r.x * LW, ay = -0.05 * LH;
+      const alvoX = (r.alvo + Math.sin(t / r.p * Math.PI * 2 + r.fase) * r.amp) * LW;
+      const alvoY = LH * 1.06;
+      const meia = LW * 0.19;
+      // respiração lenta, cada refletor no seu compasso
+      const forca = r.i * (0.70 + 0.30 * Math.sin(t / (r.p * 0.62) * Math.PI * 2 + r.fase * 1.4));
+
+      const g = lctx.createLinearGradient(ax, ay, alvoX, alvoY);
+      g.addColorStop(0,    'rgba(228,255,196,' + (0.30 * forca).toFixed(3) + ')');
+      g.addColorStop(0.32, 'rgba(203,246,152,' + (0.13 * forca).toFixed(3) + ')');
+      g.addColorStop(1,    'rgba(163,222,92,0)');
+      lctx.fillStyle = g;
+      lctx.beginPath();
+      lctx.moveTo(ax, ay);
+      lctx.lineTo(alvoX - meia, alvoY);
+      lctx.lineTo(alvoX + meia, alvoY);
+      lctx.closePath();
+      lctx.fill();
+
+      // o foco da lâmpada, logo acima da borda
+      const f = lctx.createRadialGradient(ax, ay, 0, ax, ay, LW * 0.11);
+      f.addColorStop(0, 'rgba(242,255,218,' + (0.40 * forca).toFixed(3) + ')');
+      f.addColorStop(1, 'rgba(242,255,218,0)');
+      lctx.fillStyle = f;
+      lctx.beginPath(); lctx.arc(ax, ay, LW * 0.11, 0, Math.PI * 2); lctx.fill();
+    });
+    lctx.globalCompositeOperation = 'source-over';
+  }
+
   function resize(){
     const r = cvs.getBoundingClientRect();
     const dpr = Math.min(devicePixelRatio || 1, 2);
@@ -1336,6 +1385,10 @@ footer.site .wrap{position:relative;z-index:1}
     const margem = Math.min(Math.max(H * 0.07, 22), 60);
     const faixa  = Math.max(H - HZ - margem, 110);
     CAM_H = faixa * Z_NEAR / F;
+
+    LW = Math.max(1, Math.round(W / 4));
+    LH = Math.max(1, Math.round(H / 4));
+    lux.width = LW; lux.height = LH;
   }
 
   function proj(px, pz){
@@ -1513,6 +1566,13 @@ footer.site .wrap{position:relative;z-index:1}
 
   function draw(t, dt){
     ctx.clearRect(0, 0, W, H);
+
+    drawLuzes(t);
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.drawImage(lux, 0, 0, W, H);
+    ctx.restore();
+
     drawGlow();
     drawPitch();
 
