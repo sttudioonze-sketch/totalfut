@@ -296,7 +296,7 @@ header{
 
 /* ---------- rodapé ---------- */
 footer.site{
-  position:relative;overflow:hidden;padding-block:38px 24px;
+  position:relative;overflow:hidden;padding-block:48px 28px;
   background:var(--vidro);
   backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
   border-top:1px solid var(--vidro-borda);
@@ -308,15 +308,15 @@ footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background
 footer.site .wrap{position:relative;z-index:1}
 /* colunas alinhadas pelo topo: sem isto o bloco da marca centraliza o
    próprio conteúdo e desalinha com os títulos das outras colunas */
-.foot{display:grid;gap:26px;grid-template-columns:1fr;align-items:start}
+.foot{display:grid;gap:30px 44px;grid-template-columns:1fr;align-items:start}
 @media(min-width:820px){.foot{grid-template-columns:1.1fr .5fr .85fr .5fr}}
 .foot__marca{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
 .foot__marca img{height:88px;width:auto;flex:none}
 .foot__marca p{flex:1 1 260px;min-width:0}
-.foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-family:var(--body)}
-.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--mute)}
+.foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 15px;font-family:var(--body)}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:14px;color:var(--mute)}
 .foot a:hover{color:var(--lime)}
-.redes{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.redes{display:flex;gap:10px;margin-top:0;flex-wrap:wrap}
 .redes a{
   width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
   background:var(--vidro);border:1px solid var(--vidro-borda);color:var(--mute);
@@ -326,13 +326,15 @@ footer.site .wrap{position:relative;z-index:1}
 .redes svg{width:18px;height:18px;fill:currentColor}
 @media(max-width:819px){
   .redes{justify-content:center}
-  .foot__marca{flex-direction:column;align-items:center;text-align:center;gap:12px}
+  .foot__marca{flex-direction:column;align-items:center;text-align:center;gap:14px}
   .foot__marca p{flex:0 1 auto}
   .foot__marca img{height:72px}
-  .foot{gap:20px}
+  /* empilhado, gap sozinho não separa: cada bloco ganha um filete acima */
+  .foot{gap:0}
+  .foot > * + *{margin-top:26px;padding-top:26px;border-top:1px solid var(--hair)}
 }
 
-.foot__legal{margin-top:24px;padding-top:14px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
+.foot__legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
   gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
 
 .nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
