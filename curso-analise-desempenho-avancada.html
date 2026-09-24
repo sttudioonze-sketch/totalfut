@@ -275,8 +275,20 @@ header{
 /* topo: retrato à direita, informação à esquerda sobre o degradê.
    No celular o retrato vira faixa superior e o texto começa no degradê. */
 .topo{position:relative;padding-block:0;overflow:hidden}
-.topo__foto{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
-.topo__foto img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+/* No celular a foto é uma faixa; a altura cresce com a tela mas para antes
+   de tomar a dobra inteira. */
+.topo__foto{position:relative;width:100%;height:clamp(340px,94vw,580px);overflow:hidden}
+/* Centrar o especialista com object-position exigiria um valor diferente para
+   cada proporção de faixa (aqui o cover escala pela altura, então mudar a
+   altura muda o recorte lateral). Dimensionando pela altura e ancorando em
+   left:50%, o translate de -57,7% — o centro do agasalho, medido nos pixels
+   azuis — leva o especialista ao meio em qualquer proporção.
+   min-width guarda o caso de uma faixa mais larga que 1,91:1. */
+.topo__foto img{
+  position:absolute;top:0;left:50%;transform:translateX(-57.7%);
+  height:100%;width:auto;min-width:100%;max-width:none;
+  object-fit:cover;object-position:50% 16%;
+}
 .topo__foto::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,
@@ -285,14 +297,14 @@ header{
 }
 .topo__grade{
   position:relative;z-index:2;display:grid;grid-template-columns:1fr;
-  margin-top:-17%;padding-bottom:clamp(32px,5vw,52px);
+  margin-top:-9%;padding-bottom:clamp(32px,5vw,52px);
 }
 @media(min-width:900px){
   /* grid em vez de flex: como item flex o .wrap encolhia para o tamanho do conteúdo */
   .topo{min-height:clamp(440px,56vh,540px);display:grid;align-content:center;padding-block:clamp(32px,3.6vw,52px)}
   /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
      contêiner criava uma quebra vertical contra o preto */
-  .topo__foto{position:absolute;inset:0;width:100%;aspect-ratio:auto;height:100%}
+  .topo__foto{position:absolute;inset:0;width:100%;height:100%}
   /* O especialista fica no meio da metade direita, em 75% da moldura.
      object-position sozinho não chega lá: acima de 1,91:1 o cover escala pela
      largura e o eixo X deixa de ter efeito. Então desloca-se o próprio
@@ -300,7 +312,10 @@ header{
      azuis); a escala de 1,1 garante que a imagem cubra a moldura mesmo com o
      deslocamento, e 17,3% a leva aos 75% em qualquer proporção de tela.
      A folga que abre à esquerda fica dentro dos 20% em que o degradê é opaco. */
-  .topo__foto img{object-position:50% 20%;transform:translateX(17.3%) scale(1.1)}
+  .topo__foto img{
+    position:static;left:auto;width:100%;min-width:0;
+    object-position:50% 20%;transform:translateX(17.3%) scale(1.1);
+  }
   .topo__foto::after{
     background:
       /* muitas paradas próximas: a passagem fica gradual e sem faixa visível */
