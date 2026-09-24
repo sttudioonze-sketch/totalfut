@@ -191,7 +191,9 @@ header{
 /* filtro por profissional: inativo é só o rosto, selecionado ganha o nome */
 /* rosto e nome sempre visíveis: com sete professores, só a foto não
    identifica quem é. O selecionado muda de cor, não de conteúdo. */
-.seg--rostos button{padding:0 18px 0 5px;gap:10px}
+/* a trilha rola: sem flex:none os botões encolhem até os nomes se
+   sobreporem, o que ficou visível quando passaram de sete para catorze */
+.seg--rostos button{padding:0 18px 0 5px;gap:10px;flex:none}
 .seg--rostos button img{
   width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 18%;
   flex:none;filter:grayscale(1) contrast(1.05);opacity:.7;
@@ -383,7 +385,13 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 }
 .plano:hover{border-color:rgba(215,255,71,.3);transform:translateY(-3px)}
 .plano--destaque{border-color:rgba(215,255,71,.34);background:linear-gradient(180deg,rgba(215,255,71,.12),rgba(255,255,255,.06))}
-.plano__tema{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+/* Hierarquia do card: o nome do curso é o que identifica o produto, mas
+   levava 17px contra 30px do preço, com um tema em lime logo acima. O
+   que menos importa chegava primeiro. Os três ajustes andam juntos —
+   subir só o título criaria dois elementos gritando. */
+.plano h3{font-size:clamp(19px,1.5vw,21.5px);font-weight:700;line-height:1.2;letter-spacing:-.024em}
+/* o tema vira etiqueta neutra: lime volta a significar conversão */
+.plano__tema{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);margin-bottom:-7px}
 .plano__prof{font-size:13.5px;color:var(--mute)}
 .plano__dur{font-size:12.5px;color:var(--dim);margin-top:-6px}
 
@@ -526,7 +534,7 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 .sobre p + p{margin-top:16px}
 .sobre__texto{font-size:clamp(15px,1.15vw,16.5px);line-height:1.7;color:var(--mute);max-width:62ch}
 .plano__preco{display:flex;align-items:baseline;gap:8px;padding-top:4px}
-.plano__preco b{font-family:var(--display);font-size:30px;font-weight:700;color:var(--text);letter-spacing:-.035em}
+.plano__preco b{font-family:var(--display);font-size:25px;font-weight:700;color:var(--text);letter-spacing:-.035em}
 .plano__preco s{font-size:14px;color:var(--dim)}
 .plano__preco i{font-style:normal;font-size:13px;color:var(--dim)}
 /* sem preço ainda: o substituto não pode gritar mais alto que o nome do curso */
