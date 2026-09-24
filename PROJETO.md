@@ -4,191 +4,177 @@ Substitui o site atual em Wix (totalfut.com.br). Destino: Vercel.
 Plataforma de cursos técnico-táticos para profissionais do futebol — treinadores,
 auxiliares, preparadores e analistas de desempenho.
 
-Última sessão: 12–13/09/2026.
+Última sessão: 24/09/2026.
 
 ---
 
 ## Estado atual
 
-Três protótipos de home em HTML estático, mais um teste de hero isolado.
-**A versão C (`prototipo-home-v3.html`) foi a escolhida** e é a base para seguir.
+**Nove páginas em HTML estático, sem build.** A home e as sete landing pages de
+curso estão completas e ligadas entre si. O catálogo inteiro tem preço, duração,
+ementa e link de checkout Kiwify real.
 
 | Arquivo | O que é | Artifact |
 |---|---|---|
-| `prototipo-home.html` | Versão A — prancheta tática, dark integral, cantos retos | [link](https://claude.ai/code/artifact/523620b0-6806-44e7-8c9e-982a0560b844) |
-| `prototipo-home-v2.html` | Versão B — painéis claros e escuros, estilo Supervity | [link](https://claude.ai/code/artifact/a0bc0ebb-32ae-48ae-9c78-4f9fa5cc2c9f) |
-| `prototipo-home-v3.html` | **Versão C — escolhida.** Dark integral, ícones lime, cards de plano | [link](https://claude.ai/code/artifact/804479bb-b0e2-4af3-a1aa-8d8b9dd822d5) |
-| `hero-teste.html` | Hero com campo animado em canvas — mais avançado que o hero da C | [link](https://claude.ai/code/artifact/b7e49aa2-550d-4bb1-9a72-d4b97829030f) |
+| `index.html` | **Home.** Era `prototipo-home-v3.html` | [link](https://claude.ai/artifact/GqfT1NgMYxvXehqKteJC5A) |
+| `curso-analise-desempenho-avancada.html` | Bruno Baquete | [link](https://claude.ai/artifact/1mJNjGs6JZgprimVYMQq9U) |
+| `curso-cruzamentos-no-futebol.html` | Thiago Mehl | [link](https://claude.ai/artifact/8x2V2hk7Gg7GnvRnnNMTzG) |
+| `curso-bola-parada-ofensiva-tobar.html` | Julian Tobar | [link](https://claude.ai/artifact/LmyUCDz88ejbFUQdDoZMhJ) |
+| `curso-tecnica-tatica-individual.html` | Leandro Zago — teórico | [link](https://claude.ai/artifact/HgYtdDyDCqs3hgQEDYrr4M) |
+| `curso-exercicios-tecnica-tatica-individual.html` | Leandro Zago — exercícios | [link](https://claude.ai/artifact/C1WJjxyJQehgjnNG4c1to5) |
+| `curso-analise-bola-parada-pombo.html` | Ricardo Pombo | [link](https://claude.ai/artifact/8zWygjNiBJvSbHmDZbQfQA) |
+| `curso-bola-parada-vitoria-burse.html` | João Burse | [link](https://claude.ai/artifact/9vpou1hs61Sqj1dG1JTgHH) |
+| `academy.html` | Blog, mostrando "Em breve" | sem artifact |
+| `componentes.html` | Folha de componentes | [link](https://claude.ai/artifact/Jn1rXyyvR1mh8wtvrvdb6a) |
 
-O `hero-teste.html` está **à frente** da v3: tem o campo animado, o menu completo,
-o seletor de idioma e o azul estratégico. O próximo passo é levar tudo isso para a v3.
+Arquivos históricos, mantidos só como registro: `prototipo-home.html` (versão A),
+`prototipo-home-v2.html` (versão B), `hero-teste.html` (o teste do campo animado,
+já incorporado na home).
+
+**Cada artifact é um site isolado**, então o menu do topo de uma landing page
+parece recarregar a própria página em vez de ir para a home. É limitação da
+prévia — no site publicado funciona.
+
+---
+
+## O catálogo
+
+| Curso | Professor | Preço | Duração | Checkout |
+|---|---|---|---|---|
+| Os Segredos da Análise de Desempenho Avançada | Bruno Baquete | R$447 · 12× R$46,23 | **falta** | **falta** |
+| A evolução do treino de cruzamentos | Thiago Mehl | R$697 → R$397 · 12× R$39,86 | 7h31 · 3 partes | `an7Jf3X` |
+| Bola parada ofensiva no futebol | Julian Tobar | R$247 → R$197 · 12× R$19,78 | 3h15 · 8 módulos | `k0k0hRh` |
+| Técnica e tática individual | Leandro Zago | R$447 → R$397 · 12× R$39,86 | 6h · 4 módulos | `so6axQK` |
+| Exercícios específicos | Leandro Zago | R$147 → R$97 · 12× R$9,74 | 1h23 · 11 exercícios | `h8oRO7J` |
+| A análise de desempenho das bolas paradas | Ricardo Pombo | R$147 → R$97 · 12× R$9,74 | 1h55 · 7 módulos | `rZojzuy` |
+| A bola parada do acesso do Vitória | João Burse | R$147 → R$97 · 12× R$9,74 | 1h27 · 5 módulos | `yVBONCi` |
+
+Checkout completo: `https://pay.kiwify.com.br/<código>`.
+
+A página do Baquete foi a primeira, montada só com o texto da home antes de eu ter
+acesso às páginas do Wix — **é a única que ainda carrega pendências de conteúdo.**
+Se existir uma LP dele publicada, ela fecha o catálogo.
+
+---
+
+## O template de curso
+
+As sete páginas saem do mesmo molde. Para replicar, os campos que mudam estão no
+comentário do topo de cada arquivo. A ordem dos blocos:
+
+topo (foto + oferta) · para quem é · conteúdo · professor · passagens (marquee) ·
+bônus · como você recebe · depoimentos · **faixa de foto** · fechamento · dúvidas
+
+- **Barra fixa de compra** — entra quando o CTA do topo sai da tela, some sobre o
+  bloco de fechamento **e sobre o rodapé**. Sem a segunda condição ela cobria a
+  última linha do rodapé no celular.
+- **Números dos módulos** — em `clamp(30px,3.8vw,40px)`, o mesmo corpo do preço na
+  hero, lime e sem moldura. `tabular-nums` para 01 e 08 alinharem.
+- **Faixa com paralaxe** antes do fechamento. `background-attachment:fixed` não
+  funciona no iOS: a imagem tem 20% de folga em cima e embaixo e desliza com
+  `translateY` de ±14% num `requestAnimationFrame`.
+- **Bônus** — iguais em todo o catálogo: TotalFut Connect, Grupo de Alunos
+  TotalFut, Coach Planner PRO, E-book do Curso.
+
+### O enquadramento do hero
+
+Três casos, porque só o Baquete tem foto horizontal:
+
+- **Foto horizontal, desktop** — `translateX(17.3%) scale(1.1)` leva o assunto a
+  75% da moldura. `object-position` no eixo X não resolve: acima de 1,91:1 o
+  `cover` escala pela largura e o eixo X perde efeito.
+- **Retrato, desktop** — a imagem é dimensionada pela altura, ancorada à direita
+  na proporção original, com a borda esquerda desvanecida por máscara. Esticada
+  para cobrir a moldura viraria um rosto ampliado.
+- **Celular** — faixa de `clamp(340px,94vw,580px)`, imagem dimensionada pela
+  altura e ancorada em `left:50%` com `translateX` do centro do assunto. Assim o
+  enquadramento não depende da proporção da faixa.
 
 ---
 
 ## Sistema visual
 
-### Cores
-
 | Token | Hex | Uso |
 |---|---|---|
-| `--void` | `#060705` | fundo da página |
-| `--card` | `#0F110C` | superfície dos cards |
-| `--hair` / `--hair-2` | `#23271A` / `#2E3324` | bordas |
-| `--lime` | `#D7FF47` | acento principal: conversão, ícones, dados |
+| `--void` | `#060705` | fundo |
+| `--lime` | `#D7FF47` | acento: conversão, ícones, dados, números |
 | `--azul` | `#015AFF` | **estratégico**: conta, sistema e a bola |
 | `--text` / `--mute` / `--dim` | `#FFFFFF` / `#9AA08C` / `#676C5C` | texto |
 
-**Regra do azul.** A estratégia é a valorização do futebol brasileiro: o lime carrega
-verde e amarelo, o azul fecha o conjunto — e já existe no escudo do logo.
-Ele nunca compete com o lime.
+**Regra do azul.** A estratégia é a valorização do futebol brasileiro: o lime
+carrega verde e amarelo, o azul fecha o conjunto — e já existe no escudo do logo.
+Pode em botão sólido com texto branco, na bola do campo, em `::selection` e no
+foco de teclado. Não pode em texto corrido sobre escuro (3,9:1, reprova AA) nem
+ao lado de um botão lime. Lime é comprar, azul é entrar na conta.
 
-- **Pode:** botão sólido com texto branco (5,4:1), a bola no campo, `::selection`,
-  estado ativo de menu, foco de teclado.
-- **Não pode:** texto corrido sobre fundo escuro (3,9:1, reprova AA), nem botão
-  ao lado de um botão lime, nem as linhas do campo.
-- Proporção atual: ~5% da superfície.
+**Regra do gesto manual.** O grifo de giz nos títulos é o único elemento "à mão"
+do sistema, e funciona porque é raro — uma vez por seção, numa palavra-chave. Em
+24/09 avaliamos fonte grunge nos números dos módulos e decidimos manter a Sora.
+Não introduzir um segundo vocabulário manual sem revisitar isso.
 
-Lime é comprar. Azul é entrar na conta.
+**Vidro** — sistema portado do projeto Portfólio Digital:
+`--vidro-desfoque:blur(16px) saturate(180%)`, `--vidro:rgba(255,255,255,.08)`,
+`--vidro-borda:rgba(255,255,255,.16)`, `--vidro-sombra:0 8px 28px rgba(0,0,0,.18)`.
 
-### Tipografia
+**Tipografia** — Sora 500/600/700 nos títulos, Plus Jakarta Sans 400/500/600/700
+no corpo.
 
-- **Sora** 500/600/700 — títulos
-- **Plus Jakarta Sans** 400/500/600/700 — corpo
-- Sem fonte mono na versão C (era da versão A)
-
-### Logos
-
-`assets/logo-horizontal-branco.svg` e `logo-vertical-branco.svg` para fundo escuro.
-As versões escuras (`-escuro.svg`) são para fundo claro. Originais em
-`LOGOS  HORIZONTAIS/` e `LOGOS VERTICAIS/` — o `2.svg` horizontal e o `1.svg`
-vertical são os brancos.
+**Copy** — tom sóbrio, sem superlativo. O público é avançado e o conteúdo trabalha
+no detalhe. O peso vem do dado: *duas Copas do Mundo* em vez de *profissional
+referência*. Nada de "descubra os segredos" ou "não perca essa oportunidade".
 
 ---
 
-## O hero animado
+## A home
 
-Canvas 2D, sem biblioteca. `hero-teste.html`.
+Menu · hero (campo animado em canvas) · professores · cursos · vantagens ·
+TotalFut Academy · eventos · depoimentos · sobre · lista · suporte · rodapé.
 
-- **Projeção em perspectiva real** — câmera atrás e acima do gol, `proj(px, pz)`
-  divide pela profundidade. Nada é hard-coded em pixels.
-- **Horizonte ancorado nos botões** — medido em tempo de execução a partir de
-  `.hero__cta`, com folga de 30px (20px no celular), limitado entre 34% e 74% da altura.
-  Não usa fração fixa: acompanha o refluxo do título em qualquer tela.
-- **Respiro embaixo** — a linha de fundo para antes da borda do hero (7% da altura,
-  entre 22 e 60px), para o campo não entrar atrás da seção seguinte.
-- **Bloco de 11 nós** — desliza conforme o lado da bola, sobe e recua, comprime as
-  linhas. Cada jogador tem fase própria. Linhas à frente acompanham mais o lado da bola.
-- **Ligações calculadas** — dentro da linha e para os 2 mais próximos da linha seguinte.
-  Não são escritas à mão: trocar de formação refaz tudo sozinho.
-- **A bola** — azul, percorre as ligações como um passe, com aceleração, altura no ar
-  e pausa. O trecho em uso acende em azul.
-- **Formações** 1-4-3-3, 1-4-4-2, 1-3-5-2, 1-4-2-3-1 com interpolação entre elas.
-  A barra de teste embaixo **sai na versão final**.
-- `ResizeObserver` + `document.fonts.ready` + `orientationchange` — o canvas remede
-  quando a Sora carrega e o título reflui.
-- `prefers-reduced-motion` congela num frame estático.
-
----
-
-## Copy
-
-Tom sóbrio, sem superlativo. O público é avançado e o conteúdo trabalha no detalhe.
-Nada de "descubra os segredos", "altíssimo nível", "não perca essa oportunidade".
-O peso vem do dado: *duas Copas do Mundo* em vez de *profissional referência*.
-
-**Hero em uso:**
-
-> **TOTALFUT**
-> Cursos e eventos avançados para profissionais do futebol.
-> Aprenda com profissionais de elite — analistas e treinadores em atividade na
-> Seleção Brasileira, na Série A e em seleções e clubes da Europa e das Américas.
-
-Alternativas para a terceira linha:
-- "Aprenda com quem trabalha na elite. Os formadores estão em atividade em clubes e seleções, no Brasil e fora."
-- "Aprenda com profissionais de elite, em atividade. Nenhum curso é terceirizado."
-
----
-
-## Menu
-
-Logo · TotalFut · Formadores · Cursos · Eventos · [seletor de idioma] · [Área do aluno]
-
-- **Área do aluno** leva ao login da Kiwify. Azul sólido.
-- **Idioma** PT / EN / ES. Hoje só troca o estado da interface e o atributo `lang`;
-  o roteamento (`/en/`, `/es/`) entra na migração.
-- Breakpoint em **980px** — abaixo disso vai tudo para o painel.
-- O CTA "Ver cursos" saiu do menu de propósito: dois botões coloridos lado a lado
-  anulam um ao outro. Se voltar com cabeçalho fixo, só depois que o hero sair da tela.
-
-**Pendência:** "TotalFut" no menu é a página institucional ou o link de home?
-Está como institucional. Se for home, o logo já faz isso e o item vira "Sobre".
-
----
-
-## Conteúdo mapeado do site atual
-
-### Seis cursos
-
-| Curso | Formador | Preço | Slug antigo |
-|---|---|---|---|
-| Os Segredos da Análise de Desempenho Avançada | Bruno Baquete | **falta** | `/blank` |
-| A Análise de Desempenho da Bola Parada Ofensiva | Ricardo Pombo | R$147 → **R$97**, 12× R$9,74, 1h55, 7 blocos | `/analisedasbolasparadas` |
-| Cruzamentos no Futebol | Thiago Mehl | **falta** | `/cruzamentosnofutebol` |
-| Técnica e Tática Individual | Leandro Zago | **falta** | `/leandrozagocaetaticaindividual` |
-| Bola Parada Ofensiva | Julian Tobar | **falta** | `/bolaparadaofensiva` |
-| A Bola Parada no acesso do E.C. Vitória à Série B | João Burse | **falta** | `/joaoburse` |
-
-Capas em `assets/cursos/`, baixadas do Wix em resolução original.
-
-### Nove formadores
-
-Fotos em `assets/professores/`. Credenciais confirmadas:
-
-- **Bruno Baquete** — analista, Seleção Brasileira, duas Copas do Mundo. Passagens por Vitória, Corinthians e Athletico-PR.
-- **Ricardo Pombo** — analista, instrutor CBF Academy (Licença Pro e A). Cinco Copas do Mundo e duas Olimpíadas com a Seleção Feminina.
-- **João Burse** — treinador. Acesso do E.C. Vitória à Série B.
-
-**Faltam credenciais:** Leandro Zago, Thiago Mehl, Julian Tobar.
-**Em breve:** Ramiro Rangles (Head of Kinetic Analytics), André Fornaziero (fisiologista).
-Caio Fonseca saiu da home — quatro "em breve" comunicavam lacuna.
-
-### Outros dados
-
-- 600+ alunos formados
-- Entrega: Kiwify, 12 meses de acesso, vídeo HD, app no celular, certificado digital
-- Grupo de WhatsApp de alunos + **TotalFut Connect** (vagas em clubes e comissões)
-- Cursos divididos em blocos de 1 a 20 minutos, para consulta no meio da temporada
-- Seis depoimentos, editados para a frase que carrega o resultado concreto
-
----
-
-## Bloqueios
-
-**Não há Node nesta máquina.** Nem Homebrew, nem Xcode CLI, nem python3.
-Next.js não roda aqui. Instalar o Node LTS pelo `.pkg` do nodejs.org — não precisa
-de Xcode. Até lá, só HTML estático.
+- **Hero** — canvas 2D com projeção em perspectiva real, horizonte ancorado ao
+  CTA medido em tempo de execução. Luzes difusas em quatro focos concentrados
+  perto da headline. `prefers-reduced-motion` congela num quadro.
+- **Catálogo** — abre nos quatro cards de área de especialização, com botão para
+  ver todos os cursos. Filtros por tema e por professor.
+- **i18n** — PT/EN/ES por dicionário JS com `data-i18n`. **Só a home tem.** As
+  landing pages e a academy mostram o seletor mas ele não faz nada.
+- **Oito professores**, todos com credencial factual. Nenhum "a confirmar".
 
 ---
 
 ## Pendências do cliente
 
-1. Preço e link de checkout Kiwify dos 5 cursos que faltam
-2. Credencial factual de Zago, Mehl e Tobar — clube atual e um resultado
-3. O que é o "combo" — quais cursos, qual preço
-4. i18n: PT primeiro com a arquitetura pronta, ou os 3 idiomas no v1?
-5. Node instalado
+1. **Política de reembolso** — a última objeção antes da compra, hoje sem resposta
+   em nenhuma página. Aparece como nota em todas as sete.
+2. **Fotos horizontais em campo** para a faixa com paralaxe. Hoje seis das sete
+   usam o retrato vertical, que a faixa recorta fechado no rosto. Só trocar o
+   arquivo; o CSS já está pronto.
+3. **Preço, ementa e checkout do curso do Baquete.**
+4. **O que é o combo** — quais cursos, qual preço.
+5. **Escudos dos clubes** em PNG ou SVG com fundo transparente, para as faixas de
+   passagens, que hoje são texto.
+6. **URLs das redes sociais** — os quatro ícones do rodapé estão em `href="#"`.
+7. **WhatsApp de suporte**, horário de atendimento.
+8. Confirmar, na página do Mehl, os Mundiais Sub-17 de 2011 e 2015 e a que Copa
+   América de 2022 o título se refere.
 
 ---
 
-## Próximos passos
+## Técnico, antes de publicar
 
-1. Levar o hero animado, o menu e o azul para a `prototipo-home-v3.html`
-2. Tirar a barra de teste de formações
-3. Grade de breakpoints do site inteiro (≥1600 / 1024–1599 / 768–1023 / <768) —
-   adiada de propósito até o conteúdo estabilizar
-4. Otimizar imagens: WebP/AVIF, `srcset`, `sizes` (hoje são JPEG de até 1400px)
-5. Template único de landing page de curso, alimentado por um arquivo de dados
-6. Lista de e-mails — recomendação: Brevo (grátis até 300/dia, PT-BR, LGPD, API simples).
-   Alternativa com mais controle: Resend + Supabase. A Kiwify só entrega comprador, não lead.
-7. Blog
-8. Migrar para Next.js quando o Node estiver instalado
+- **Tirar o `target="_blank"`** dos links de curso na home e dos botões de compra.
+  Era workaround para revisar dentro do artifact, onde o iframe barra a troca de
+  documento.
+- **Tirar as notas tracejadas** (`.nota`) — são recados para o cliente, não vão ao ar.
+- **i18n das landing pages e da academy.**
+- **Otimizar imagens** — WebP/AVIF, `srcset`, `sizes`. Hoje são JPEG de até 1400px.
+- **Favicon.**
+- Lista de e-mails: recomendação é Brevo (grátis até 300/dia, PT-BR, LGPD). A
+  Kiwify entrega comprador, não lead.
+
+## Bloqueios
+
+**Não há Node nesta máquina**, nem Homebrew. `git` e `python3` funcionam desde
+13/09/2026. Next.js não roda aqui — instalar o Node LTS pelo `.pkg` do nodejs.org,
+que não precisa de Xcode. Até lá, só HTML estático.
+
+Verificação local: `python3 -m http.server 8765` na pasta do projeto.
