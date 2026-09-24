@@ -626,6 +626,13 @@ footer.site .wrap{position:relative;z-index:1}
 .foot__legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
   gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
 
+/* três itens não cabem numa linha de celular: o crédito do estúdio desce
+   sozinho e o par de sempre — copyright e domínio — fica junto em cima */
+@media(max-width:819px){
+  .foot__legal{justify-content:center;text-align:center;gap:6px 22px}
+  .foot__legal > :nth-child(2){order:1;flex-basis:100%}
+}
+
 .nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
   font-size:13px;line-height:1.65;color:var(--dim);margin-top:22px}
 .nota b{color:var(--lime);font-weight:600}
@@ -1103,7 +1110,7 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="foot">
       <div class="foot__marca">
         <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
-        <p class="small" style="max-width:40ch">Plataforma de cursos e eventos para profissionais do futebol, na área técnico-tática. Público: treinadores, auxiliares, preparadores e analistas.</p>
+        <p class="small" style="max-width:40ch">TotalFut — Cursos e eventos avançados para profissionais do futebol.</p>
       </div>
       <div>
         <h4>Navegação</h4>
@@ -1134,7 +1141,7 @@ footer.site .wrap{position:relative;z-index:1}
         </ul>
       </div>
     </div>
-    <div class="foot__legal"><span>© 2026 TotalFut</span><span>totalfut.com.br</span></div>
+    <div class="foot__legal"><span>© 2026 TotalFut</span><span>Feito por Sttudio11WD</span><span>totalfut.com.br</span></div>
   </div>
 </footer>
 
@@ -1163,9 +1170,19 @@ footer.site .wrap{position:relative;z-index:1}
     topoVisivel = e[0].isIntersecting; atualizar();
   }, { rootMargin: '-10px 0px 0px 0px' }).observe(topo);
 
-  new IntersectionObserver(function(e){
-    fimVisivel = e[0].isIntersecting; atualizar();
-  }, { threshold: 0.18 }).observe(fim);
+  // o rodapé conta como fim junto com o fechamento: observando só o
+  // fechamento, a barra voltava ao passar dele e cobria a última linha
+  var finais = [fim, document.querySelector('footer.site')].filter(Boolean);
+  var abertos = [];
+  var obsFim = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      var i = abertos.indexOf(e.target);
+      if (e.isIntersecting && i < 0) abertos.push(e.target);
+      if (!e.isIntersecting && i >= 0) abertos.splice(i, 1);
+    });
+    fimVisivel = abertos.length > 0; atualizar();
+  }, { threshold: 0.18 });
+  finais.forEach(function(el){ obsFim.observe(el); });
 })();
 </script>
 
