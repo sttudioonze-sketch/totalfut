@@ -493,12 +493,16 @@ header{
 }
 .item:hover{border-color:var(--hair-2)}
 .item__texto{display:flex;flex-direction:column;gap:6px;min-width:0}
+/* o número do módulo no lugar de um check: com oito itens iguais, o
+   visto não informava nada e a ordem informa. */
 .item__marca{
-  width:26px;height:26px;border-radius:30%;background:var(--lime);flex:none;
+  width:46px;height:46px;border-radius:30%;background:var(--lime);flex:none;
   display:grid;place-items:center;color:var(--lime-ink);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+  font-family:var(--display);font-size:19px;font-weight:700;line-height:1;
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 4px 12px rgba(0,0,0,.35);
 }
-.item__marca svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:620px){.item__marca{width:40px;height:40px;font-size:17px}}
 .item h3{font-size:16px}
 .item p{font-size:14px;line-height:1.55;color:#A7AE97;max-width:44ch}
 
@@ -657,6 +661,29 @@ footer.site .wrap{position:relative;z-index:1}
 .nota b{color:var(--lime);font-weight:600}
 
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+
+/* ---------- faixa de foto com paralaxe ----------
+   A imagem é mais alta que a moldura e desliza mais devagar que a
+   página. background-attachment:fixed faria o mesmo em uma linha, mas
+   não funciona no iOS; aqui é um translate atualizado no scroll. */
+.faixa-foto{
+  position:relative;overflow:hidden;padding:0;
+  height:clamp(190px,23vw,310px);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+}
+.faixa-foto img{
+  position:absolute;left:0;top:-20%;width:100%;height:140%;
+  object-fit:cover;object-position:50% 28%;
+}
+.faixa-foto::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg, var(--void) 0%, rgba(6,7,5,0) 24%, rgba(6,7,5,0) 76%, var(--void) 100%),
+    linear-gradient(180deg, rgba(6,7,5,.72) 0%, rgba(6,7,5,.26) 42%, rgba(6,7,5,.82) 100%);
+}
+@media(prefers-reduced-motion:reduce){
+  .faixa-foto img{top:0;height:100%}
+}
 
 /* ---------- ícone de seção ---------- */
 .sec-ico{
@@ -878,7 +905,7 @@ footer.site .wrap{position:relative;z-index:1}
 
           <ul>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail, assim que o pagamento é confirmado</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Coach Planner e o PDF da apresentação, inclusos como bônus</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Coach Planner PRO e o e-book do curso, inclusos como bônus</li>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo do curso no WhatsApp e entrada no TotalFut Connect</li>
           </ul>
 
@@ -931,14 +958,14 @@ footer.site .wrap{position:relative;z-index:1}
         <p class="lede">Seis horas em duas partes: primeiro o conceito, depois ele lido no trabalho de treinadores em atividade.</p>
       </div>
       <div class="cobre revela">
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>A mudança da metodologia</h3><p>O deslocamento do treino coletivo para o que o jogador resolve sozinho dentro dele.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Controle visual do espaço</h3><p>A leitura de 360° antes de receber, e a orientação corporal que ela exige.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>As cinco vantagens</h3><p>O modelo de Paco Seirul·lo aplicado ao que o jogador faz com e sem bola.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>A vantagem dinâmica</h3><p>Como a vantagem se cria no movimento e não na posição parada.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Buscar vantagem permanente</h3><p>Os movimentos de quem ataca para não devolver a vantagem conquistada.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Fixar e atrair</h3><p>Os quatro espaços que o jogador manipula para abrir o adversário.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Distâncias e trajetórias</h3><p>O trabalho de Abel Ferreira, Juan Pablo Vojvoda e Jorge Jesus, lido pelo detalhe individual.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Jogo de posição</h3><p>O de Jorge Sampaoli, e os princípios de Dorival Júnior, Maurício Barbieri e André Jardine.</p></div></div>
+        <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>A mudança da metodologia</h3><p>O deslocamento do treino coletivo para o que o jogador resolve sozinho dentro dele.</p></div></div>
+        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>Controle visual do espaço</h3><p>A leitura de 360° antes de receber, e a orientação corporal que ela exige.</p></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>As cinco vantagens</h3><p>O modelo de Paco Seirul·lo aplicado ao que o jogador faz com e sem bola.</p></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>A vantagem dinâmica</h3><p>Como a vantagem se cria no movimento e não na posição parada.</p></div></div>
+        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Buscar vantagem permanente</h3><p>Os movimentos de quem ataca para não devolver a vantagem conquistada.</p></div></div>
+        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Fixar e atrair</h3><p>Os quatro espaços que o jogador manipula para abrir o adversário.</p></div></div>
+        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Distâncias e trajetórias</h3><p>O trabalho de Abel Ferreira, Juan Pablo Vojvoda e Jorge Jesus, lido pelo detalhe individual.</p></div></div>
+        <div class="item luz"><div class="item__marca">08</div><div class="item__texto"><h3>Jogo de posição</h3><p>O de Jorge Sampaoli, e os princípios de Dorival Júnior, Maurício Barbieri e André Jardine.</p></div></div>
       </div>
     </div>
   </section>
@@ -994,16 +1021,15 @@ footer.site .wrap{position:relative;z-index:1}
         <div>
           <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="8.5" width="18" height="11.5" rx="2"/><path d="M3 12.5h18M12 8.5V20"/><path d="M12 8.5S9.5 4 7.5 5.2 9.5 8.5 12 8.5zM12 8.5s2.5-4.5 4.5-3.3S14.5 8.5 12 8.5z"/></svg></div>
         <h2>Os bônus.</h2>
-          <p style="margin-top:12px">O quarto módulo do curso não é conteúdo: é o que vem junto com ele.</p>
+          <p style="margin-top:12px">O que vem junto com o curso, além do conteúdo.</p>
         </div>
         <ul>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Coach Planner</li>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>PDF da apresentação completa</li>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Grupo do curso no WhatsApp</li>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Acesso ao TotalFut Connect</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>TotalFut Connect</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Grupo de Alunos TotalFut</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Coach Planner PRO</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>E-book do Curso</li>
         </ul>
       </div>
-      <p class="nota"><b>Confirmar:</b> o que é o Coach Planner. O nome entra na lista de bônus sem explicação e, sendo uma ferramenta, é o mais concreto dos quatro — merece uma linha dizendo o que faz.</p>
     </div>
   </section>
 
@@ -1064,6 +1090,11 @@ footer.site .wrap{position:relative;z-index:1}
     </div>
   </section>
 
+  <!-- FAIXA DE FOTO -->
+  <section class="faixa-foto">
+    <img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" loading="lazy">
+  </section>
+
   <!-- FECHAMENTO -->
   <section id="fechamento">
     <div class="wrap">
@@ -1077,7 +1108,7 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
           <ul>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato e doze meses de consulta</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Coach Planner, PDF da apresentação e certificado digital</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Coach Planner PRO, e-book do curso e certificado digital</li>
             <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo do curso e entrada no TotalFut Connect</li>
           </ul>
           <a class="btn btn--lime btn--full" href="https://pay.kiwify.com.br/so6axQK" target="_blank" rel="noopener">Comprar o curso</a>
@@ -1296,5 +1327,33 @@ footer.site .wrap{position:relative;z-index:1}
     });
   });
 
+})();
+</script>
+
+<script>
+(function(){
+  // paralaxe da faixa de foto: a imagem tem 20% de folga em cima e
+  // embaixo, e o translate de +/-14% fica dentro dessa folga.
+  var faixas = [].slice.call(document.querySelectorAll('.faixa-foto img'));
+  if (!faixas.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var pedido = false;
+  function posicionar(){
+    pedido = false;
+    var altura = window.innerHeight;
+    for (var i = 0; i < faixas.length; i++){
+      var img = faixas[i], r = img.parentNode.getBoundingClientRect();
+      if (r.bottom < -40 || r.top > altura + 40) continue;
+      // -1 quando a faixa entra por baixo, +1 quando sai por cima
+      var avanco = (r.top + r.height / 2 - altura / 2) / (altura / 2 + r.height / 2);
+      img.style.transform = 'translateY(' + (avanco * 14).toFixed(2) + '%)';
+    }
+  }
+  function agendar(){ if (!pedido){ pedido = true; requestAnimationFrame(posicionar); } }
+
+  addEventListener('scroll', agendar, { passive: true });
+  addEventListener('resize', agendar);
+  posicionar();
 })();
 </script>

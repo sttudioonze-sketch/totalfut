@@ -493,12 +493,16 @@ header{
 }
 .item:hover{border-color:var(--hair-2)}
 .item__texto{display:flex;flex-direction:column;gap:6px;min-width:0}
+/* o número do módulo no lugar de um check: com oito itens iguais, o
+   visto não informava nada e a ordem informa. */
 .item__marca{
-  width:26px;height:26px;border-radius:30%;background:var(--lime);flex:none;
+  width:46px;height:46px;border-radius:30%;background:var(--lime);flex:none;
   display:grid;place-items:center;color:var(--lime-ink);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+  font-family:var(--display);font-size:19px;font-weight:700;line-height:1;
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 4px 12px rgba(0,0,0,.35);
 }
-.item__marca svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:620px){.item__marca{width:40px;height:40px;font-size:17px}}
 .item h3{font-size:16px}
 .item p{font-size:14px;line-height:1.55;color:#A7AE97;max-width:44ch}
 
@@ -657,6 +661,29 @@ footer.site .wrap{position:relative;z-index:1}
 .nota b{color:var(--lime);font-weight:600}
 
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+
+/* ---------- faixa de foto com paralaxe ----------
+   A imagem é mais alta que a moldura e desliza mais devagar que a
+   página. background-attachment:fixed faria o mesmo em uma linha, mas
+   não funciona no iOS; aqui é um translate atualizado no scroll. */
+.faixa-foto{
+  position:relative;overflow:hidden;padding:0;
+  height:clamp(190px,23vw,310px);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+}
+.faixa-foto img{
+  position:absolute;left:0;top:-20%;width:100%;height:140%;
+  object-fit:cover;object-position:50% 28%;
+}
+.faixa-foto::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg, var(--void) 0%, rgba(6,7,5,0) 24%, rgba(6,7,5,0) 76%, var(--void) 100%),
+    linear-gradient(180deg, rgba(6,7,5,.72) 0%, rgba(6,7,5,.26) 42%, rgba(6,7,5,.82) 100%);
+}
+@media(prefers-reduced-motion:reduce){
+  .faixa-foto img{top:0;height:100%}
+}
 
 /* ---------- ícone de seção ---------- */
 .sec-ico{
@@ -931,14 +958,14 @@ footer.site .wrap{position:relative;z-index:1}
         <p class="lede">1h55 em sete módulos, uma cobrança de cada vez — e cada uma com o exemplo prático e o exercício que sai dele.</p>
       </div>
       <div class="cobre revela">
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>A análise aplicada à bola parada</h3><p>Onde o trabalho do analista entra nesta fase do jogo, e o que ele muda nela.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>As ferramentas de análise</h3><p>As que o professor usa para ler bola parada, de treino e de jogo.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Análise dos escanteios</h3><p>O que se observa no escanteio do adversário e no próprio, e as observações gerais que orientam a leitura.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Tipos de marcação</h3><p>Zona, individual e mista — e o que cada uma abre para quem ataca.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Escanteios na prática</h3><p>Os exemplos comentados e os exercícios que saem deles.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Faltas laterais</h3><p>A análise, as observações e os exemplos práticos com o exercício correspondente.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Arremessos laterais</h3><p>A leitura do lateral e os exemplos de como ele vira chance.</p></div></div>
-        <div class="item luz"><div class="item__marca"><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg></div><div class="item__texto"><h3>Saída de meio</h3><p>A jogada que quase nenhum curso trata, analisada e exemplificada.</p></div></div>
+        <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>A análise aplicada à bola parada</h3><p>Onde o trabalho do analista entra nesta fase do jogo, e o que ele muda nela.</p></div></div>
+        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>As ferramentas de análise</h3><p>As que o professor usa para ler bola parada, de treino e de jogo.</p></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>Análise dos escanteios</h3><p>O que se observa no escanteio do adversário e no próprio, e as observações gerais que orientam a leitura.</p></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>Tipos de marcação</h3><p>Zona, individual e mista — e o que cada uma abre para quem ataca.</p></div></div>
+        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Escanteios na prática</h3><p>Os exemplos comentados e os exercícios que saem deles.</p></div></div>
+        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Faltas laterais</h3><p>A análise, as observações e os exemplos práticos com o exercício correspondente.</p></div></div>
+        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Arremessos laterais</h3><p>A leitura do lateral e os exemplos de como ele vira chance.</p></div></div>
+        <div class="item luz"><div class="item__marca">08</div><div class="item__texto"><h3>Saída de meio</h3><p>A jogada que quase nenhum curso trata, analisada e exemplificada.</p></div></div>
       </div>
     </div>
   </section>
@@ -986,15 +1013,15 @@ footer.site .wrap{position:relative;z-index:1}
         <div>
           <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="8.5" width="18" height="11.5" rx="2"/><path d="M3 12.5h18M12 8.5V20"/><path d="M12 8.5S9.5 4 7.5 5.2 9.5 8.5 12 8.5zM12 8.5s2.5-4.5 4.5-3.3S14.5 8.5 12 8.5z"/></svg></div>
         <h2>Os bônus.</h2>
-          <p style="margin-top:12px">Temas complementares que sozinhos já seriam um curso à parte, reunidos aqui porque se completam.</p>
+          <p style="margin-top:12px">O que vem junto com o curso, além do conteúdo.</p>
         </div>
         <ul>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Conteúdo bônus 1 — a confirmar</li>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Conteúdo bônus 2 — a confirmar</li>
-          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Conteúdo bônus 3 — a confirmar</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>TotalFut Connect</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Grupo de Alunos TotalFut</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Coach Planner PRO</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>E-book do Curso</li>
         </ul>
       </div>
-      <p class="nota"><b>Pendente:</b> os nomes dos bônus. A página atual abre a seção e não diz o que ela contém. No curso do Zago eles vêm nomeados — vale seguir o mesmo padrão aqui, ou tirar a seção.</p>
     </div>
   </section>
 
@@ -1053,6 +1080,11 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- FAIXA DE FOTO -->
+  <section class="faixa-foto">
+    <img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy">
   </section>
 
   <!-- FECHAMENTO -->
@@ -1291,5 +1323,33 @@ footer.site .wrap{position:relative;z-index:1}
     });
   });
 
+})();
+</script>
+
+<script>
+(function(){
+  // paralaxe da faixa de foto: a imagem tem 20% de folga em cima e
+  // embaixo, e o translate de +/-14% fica dentro dessa folga.
+  var faixas = [].slice.call(document.querySelectorAll('.faixa-foto img'));
+  if (!faixas.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var pedido = false;
+  function posicionar(){
+    pedido = false;
+    var altura = window.innerHeight;
+    for (var i = 0; i < faixas.length; i++){
+      var img = faixas[i], r = img.parentNode.getBoundingClientRect();
+      if (r.bottom < -40 || r.top > altura + 40) continue;
+      // -1 quando a faixa entra por baixo, +1 quando sai por cima
+      var avanco = (r.top + r.height / 2 - altura / 2) / (altura / 2 + r.height / 2);
+      img.style.transform = 'translateY(' + (avanco * 14).toFixed(2) + '%)';
+    }
+  }
+  function agendar(){ if (!pedido){ pedido = true; requestAnimationFrame(posicionar); } }
+
+  addEventListener('scroll', agendar, { passive: true });
+  addEventListener('resize', agendar);
+  posicionar();
 })();
 </script>
