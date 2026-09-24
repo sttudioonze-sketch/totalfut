@@ -4,7 +4,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEl
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TotalFut Painel Escuro</title>
+<title>TotalFut — Cursos e eventos avançados para profissionais do futebol</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
@@ -137,7 +137,8 @@ header{
 .barra-luz::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(1,90,255,.28)}
 .nav{position:relative;z-index:1}
 .nav{display:flex;align-items:center;gap:26px;height:66px}
-.nav img{height:25px;width:auto;flex:none}
+.nav > a:first-child{flex:none;display:block;line-height:0}
+.nav img{height:25px;width:auto;display:block}
 .nav__links{display:none;gap:22px;margin-left:auto;font-size:13px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .nav__links a{white-space:nowrap;transition:color .16s ease}
@@ -793,7 +794,7 @@ footer.site .wrap{position:relative;z-index:1}
 <header>
   <div class="barra-luz" aria-hidden="true"></div>
   <nav class="nav wrap" aria-label="Principal">
-    <img src="assets/logo-horizontal-branco.svg" alt="TotalFut">
+    <a href="index.html" aria-label="TotalFut, início"><img src="assets/logo-horizontal-branco.svg" alt="TotalFut"></a>
 
     <div class="nav__links">
       <a href="#professores" data-i18n="nav.prof">Professores</a>
