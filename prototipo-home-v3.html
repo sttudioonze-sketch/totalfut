@@ -606,6 +606,14 @@ footer.site .wrap{position:relative;z-index:1}
   /* empilhado, gap sozinho não separa: cada bloco ganha um filete acima */
   .foot{gap:0}
   .foot > * + *{margin-top:26px;padding-top:26px;border-top:1px solid var(--hair)}
+
+  /* centralizado, as redes sobem para logo abaixo do logo e formam um
+     bloco de identidade só com ele: sem filete e sem rótulo no meio */
+  .foot__marca{order:0}
+  .foot__redes{order:1}
+  .foot > :not(.foot__marca):not(.foot__redes){order:2}
+  .foot > .foot__redes{margin-top:16px;padding-top:0;border-top:0}
+  .foot__redes h4{display:none}
 }
 
 .foot__legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
@@ -1339,7 +1347,7 @@ footer.site .wrap{position:relative;z-index:1}
           <li><a href="#suporte" data-i18n="t153">Suporte</a></li>
         </ul>
       </div>
-      <div>
+      <div class="foot__redes">
         <h4 data-i18n="rodape.redes">Redes</h4>
         <div class="redes">
           <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C20.5 8.75 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg></a>

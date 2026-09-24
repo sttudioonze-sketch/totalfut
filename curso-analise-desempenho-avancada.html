@@ -591,6 +591,14 @@ footer.site .wrap{position:relative;z-index:1}
   /* empilhado, gap sozinho não separa: cada bloco ganha um filete acima */
   .foot{gap:0}
   .foot > * + *{margin-top:26px;padding-top:26px;border-top:1px solid var(--hair)}
+
+  /* centralizado, as redes sobem para logo abaixo do logo e formam um
+     bloco de identidade só com ele: sem filete e sem rótulo no meio */
+  .foot__marca{order:0}
+  .foot__redes{order:1}
+  .foot > :not(.foot__marca):not(.foot__redes){order:2}
+  .foot > .foot__redes{margin-top:16px;padding-top:0;border-top:0}
+  .foot__redes h4{display:none}
 }
 
 .foot__legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
@@ -746,11 +754,11 @@ footer.site .wrap{position:relative;z-index:1}
     <a href="index.html"><img src="assets/logo-horizontal-branco.svg" alt="TotalFut"></a>
 
     <div class="nav__links">
-      <a href="index.html#professores" data-i18n-x="nav.prof">Professores</a>
-      <a href="index.html#cursos" data-i18n-x="nav.cursos">Cursos</a>
-      <a href="index.html#sobre" data-i18n-x="nav.sobre">Sobre</a>
-      <a href="index.html#academy" data-i18n-x="nav.academy">TotalFut Academy</a>
-      <a href="index.html#suporte" data-i18n-x="nav.suporte">Suporte</a>
+      <a href="index.html#professores">Professores</a>
+      <a href="index.html#cursos">Cursos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#academy">TotalFut Academy</a>
+      <a href="index.html#suporte">Suporte</a>
     </div>
 
     <div class="nav__right">
@@ -1073,21 +1081,21 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="foot">
       <div class="foot__marca">
         <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
-        <p class="small" style="max-width:40ch" data-i18n-x="t146">Plataforma de cursos e eventos para profissionais do futebol, na área técnico-tática. Público: treinadores, auxiliares, preparadores e analistas.</p>
+        <p class="small" style="max-width:40ch">Plataforma de cursos e eventos para profissionais do futebol, na área técnico-tática. Público: treinadores, auxiliares, preparadores e analistas.</p>
       </div>
       <div>
-        <h4" data-i18n-x="t147">Navegação</h4>
+        <h4>Navegação</h4>
         <ul>
-          <li><a href="index.html#professores" data-i18n-x="t148">Professores</a></li>
-          <li><a href="index.html#cursos" data-i18n-x="t149">Cursos</a></li>
-          <li><a href="index.html#eventos" data-i18n-x="t150">Eventos</a></li>
-          <li><a href="index.html#sobre" data-i18n-x="t151">Sobre</a></li>
-          <li><a href="index.html#academy" data-i18n-x="t152">TotalFut Academy</a></li>
-          <li><a href="index.html#suporte" data-i18n-x="t153">Suporte</a></li>
+          <li><a href="index.html#professores">Professores</a></li>
+          <li><a href="index.html#cursos">Cursos</a></li>
+          <li><a href="index.html#eventos">Eventos</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#academy">TotalFut Academy</a></li>
+          <li><a href="index.html#suporte">Suporte</a></li>
         </ul>
       </div>
-      <div>
-        <h4" data-i18n-x="rodape.redes">Redes</h4>
+      <div class="foot__redes">
+        <h4>Redes</h4>
         <div class="redes">
           <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C20.5 8.75 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg></a>
           <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.2V8.8l5.2 3.2z"/></svg></a>
@@ -1096,15 +1104,15 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
       </div>
       <div>
-        <h4" data-i18n-x="t154">Contato</h4>
+        <h4>Contato</h4>
         <ul>
-          <li><a href="#" data-i18n-x="t155">Instagram</a></li>
-          <li><a href="#" data-i18n-x="t156">WhatsApp</a></li>
-          <li><a href="#" data-i18n-x="t157">Suporte</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Suporte</a></li>
         </ul>
       </div>
     </div>
-    <div class="foot__legal"><span" data-i18n-x="t158">© 2026 TotalFut</span><span" data-i18n-x="t159">totalfut.com.br</span></div>
+    <div class="foot__legal"><span>© 2026 TotalFut</span><span>totalfut.com.br</span></div>
   </div>
 </footer>
 
