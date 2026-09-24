@@ -293,7 +293,14 @@ header{
   /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
      contêiner criava uma quebra vertical contra o preto */
   .topo__foto{position:absolute;inset:0;width:100%;aspect-ratio:auto;height:100%}
-  .topo__foto img{object-position:74% 16%}
+  /* O especialista fica no meio da metade direita, em 75% da moldura.
+     object-position sozinho não chega lá: acima de 1,91:1 o cover escala pela
+     largura e o eixo X deixa de ter efeito. Então desloca-se o próprio
+     elemento. O agasalho tem centro em 57,7% da imagem (medido nos pixels
+     azuis); a escala de 1,1 garante que a imagem cubra a moldura mesmo com o
+     deslocamento, e 17,3% a leva aos 75% em qualquer proporção de tela.
+     A folga que abre à esquerda fica dentro dos 20% em que o degradê é opaco. */
+  .topo__foto img{object-position:50% 20%;transform:translateX(17.3%) scale(1.1)}
   .topo__foto::after{
     background:
       /* muitas paradas próximas: a passagem fica gradual e sem faixa visível */
