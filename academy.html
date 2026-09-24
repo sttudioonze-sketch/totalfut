@@ -306,9 +306,11 @@ footer.site::before,footer.site::after{content:"";position:absolute;border-radiu
 footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
 footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
 footer.site .wrap{position:relative;z-index:1}
-.foot{display:grid;gap:26px;grid-template-columns:1fr}
+/* colunas alinhadas pelo topo: sem isto o bloco da marca centraliza o
+   próprio conteúdo e desalinha com os títulos das outras colunas */
+.foot{display:grid;gap:26px;grid-template-columns:1fr;align-items:start}
 @media(min-width:820px){.foot{grid-template-columns:1.1fr .5fr .85fr .5fr}}
-.foot__marca{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.foot__marca{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
 .foot__marca img{height:88px;width:auto;flex:none}
 .foot__marca p{flex:1 1 260px;min-width:0}
 .foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-family:var(--body)}
@@ -322,7 +324,13 @@ footer.site .wrap{position:relative;z-index:1}
 }
 .redes a:hover{color:var(--lime);border-color:rgba(215,255,71,.45);background:rgba(215,255,71,.08);transform:translateY(-2px)}
 .redes svg{width:18px;height:18px;fill:currentColor}
-@media(max-width:767px){.redes{justify-content:center}}
+@media(max-width:819px){
+  .redes{justify-content:center}
+  .foot__marca{flex-direction:column;align-items:center;text-align:center;gap:12px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  .foot{gap:20px}
+}
 
 .foot__legal{margin-top:24px;padding-top:14px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
   gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
@@ -350,7 +358,10 @@ footer.site .wrap{position:relative;z-index:1}
   .seg-trilha{justify-content:flex-start}
   .materia h3,.materia__tema{text-align:center}
   .materia__corpo{align-items:center;text-align:center}
-  .foot{flex-direction:column;text-align:center}
+  .foot{gap:20px;flex-direction:column;text-align:center}
+  .foot__marca{flex-direction:column;align-items:center;gap:12px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
   .foot__links{justify-content:center}
 }
 

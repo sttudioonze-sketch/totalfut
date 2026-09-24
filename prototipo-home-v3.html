@@ -580,9 +580,11 @@ footer.site::before,footer.site::after{content:"";position:absolute;border-radiu
 footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
 footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
 footer.site .wrap{position:relative;z-index:1}
-.foot{display:grid;gap:26px;grid-template-columns:1fr}
+/* colunas alinhadas pelo topo: sem isto o bloco da marca centraliza o
+   próprio conteúdo e desalinha com os títulos das outras colunas */
+.foot{display:grid;gap:26px;grid-template-columns:1fr;align-items:start}
 @media(min-width:820px){.foot{grid-template-columns:1.1fr .5fr .85fr .5fr}}
-.foot__marca{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.foot__marca{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
 .foot__marca img{height:88px;width:auto;flex:none}
 .foot__marca p{flex:1 1 260px;min-width:0}
 .foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-family:var(--body)}
@@ -596,7 +598,13 @@ footer.site .wrap{position:relative;z-index:1}
 }
 .redes a:hover{color:var(--lime);border-color:rgba(215,255,71,.45);background:rgba(215,255,71,.08);transform:translateY(-2px)}
 .redes svg{width:18px;height:18px;fill:currentColor}
-@media(max-width:767px){.redes{justify-content:center}}
+@media(max-width:819px){
+  .redes{justify-content:center}
+  .foot__marca{flex-direction:column;align-items:center;text-align:center;gap:12px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  .foot{gap:20px}
+}
 
 .foot__legal{margin-top:24px;padding-top:14px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
   gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
@@ -692,8 +700,12 @@ footer.site .wrap{position:relative;z-index:1}
   .prof__n{margin-top:3px}
   .prof__c{margin-top:5px}
   .prof__badge{left:6px;top:6px;font-size:9px;padding:2px 6px}
-  .foot__marca{flex-direction:column;text-align:center;align-items:center}
-  .foot{justify-items:center;text-align:center}
+  /* em coluna, o flex-basis de 260px do parágrafo vira altura reservada e
+     abre um vazio enorme antes do menu: aqui ele volta a ser automático */
+  .foot__marca{flex-direction:column;text-align:center;align-items:center;gap:12px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  .foot{gap:20px;justify-items:center;text-align:center}
   .foot ul{align-items:center}
   .foot__legal{justify-content:center;text-align:center}
 
