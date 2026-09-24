@@ -51,6 +51,26 @@ prévia — no site publicado funciona.
 
 Checkout completo: `https://pay.kiwify.com.br/<código>`.
 
+### As oito palestras do Global Summit
+
+O Bola Parada Global Summit (24, 26 e 28 de novembro de 2025) entrou no catálogo
+como oito cursos, todos de bola parada. **Falta preço, duração e checkout dos
+oito** — a página do evento está como "esgotado/encerrado" e não diz se as
+palestras são vendidas avulsas.
+
+| Palestra | Palestrante |
+|---|---|
+| Como construir um modelo de jogo e uma metodologia com bola parada | Nicolas Gagnon |
+| Bolas paradas: operacionalização, do treino ao jogo | Diego Favarin |
+| Arremessos laterais ofensivos: conceitos e treinamento | Julian Tobar |
+| O processo do microciclo focado nas bolas paradas | Rui Pedro Sousa |
+| Ações de bola parada: conceitos e princípios | Rafael Vieira |
+| Bola parada defensiva e ofensiva: metodologia e treino | Bebeto Sauthier |
+| Bolas paradas: do planejamento à execução no dia do jogo | Michael Mackin |
+| A rotina de um analista de bolas paradas | Stuart Reid |
+
+A do Stuart Reid é gravada e traduzida para o português.
+
 A página do Baquete foi a primeira, montada só com o texto da home antes de eu ter
 acesso às páginas do Wix — **é a única que ainda carrega pendências de conteúdo.**
 Se existir uma LP dele publicada, ela fecha o catálogo.
@@ -137,7 +157,10 @@ TotalFut Academy · eventos · depoimentos · sobre · lista · suporte · rodap
   ver todos os cursos. Filtros por tema e por professor.
 - **i18n** — PT/EN/ES por dicionário JS com `data-i18n`. **Só a home tem.** As
   landing pages e a academy mostram o seletor mas ele não faz nada.
-- **Oito professores**, todos com credencial factual. Nenhum "a confirmar".
+- **Treze profissionais** na seção de professores: seis conduzem curso e sete
+  palestraram no Summit, marcados com o selo lime. Todos com credencial factual.
+  Ramiro Rangles e André Fornaziero saíram em 24/09 — estavam como "em breve"
+  desde o mapeamento.
 
 ---
 
@@ -145,7 +168,11 @@ TotalFut Academy · eventos · depoimentos · sobre · lista · suporte · rodap
 
 1. **Política de reembolso** — a última objeção antes da compra, hoje sem resposta
    em nenhuma página. Aparece como nota em todas as sete.
-2. **Fotos horizontais em campo** para a faixa com paralaxe. Hoje seis das sete
+2. **Fotos dos sete palestrantes do Summit.** Hoje os cards mostram as iniciais
+   no lugar do retrato; trocar o `<div>` por um `<img>` é tudo o que falta. As
+   fotos existem na página `/globalsummit` do Wix.
+3. **Preço, duração e checkout das oito palestras do Summit.**
+4. **Fotos horizontais em campo** para a faixa com paralaxe. Hoje seis das sete
    usam o retrato vertical, que a faixa recorta fechado no rosto. Só trocar o
    arquivo; o CSS já está pronto.
 3. **Preço, ementa e checkout do curso do Baquete.**
