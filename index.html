@@ -455,17 +455,53 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 .planos{display:grid;gap:12px;grid-template-columns:1fr}
 .plano{
   background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
-  padding:clamp(20px,2.2vw,26px) clamp(22px,2.4vw,30px);
+  padding:clamp(20px,2.6vw,32px) clamp(22px,2.4vw,30px);
   display:grid;align-items:center;
-  grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(196px,auto);
-  gap:clamp(18px,2.4vw,40px);
+  grid-template-columns:auto minmax(0,1.15fr) minmax(0,.95fr) minmax(190px,auto);
+  gap:clamp(16px,2vw,32px);
   transition:border-color .2s ease,transform .2s ease;
 }
 .plano:hover{border-color:rgba(215,255,71,.3);transform:translateY(-2px)}
+/* o rosto de quem dá o curso abre a linha: com quinze cursos e treze
+   professores, é o que separa um do outro antes mesmo do título */
+.plano__foto{
+  width:clamp(94px,8.4vw,124px);aspect-ratio:1;flex:none;
+  border-radius:15px;overflow:hidden;background:var(--card-2);
+  border:1px solid rgba(255,255,255,.09);
+}
+.plano__foto img{
+  width:100%;height:100%;object-fit:cover;object-position:center 20%;
+  filter:grayscale(1) contrast(1.05);
+  transition:filter .35s ease,transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.plano:hover .plano__foto img{filter:grayscale(0);transform:scale(1.04)}
+/* palestrante sem foto: as iniciais no mesmo quadrado */
+.plano__sigla{
+  width:100%;height:100%;display:grid;place-items:center;
+  font-family:var(--display);font-size:clamp(22px,2.4vw,30px);font-weight:700;
+  letter-spacing:-.05em;color:rgba(215,255,71,.42);
+  background:linear-gradient(158deg,#191E11 0%,#0B0E07 100%);
+}
 .plano__id{display:flex;flex-direction:column;gap:7px;min-width:0}
 .plano__acao{display:flex;flex-direction:column;gap:12px;min-width:0}
 /* abaixo disso a linha não cabe e o cartão volta a empilhar */
-@media(max-width:900px){.plano{grid-template-columns:1fr;gap:16px;align-items:stretch}}
+/* abaixo disso a linha não cabe: a foto vira faixa ao lado da
+   identificação e o resto empilha embaixo */
+@media(max-width:900px){
+  .plano{grid-template-columns:auto minmax(0,1fr);gap:14px 16px;align-items:start}
+  .plano__foto{width:clamp(80px,17vw,104px);grid-row:1}
+  .plano__id{grid-row:1}
+  .plano .inclui,.plano__acao{grid-column:1 / -1}
+}
+@media(max-width:560px){
+  /* o grid-row:1 acima mantinha foto e texto na mesma linha e espremia o
+     título em quatro linhas; aqui tudo empilha e a foto centraliza */
+  .plano{grid-template-columns:1fr;justify-items:center;gap:14px}
+  .plano__foto,.plano__id{grid-row:auto;grid-column:1}
+  .plano__foto{width:112px}
+  .plano__id{align-items:center;text-align:center}
+  .plano .inclui,.plano__acao{grid-column:1;width:100%}
+}
 .plano--destaque{border-color:rgba(215,255,71,.34);background:linear-gradient(180deg,rgba(215,255,71,.12),rgba(255,255,255,.06))}
 /* Hierarquia do card: o nome do curso é o que identifica o produto, mas
    levava 17px contra 30px do preço, com um tema em lime logo acima. O
@@ -1261,6 +1297,7 @@ footer.site .wrap{position:relative;z-index:1}
       <div class="planos revela">
 
         <div data-prof="pombo" data-tema="bola-parada" class="plano plano--destaque">
+          <div class="plano__foto"><img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t53">Bola parada</span>
             <h3 data-i18n="t54">A Análise de Desempenho da Bola Parada Ofensiva</h3>
@@ -1279,6 +1316,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="baquete" data-tema="analise" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t60">Análise de desempenho</span>
             <h3 data-i18n="t61">Os Segredos da Análise de Desempenho Avançada</h3>
@@ -1297,6 +1335,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="mehl" data-tema="goleiros" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/thiago-mehl.jpg" alt="Thiago Mehl" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t67">Goleiros</span>
             <h3 data-i18n="t68">Cruzamentos no Futebol</h3>
@@ -1315,6 +1354,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="zago" data-tema="tatica" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t71">Tática individual</span>
             <h3 data-i18n="t72">Técnica e Tática Individual</h3>
@@ -1333,6 +1373,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="zago" data-tema="tatica" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t173">Tática individual</span>
             <h3 data-i18n="t174">Exercícios Específicos para Técnica e Tática Individual</h3>
@@ -1351,6 +1392,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="tobar" data-tema="bola-parada" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/julian-tobar.jpg" alt="Julian Tobar" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t75">Bola parada</span>
             <h3 data-i18n="t76">Bola Parada Ofensiva</h3>
@@ -1369,6 +1411,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="burse" data-tema="bola-parada" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/joao-burse.jpg" alt="João Burse" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t79">Bola parada</span>
             <h3 data-i18n="t80">A Bola Parada no acesso do E.C. Vitória à Série B</h3>
@@ -1387,6 +1430,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="gagnon" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">NG</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t211">Como construir um modelo de jogo e uma metodologia com bola parada</h3>
@@ -1405,6 +1449,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="favarin" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">DF</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t215">Bolas paradas: operacionalização, do treino ao jogo</h3>
@@ -1423,6 +1468,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="tobar" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><img src="assets/professores/julian-tobar.jpg" alt="Julian Tobar" loading="lazy"></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t219">Arremessos laterais ofensivos: conceitos e treinamento</h3>
@@ -1441,6 +1487,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="ruipedro" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">RS</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t223">O processo do microciclo focado nas bolas paradas</h3>
@@ -1459,6 +1506,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="rafaelvieira" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">RV</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t227">Ações de bola parada: conceitos e princípios</h3>
@@ -1476,6 +1524,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="bebeto" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">BS</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t230">Bola parada defensiva e ofensiva: metodologia e treino</h3>
@@ -1494,6 +1543,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="mackin" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">MM</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t234">Bolas paradas: do planejamento à execução no dia do jogo</h3>
@@ -1512,6 +1562,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
 
         <div data-prof="stuart" data-tema="bola-parada" data-evento="summit" class="plano luz">
+          <div class="plano__foto"><span class="plano__sigla" aria-hidden="true">SR</span></div>
           <div class="plano__id">
             <span class="plano__tema" data-i18n="t207">Bola parada</span>
             <h3 data-i18n="t238">A rotina de um analista de bolas paradas</h3>
