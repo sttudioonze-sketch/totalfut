@@ -299,7 +299,10 @@ header{
 }
 @media(min-width:900px){
   /* grid em vez de flex: como item flex o .wrap encolhia para o tamanho do conteúdo */
-  .topo{min-height:clamp(440px,56vh,540px);display:grid;align-content:center;padding-block:clamp(32px,3.6vw,52px)}
+  /* a hero cresceu para a foto do professor ter onde aparecer: com 540
+     o retrato ancorado pela altura ficava estreito e a imagem de largura
+     inteira mostrava uma fatia fina do enquadramento */
+  .topo{min-height:clamp(560px,70vh,700px);display:grid;align-content:center;padding-block:clamp(40px,4.4vw,64px)}
   /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
      contêiner criava uma quebra vertical contra o preto */
   .topo__foto{position:absolute;inset:0;width:100%;height:100%}
@@ -765,7 +768,7 @@ footer.site .wrap{position:relative;z-index:1}
   h2{font-size:clamp(32px,2.8vw,48px)}
   .lede{font-size:18px}
   .topo__copy{max-width:min(820px,55vw)}
-  .topo{min-height:clamp(520px,52vh,620px)}
+  .topo{min-height:clamp(660px,72vh,840px)}
 }
 @media(min-width:768px) and (max-width:1079px){
   .perfis{grid-template-columns:repeat(2,1fr)}
