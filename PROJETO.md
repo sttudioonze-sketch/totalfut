@@ -98,17 +98,30 @@ bônus · como você recebe · depoimentos · **faixa de foto** · fechamento ·
 
 ### O enquadramento do hero
 
-Três casos, porque só o Baquete tem foto horizontal:
+Uma regra só, para as oito páginas — as tentativas anteriores (um caso por
+proporção de foto) sempre quebravam na foto seguinte.
 
-- **Foto horizontal, desktop** — `translateX(17.3%) scale(1.1)` leva o assunto a
-  75% da moldura. `object-position` no eixo X não resolve: acima de 1,91:1 o
-  `cover` escala pela largura e o eixo X perde efeito.
-- **Retrato, desktop** — a imagem é dimensionada pela altura, ancorada à direita
-  na proporção original, com a borda esquerda desvanecida por máscara. Esticada
-  para cobrir a moldura viraria um rosto ampliado.
-- **Celular** — faixa de `clamp(340px,94vw,580px)`, imagem dimensionada pela
-  altura e ancorada em `left:50%` com `translateX` do centro do assunto. Assim o
-  enquadramento não depende da proporção da faixa.
+A imagem ocupa uma caixa de `width:52%; height:100%` ancorada em `right:0;
+top:0`, com `object-fit:cover`. Dentro dessa caixa o `cover` **reduz** em vez de
+ampliar (≈0,63× num desktop de 1380px), e é isso que devolve o enquadramento de
+meio corpo: a abordagem anterior esticava a foto na largura inteira da página e
+ampliava os retratos a ponto de cortar cabeças.
+
+O desvanecer tem duas camadas. Uma `mask-image` em `linear-gradient(90deg,
+transparent 0%, rgba(0,0,0,.5) 20%, #000 46%)` apaga a borda esquerda da própria
+imagem; por cima, o `::after` com doze paradas leva o `--void` até zero na
+direita, sem bandeamento visível. Encostada no topo e na direita, não sobra
+folga em lugar nenhum.
+
+O que varia por página é só o `object-position`: Baquete `58% 18%`, Zago fase
+defensiva `52% 16%`, Mehl `50% 8%`, as demais `50% 10%`.
+
+Alturas: `clamp(560px,70vh,700px)` no desktop e `clamp(660px,72vh,840px)` a
+partir de 1600px — a caixa cuida da proporção, a altura não precisa inflar.
+
+**Celular** — faixa separada de `clamp(340px,94vw,580px)` acima do texto, imagem
+dimensionada pela altura e ancorada em `left:50%` com `translateX` do centro do
+assunto. Assim o enquadramento não depende da proporção da faixa.
 
 ---
 
