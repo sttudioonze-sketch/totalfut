@@ -359,7 +359,7 @@ header{
   background-size:contain;background-repeat:no-repeat;
 }
 .topo__copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
-.topo__copy h1{font-size:clamp(27px,3.6vw,40px);line-height:1.04;max-width:23ch}
+.topo__copy h1{font-size:clamp(31px,4.4vw,52px);line-height:1.02;max-width:19ch}
 .topo__com{font-size:15px;color:var(--mute)}
 .topo__com b{color:var(--text);font-weight:600}
 
@@ -376,6 +376,27 @@ header{
   max-width:520px;width:100%;
 }
 .oferta--topo{align-items:stretch}
+/* ---------- a oferta no topo ----------
+   Deixa de ser caixa: sem o vidro, o preço e o botão respiram no fundo
+   da própria hero e param de competir com o título. Menores, e afastados
+   do bloco de texto por uma margem maior que o gap da coluna. */
+.oferta--topo{
+  background:none;border:0;box-shadow:none;padding:0;max-width:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  margin-top:clamp(14px,2.2vw,26px);
+}
+/* sem a caixa, o space-between jogava o botão para a outra ponta da
+   coluna de texto: preço e ação voltam a andar juntos */
+.oferta--topo .oferta__linha{gap:12px 20px;justify-content:flex-start}
+.oferta--topo .oferta__preco b{font-size:clamp(23px,2.5vw,30px)}
+.oferta--topo .oferta__preco s{font-size:14px}
+.oferta--topo .oferta__parcela{font-size:12.5px}
+.oferta--topo .btn{padding:13px 26px;font-size:14.5px}
+@media(max-width:767px){
+  .oferta--topo{margin-top:20px}
+  .oferta--topo .oferta__linha{gap:14px}
+}
+
 /* preço e ação dividem a primeira linha, com o valor à esquerda */
 .oferta__linha{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
 .oferta__valor{display:flex;flex-direction:column;gap:4px;min-width:0}
@@ -907,7 +928,7 @@ footer.site .wrap{position:relative;z-index:1}
         <p class="lede entra" style="--atraso:.21s;max-width:46ch;font-size:15.5px">Técnicas e estratégias para qualificar a bola parada ofensiva, do critério de cobrança ao treino na semana.</p>
         <p class="topo__com entra" style="--atraso:.27s">com <b>Julian Tobar</b>, auxiliar técnico e autor de <i>Periodização Tática</i></p>
 
-        <div class="oferta oferta--topo luz entra" id="ofertaTopo" style="--atraso:.34s">
+        <div class="oferta oferta--topo entra" id="ofertaTopo" style="--atraso:.34s">
           <div class="oferta__linha">
             <div class="oferta__valor">
               <div class="oferta__preco"><s>R$ 247</s><b>R$ 197</b></div>
