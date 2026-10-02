@@ -302,25 +302,22 @@ header{
   /* a hero cresceu para a foto do professor ter onde aparecer: com 540
      o retrato ancorado pela altura ficava estreito e a imagem de largura
      inteira mostrava uma fatia fina do enquadramento */
-  /* nas páginas de retrato a moldura é mais alta de propósito: quanto
-     mais próxima da proporção da foto, menos o cover precisa ampliar */
-  .topo{min-height:clamp(620px,80vh,760px);display:grid;align-content:center;padding-block:clamp(40px,4.4vw,64px)}
+    .topo{min-height:clamp(560px,70vh,700px);display:grid;align-content:center;padding-block:clamp(40px,4.4vw,64px)}
   /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
      contêiner criava uma quebra vertical contra o preto */
   .topo__foto{position:absolute;inset:0;width:100%;height:100%}
-  /* Mesmo tratamento do primeiro curso em todas as páginas: a foto cobre
-     a largura inteira do hero, o cover corta só na vertical e o Y baixo
-     faz o recorte começar pelo alto da imagem, que é o que garante a
-     cabeça. O translate leva o professor para a direita e a escala cobre
-     a folga que ele abre à esquerda, onde o degradê é opaco. */
+  /* A foto ocupa a metade direita e preenche a altura inteira: encostada
+     no topo e na borda direita, sem folga em lugar nenhum. Em cover
+     dentro dessa caixa a escala é redutora, não ampliadora — é o que
+     devolve o enquadramento de meio corpo em vez do rosto de perto. A
+     máscara desvanece a borda esquerda da imagem em direção ao texto, e
+     o degradê de doze paradas termina o trabalho. */
   .topo__foto img{
-    position:static;left:auto;top:auto;bottom:auto;
-    width:100%;height:100%;min-width:0;max-width:none;
-    object-fit:cover;object-position:50% 2%;
-    /* a origem no alto é o que impede a cabeça de sair: com a origem
-       central a escala come metade do excedente por cima */
-    transform:translateX(8%) scale(1.09);transform-origin:50% 0;
-    -webkit-mask-image:none;mask-image:none;
+    position:absolute;right:0;top:0;left:auto;bottom:auto;
+    width:52%;height:100%;min-width:0;max-width:none;
+    object-fit:cover;object-position:50% 10%;transform:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
   }
   .topo__foto::after{
     background:
@@ -761,7 +758,7 @@ footer.site .wrap{position:relative;z-index:1}
   h2{font-size:clamp(32px,2.8vw,48px)}
   .lede{font-size:18px}
   .topo__copy{max-width:min(820px,55vw)}
-  .topo{min-height:clamp(740px,80vh,900px)}
+  .topo{min-height:clamp(660px,72vh,840px)}
 }
 @media(min-width:768px) and (max-width:1079px){
   .perfis{grid-template-columns:repeat(2,1fr)}

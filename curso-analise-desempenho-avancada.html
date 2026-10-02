@@ -308,17 +308,18 @@ header{
   /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
      contêiner criava uma quebra vertical contra o preto */
   .topo__foto{position:absolute;inset:0;width:100%;height:100%}
-  /* Mesmo tratamento do primeiro curso em todas as páginas: a foto cobre
-     a largura inteira do hero, o cover corta só na vertical e o Y baixo
-     faz o recorte começar pelo alto da imagem, que é o que garante a
-     cabeça. O translate leva o professor para a direita e a escala cobre
-     a folga que ele abre à esquerda, onde o degradê é opaco. */
+  /* A foto ocupa a metade direita e preenche a altura inteira: encostada
+     no topo e na borda direita, sem folga em lugar nenhum. Em cover
+     dentro dessa caixa a escala é redutora, não ampliadora — é o que
+     devolve o enquadramento de meio corpo em vez do rosto de perto. A
+     máscara desvanece a borda esquerda da imagem em direção ao texto, e
+     o degradê de doze paradas termina o trabalho. */
   .topo__foto img{
-    position:static;left:auto;top:auto;bottom:auto;
-    width:100%;height:100%;min-width:0;max-width:none;
-    object-fit:cover;object-position:50% 16%;
-    transform:translateX(17.3%) scale(1.1);
-    -webkit-mask-image:none;mask-image:none;
+    position:absolute;right:0;top:0;left:auto;bottom:auto;
+    width:52%;height:100%;min-width:0;max-width:none;
+    object-fit:cover;object-position:58% 18%;transform:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
   }
   .topo__foto::after{
     background:
