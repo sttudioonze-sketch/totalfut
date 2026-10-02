@@ -282,7 +282,7 @@ header{
    Dimensionada pela altura, com min-width para cobrir a largura quando a
    faixa é mais larga que a proporção da foto; nesse caso o object-position
    escolhe a altura do recorte, e 14% mantém a cabeça inteira. */
-.topo__foto img:not(.topo__fundo){
+.topo__foto img{
   position:absolute;top:0;left:50%;transform:translateX(-50%);
   height:100%;width:auto;min-width:100%;max-width:none;
   object-fit:cover;object-position:50% 14%;
@@ -302,32 +302,25 @@ header{
   /* a hero cresceu para a foto do professor ter onde aparecer: com 540
      o retrato ancorado pela altura ficava estreito e a imagem de largura
      inteira mostrava uma fatia fina do enquadramento */
-  .topo{min-height:clamp(560px,70vh,700px);display:grid;align-content:center;padding-block:clamp(40px,4.4vw,64px)}
+  /* nas páginas de retrato a moldura é mais alta de propósito: quanto
+     mais próxima da proporção da foto, menos o cover precisa ampliar */
+  .topo{min-height:clamp(620px,80vh,760px);display:grid;align-content:center;padding-block:clamp(40px,4.4vw,64px)}
   /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
      contêiner criava uma quebra vertical contra o preto */
   .topo__foto{position:absolute;inset:0;width:100%;height:100%}
-  /* Dois planos. O de trás é a mesma foto esticada e desfocada, só para
-     o degradê ter algo embaixo de ponta a ponta — é ele que faz a faixa
-     atravessar a página inteira. O da frente é o professor na proporção
-     natural, ancorado à direita: esticá-lo para cobrir 2:1 ampliaria o
-     rosto a ponto de cortar a cabeça. A máscara longa dissolve a borda
-     esquerda dele dentro do plano de trás, sem nenhuma aresta. */
-  .topo__fundo{
-    position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;object-position:50% 22%;
-    transform:scale(1.14);filter:blur(22px) saturate(.85) brightness(.72);
-    opacity:.55;
-  }
-  .topo__foto img:not(.topo__fundo){
-    /* ancorado pelo TOPO, não pela base: a escala com origem no canto de
-       baixo empurrava a cabeça 126px para fora da moldura. Agora a
-       imagem começa 5% abaixo da borda — a folga que garante a cabeça
-       inteira — e é o rodapé que corta o que sobra. */
-    position:absolute;top:5%;right:1%;left:auto;bottom:auto;
-    height:112%;width:auto;min-width:0;max-width:none;
-    object-fit:contain;object-position:top center;transform:none;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 15%,#000 36%);
-            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 15%,#000 36%);
+  /* Mesmo tratamento do primeiro curso em todas as páginas: a foto cobre
+     a largura inteira do hero, o cover corta só na vertical e o Y baixo
+     faz o recorte começar pelo alto da imagem, que é o que garante a
+     cabeça. O translate leva o professor para a direita e a escala cobre
+     a folga que ele abre à esquerda, onde o degradê é opaco. */
+  .topo__foto img{
+    position:static;left:auto;top:auto;bottom:auto;
+    width:100%;height:100%;min-width:0;max-width:none;
+    object-fit:cover;object-position:50% 2%;
+    /* a origem no alto é o que impede a cabeça de sair: com a origem
+       central a escala come metade do excedente por cima */
+    transform:translateX(8%) scale(1.09);transform-origin:50% 0;
+    -webkit-mask-image:none;mask-image:none;
   }
   .topo__foto::after{
     background:
@@ -768,7 +761,7 @@ footer.site .wrap{position:relative;z-index:1}
   h2{font-size:clamp(32px,2.8vw,48px)}
   .lede{font-size:18px}
   .topo__copy{max-width:min(820px,55vw)}
-  .topo{min-height:clamp(660px,72vh,840px)}
+  .topo{min-height:clamp(740px,80vh,900px)}
 }
 @media(min-width:768px) and (max-width:1079px){
   .perfis{grid-template-columns:repeat(2,1fr)}
@@ -777,7 +770,6 @@ footer.site .wrap{position:relative;z-index:1}
   .deps > :last-child{grid-column:1 / -1}
 }
 @media(max-width:767px){
-  .topo__fundo{display:none}
   section{padding-block:clamp(44px,10vw,62px)}
   h2{text-align:center}
   .sec-ico{margin-inline:auto}
@@ -946,7 +938,6 @@ footer.site .wrap{position:relative;z-index:1}
   <!-- TOPO -->
   <section class="topo">
     <div class="topo__foto">
-      <img class="topo__fundo" src="assets/professores/leandro-zago.jpg" alt="" aria-hidden="true">
       <img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago" fetchpriority="high">
     </div>
 
