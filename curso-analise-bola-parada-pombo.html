@@ -351,6 +351,13 @@ header{
   content:"";width:6px;height:6px;border-radius:50%;background:var(--mute);
   margin-right:8px;flex:none;
 }
+/* o idioma é informação de entrega, não de formato: mesma etiqueta, sem
+   o ponto, com um globo na frente */
+.formato--idioma::before{
+  width:13px;height:13px;border-radius:0;background:none;margin-right:7px;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239AA08C' stroke-width='1.9'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18'/%3E%3C/svg%3E");
+  background-size:contain;background-repeat:no-repeat;
+}
 .topo__copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
 .topo__copy h1{font-size:clamp(27px,3.6vw,40px);line-height:1.04;max-width:23ch}
 .topo__com{font-size:15px;color:var(--mute)}
@@ -581,6 +588,9 @@ header{
 }
 .fecha .oferta{background:none;border:0;padding:0;gap:20px;align-items:center;text-align:center;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .fecha .oferta__preco{justify-content:center}
+/* no fechamento o botão não precisa da largura inteira da caixa: a essa
+   altura a decisão já foi tomada e 520px fazem o botão parecer um campo */
+.fecha .btn--full{width:100%;max-width:340px;margin-inline:auto}
 .fecha .oferta ul{align-items:flex-start;text-align:left}
 
 /* ---------- dúvidas ---------- */
@@ -891,6 +901,7 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="tags entra" style="--atraso:.05s">
           <span class="fase">Bola parada</span>
           <span class="formato">Gravado</span>
+          <span class="formato formato--idioma">Português</span>
         </div>
         <h1 class="entra" style="--atraso:.13s">A análise de desempenho das <span class="giz">bolas paradas<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10C40 5.6 82 4.4 122 5.6c27 .8 50 2.8 74 4.8"/><path class="g2" pathLength="1" d="M188 12.4C150 9.2 104 8.4 62 9.4c-19 .5-36 1.6-52 3"/></svg></span></h1>
         <p class="lede entra" style="--atraso:.21s;max-width:46ch;font-size:15.5px">Como a análise de desempenho qualifica o treino e a estratégia de bola parada ofensiva.</p>
@@ -905,18 +916,7 @@ footer.site .wrap{position:relative;z-index:1}
             <a class="btn btn--lime" href="https://pay.kiwify.com.br/rZojzuy" id="ctaTopo" target="_blank" rel="noopener">Comprar o curso</a>
           </div>
 
-          <ul>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato por e-mail, assim que o pagamento é confirmado</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Escanteio, falta lateral, arremesso e saída de meio, com exercícios</li>
-            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos no WhatsApp e entrada no TotalFut Connect</li>
-          </ul>
 
-          <dl class="specs">
-            <div><dt>Acesso</dt><dd>12 meses</dd></div>
-            <div><dt>Duração</dt><dd>1h55</dd></div>
-            <div><dt>Módulos</dt><dd>7</dd></div>
-            <div><dt>Certificado</dt><dd>Incluso</dd></div>
-          </dl>
         </div>
       </div>
     </div>
@@ -1153,10 +1153,9 @@ footer.site .wrap{position:relative;z-index:1}
         </details>
         <details>
           <summary>E se eu não gostar?</summary>
-          <p>Política de reembolso a definir.</p>
+          <p>Você tem sete dias para desistir e receber o valor de volta, integralmente. É o direito de arrependimento garantido pelo artigo 49 do Código de Defesa do Consumidor (Lei 8.078/1990) a quem compra fora do estabelecimento comercial, como é o caso da internet. Basta pedir pelo nosso suporte dentro do prazo.</p>
         </details>
       </div>
-      <p class="nota" style="max-width:780px;margin-inline:auto"><b>Pendente:</b> a política de reembolso. É a última objeção antes da compra e hoje não tem resposta em nenhuma página do site.</p>
     </div>
   </section>
 
