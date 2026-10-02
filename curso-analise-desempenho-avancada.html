@@ -509,7 +509,9 @@ header{
 }
 .prof__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
-.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+/* a função vem logo abaixo do nome e pertence a ele: o gap da coluna
+   separaria os dois como se fossem blocos diferentes */
+.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-top:-10px}
 .prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
 /* ---------- entrega ---------- */
 .entrega{display:grid;gap:14px;grid-template-columns:1fr}
@@ -958,9 +960,9 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="wrap prof">
       <div class="prof__foto luz"><img src="assets/professores/bruno-baquete.jpg" alt="Bruno Baquete"></div>
       <div class="prof__texto">
-        <p class="prof__funcao">Analista de desempenho</p>
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 16.5v-6a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6"/><circle cx="12" cy="13.5" r="2.4"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5"/></svg></div>
         <h2>Bruno Baquete</h2>
+        <p class="prof__funcao">Analista de desempenho</p>
         <p>Atua há mais de dez anos como analista de desempenho. Passou pelo E.C. Vitória, pelo S.C. Corinthians e pelo C. Athletico Paranaense, e hoje está na Seleção Brasileira, onde participou das duas últimas Copas do Mundo.</p>
         <p>Trabalhou em todas as categorias do futebol, como analista de clube e como consultor de treinadores — os dois lados do mesmo processo. Tem graduação e mestrado na área, e passou por comissões de nomes como Tite, Fernando Diniz e Paulo Autuori.</p>
         <p class="nota" style="margin-top:8px"><b>Confirmar:</b> a relação com Tite, Diniz e Autuori — o texto atual do site diz que ele teve a oportunidade de aprender com eles, sem detalhar em que função.</p>

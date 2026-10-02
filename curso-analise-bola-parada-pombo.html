@@ -528,7 +528,9 @@ header{
 }
 .prof__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
-.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+/* a função vem logo abaixo do nome e pertence a ele: o gap da coluna
+   separaria os dois como se fossem blocos diferentes */
+.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-top:-10px}
 .prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
 /* ---------- entrega ---------- */
 .entrega{display:grid;gap:14px;grid-template-columns:1fr}
@@ -975,9 +977,9 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="wrap prof">
       <div class="prof__foto luz"><img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo"></div>
       <div class="prof__texto">
-        <p class="prof__funcao">Analista de desempenho</p>
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 16.5v-6a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6"/><circle cx="12" cy="13.5" r="2.4"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5"/></svg></div>
         <h2>Ricardo Pombo</h2>
+        <p class="prof__funcao">Analista de desempenho</p>
         <p>Analista de desempenho especialista em análise de treino e de jogo com uso de tecnologia. É instrutor da CBF Academy nas Licenças Pro e A, e coordena os cursos de Análise de Desempenho Base e Pro da CBF Academy e da Conmebol. Tem também a Licença A de treinador.</p>
         <p>Foram cinco Copas do Mundo, entre as seleções de base e a Seleção Principal Feminina, e duas Olimpíadas — Rio 2016 e Tóquio 2021. Três Copas América, com ouro nas três, e ouro no Pan-Americano de 2015.</p>
         <p>Disputou ainda duas SheBelieves Cup, dois Nations Tournament, duas Algarve Cup e dois torneios na China, com ouro e prata, além de cinco torneios internacionais no Brasil — quatro ouros e uma prata. Em clube, foi campeão paulista, da Copa do Brasil e da Libertadores.</p>

@@ -566,7 +566,9 @@ header{
 }
 .prof__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
-.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+/* a função vem logo abaixo do nome e pertence a ele: o gap da coluna
+   separaria os dois como se fossem blocos diferentes */
+.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-top:-10px}
 .prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
 /* ---------- entrega ---------- */
 .entrega{display:grid;gap:14px;grid-template-columns:1fr}
@@ -1048,9 +1050,9 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="wrap prof">
       <div class="prof__foto luz"><img src="assets/professores/leandro-zago.jpg" alt="Leandro Zago"></div>
       <div class="prof__texto">
-        <p class="prof__funcao">Treinador</p>
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 16.5v-6a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6"/><circle cx="12" cy="13.5" r="2.4"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5"/></svg></div>
         <h2>Leandro Zago</h2>
+        <p class="prof__funcao">Treinador</p>
         <p>Técnico de futebol com Licença A da CBF, onde também é instrutor da CBF Academy. Bacharel em Treinamento em Esportes pela Unicamp, com MBA em Gestão de Pessoas pela FAC Campinas e formação em Psicologia de Alto Rendimento pelo Barça Innovation Hub.</p>
         <p>Como treinador, trabalha em cima de organização, intensidade e desenvolvimento individual do atleta — o tema deste curso é o que ele faz no dia a dia.</p>
         <p>Passou por Corinthians, Atlético Mineiro, Palmeiras, Ponte Preta, Guarani, Fortaleza e Portuguesa, na base e no profissional. Foi campeão brasileiro Sub-17, campeão mineiro Sub-20 e Sub-17, vice-campeão paulista Sub-20 e vice-campeão do Interior no Paulistão de 2022.</p>

@@ -528,7 +528,9 @@ header{
 }
 .prof__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
-.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+/* a função vem logo abaixo do nome e pertence a ele: o gap da coluna
+   separaria os dois como se fossem blocos diferentes */
+.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-top:-10px}
 .prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
 /* ---------- entrega ---------- */
 .entrega{display:grid;gap:14px;grid-template-columns:1fr}
@@ -975,9 +977,9 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="wrap prof">
       <div class="prof__foto luz"><img src="assets/professores/julian-tobar.jpg" alt="Julian Tobar"></div>
       <div class="prof__texto">
-        <p class="prof__funcao">Treinador e auxiliar técnico</p>
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 16.5v-6a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6"/><circle cx="12" cy="13.5" r="2.4"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5"/></svg></div>
         <h2>Julian Tobar</h2>
+        <p class="prof__funcao">Treinador e auxiliar técnico</p>
         <p>Treinador com Licença A da CBF e instrutor da CBF Academy na Licença A e em Periodização Tática by Vítor Frade. É autor do livro <i>Periodização Tática</i>, publicado em três idiomas.</p>
         <p>Bacharel em educação física pela UFRGS. Estudou Ciências do Desporto, com ênfase em futebol de alto rendimento, na Faculdade de Desporto da Universidade do Porto.</p>
         <p>São mais de quinze anos de trabalho, com passagens por Athletico Paranaense, Figueirense, Joinville, Chapecoense, Tombense e Boavista, em Portugal. Hoje é auxiliar técnico de Ricardo Catalá no Clube do Remo.</p>
