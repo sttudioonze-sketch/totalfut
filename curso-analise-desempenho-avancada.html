@@ -771,7 +771,10 @@ footer.site .wrap{position:relative;z-index:1}
   /* o texto do topo ganha a largura inteira: centralizado com 44ch ele
      ficava numa coluna estreita no meio da tela */
   .topo__copy{align-items:stretch}
-  .topo__copy h1{max-width:none}
+  /* o clamp do desktop travava o título em 31px no celular, onde 4,4vw
+     valem 16: aqui ele passa a crescer com a tela e usar a largura que
+     tem, com o espaçamento apertado para caber mais por linha */
+  .topo__copy h1{max-width:none;font-size:clamp(30px,9.2vw,42px);line-height:1.04;letter-spacing:-.034em}
   .topo__copy .lede{max-width:none!important}
 
   .oferta--topo{text-align:center}

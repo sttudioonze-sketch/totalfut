@@ -319,13 +319,13 @@ header{
     opacity:.55;
   }
   .topo__foto img:not(.topo__fundo){
-    position:absolute;top:0;right:1%;left:auto;
-    height:100%;width:auto;min-width:0;max-width:none;
-    object-fit:contain;object-position:50% 16%;
-    /* dimensionado só pela altura o professor ficava pequeno demais no
-       canto; a escala com origem no canto de baixo dá presença a ele e
-       sangra pelo rodapé, não pela cabeça */
-    transform:scale(1.2);transform-origin:100% 100%;
+    /* ancorado pelo TOPO, não pela base: a escala com origem no canto de
+       baixo empurrava a cabeça 126px para fora da moldura. Agora a
+       imagem começa 5% abaixo da borda — a folga que garante a cabeça
+       inteira — e é o rodapé que corta o que sobra. */
+    position:absolute;top:5%;right:1%;left:auto;bottom:auto;
+    height:112%;width:auto;min-width:0;max-width:none;
+    object-fit:contain;object-position:top center;transform:none;
     -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 15%,#000 36%);
             mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 15%,#000 36%);
   }
@@ -795,7 +795,10 @@ footer.site .wrap{position:relative;z-index:1}
   /* o texto do topo ganha a largura inteira: centralizado com 44ch ele
      ficava numa coluna estreita no meio da tela */
   .topo__copy{align-items:stretch}
-  .topo__copy h1{max-width:none}
+  /* o clamp do desktop travava o título em 31px no celular, onde 4,4vw
+     valem 16: aqui ele passa a crescer com a tela e usar a largura que
+     tem, com o espaçamento apertado para caber mais por linha */
+  .topo__copy h1{max-width:none;font-size:clamp(30px,9.2vw,42px);line-height:1.04;letter-spacing:-.034em}
   .topo__copy .lede{max-width:none!important}
 
   .oferta--topo{text-align:center}
