@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<title>TotalFut — Apresentação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --void:#060705; --card:#0F110C; --card-2:#151810;
+  --hair:#23271A; --hair-2:#2E3324;
+  --lime:#D7FF47; --lime-2:#C5F132; --lime-ink:#0A0C05;
+  --text:#FFFFFF; --mute:#9AA08C; --dim:#676C5C;
+  --display:"Sora","Helvetica Neue",Arial,sans-serif;
+  --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;font-family:var(--body);-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* ---------- a folha ---------- */
+.slide{
+  position:relative;width:1280px;height:720px;overflow:hidden;
+  background:var(--void);color:var(--mute);
+  padding:64px 72px;display:flex;flex-direction:column;
+  margin:0 auto 24px;
+}
+/* luz ambiente: só lime, o azul saiu da apresentação */
+.slide::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(46% 40% at 8% 10%, rgba(215,255,71,.12), transparent 62%),
+    radial-gradient(40% 36% at 92% 60%, rgba(215,255,71,.07), transparent 64%),
+    radial-gradient(38% 34% at 40% 104%, rgba(215,255,71,.08), transparent 62%);
+}
+.slide > *{position:relative}
+
+/* ---------- tipografia ---------- */
+h1{font-family:var(--display);font-weight:700;font-size:44px;line-height:1.14;color:var(--text);letter-spacing:-.015em}
+h2{font-family:var(--display);font-weight:600;font-size:38px;line-height:1.12;color:var(--text);letter-spacing:-.015em}
+h3{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.25;color:var(--text)}
+p{font-size:16.5px;line-height:1.6}
+.lede{font-size:18px;line-height:1.62;color:var(--mute);max-width:72ch}
+.eyebrow{
+  font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--lime);
+}
+.mini{font-size:13.5px;line-height:1.5;color:var(--dim)}
+strong{color:var(--text);font-weight:600}
+.lime{color:var(--lime)}
+
+/* ---------- cabeçalho e rodapé de folha ---------- */
+.cab{display:flex;align-items:baseline;gap:16px;margin-bottom:24px}
+.cab .num{
+  font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--dim);
+  margin-left:auto;letter-spacing:.14em
+}
+.rodape{
+  position:absolute;left:72px;right:72px;bottom:30px;
+  display:flex;align-items:center;gap:14px;
+  font-size:11.5px;color:var(--dim);letter-spacing:.04em;
+}
+.rodape::before{content:"";height:1px;flex:0 0 28px;background:var(--hair-2)}
+
+/* ---------- grifo de giz: uma vez na apresentação ---------- */
+.giz{position:relative;white-space:nowrap;display:inline-block}
+.giz svg{position:absolute;left:-3%;right:-3%;width:106%;bottom:-.20em;height:.42em;overflow:visible}
+.giz path{fill:none;stroke:var(--lime);stroke-linecap:round;filter:url(#giz-textura)}
+.giz .g1{stroke-width:7;opacity:.9}
+.giz .g2{stroke-width:4;opacity:.45}
+
+/* ---------- peças ---------- */
+.cartao{
+  background:linear-gradient(180deg,var(--card),var(--card-2));
+  border:1px solid var(--hair);border-radius:var(--r);padding:24px 26px;
+}
+.vidro{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--r);padding:24px 26px;
+}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--hair-2);border-radius:999px;padding:7px 15px;
+  font-size:13.5px;color:var(--mute);background:rgba(255,255,255,.03);
+}
+.pill::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lime)}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ícone de caixa: mesmo desenho de traço do site */
+.ico{
+  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--hair-2);background:rgba(215,255,71,.07);color:var(--lime);margin-bottom:16px;
+}
+.ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+.dado{font-family:var(--display);font-weight:700;color:var(--lime);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+.falta{
+  display:inline-block;border:1px dashed var(--lime);border-radius:8px;
+  padding:2px 10px;color:var(--lime);font-size:.86em;font-weight:600;
+  background:rgba(215,255,71,.07);
+}
+
+ul{list-style:none}
+li{position:relative;padding-left:20px;margin-top:10px;font-size:15px;line-height:1.5}
+li::before{
+  content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;
+  border-radius:2px;background:var(--lime);opacity:.85
+}
+
+/* ---------- capa ---------- */
+.capa{align-items:center;justify-content:center;text-align:center;padding:80px}
+.capa::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(38% 46% at 50% 44%, rgba(215,255,71,.16), transparent 66%);
+}
+.capa .logo{width:min(560px,62%);height:auto;margin-bottom:44px}
+.capa h1{max-width:22ch}
+.capa .assina{position:absolute;bottom:56px;font-size:13px;color:var(--dim);letter-spacing:.04em}
+
+/* ---------- grades ---------- */
+.g2c{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3c{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.estica{flex:1;min-height:0}
+.estica > .cartao,.estica > .vidro{height:100%}
+.meio{display:flex;flex-direction:column;justify-content:center}
+.espalha{display:flex;flex-direction:column}
+.centro-v{flex:1;min-height:0;align-content:center}
+.centro-v > .cartao{height:auto}
+
+/* professores */
+.profs{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-content:center}
+.profs--summit{grid-template-columns:repeat(5,1fr);gap:14px}
+.prof{border:1px solid var(--hair);border-radius:14px;overflow:hidden;background:var(--card)}
+.prof img{width:100%;height:240px;object-fit:cover;object-position:50% 18%;display:block;filter:grayscale(.15) contrast(1.04)}
+.profs--summit .prof img{height:176px}
+.prof .txt{padding:14px 14px 16px}
+.prof .n{font-family:var(--display);font-weight:600;font-size:15px;color:var(--text);line-height:1.2}
+
+/* catálogo */
+.curso{display:flex;flex-direction:column;gap:3px;padding:11px 0;border-top:1px solid var(--hair)}
+.curso .t{font-family:var(--display);font-weight:600;font-size:20px;color:var(--text);line-height:1.2}
+.curso .p{font-size:13px;color:var(--lime);letter-spacing:.02em}
+
+/* etapas */
+.etapa{display:flex;flex-direction:column}
+.etapa h3{margin:0 0 4px}
+
+/* campo de futebol do encerramento */
+.campo{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:1180px;opacity:.55}
+.campo svg{width:100%;height:auto;display:block}
+.campo path,.campo circle,.campo rect,.campo line{fill:none;stroke:var(--lime);stroke-width:1.4;opacity:.5}
+
+@page{size:1280px 720px;margin:0}
+@media print{
+  html,body{background:var(--void)}
+  .slide{margin:0;break-after:page;page-break-after:always}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="giz-textura">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="ruido"/>
+    <feDisplacementMap in="SourceGraphic" in2="ruido" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<!-- ============ 1 · capa ============ -->
+<section class="slide capa">
+  <img class="logo" src="assets/logo-horizontal-branco.svg" alt="TotalFut">
+  <h1>Eventos e cursos avançados para profissionais do futebol.</h1>
+  <div class="assina">totalfut.com.br</div>
+</section>
+
+<!-- ============ 2 · sobre ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">Sobre</p><span class="num">01</span></div>
+  <h2>O que é a TotalFut.</h2>
+  <p class="lede" style="margin-top:16px">Uma plataforma de cursos e eventos para profissionais do futebol, concentrada na área técnico-tática. O público é quem trabalha no jogo: treinadores, auxiliares técnicos, preparadores e analistas de desempenho.</p>
+  <p class="lede" style="margin-top:14px">Os formadores são profissionais em atividade, e os temas saem do que eles fazem no clube ou na seleção — não de uma ementa montada de fora. Produzimos em parceria com alguns dos maiores nomes do futebol brasileiro, e a filosofia é a valorização do conhecimento de quem já está dentro.</p>
+
+  <div class="g3c centro-v" style="margin-top:30px;margin-bottom:26px">
+    <div class="cartao espalha">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M10.5 8.4l4 2.1-4 2.1z"/></svg></div>
+      <div><h3>Cursos gravados</h3>
+      <p class="mini" style="margin-top:8px">Sete cursos no catálogo, cada um conduzido por um único profissional, com ementa própria e acesso vitalício.</p></div>
+    </div>
+    <div class="cartao espalha">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.4"/><path d="M7.8 7.8a6 6 0 000 8.4M16.2 7.8a6 6 0 010 8.4"/><path d="M4.9 4.9a10 10 0 000 14.2M19.1 4.9a10 10 0 010 14.2"/></svg></div>
+      <div><h3>Eventos ao vivo</h3>
+      <p class="mini" style="margin-top:8px">Encontros online com transmissão dirigida, perguntas ao vivo e gravação disponibilizada em seguida.</p></div>
+    </div>
+    <div class="cartao espalha">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.2A2.2 2.2 0 016.2 3H19v15H6.2A2.2 2.2 0 004 20.2z"/><path d="M4 18.6V20a1 1 0 001 1h14"/><path d="M8.5 7.5h6"/></svg></div>
+      <div><h3>TotalFut Academy</h3>
+      <p class="mini" style="margin-top:8px">Espaço de conteúdo para aprofundar os temas discutidos nos cursos e nos eventos.</p></div>
+    </div>
+  </div>
+
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 3 · professores ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">Quem ensina</p><span class="num">02</span></div>
+  <h2>Os professores do catálogo.</h2>
+
+  <div class="profs estica" style="margin-top:24px;margin-bottom:26px">
+    <article class="prof">
+      <img src="assets/deck/bruno-baquete.jpg" alt="Bruno Baquete">
+      <div class="txt"><p class="n">Bruno Baquete</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/ricardo-pombo.jpg" alt="Ricardo Pombo">
+      <div class="txt"><p class="n">Ricardo Pombo</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/joao-burse.jpg" alt="João Burse">
+      <div class="txt"><p class="n">João Burse</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/leandro-zago.jpg" alt="Leandro Zago">
+      <div class="txt"><p class="n">Leandro Zago</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/thiago-mehl.jpg" alt="Thiago Mehl">
+      <div class="txt"><p class="n">Thiago Mehl</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/julian-tobar.jpg" alt="Julian Tobar">
+      <div class="txt"><p class="n">Julian Tobar</p></div>
+    </article>
+  </div>
+
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 4 · catálogo ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">O que está no ar</p><span class="num">03</span></div>
+  <h2>O catálogo de cursos.</h2>
+
+  <div class="estica" style="margin-top:18px;margin-bottom:64px;display:flex;flex-direction:column;justify-content:space-between">
+    <div class="curso"><span class="t">Os segredos da análise de desempenho avançada</span><span class="p">Bruno Baquete</span></div>
+    <div class="curso"><span class="t">A evolução do treino de cruzamentos</span><span class="p">Thiago Mehl</span></div>
+    <div class="curso"><span class="t">Bola parada ofensiva no futebol</span><span class="p">Julian Tobar</span></div>
+    <div class="curso"><span class="t">Técnica e tática individual</span><span class="p">Leandro Zago</span></div>
+    <div class="curso"><span class="t">Exercícios específicos de técnica e tática individual</span><span class="p">Leandro Zago</span></div>
+    <div class="curso"><span class="t">A análise de desempenho das bolas paradas</span><span class="p">Ricardo Pombo</span></div>
+    <div class="curso"><span class="t">A bola parada do acesso do Vitória</span><span class="p">João Burse</span></div>
+  </div>
+
+  <p class="mini" style="position:absolute;left:72px;bottom:62px">Os cursos ficam disponíveis por tempo indeterminado, com material de apoio e certificado.</p>
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 5 · último evento ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">Último evento realizado</p><span class="num">04</span></div>
+  <h2>Bola Parada Global Summit.</h2>
+
+  <div class="g2c estica" style="margin-top:22px;margin-bottom:26px;grid-template-columns:1fr 1.05fr;gap:34px">
+    <div style="display:flex;flex-direction:column;justify-content:space-between">
+      <p class="lede" style="font-size:17px">O evento internacional de bola parada da TotalFut, realizado em 24, 26 e 28 de novembro de 2025. Oito palestras ao vivo com profissionais que trabalham o tema no Brasil e fora dele, transmitidas e disponibilizadas em seguida aos inscritos.</p>
+
+      <div class="g3c" style="gap:14px">
+        <div class="cartao" style="padding:18px 20px">
+          <p class="dado" style="font-size:32px">03</p>
+          <p class="mini" style="margin-top:6px">dias de transmissão</p>
+        </div>
+        <div class="cartao" style="padding:18px 20px">
+          <p class="dado" style="font-size:32px">08</p>
+          <p class="mini" style="margin-top:6px">palestras</p>
+        </div>
+        <div class="cartao" style="padding:18px 20px">
+          <p class="dado" style="font-size:32px">121</p>
+          <p class="mini" style="margin-top:6px">inscritos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="vidro meio">
+      <ul>
+        <li>Como construir um modelo de jogo e uma metodologia com bola parada</li>
+        <li>Bolas paradas: operacionalização, do treino ao jogo</li>
+        <li>Arremessos laterais ofensivos: conceitos e treinamento</li>
+        <li>O processo do microciclo focado nas bolas paradas</li>
+        <li>Ações de bola parada: conceitos e princípios</li>
+        <li>Bola parada defensiva e ofensiva: metodologia e treino</li>
+        <li>Bolas paradas: do planejamento à execução no dia do jogo</li>
+        <li>A rotina de um analista de bolas paradas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 6 · palestrantes ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">Global Summit 2025</p><span class="num">05</span></div>
+  <h2>Os palestrantes do evento.</h2>
+
+  <div class="profs profs--summit" style="margin-top:24px">
+    <article class="prof">
+      <img src="assets/deck/nicolas-gagnon.jpg" alt="Nicolas Gagnon">
+      <div class="txt"><p class="n">Nicolas Gagnon</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/diego-favarin.jpg" alt="Diego Favarin">
+      <div class="txt"><p class="n">Diego Favarin</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/julian-tobar.jpg" alt="Julian Tobar">
+      <div class="txt"><p class="n">Julian Tobar</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/rui-pedro-sousa.jpg" alt="Rui Pedro Sousa">
+      <div class="txt"><p class="n">Rui Pedro Sousa</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/rafael-vieira.jpg" alt="Rafael Vieira">
+      <div class="txt"><p class="n">Rafael Vieira</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/bebeto-sauthier.jpg" alt="Bebeto Sauthier">
+      <div class="txt"><p class="n">Bebeto Sauthier</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/michael-mackin.jpg" alt="Michael Mackin">
+      <div class="txt"><p class="n">Michael Mackin</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/stuart-reid.jpg" alt="Stuart Reid">
+      <div class="txt"><p class="n">Stuart Reid</p></div>
+    </article>
+    <article class="prof">
+      <img src="assets/deck/italo-resende.jpg" alt="Ítalo Resende">
+      <div class="txt"><p class="n">Ítalo Resende</p></div>
+    </article>
+  </div>
+
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 7 · produção ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">Como trabalhamos</p><span class="num">06</span></div>
+  <h2>A produção de um evento ao vivo.</h2>
+  <p class="lede" style="margin-top:12px;font-size:17px">O palestrante se conecta de onde estiver. A TotalFut cuida das três etapas.</p>
+
+  <div class="g3c estica" style="margin-top:26px;margin-bottom:26px">
+    <div class="cartao etapa">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M9 3.5V6h6V3.5"/><path d="M8.5 11h7M8.5 15h4.5"/></svg></div>
+      <h3>Pré-produção</h3>
+      <ul>
+        <li>Definição do tema e do recorte</li>
+        <li>Estruturação do roteiro em conjunto</li>
+        <li>Apoio nos slides e nos vídeos de jogo</li>
+        <li>Ensaio técnico de áudio, imagem e conexão</li>
+      </ul>
+    </div>
+    <div class="cartao etapa">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="13" height="11" rx="2"/><path d="M15.5 11l6-3.2v8.4l-6-3.2z"/><circle cx="6.5" cy="10" r="1"/></svg></div>
+      <h3>Produção</h3>
+      <ul>
+        <li>Transmissão ao vivo dirigida</li>
+        <li>Operação técnica e gravação</li>
+        <li>Mediação e condução das perguntas</li>
+        <li>Suporte à audiência durante o evento</li>
+      </ul>
+    </div>
+    <div class="cartao etapa">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 15.5v3a2 2 0 002 2h13a2 2 0 002-2v-3"/><path d="M12 15.5V3.5"/><path d="M7.8 7.7L12 3.5l4.2 4.2"/></svg></div>
+      <h3>Pós-produção</h3>
+      <ul>
+        <li>Edição e tratamento de áudio e imagem</li>
+        <li>Publicação na plataforma, com acesso vitalício</li>
+        <li>Material de apoio e certificado ao aluno</li>
+        <li>Cortes de divulgação, também para o palestrante</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 8 · modelo de parceria ============ -->
+<section class="slide">
+  <div class="cab"><p class="eyebrow">Modelo de parceria</p><span class="num">07</span></div>
+  <h2>Percentual sobre as vendas.</h2>
+  <p class="lede" style="margin-top:14px;font-size:17px">A parceria é por percentual, com participação do especialista e dos membros da TotalFut. O recebimento é automático, feito pela própria plataforma de vendas.</p>
+
+  <div class="g3c centro-v" style="margin-top:26px;margin-bottom:26px">
+    <div class="cartao espalha">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M16.5 7.2A3.6 3.6 0 0013 5.2h-1.6a3 3 0 000 6h1.2a3 3 0 010 6H11a3.6 3.6 0 01-3.5-2"/></svg></div>
+      <div><h3>Divisão por percentual</h3>
+      <p class="mini" style="margin-top:8px">O resultado de cada lançamento é dividido entre o especialista que conduz o conteúdo e os membros da TotalFut.</p></div>
+    </div>
+    <div class="cartao espalha">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.4"/><path d="M2.5 10h19"/><path d="M6.5 14.5h4"/></svg></div>
+      <div><h3>Recebimento automático</h3>
+      <p class="mini" style="margin-top:8px">O repasse é feito pela plataforma de vendas, sem cobrança manual e com o relatório de cada período.</p></div>
+    </div>
+    <div class="cartao espalha">
+      <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M6.2 6.2l11.6 11.6"/><path d="M12 7.6v8.8"/></svg></div>
+      <div><h3>Sem investimento do profissional</h3>
+      <p class="mini" style="margin-top:8px">Entram o conteúdo específico, a apresentação e a divulgação nas vendas. Produção, plataforma e estrutura são da TotalFut.</p></div>
+    </div>
+  </div>
+
+  <div class="rodape"><span>TotalFut · Apresentação</span></div>
+</section>
+
+<!-- ============ 9 · encerramento ============ -->
+<section class="slide capa">
+  <img class="logo" src="assets/logo-horizontal-branco.svg" alt="TotalFut" style="width:min(380px,44%);margin-bottom:34px">
+  <h1 style="font-size:40px">Obrigado.</h1>
+  <p class="lede" style="margin-top:16px;max-width:46ch">Ficamos à disposição para conversar sobre tema, formato e uma data possível.</p>
+  <p style="margin-top:26px;font-size:15px;line-height:2.1">
+    <span class="falta">nome do responsável</span>
+    <span class="falta">e-mail</span>
+    <span class="falta">WhatsApp</span>
+  </p>
+  <div class="assina">totalfut.com.br</div>
+
+  <div class="campo" aria-hidden="true">
+    <svg viewBox="0 0 1180 330" preserveAspectRatio="none">
+      <path d="M70 0V330M1110 0V330M70 0H1110"/>
+      <path d="M490 0a100 100 0 00200 0"/>
+      <circle cx="590" cy="112" r="3" style="fill:var(--lime);stroke:none;opacity:.6"/>
+      <path d="M350 330V205H830V330"/>
+      <path d="M470 330V285H710V330"/>
+      <path d="M520 205a72 72 0 00140 0"/>
+    </svg>
+  </div>
+</section>
+</html>
