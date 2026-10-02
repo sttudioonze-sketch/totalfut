@@ -335,7 +335,7 @@ header{
       linear-gradient(0deg, var(--void) 0%, rgba(6,7,5,0) 30%);
   }
   .topo__grade{margin-top:0;padding-bottom:0;width:100%}
-  .topo__copy{max-width:min(600px,55vw)}
+  .topo__copy{max-width:min(720px,62vw)}
 }
 
 .tags{display:flex;flex-wrap:wrap;gap:8px}
@@ -359,7 +359,9 @@ header{
   background-size:contain;background-repeat:no-repeat;
 }
 .topo__copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
-.topo__copy h1{font-size:clamp(31px,4.4vw,52px);line-height:1.02;max-width:19ch}
+/* o ch limitava o título a bem menos que a coluna de texto: 30ch deixa
+   a linha ir até onde a coluna permite antes de quebrar */
+.topo__copy h1{font-size:clamp(31px,4.4vw,52px);line-height:1.02;max-width:30ch}
 .topo__com{font-size:15px;color:var(--mute)}
 .topo__com b{color:var(--text);font-weight:600}
 
@@ -759,7 +761,7 @@ footer.site .wrap{position:relative;z-index:1}
   h1{font-size:clamp(40px,3.4vw,58px)}
   h2{font-size:clamp(32px,2.8vw,48px)}
   .lede{font-size:18px}
-  .topo__copy{max-width:min(680px,50vw)}
+  .topo__copy{max-width:min(820px,55vw)}
   .topo{min-height:clamp(520px,52vh,620px)}
 }
 @media(min-width:768px) and (max-width:1079px){
@@ -776,14 +778,34 @@ footer.site .wrap{position:relative;z-index:1}
   .topo__copy h1,.topo__copy .lede{text-align:center}
   .tags{justify-content:center}
   .fase{align-self:auto}
+  /* as três etiquetas cabem numa linha quando encolhem; quebrar em duas
+     empurrava o título para baixo sem necessidade */
+  .tags{flex-wrap:nowrap;gap:6px}
+  .fase,.formato{font-size:9.5px;letter-spacing:.07em;padding:5px 9px;white-space:nowrap}
+  .formato::before{width:5px;height:5px;margin-right:5px}
+  .formato--idioma::before{width:11px;height:11px;margin-right:5px}
+
+  /* o texto do topo ganha a largura inteira: centralizado com 44ch ele
+     ficava numa coluna estreita no meio da tela */
+  .topo__copy{align-items:stretch}
+  .topo__copy h1{max-width:none}
+  .topo__copy .lede{max-width:none!important}
+
   .oferta--topo{text-align:center}
-  .oferta__linha{flex-direction:column;align-items:stretch;gap:18px}
+  .oferta__linha{flex-direction:column;align-items:center;gap:16px}
   .oferta__valor{align-items:center}
   .oferta__preco{justify-content:center}
-  .oferta--topo .btn{width:100%}
+  /* o botão acompanha a largura do bloco de preço em vez de atravessar
+     a tela inteira */
+  .oferta--topo .btn{width:auto;min-width:220px;align-self:center}
   .oferta li,.item__texto,.perfil{text-align:left}
-  .perfil__tag{align-self:center}
-  .perfil h3,.item h3,.ent h3{text-align:center}
+  .perfil__tag{align-self:center;font-size:12.5px;letter-spacing:.08em}
+  .perfil h3,.ent h3{text-align:center}
+  /* na grade de conteúdo o título fica à esquerda, alinhado ao número,
+     e ganha a largura que precisa para caber numa linha */
+  .item{gap:12px}
+  .item h3{text-align:left;font-size:15px;line-height:1.25}
+  .item__tempo{display:block;margin-left:0;margin-top:3px}
   .prof__texto{align-items:center;text-align:center}
   .prof__foto{margin-inline:auto}
   .bonus{text-align:center}
@@ -1105,10 +1127,6 @@ footer.site .wrap{position:relative;z-index:1}
     </div>
   </section>
 
-  <!-- FAIXA DE FOTO -->
-  <section class="faixa-foto">
-    <img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy">
-  </section>
 
   <!-- FECHAMENTO -->
   <section id="fechamento">
