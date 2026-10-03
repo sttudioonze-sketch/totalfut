@@ -584,6 +584,15 @@ header{
 .diagrama__vars li.e-curso{color:var(--dim)}
 .diagrama__vars li.e-curso b{color:var(--dim)}
 
+/* Num celular de 375px o diagrama de quatro painéis cai para 293px e os
+   rótulos somem. Em vez de encolher, ele ganha rolagem lateral e mantém
+   o tamanho mínimo em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1127,6 +1136,7 @@ footer.site .wrap{position:relative;z-index:1}
       </div>
 
       <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:0">
         <svg class="diagrama__arte" viewBox="0 0 440 236" role="img"
      aria-labelledby="diagTitulo diagDesc">
   <title id="diagTitulo">O raio de ação do goleiro em cruzamentos</title>
@@ -1188,6 +1198,7 @@ footer.site .wrap{position:relative;z-index:1}
     <text x="220" y="146" text-anchor="middle" fill="#676C5C">MANTÉM A LINHA</text>
   </g>
 </svg>
+        </div>
         <div>
           <p class="diagrama__rotulo">Módulo 03</p>
           <h3>O raio de ação não é um número fixo</h3>

@@ -538,6 +538,46 @@ header{
 .perfil__tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
 .perfil p{font-size:13.5px;line-height:1.55;color:#A7AE97}
 
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
+/* Num celular de 375px o diagrama de quatro painéis cai para 293px e os
+   rótulos somem. Em vez de encolher, ele ganha rolagem lateral e mantém
+   o tamanho mínimo em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1112,6 +1152,74 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Técnica e tática individual defensiva <span class="item__tempo">22:50</span></h3><p>O apoio de pé no duelo, a indução pela perna dominante, a leitura do salto de pressão, a pressão na trajetória de passe e defender a frente e as costas ao mesmo tempo.</p></div></div>
         <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Fase defensiva do Atlético de Madrid <span class="item__tempo">22:55</span></h3><p>Por que a equipe não sobe, como fecha o centro com os pontas por dentro, como sustenta as distâncias quando a bola entra e o que o direcionamento provoca no adversário.</p></div></div>
         <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Dinâmicas de organização defensiva <span class="item__tempo">25:30</span></h3><p>Bloco médio, pressão alta, subida de pressão, pressão continuada e encaixes individuais — o que cada escolha custa, lida em Liverpool, City, Bayern e Real Madrid.</p></div></div>
+      </div>
+
+      <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:0">
+        <svg class="diagrama__arte" viewBox="0 0 440 244" role="img"
+     aria-labelledby="diagTituloZ diagDescZ">
+  <title id="diagTituloZ">A zona de finalização e o direcionamento para fora dela</title>
+  <desc id="diagDescZ">Planta do último terço. Um funil parte da baliza e se abre
+    até a entrada da área: é a zona de onde sai mais de 90% dos gols. Duas setas
+    mostram o direcionamento — empurrar a jogada do centro para os corredores,
+    para fora do funil.</desc>
+
+  <defs>
+    <linearGradient id="funil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D7FF47" stop-opacity=".26"/>
+      <stop offset="100%" stop-color="#D7FF47" stop-opacity=".05"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="440" height="244" fill="#070905"/>
+
+  <!-- campo -->
+  <g stroke="#23271A" stroke-width="1.3" fill="none">
+    <rect x="16" y="14" width="408" height="216"/>
+    <rect x="118" y="14" width="204" height="78"/>
+    <rect x="172" y="14" width="96" height="30"/>
+    <path d="M160 92A60 60 0 0 0 280 92"/>
+  </g>
+  <path d="M186 14h68" stroke="#9AA08C" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+
+  <!-- o funil -->
+  <path d="M186 16L254 16L312 118L128 118Z" fill="url(#funil)"
+        stroke="rgba(215,255,71,.5)" stroke-width="1.3" stroke-dasharray="5 4"/>
+
+  <!-- direcionamento: a jogada é empurrada para fora do funil -->
+  <g stroke="#9AA08C" stroke-width="1.6" fill="none">
+    <path d="M220 160C196 150 150 142 96 140"/>
+    <path d="M220 160C244 150 290 142 344 140"/>
+  </g>
+  <g fill="#9AA08C">
+    <path d="M96 140l9-4v8z"/>
+    <path d="M344 140l-9-4v8z"/>
+  </g>
+  <circle cx="220" cy="160" r="4.4" fill="#D7FF47"/>
+
+  <g font-family="ui-monospace,Menlo,monospace" letter-spacing=".09em">
+    <text x="220" y="66" text-anchor="middle" font-size="9.4" fill="#D7FF47">ZONA DE FINALIZAÇÃO</text>
+    <text x="220" y="80" text-anchor="middle" font-size="8.2" fill="rgba(215,255,71,.62)">+90% DOS GOLS</text>
+    <text x="90" y="156" text-anchor="middle" font-size="8.2" fill="#676C5C">DIRECIONAR</text>
+    <text x="350" y="156" text-anchor="middle" font-size="8.2" fill="#676C5C">DIRECIONAR</text>
+  </g>
+</svg>
+        </div>
+        <div>
+          <p class="diagrama__rotulo">Módulo 04</p>
+          <h3>Defender é disputar um funil</h3>
+          <p>Mais de 90% dos gols saem da mesma região. Quase tudo que a
+            organização defensiva faz — compactar, cobrir, direcionar — existe
+            para que a bola chegue ali em pior condição, ou não chegue.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>Posicionamento, cobertura e equilíbrio</li>
+            <li><b>02</b>Compactação, flutuação e recuperação</li>
+            <li><b>03</b>Bloco e direcionamento</li>
+            <li class="e-curso"><b>04</b>Os três princípios operacionais — módulo 04</li>
+            <li class="e-curso"><b>05</b>Como o Atlético de Madrid fecha o centro — módulo 06</li>
+            <li class="e-curso"><b>06</b>O que cada dinâmica de bloco custa — módulo 07</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
