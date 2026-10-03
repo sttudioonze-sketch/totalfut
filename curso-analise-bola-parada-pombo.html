@@ -572,9 +572,20 @@ header{
 .item__det[open] .item__seta{transform:rotate(180deg)}
 .item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
 .item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
-.item__lista{list-style:none;margin:14px 0 2px;padding:0;display:flex;flex-direction:column;gap:9px}
-.item__lista li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.5;color:var(--mute)}
-.item__lista li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--hair-2)}
+/* O tópico era um traço discreto em cinza: sumia, e justamente onde o
+   volume é o argumento. Vira linha numerada com fio — a contagem fica
+   visível enquanto se lê, não só no rótulo fechado. E como 45% dos
+   tópicos já vêm como "Escanteio direto | formação em I", o que vem
+   antes da barra assume o peso e o resto fica como qualificador. */
+.item__lista{list-style:none;margin:15px 0 0;padding:0;border-top:1px solid var(--hair)}
+.item__lista li{
+  display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair)}
+.sub__n{
+  color:var(--lime);font-family:var(--display);font-weight:700;font-size:11px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.sub__t{font-size:14px;line-height:1.45;color:#AEB69E}
+.sub__t b{font-weight:600;color:var(--text)}
 @media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
 
 /* ---------- o que o curso cobre ---------- */
@@ -1058,8 +1069,8 @@ footer.site .wrap{position:relative;z-index:1}
       <div class="cobre revela">
         <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Introdução</h3><p>Abertura e apresentação.</p></div></div>
         <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>Análise de desempenho e a bola parada</h3><p>Análise de desempenho e os aspectos da bola parada.</p></div></div>
-        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Escanteios</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Análise dos escanteios</li><li>Observações gerais</li><li>Tipos de marcação</li><li>Exemplos práticos e exercícios</li></ul></details></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Faltas laterais</h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Análise e observações</li><li>Exemplos práticos e exercícios</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Escanteios</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Análise dos escanteios</span></li><li><span class="sub__n">02</span><span class="sub__t">Observações gerais</span></li><li><span class="sub__n">03</span><span class="sub__t">Tipos de marcação</span></li><li><span class="sub__n">04</span><span class="sub__t">Exemplos práticos e exercícios</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Faltas laterais</h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Análise e observações</span></li><li><span class="sub__n">02</span><span class="sub__t">Exemplos práticos e exercícios</span></li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Arremessos laterais</h3><p>Análise e exemplos práticos.</p></div></div>
         <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Saída de meio</h3><p>Análise e exemplos práticos.</p></div></div>
         <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Perguntas e respostas</h3><p>Perguntas e respostas e encerramento.</p></div></div>

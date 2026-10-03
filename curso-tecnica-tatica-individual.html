@@ -572,9 +572,20 @@ header{
 .item__det[open] .item__seta{transform:rotate(180deg)}
 .item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
 .item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
-.item__lista{list-style:none;margin:14px 0 2px;padding:0;display:flex;flex-direction:column;gap:9px}
-.item__lista li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.5;color:var(--mute)}
-.item__lista li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--hair-2)}
+/* O tópico era um traço discreto em cinza: sumia, e justamente onde o
+   volume é o argumento. Vira linha numerada com fio — a contagem fica
+   visível enquanto se lê, não só no rótulo fechado. E como 45% dos
+   tópicos já vêm como "Escanteio direto | formação em I", o que vem
+   antes da barra assume o peso e o resto fica como qualificador. */
+.item__lista{list-style:none;margin:15px 0 0;padding:0;border-top:1px solid var(--hair)}
+.item__lista li{
+  display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair)}
+.sub__n{
+  color:var(--lime);font-family:var(--display);font-weight:700;font-size:11px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.sub__t{font-size:14px;line-height:1.45;color:#AEB69E}
+.sub__t b{font-weight:600;color:var(--text)}
 @media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
 
 /* ---------- o que o curso cobre ---------- */
@@ -1056,10 +1067,10 @@ footer.site .wrap{position:relative;z-index:1}
         <p class="lede">Os módulos do curso.</p>
       </div>
       <div class="cobre revela">
-        <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><details class="item__det"><summary><h3>Abertura</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Apresentação do curso e do professor</li><li>Objetivo geral</li><li>Conteúdo programático</li></ul></details></div></div>
-        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual | Parte 1</h3><span class="item__conta">6 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>A mudança da metodologia de treino</li><li>Controle visual do espaço 360°</li><li>As 5 vantagens de Paco Seirul·lo</li><li>A vantagem dinâmica</li><li>Atacando | movimentos que buscam vantagem permanente</li><li>Fixar e atrair | os 4 espaços para manipular</li></ul></details></div></div>
-        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual | Parte 2</h3><span class="item__conta">6 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Treinadores estrangeiros</li><li>Distâncias e trajetórias | Abel Ferreira e Juan Pablo Vojvoda</li><li>Jorge Jesus</li><li>Jogo de posição | Jorge Sampaoli</li><li>Treinadores brasileiros | Dorival Júnior, Maurício Barbieri e André Jardine</li><li>Perguntas e respostas e encerramento</li></ul></details></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Bônus</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Acesso ao TotalFut Connect</li><li>Grupo de WhatsApp do curso</li><li>Coach Planner</li><li>PDF da apresentação</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><details class="item__det"><summary><h3>Abertura</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Apresentação do curso e do professor</span></li><li><span class="sub__n">02</span><span class="sub__t">Objetivo geral</span></li><li><span class="sub__n">03</span><span class="sub__t">Conteúdo programático</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual | Parte 1</h3><span class="item__conta">6 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">A mudança da metodologia de treino</span></li><li><span class="sub__n">02</span><span class="sub__t">Controle visual do espaço 360°</span></li><li><span class="sub__n">03</span><span class="sub__t">As 5 vantagens de Paco Seirul·lo</span></li><li><span class="sub__n">04</span><span class="sub__t">A vantagem dinâmica</span></li><li><span class="sub__n">05</span><span class="sub__t"><b>Atacando</b> · movimentos que buscam vantagem permanente</span></li><li><span class="sub__n">06</span><span class="sub__t"><b>Fixar e atrair</b> · os 4 espaços para manipular</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual | Parte 2</h3><span class="item__conta">6 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Treinadores estrangeiros</span></li><li><span class="sub__n">02</span><span class="sub__t"><b>Distâncias e trajetórias</b> · Abel Ferreira e Juan Pablo Vojvoda</span></li><li><span class="sub__n">03</span><span class="sub__t">Jorge Jesus</span></li><li><span class="sub__n">04</span><span class="sub__t"><b>Jogo de posição</b> · Jorge Sampaoli</span></li><li><span class="sub__n">05</span><span class="sub__t"><b>Treinadores brasileiros</b> · Dorival Júnior, Maurício Barbieri e André Jardine</span></li><li><span class="sub__n">06</span><span class="sub__t">Perguntas e respostas e encerramento</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Bônus</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Acesso ao TotalFut Connect</span></li><li><span class="sub__n">02</span><span class="sub__t">Grupo de WhatsApp do curso</span></li><li><span class="sub__n">03</span><span class="sub__t">Coach Planner</span></li><li><span class="sub__n">04</span><span class="sub__t">PDF da apresentação</span></li></ul></details></div></div>
       </div>
     </div>
   </section>

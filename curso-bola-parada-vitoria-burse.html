@@ -572,9 +572,20 @@ header{
 .item__det[open] .item__seta{transform:rotate(180deg)}
 .item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
 .item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
-.item__lista{list-style:none;margin:14px 0 2px;padding:0;display:flex;flex-direction:column;gap:9px}
-.item__lista li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.5;color:var(--mute)}
-.item__lista li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--hair-2)}
+/* O tópico era um traço discreto em cinza: sumia, e justamente onde o
+   volume é o argumento. Vira linha numerada com fio — a contagem fica
+   visível enquanto se lê, não só no rótulo fechado. E como 45% dos
+   tópicos já vêm como "Escanteio direto | formação em I", o que vem
+   antes da barra assume o peso e o resto fica como qualificador. */
+.item__lista{list-style:none;margin:15px 0 0;padding:0;border-top:1px solid var(--hair)}
+.item__lista li{
+  display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair)}
+.sub__n{
+  color:var(--lime);font-family:var(--display);font-weight:700;font-size:11px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.sub__t{font-size:14px;line-height:1.45;color:#AEB69E}
+.sub__t b{font-weight:600;color:var(--text)}
 @media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
 
 /* ---------- o que o curso cobre ---------- */
@@ -1057,9 +1068,9 @@ footer.site .wrap{position:relative;z-index:1}
       </div>
       <div class="cobre revela">
         <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Introdução</h3><p>Introdução geral ao curso.</p></div></div>
-        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><details class="item__det"><summary><h3>Referências</h3><span class="item__conta">5 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>História e referências</li><li>Referência 1 | Cuca</li><li>Referência 2 | Maurizio Sarri</li><li>Referência 3 | Eduardo Barroca</li><li>Referência 4 | Julian Tobar</li></ul></details></div></div>
-        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>A bola parada</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Situações de bola parada</li><li>Exemplos de bolas paradas</li><li>Análise de bola parada | Tite</li></ul></details></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Operacionalização da bola parada</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Análise pré-jogo</li><li>Preleção</li><li>As bolas paradas do E.C. Vitória</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><details class="item__det"><summary><h3>Referências</h3><span class="item__conta">5 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">História e referências</span></li><li><span class="sub__n">02</span><span class="sub__t"><b>Referência 1</b> · Cuca</span></li><li><span class="sub__n">03</span><span class="sub__t"><b>Referência 2</b> · Maurizio Sarri</span></li><li><span class="sub__n">04</span><span class="sub__t"><b>Referência 3</b> · Eduardo Barroca</span></li><li><span class="sub__n">05</span><span class="sub__t"><b>Referência 4</b> · Julian Tobar</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>A bola parada</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Situações de bola parada</span></li><li><span class="sub__n">02</span><span class="sub__t">Exemplos de bolas paradas</span></li><li><span class="sub__n">03</span><span class="sub__t"><b>Análise de bola parada</b> · Tite</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Operacionalização da bola parada</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Análise pré-jogo</span></li><li><span class="sub__n">02</span><span class="sub__t">Preleção</span></li><li><span class="sub__n">03</span><span class="sub__t">As bolas paradas do E.C. Vitória</span></li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Perguntas e respostas</h3><p>Perguntas e respostas e encerramento.</p></div></div>
       </div>
     </div>
