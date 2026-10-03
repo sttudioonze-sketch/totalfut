@@ -554,56 +554,67 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 /* Lista, não grade: cada curso ocupa a largura inteira da seção. Com
    quinze cursos, três colunas viravam um mosaico em que nenhum título
    se lia; em linha, cada um tem a sua faixa. */
-.planos{display:grid;gap:12px;grid-template-columns:1fr}
+/* ---------- trilha de cursos ----------
+   Eram dezesseis linhas de 195px empilhadas: mais de 3.000px de seção.
+   Viram tiles numa pista horizontal — que é o que "trilha" quer dizer:
+   um caminho que se percorre, não uma lista que se desce. A rolagem é
+   do navegador (scroll-snap), o JS só acende setas e pontos. */
+.planos{
+  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;
+  padding:4px 4px 8px;margin:0 -4px}
+.planos::-webkit-scrollbar{display:none}
 .plano{
-  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
-  padding:clamp(20px,2.6vw,32px) clamp(22px,2.4vw,30px);
-  display:grid;align-items:center;
-  grid-template-columns:auto minmax(0,1.15fr) minmax(0,.95fr) minmax(190px,auto);
-  gap:clamp(16px,2vw,32px);
-  transition:border-color .2s ease,transform .2s ease;
-}
+  flex:0 0 min(84%,322px);scroll-snap-align:start;
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
+  padding:14px 14px 18px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:border-color .2s ease,transform .2s ease}
+@media(min-width:760px){.plano{flex-basis:calc((100% - 14px) / 2)}}
+@media(min-width:1080px){.plano{flex-basis:calc((100% - 28px) / 3)}}
 .plano:hover{border-color:rgba(215,255,71,.3);transform:translateY(-2px)}
-/* o rosto de quem dá o curso abre a linha: com quinze cursos e treze
-   professores, é o que separa um do outro antes mesmo do título */
+/* na pista a foto deixa de ser miniatura ao lado e passa a abrir o tile */
 .plano__foto{
-  width:clamp(94px,8.4vw,124px);aspect-ratio:1;flex:none;
-  border-radius:15px;overflow:hidden;background:var(--card-2);
-  border:1px solid rgba(255,255,255,.09);
-}
+  width:100%;aspect-ratio:16/10;flex:none;
+  border-radius:12px;overflow:hidden;background:var(--card-2);
+  border:1px solid rgba(255,255,255,.09)}
 .plano__foto img{
-  width:100%;height:100%;object-fit:cover;object-position:center 20%;
+  width:100%;height:100%;object-fit:cover;object-position:center 18%;
   filter:grayscale(1) contrast(1.05);
-  transition:filter .35s ease,transform .5s cubic-bezier(.2,.7,.3,1);
-}
+  transition:filter .35s ease,transform .5s cubic-bezier(.2,.7,.3,1)}
 .plano:hover .plano__foto img{filter:grayscale(0);transform:scale(1.04)}
-/* palestrante sem foto: as iniciais no mesmo quadrado */
 .plano__sigla{
   width:100%;height:100%;display:grid;place-items:center;
   font-family:var(--display);font-size:clamp(22px,2.4vw,30px);font-weight:700;
   letter-spacing:-.05em;color:rgba(215,255,71,.42);
-  background:linear-gradient(158deg,#191E11 0%,#0B0E07 100%);
-}
-.plano__id{display:flex;flex-direction:column;gap:7px;min-width:0}
-.plano__acao{display:flex;flex-direction:column;gap:12px;min-width:0}
-/* abaixo disso a linha não cabe e o cartão volta a empilhar */
-/* abaixo disso a linha não cabe: a foto vira faixa ao lado da
-   identificação e o resto empilha embaixo */
-@media(max-width:900px){
-  .plano{grid-template-columns:auto minmax(0,1fr);gap:14px 16px;align-items:start}
-  .plano__foto{width:clamp(80px,17vw,104px);grid-row:1}
-  .plano__id{grid-row:1}
-  .plano .inclui,.plano__acao{grid-column:1 / -1}
-}
-@media(max-width:560px){
-  /* o grid-row:1 acima mantinha foto e texto na mesma linha e espremia o
-     título em quatro linhas; aqui tudo empilha e a foto centraliza */
-  .plano{grid-template-columns:1fr;justify-items:center;gap:14px}
-  .plano__foto,.plano__id{grid-row:auto;grid-column:1}
-  .plano__foto{width:112px}
-  .plano__id{align-items:center;text-align:center}
-  .plano .inclui,.plano__acao{grid-column:1;width:100%}
-}
+  background:linear-gradient(158deg,#191E11 0%,#0B0E07 100%)}
+.plano__id{display:flex;flex-direction:column;gap:6px;min-width:0;padding:0 2px}
+/* o que inclui fica, compacto: é o que separa um curso do outro */
+.plano .inclui{display:flex;flex-direction:column;gap:7px;margin-top:auto;padding:0 2px}
+.plano .inclui div{font-size:12px;line-height:1.4;gap:8px}
+.plano .inclui svg{width:13px;height:13px;flex:none}
+.plano__acao{
+  display:flex;flex-direction:column;gap:10px;min-width:0;padding:12px 2px 0;
+  border-top:1px solid var(--hair)}
+
+/* ---------- controles da trilha ---------- */
+.trilha-nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:22px}
+.trilha-seta{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  border:1px solid var(--vidro-borda);background:var(--vidro);color:var(--text);
+  display:grid;place-items:center;cursor:pointer;
+  transition:border-color .18s,background .18s,opacity .18s}
+.trilha-seta svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round}
+.trilha-seta:hover:not(:disabled){border-color:rgba(215,255,71,.45);background:rgba(215,255,71,.07);color:var(--lime)}
+.trilha-seta:disabled{opacity:.3;cursor:default}
+.trilha-pontos{display:flex;gap:7px;margin:0 10px;flex-wrap:wrap;justify-content:center}
+.trilha-ponto{width:7px;height:7px;padding:0;border:0;border-radius:50%;cursor:pointer;
+  background:var(--hair-2);transition:background .18s,width .18s}
+.trilha-ponto[aria-current="true"]{background:var(--lime);width:20px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){.planos{scroll-behavior:auto}}
+
 .plano--destaque{border-color:rgba(215,255,71,.34);background:linear-gradient(180deg,rgba(215,255,71,.12),rgba(255,255,255,.06))}
 /* Hierarquia do card: o nome do curso é o que identifica o produto, mas
    levava 17px contra 30px do preço, com um tema em lime logo acima. O
@@ -1252,8 +1263,8 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="wrap">
       <div class="center" style="margin-bottom:38px">
         <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M12 4.5v15"/><circle cx="12" cy="12" r="2.6"/><path d="M3 9h3v6H3M21 9h-3v6h3"/></svg></div>
-        <h2 class="entra" data-i18n-html="cat.titulo"><span class="giz">Catálogo<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> de cursos e eventos.</h2>
-        <p class="lede" data-i18n="t40">Escolha por área, pelo profissional que conduz, ou veja a lista inteira. Todos os cursos são gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
+        <h2 class="entra" data-i18n-html="cat.titulo"><span class="giz">Trilha<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> de cursos e eventos.</h2>
+        <p class="lede" data-i18n="t40">Escolha por área, pelo profissional que conduz, ou percorra a trilha inteira. Todos os cursos são gravados, com doze meses de acesso, certificado e entrada no grupo de alunos.</p>
       </div>
 
       <div class="modos">
@@ -1335,7 +1346,7 @@ footer.site .wrap{position:relative;z-index:1}
         </div>
       </div>
 
-      <div class="planos revela">
+      <div class="planos revela" id="planos" role="list" tabindex="0" aria-label="Cursos. Use as setas do teclado para percorrer.">
 
         <div data-prof="pombo" data-tema="bola-parada" class="plano plano--destaque">
           <div class="plano__foto"><img src="assets/professores/ricardo-pombo.jpg" alt="Ricardo Pombo" loading="lazy"></div>
@@ -1640,6 +1651,11 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
         </div>
 
+      </div>
+      <div class="trilha-nav" id="trilhaNav">
+        <button class="trilha-seta" type="button" data-dir="-1" aria-label="Cursos anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="trilha-pontos" id="trilhaPontos"></div>
+        <button class="trilha-seta" type="button" data-dir="1" aria-label="Próximos cursos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
 
       <p class="vazio" id="semResultado" hidden>Nenhum curso com essa combinação. <button type="button" id="limparFiltro" data-i18n="t83">Ver todos os cursos</button></p>
@@ -2478,6 +2494,12 @@ footer.site .wrap{position:relative;z-index:1}
       if (ok) visiveis++;
     });
     if (semResultado) semResultado.hidden = visiveis > 0;
+    // a pista muda de tamanho a cada filtro: recontar páginas e voltar ao início
+    if (window.__trilha){
+      const pista = document.getElementById('planos');
+      if (pista) pista.scrollLeft = 0;
+      window.__trilha.sincronizar();
+    }
   }
 
   function ligarTrilha(seg, chave){
@@ -2540,8 +2562,11 @@ footer.site .wrap{position:relative;z-index:1}
     // trocar de caminho zera o que o caminho anterior tinha filtrado
     fTema = 'todos'; fProf = 'todos'; fEvento = 'todos';
     marcarPrimeiro(segProf);
-    aplicarFiltros();
+    // a vista entra antes do filtro: a trilha mede a própria largura ao
+    // recontar as páginas, e escondida ela mede zero — cada curso virava
+    // uma página
     irPara(b.dataset.vista);
+    aplicarFiltros();
   });
 
   [].forEach.call(document.querySelectorAll('.area'), function(b){
@@ -2658,28 +2683,32 @@ footer.site .wrap{position:relative;z-index:1}
       + partes[2];
   }
 
-  /* ---------- carrossel de depoimentos ----------
-     A rolagem é do navegador; aqui só acendem os controles. O número de
-     páginas vem da largura real da pista, não de uma contagem fixa, para
-     seguir valendo quando o layout passa de um para dois e três cartões. */
-  (function(){
-    const pista = document.getElementById('deps');
-    const pontos = document.getElementById('depsPontos');
-    if (!pista || !pontos) return;
+  /* ---------- carrossel reutilizável ----------
+     Serve aos depoimentos e à trilha de cursos. O número de páginas vem
+     da largura real da pista, não de uma contagem fixa, para seguir
+     valendo quando o layout passa de um para três por vez. */
+  function montarCarrossel(pista, pontos, setas, seletorItem){
+    if (!pista || !pontos || !setas.length) return null;
 
-    const setas = document.querySelectorAll('.deps-seta');
-    const cartoes = pista.querySelectorAll('.dep');
-    if (!cartoes.length) return;
+    const itens = () => [].filter.call(pista.querySelectorAll(seletorItem), function(e){ return !e.hidden; });
+    const passo = () => {
+      const l = itens()[0];
+      return l ? l.getBoundingClientRect().width + 14 : 1;
+    };
+    const porPagina = () => Math.max(1, Math.round(pista.clientWidth / passo()));
+    const paginas = () => Math.max(1, Math.ceil(itens().length / porPagina()));
+    const atual = () => Math.round(pista.scrollLeft / (passo() * porPagina()));
 
-    const porPagina = () => {
-      const l = cartoes[0].getBoundingClientRect().width + 14;
-      return Math.max(1, Math.round(pista.clientWidth / l));
-    };
-    const paginas = () => Math.max(1, Math.ceil(cartoes.length / porPagina()));
-    const atual = () => {
-      const l = cartoes[0].getBoundingClientRect().width + 14;
-      return Math.round(pista.scrollLeft / (l * porPagina()));
-    };
+    /* Rola até o item em vez de para uma coordenada: com scroll-snap é o
+       próprio snap que leva, e não é preciso recalcular posição quando o
+       filtro muda o número de cartões. block:'nearest' impede que a
+       página inteira role junto. */
+    function irPara(i){
+      const lista = itens();
+      if (!lista.length) return;
+      const alvo = lista[Math.min(i * porPagina(), lista.length - 1)];
+      if (alvo) alvo.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'start' });
+    }
 
     function desenharPontos(){
       const n = paginas();
@@ -2688,46 +2717,72 @@ footer.site .wrap{position:relative;z-index:1}
       for (let i = 0; i < n; i++){
         const b = document.createElement('button');
         b.type = 'button';
-        b.className = 'deps-ponto';
+        b.className = pontos.dataset.classe || 'deps-ponto';
         b.setAttribute('aria-label', 'Ir para a página ' + (i + 1) + ' de ' + n);
-        b.addEventListener('click', () => irPara(i));
+        b.addEventListener('click', function(){ irPara(i); });
         pontos.appendChild(b);
       }
     }
 
-    function irPara(i){
-      const l = cartoes[0].getBoundingClientRect().width + 14;
-      pista.scrollTo({ left: i * l * porPagina() });
-    }
-
     function sincronizar(){
       desenharPontos();
-      const i = atual(), n = paginas();
-      [].forEach.call(pontos.children, (b, k) => {
+      const i = atual();
+      [].forEach.call(pontos.children, function(b, k){
         b.setAttribute('aria-current', String(k === i));
       });
       // 2px de folga: o scrollLeft máximo raramente bate exato
       setas[0].disabled = pista.scrollLeft <= 2;
       setas[1].disabled = pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 2;
+      // uma página só: os controles não têm o que fazer
+      const nav = setas[0].parentElement;
+      if (nav) nav.hidden = paginas() < 2;
     }
 
-    setas.forEach(b => b.addEventListener('click', () => {
-      irPara(Math.min(Math.max(atual() + Number(b.dataset.dir), 0), paginas() - 1));
-    }));
-
-    pista.addEventListener('keydown', e => {
+    setas.forEach(function(b){
+      b.addEventListener('click', function(){
+        irPara(Math.min(Math.max(atual() + Number(b.dataset.dir), 0), paginas() - 1));
+      });
+    });
+    pista.addEventListener('keydown', function(e){
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       e.preventDefault();
       irPara(Math.min(Math.max(atual() + (e.key === 'ArrowRight' ? 1 : -1), 0), paginas() - 1));
     });
 
     let t;
-    pista.addEventListener('scroll', () => {
-      clearTimeout(t); t = setTimeout(sincronizar, 90);
-    }, { passive: true });
-    addEventListener('resize', () => { clearTimeout(t); t = setTimeout(sincronizar, 120); });
+    pista.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(sincronizar, 90); }, { passive:true });
+    addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(sincronizar, 120); });
     sincronizar();
-  })();
+    /* A trilha nasce dentro de uma vista escondida: a pista mede 0 de
+       largura e cada curso vira uma página. Observar o tamanho da pista
+       cobre isso e também a troca de filtro, a chegada das fontes e o
+       redimensionamento — sem depender de acertar o momento certo. */
+    /* O observador precisa ficar guardado: um ResizeObserver sem
+       referência viva pode ser coletado e para de avisar. */
+    if (window.ResizeObserver){
+      const obs = new ResizeObserver(function(){ sincronizar(); });
+      obs.observe(pista);
+      pista.__obs = obs;
+    }
+    requestAnimationFrame(function(){ requestAnimationFrame(sincronizar); });
+    addEventListener('load', sincronizar);
+    return { sincronizar: sincronizar, irPara: irPara };
+  }
+
+  montarCarrossel(
+    document.getElementById('deps'),
+    document.getElementById('depsPontos'),
+    [].slice.call(document.querySelectorAll('.deps-seta')),
+    '.dep');
+
+  // a trilha filtra: ao mudar o filtro, as páginas mudam e a pista volta ao começo
+  const pontosTrilha = document.getElementById('trilhaPontos');
+  if (pontosTrilha) pontosTrilha.dataset.classe = 'trilha-ponto';
+  window.__trilha = montarCarrossel(
+    document.getElementById('planos'),
+    pontosTrilha,
+    [].slice.call(document.querySelectorAll('.trilha-seta')),
+    '.plano');
 
   const textos = document.querySelectorAll('[data-i18n]');
   const PT = {};
