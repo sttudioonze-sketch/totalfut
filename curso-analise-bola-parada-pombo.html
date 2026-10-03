@@ -698,6 +698,55 @@ header{
 .faq details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
 .faq p{padding:0 22px 20px;font-size:14px;line-height:1.6;color:#A7AE97}
 
+/* ---------- assinatura do estúdio ----------
+   Mora dentro do rodapé, entre a grade de links e a linha legal: um
+   cartão no mesmo sistema de vidro do site, que se destaca do fundo do
+   rodapé sem virar outra seção. Não usa lime nem o grifo de giz — os
+   dois são vocabulário da TotalFut, e repeti-los faria a assinatura do
+   estúdio parecer parte da marca do cliente. A ênfase vem da interação:
+   o fio que se desenha sob o nome quando o mouse chega. */
+.assina{
+  margin-top:30px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);
+  border-radius:16px;padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,28px);
+  display:grid;gap:16px;align-items:center;grid-template-columns:1fr}
+@media(min-width:900px){
+  .assina{grid-template-columns:auto 1fr auto;gap:clamp(22px,3.2vw,42px)}
+}
+.assina__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:5px}
+.assina__marca{display:inline-block;text-decoration:none}
+.assina__nome{
+  font-family:var(--display);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(15.5px,1.35vw,18px);color:var(--text);display:block;line-height:1.1}
+.assina__nome em{font-style:normal;color:var(--mute);font-weight:600}
+.assina__fio{
+  display:block;height:1px;margin-top:6px;background:var(--text);
+  transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.22,1,.36,1)}
+.assina__marca:hover .assina__fio,
+.assina__marca:focus-visible .assina__fio{transform:scaleX(1)}
+.assina__pitch{
+  font-size:13px;line-height:1.55;color:var(--mute);max-width:44ch;margin:0}
+.assina__cta{
+  justify-self:start;display:inline-flex;align-items:center;gap:9px;
+  padding:10px 18px;border-radius:999px;text-decoration:none;
+  border:1px solid var(--vidro-borda);color:var(--text);
+  font-size:12.5px;font-weight:600;white-space:nowrap;
+  transition:border-color .2s,background .2s}
+@media(min-width:900px){.assina__cta{justify-self:end}}
+.assina__cta svg{
+  width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.assina__cta:hover,.assina__cta:focus-visible{
+  border-color:rgba(255,255,255,.36);background:rgba(255,255,255,.07)}
+.assina__cta:hover svg{transform:translateX(3px)}
+@media(prefers-reduced-motion:reduce){
+  .assina__fio,.assina__cta svg{transition:none}
+}
+
 /* ---------- rodapé ---------- */
 footer.site{
   position:relative;overflow:hidden;padding-block:48px 28px;
@@ -1291,7 +1340,22 @@ footer.site .wrap{position:relative;z-index:1}
         </ul>
       </div>
     </div>
-    <div class="foot__legal"><span>© 2026 TotalFut</span><span>Feito por Sttudio11WD</span><span>totalfut.com.br</span></div>
+    <!-- assinatura do estúdio -->
+    <div class="assina" aria-label="Quem desenvolveu este site">
+      <div>
+        <p class="assina__rotulo">Projeto e desenvolvimento</p>
+        <a class="assina__marca" href="https://sttudio11.com.br" target="_blank" rel="noopener">
+          <span class="assina__nome">Sttudio<em>11WD</em></span>
+          <span class="assina__fio" aria-hidden="true"></span>
+        </a>
+      </div>
+      <p class="assina__pitch">Sites para quem busca um posicionamento de qualidade. Estrutura, texto e desempenho — do protótipo ao ar.</p>
+      <a class="assina__cta" href="https://wa.me/5551991736138" target="_blank" rel="noopener">
+        <span>Falar sobre um projeto</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5L13 17.5"/></svg>
+      </a>
+    </div>
+    <div class="foot__legal"><span>© 2026 TotalFut</span><span>totalfut.com.br</span></div>
   </div>
 </footer>
 
