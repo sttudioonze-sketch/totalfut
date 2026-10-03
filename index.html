@@ -447,14 +447,20 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 }
 @media(min-width:900px){
   /* stretch no lugar de center: a coluna da foto passa a ter a altura da
-     coluna de texto, ou seja, do topo do título ao fim do botão */
-  .lancamento{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);align-items:stretch}
-  .lancamento__foto{aspect-ratio:auto;height:100%;min-height:100%}
+     coluna de texto. A coluna ficou mais estreita para a foto respirar
+     dentro do cartão em vez de encostar na borda. */
+  .lancamento{grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr);align-items:stretch}
 }
 /* a foto fecha o cartão pela direita; abaixo de 900 ela vai para cima,
    onde é vista antes do texto e não depois dele */
 .lancamento__foto{border-radius:16px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.10)}
-.lancamento__foto img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.lancamento__foto img{width:100%;height:100%;object-fit:cover;object-position:52% 26%}
+/* o override da altura precisa vir depois da regra base: mesma
+   especificidade, quem está por último vence. Declarado lá em cima, o
+   aspect-ratio de 4/3 voltava e a foto estourava a coluna. */
+@media(min-width:900px){
+  .lancamento__foto{aspect-ratio:auto;height:100%;min-height:0}
+}
 @media(max-width:899px){
   .lancamento__foto{order:-1;aspect-ratio:16/9}
 }
@@ -473,25 +479,34 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 .lancamento__cta{margin-top:6px}
 /* os dados passam a ficar embaixo do texto, em linha: a coluna da
    direita agora é da foto */
-.lancamento__dados{display:grid;gap:10px;grid-template-columns:repeat(3,1fr);margin:4px 0 0;width:100%}
+/* Eram cinco caixas dentro de um cartão — caixa dentro de caixa, que é
+   o que deixava o bloco pesado. Vira uma régua de dados: sem fundo, sem
+   borda, só fios verticais separando. O rótulo some para cima, pequeno,
+   e o valor fica com todo o peso. */
+.lancamento__dados{
+  display:flex;flex-wrap:wrap;gap:0;margin:6px 0 2px;width:100%;
+  border-top:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  padding:14px 0}
 .lancamento__dados div{
-  padding:14px 18px;border-radius:14px;
-  background:rgba(6,7,5,.34);border:1px solid rgba(255,255,255,.10);
-}
+  padding:2px clamp(14px,1.8vw,22px);
+  border-left:1px solid rgba(255,255,255,.12)}
+.lancamento__dados div:first-child{padding-left:0;border-left:0}
 .lancamento__dados dt{
-  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 4px;
-}
+  font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--dim);margin:0 0 3px}
 .lancamento__dados dd{
-  margin:0;font-family:var(--display);font-size:clamp(15px,1.5vw,18px);font-weight:600;
-  color:var(--lime);letter-spacing:-.022em;line-height:1.2;
-}
-.lancamento__pendente{color:var(--mute)!important;font-family:var(--body)!important;font-weight:500!important;font-size:14px!important}
-/* em 375px três colunas deixam cada caixa com 64px úteis e "A definir"
-   quebra no meio: formato e idioma dividem a primeira linha, o valor
-   fica com a segunda inteira */
-@media(max-width:560px){
-  .lancamento__dados{grid-template-columns:repeat(2,1fr)}
-  .lancamento__dados div:last-child{grid-column:1 / -1}
+  margin:0;font-family:var(--display);font-size:clamp(14px,1.35vw,16.5px);font-weight:600;
+  color:var(--text);letter-spacing:-.02em;line-height:1.25;white-space:nowrap}
+.lancamento__pendente{color:var(--mute)!important;font-family:var(--body)!important;font-weight:500!important;font-size:13.5px!important}
+/* no celular a régua quebra em duas linhas; o fio da esquerda sai de
+   quem abre linha, senão sobra um traço solto no começo */
+@media(max-width:620px){
+  .lancamento__dados{gap:12px 0}
+  .lancamento__dados div{padding:2px 14px}
+  .lancamento__dados div:nth-child(odd){padding-left:0;border-left:0}
+  .lancamento__dados div{flex:0 0 50%}
+  .lancamento__dados div:last-child{flex:1 1 100%}
 }
 @media(max-width:767px){
   .lancamento__texto{align-items:center;text-align:center}
