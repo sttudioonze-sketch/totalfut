@@ -588,6 +588,47 @@ header{
 .sub__t b{font-weight:600;color:var(--text)}
 @media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
 
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
+
+/* Num celular de 375px o diagrama cai para 293px e os rótulos somem. Em
+   vez de encolher, ele ganha rolagem lateral e mantém o tamanho mínimo
+   em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1120,6 +1161,60 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual | Parte 1</h3><span class="item__conta">6 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">A mudança da metodologia de treino</span></li><li><span class="sub__n">02</span><span class="sub__t">Controle visual do espaço 360°</span></li><li><span class="sub__n">03</span><span class="sub__t">As 5 vantagens de Paco Seirul·lo</span></li><li><span class="sub__n">04</span><span class="sub__t">A vantagem dinâmica</span></li><li><span class="sub__n">05</span><span class="sub__t"><b>Atacando</b> · movimentos que buscam vantagem permanente</span></li><li><span class="sub__n">06</span><span class="sub__t"><b>Fixar e atrair</b> · os 4 espaços para manipular</span></li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual | Parte 2</h3><span class="item__conta">6 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Treinadores estrangeiros</span></li><li><span class="sub__n">02</span><span class="sub__t"><b>Distâncias e trajetórias</b> · Abel Ferreira e Juan Pablo Vojvoda</span></li><li><span class="sub__n">03</span><span class="sub__t">Jorge Jesus</span></li><li><span class="sub__n">04</span><span class="sub__t"><b>Jogo de posição</b> · Jorge Sampaoli</span></li><li><span class="sub__n">05</span><span class="sub__t"><b>Treinadores brasileiros</b> · Dorival Júnior, Maurício Barbieri e André Jardine</span></li><li><span class="sub__n">06</span><span class="sub__t">Perguntas e respostas e encerramento</span></li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Bônus</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Acesso ao TotalFut Connect</span></li><li><span class="sub__n">02</span><span class="sub__t">Grupo de WhatsApp do curso</span></li><li><span class="sub__n">03</span><span class="sub__t">Coach Planner</span></li><li><span class="sub__n">04</span><span class="sub__t">PDF da apresentação</span></li></ul></details></div></div>
+      </div>
+
+      <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:380px">
+          <svg class="diagrama__arte" viewBox="0 0 380 174" role="img"
+         aria-labelledby="diagTit diagDesc">
+      <title id="diagTit">Visão frontal e controle de 360 graus</title>
+      <desc id="diagDesc">Dois diagramas lado a lado com o mesmo jogador no centro. No
+        primeiro, só o cone de visão à frente está aceso. No segundo, o espaço inteiro
+        em volta está dividido em oito setores acesos. É o tópico controle visual do
+        espaço 360 graus, do módulo 02.</desc>
+      <rect width="380" height="174" fill="#070905"/>
+
+      <!-- esquerda: cone frontal -->
+      <g>
+        <circle cx="96" cy="76" r="60" fill="none" stroke="#1C2015" stroke-width="1"/>
+        <path d="M96.0 76.0L132.9 28.7A60 60 0 0 1 132.9 123.3Z" fill="#8A9179" fill-opacity=".34"/>
+        <circle cx="96" cy="69" r="3.6" fill="none" stroke="#FFFFFF" stroke-width="1.3"/><path d="M96 73.5v9M91 77.5h10M92.6 90l3.4-7.5 3.4 7.5" fill="none" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="166" cy="76" r="3.2" fill="#5E6550"/>
+        <text x="96" y="157" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#676C5C" text-anchor="middle">VISÃO FRONTAL</text>
+      </g>
+
+      <path d="M186 76h14" stroke="#2E3324" stroke-width="1.2"/>
+      <path d="M198 72l5 4-5 4z" fill="#2E3324"/>
+
+      <!-- direita: oito setores -->
+      <g>
+        <circle cx="284" cy="76" r="60" fill="none" stroke="rgba(215,255,71,.3)" stroke-width="1"/>
+        <path d="M284.0 76.0L286.1 16.0A60 60 0 0 1 324.9 32.1Z" fill="#D7FF47" fill-opacity=".2"/><path d="M284.0 76.0L327.9 35.1A60 60 0 0 1 344.0 73.9Z" fill="#D7FF47" fill-opacity=".12"/><path d="M284.0 76.0L344.0 78.1A60 60 0 0 1 327.9 116.9Z" fill="#D7FF47" fill-opacity=".12"/><path d="M284.0 76.0L324.9 119.9A60 60 0 0 1 286.1 136.0Z" fill="#D7FF47" fill-opacity=".12"/><path d="M284.0 76.0L281.9 136.0A60 60 0 0 1 243.1 119.9Z" fill="#D7FF47" fill-opacity=".12"/><path d="M284.0 76.0L240.1 116.9A60 60 0 0 1 224.0 78.1Z" fill="#D7FF47" fill-opacity=".12"/><path d="M284.0 76.0L224.0 73.9A60 60 0 0 1 240.1 35.1Z" fill="#D7FF47" fill-opacity=".12"/><path d="M284.0 76.0L243.1 32.1A60 60 0 0 1 281.9 16.0Z" fill="#D7FF47" fill-opacity=".2"/>
+        <circle cx="284" cy="76" r="34" fill="none" stroke="rgba(215,255,71,.22)"
+                stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="284" cy="69" r="3.6" fill="none" stroke="#FFFFFF" stroke-width="1.3"/><path d="M284 73.5v9M279 77.5h10M280.6 90l3.4-7.5 3.4 7.5" fill="none" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="354" cy="76" r="3.2" fill="#D7FF47"/>
+        <text x="284" y="157" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#D7FF47" text-anchor="middle">CONTROLE 360°</text>
+      </g>
+
+    </svg>
+        </div>
+
+        <div>
+          <p class="diagrama__rotulo">Módulo 02 · Parte 1</p>
+          <h3>O espaço de um jogador não acaba no campo de visão</h3>
+          <p>O curso trata a técnica individual como uma decisão sobre espaço, não como
+            um gesto. Daí a sequência: primeiro o que o jogador precisa ver, depois a
+            vantagem que ele busca com isso e, por fim, como manipular quem está perto.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>A mudança da metodologia de treino</li>
+            <li><b>02</b>Controle visual do espaço 360°</li>
+            <li><b>03</b>As 5 vantagens de Paco Seirul·lo</li>
+            <li><b>04</b>A vantagem dinâmica</li>
+            <li class="e-curso"><b>05</b>Fixar e atrair · os 4 espaços para manipular</li>
+            <li class="e-curso"><b>06</b>Distâncias, trajetórias e jogo de posição — módulo 03</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>

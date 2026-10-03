@@ -561,6 +561,47 @@ header{
   margin:0;color:var(--text);font-family:var(--display);font-weight:500;
   font-size:clamp(16.5px,1.45vw,19.5px);line-height:1.38;letter-spacing:-.022em}
 
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
+
+/* Num celular de 375px o diagrama cai para 293px e os rótulos somem. Em
+   vez de encolher, ele ganha rolagem lateral e mantém o tamanho mínimo
+   em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1111,6 +1152,65 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Análise do jogo</h3><p>O módulo traz um tema muito abordado na questão conceitual do jogo, mas aqui ele vai levar você para dentro do processo completo: da montagem da estrutura da análise, passando pela análise em tempo real e pela comunicação com o banco, até a entrega do material final pós-jogo.</p></div></div>
         <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Análise individual</h3><p>Como analisar o atleta na sua essência, contextualizando suas ações com o modelo de jogo da equipe. Protocolos de acompanhamento, banco de dados e possibilidade de abordagem estratégica com os atletas.</p></div></div>
         <div class="item luz"><div class="item__marca">08</div><div class="item__texto"><h3>A apresentação das informações</h3><p>Todo o trabalho que o analista realiza pode ser jogado fora se ele não se atenta à forma de apresentação do seu trabalho. Aqui algumas técnicas de apresentação e comunicação serão abordadas, para que o analista possa entregar seus materiais de maneira assertiva e potencializar seus resultados.</p></div></div>
+      </div>
+
+      <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:440px">
+          <svg class="diagrama__arte" viewBox="0 0 440 156" role="img"
+         aria-labelledby="diagTit diagDesc">
+      <title id="diagTit">O trabalho do analista num dia de jogo</title>
+      <desc id="diagDesc">Linha do tempo de uma partida. Antes do apito, a análise do
+        adversário e a montagem da estrutura. Entre os 0 e os 90 minutos, a análise em
+        tempo real e a comunicação com o banco. Depois do apito final, a entrega do
+        material. Os três trechos são o conteúdo do módulo 06.</desc>
+      <rect width="440" height="156" fill="#070905"/>
+
+      <!-- faixa da partida -->
+      <rect x="158" y="56" width="134" height="30" fill="#D7FF47" fill-opacity=".07"/>
+      <path d="M158 44v54M292 44v54" stroke="#D7FF47" stroke-opacity=".4" stroke-width="1.2"/>
+      <text x="158" y="38" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="700" letter-spacing=".04em" fill="#D7FF47" text-anchor="middle">0'</text>
+      <text x="292" y="38" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="700" letter-spacing=".04em" fill="#D7FF47" text-anchor="middle">90'</text>
+
+      <!-- eixo -->
+      <path d="M14 71h424" stroke="#23271A" stroke-width="1.2"/>
+      <path d="M430 67l8 4-8 4z" fill="#23271A"/>
+
+      <!-- pictogramas -->
+      <rect x="62" y="22" width="22" height="5" rx="1.4" fill="none" stroke="#4E5540" stroke-width="1"/><rect x="62" y="29" width="22" height="5" rx="1.4" fill="none" stroke="#4E5540" stroke-width="1"/><rect x="62" y="36" width="22" height="5" rx="1.4" fill="none" stroke="#4E5540" stroke-width="1"/>
+      <path d="M218 24l9 5.5-9 5.5z" fill="#D7FF47"/><path d="M216 22.0a7.5 7.5 0 0 0 0 15.0" fill="none" stroke="#D7FF47" stroke-opacity="0.45" stroke-width="1.2"/><path d="M216 17.5a12 12 0 0 0 0 24" fill="none" stroke="#D7FF47" stroke-opacity="0.23" stroke-width="1.2"/>
+      <rect x="348" y="22" width="17" height="21" rx="2" fill="none" stroke="#4E5540" stroke-width="1"/><path d="M352 28h9" stroke="#4E5540" stroke-width="1"/><path d="M352 33h9" stroke="#4E5540" stroke-width="1"/><path d="M352 38h9" stroke="#4E5540" stroke-width="1"/>
+
+      <!-- rótulos -->
+      <text x="73" y="110" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#9AA08C" text-anchor="middle">PRÉ-JOGO</text>
+      <text x="225" y="110" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#D7FF47" text-anchor="middle">EM JOGO</text>
+      <text x="357" y="110" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#9AA08C" text-anchor="middle">PÓS-JOGO</text>
+
+      <text x="73" y="129" font-family="Sora,sans-serif" font-size="12" font-weight="600" letter-spacing="-.012em" fill="#FFFFFF" text-anchor="middle">Análise do adversário</text>
+      <text x="225" y="129" font-family="Sora,sans-serif" font-size="12" font-weight="600" letter-spacing="-.012em" fill="#FFFFFF" text-anchor="middle">Análise em tempo real</text>
+      <text x="357" y="129" font-family="Sora,sans-serif" font-size="12" font-weight="600" letter-spacing="-.012em" fill="#FFFFFF" text-anchor="middle">Entrega do material</text>
+
+      <text x="73" y="145" font-family="ui-monospace,Menlo,monospace" font-size="8.4" font-weight="400" letter-spacing=".08em" fill="#676C5C" text-anchor="middle">MONTAGEM DA ESTRUTURA</text>
+      <text x="225" y="145" font-family="ui-monospace,Menlo,monospace" font-size="8.4" font-weight="400" letter-spacing=".08em" fill="#676C5C" text-anchor="middle">COMUNICAÇÃO COM O BANCO</text>
+      <text x="357" y="145" font-family="ui-monospace,Menlo,monospace" font-size="8.4" font-weight="400" letter-spacing=".08em" fill="#676C5C" text-anchor="middle">O QUE CHEGA À COMISSÃO</text>
+
+    </svg>
+        </div>
+
+        <div>
+          <p class="diagrama__rotulo">Módulo 06</p>
+          <h3>A análise do jogo acontece em três tempos, não num relatório</h3>
+          <p>O módulo percorre o dia inteiro: montar a estrutura antes do apito, operar
+            durante a partida e entregar depois. É o trecho em que a função deixa de ser
+            "fazer vídeo" e passa a ocupar um lugar na decisão da comissão.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>Montagem da estrutura da análise</li>
+            <li><b>02</b>Análise em tempo real</li>
+            <li><b>03</b>Comunicação com o banco de reservas</li>
+            <li class="e-curso"><b>04</b>Sportscode, Wyscout, Hudl, Studio e Insight</li>
+            <li class="e-curso"><b>05</b>Periodização dos vídeos na semana — módulo 03</li>
+            <li class="e-curso"><b>06</b>A apresentação das informações — módulo 08</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>

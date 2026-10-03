@@ -589,6 +589,47 @@ header{
 .sub__t b{font-weight:600;color:var(--text)}
 @media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
 
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
+
+/* Num celular de 375px o diagrama cai para 293px e os rótulos somem. Em
+   vez de encolher, ele ganha rolagem lateral e mantém o tamanho mínimo
+   em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1122,6 +1163,82 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>A bola parada</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Situações de bola parada</span></li><li><span class="sub__n">02</span><span class="sub__t">Exemplos de bolas paradas</span></li><li><span class="sub__n">03</span><span class="sub__t"><b>Análise de bola parada</b> · Tite</span></li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Operacionalização da bola parada</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Análise pré-jogo</span></li><li><span class="sub__n">02</span><span class="sub__t">Preleção</span></li><li><span class="sub__n">03</span><span class="sub__t">As bolas paradas do E.C. Vitória</span></li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Perguntas e respostas</h3><p>Perguntas e respostas e encerramento.</p></div></div>
+      </div>
+
+      <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:440px">
+          <svg class="diagrama__arte" viewBox="0 0 440 134" role="img"
+         aria-labelledby="diagTit diagDesc">
+      <title id="diagTit">O caminho de uma bola parada até a área</title>
+      <desc id="diagDesc">A mesma rotina de escanteio aparece em três lugares: na tela,
+        durante a análise pré-jogo; na prancheta, durante a preleção; e no campo, na
+        execução. É a sequência do módulo 04, operacionalização da bola parada.</desc>
+      <rect width="440" height="134" fill="#070905"/>
+      <path d="M121 65h18M285 65h18" stroke="#2E3324" stroke-width="1.2"/>
+      <path d="M137 61l5 4-5 4zM301 61l5 4-5 4z" fill="#2E3324"/>
+      <g transform="translate(4 0)">
+        <text x="0" y="20" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#D7FF47" text-anchor="start">01</text>
+        <rect x="0" y="30" width="112" height="70" rx="6" fill="none" stroke="#2E3324" stroke-width="1.2"/><path d="M0 42h112" stroke="#2E3324" stroke-width="1"/><circle cx="8" cy="36" r="1.8" fill="#2E3324"/><circle cx="15" cy="36" r="1.8" fill="#2E3324"/><g transform="translate(26 52)" opacity="1">
+        <path d="M2 2a16 16 0 0 1-16 16" fill="none" stroke="#2E3324" stroke-width="1" transform="translate(4 4)"/>
+        <circle cx="6" cy="6" r="2.6" fill="#D7FF47"/>
+        <path d="M9 7q22 13 44 2" fill="none" stroke="#D7FF47" stroke-width="1.3"
+              stroke-dasharray="3 2.4"/>
+        <path d="M50 10l4-1.6-.4 4z" fill="#D7FF47"/>
+        <circle cx="34" cy="26" r="2.4" fill="none" stroke="#9AA08C" stroke-width="1.1"/>
+        <circle cx="46" cy="30" r="2.4" fill="none" stroke="#9AA08C" stroke-width="1.1"/>
+        <path d="M36 24l10-12M48 28l6-16" fill="none" stroke="#5E6550" stroke-width="1"
+              stroke-dasharray="2.4 2.4"/>
+      </g>
+        <text x="0" y="120" font-family="Sora,sans-serif" font-size="12.5" font-weight="700" letter-spacing="-.014em" fill="#FFFFFF" text-anchor="start">Análise pré-jogo</text>
+      </g>
+      <g transform="translate(164 0)">
+        <text x="0" y="20" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#D7FF47" text-anchor="start">02</text>
+        <rect x="0" y="30" width="112" height="70" rx="6" fill="none" stroke="#2E3324" stroke-width="1.2"/><rect x="10" y="38" width="72" height="54" rx="3" fill="#D7FF47" fill-opacity=".05" stroke="#2E3324" stroke-width="1"/><g transform="translate(22 50)" opacity="0.85">
+        <path d="M2 2a16 16 0 0 1-16 16" fill="none" stroke="#2E3324" stroke-width="1" transform="translate(4 4)"/>
+        <circle cx="6" cy="6" r="2.6" fill="#D7FF47"/>
+        <path d="M9 7q22 13 44 2" fill="none" stroke="#D7FF47" stroke-width="1.3"
+              stroke-dasharray="3 2.4"/>
+        <path d="M50 10l4-1.6-.4 4z" fill="#D7FF47"/>
+        <circle cx="34" cy="26" r="2.4" fill="none" stroke="#9AA08C" stroke-width="1.1"/>
+        <circle cx="46" cy="30" r="2.4" fill="none" stroke="#9AA08C" stroke-width="1.1"/>
+        <path d="M36 24l10-12M48 28l6-16" fill="none" stroke="#5E6550" stroke-width="1"
+              stroke-dasharray="2.4 2.4"/>
+      </g><g fill="none" stroke="#9AA08C" stroke-width="1.2"><circle cx="95" cy="52" r="3.6"/><path d="M95 57v9M90 61h10"/><circle cx="95" cy="76" r="3.6"/><path d="M95 81v9M90 85h10"/></g>
+        <text x="0" y="120" font-family="Sora,sans-serif" font-size="12.5" font-weight="700" letter-spacing="-.014em" fill="#FFFFFF" text-anchor="start">Preleção</text>
+      </g>
+      <g transform="translate(324 0)">
+        <text x="0" y="20" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="700" letter-spacing=".14em" fill="#D7FF47" text-anchor="start">03</text>
+        <rect x="0" y="30" width="112" height="70" rx="6" fill="#D7FF47" fill-opacity=".07" stroke="rgba(215,255,71,.45)" stroke-width="1.2"/><path d="M24 30v30h64V30" fill="none" stroke="rgba(215,255,71,.3)" stroke-width="1"/><path d="M42 30v12h28V30" fill="none" stroke="rgba(215,255,71,.3)" stroke-width="1"/><g transform="translate(24 50)" opacity="1">
+        <path d="M2 2a16 16 0 0 1-16 16" fill="none" stroke="#2E3324" stroke-width="1" transform="translate(4 4)"/>
+        <circle cx="6" cy="6" r="2.6" fill="#D7FF47"/>
+        <path d="M9 7q22 13 44 2" fill="none" stroke="#D7FF47" stroke-width="1.3"
+              stroke-dasharray="3 2.4"/>
+        <path d="M50 10l4-1.6-.4 4z" fill="#D7FF47"/>
+        <circle cx="34" cy="26" r="2.4" fill="none" stroke="#9AA08C" stroke-width="1.1"/>
+        <circle cx="46" cy="30" r="2.4" fill="none" stroke="#9AA08C" stroke-width="1.1"/>
+        <path d="M36 24l10-12M48 28l6-16" fill="none" stroke="#5E6550" stroke-width="1"
+              stroke-dasharray="2.4 2.4"/>
+      </g>
+        <text x="0" y="120" font-family="Sora,sans-serif" font-size="12.5" font-weight="700" letter-spacing="-.014em" fill="#FFFFFF" text-anchor="start">Execução</text>
+      </g>
+    </svg>
+        </div>
+
+        <div>
+          <p class="diagrama__rotulo">Módulo 04</p>
+          <h3>Uma bola parada só existe quando chega ao campo</h3>
+          <p>O módulo de operacionalização é o que liga as três coisas: o que você vê na
+            análise, o que o grupo entende na preleção e o que acontece na área. O curso
+            fecha mostrando as bolas paradas do E.C. Vitória nesse formato.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>Análise pré-jogo</li>
+            <li><b>02</b>Preleção</li>
+            <li><b>03</b>As bolas paradas do E.C. Vitória</li>
+            <li class="e-curso"><b>04</b>Situações e exemplos de bola parada — módulo 03</li>
+            <li class="e-curso"><b>05</b>Análise de bola parada do Tite — módulo 03</li>
+            <li class="e-curso"><b>06</b>Cuca, Sarri, Barroca e Tobar — módulo 02</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>

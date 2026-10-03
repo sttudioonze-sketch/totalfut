@@ -553,6 +553,47 @@ header{
   margin:0;color:var(--text);font-family:var(--display);font-weight:500;
   font-size:clamp(16.5px,1.45vw,19.5px);line-height:1.38;letter-spacing:-.022em}
 
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
+
+/* Num celular de 375px o diagrama cai para 293px e os rótulos somem. Em
+   vez de encolher, ele ganha rolagem lateral e mantém o tamanho mínimo
+   em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1130,6 +1171,50 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="ex luz"><span class="ex__n">09</span><span class="ex__f">G+5 vs 7</span></div>
         <div class="ex luz"><span class="ex__n">10</span><span class="ex__f">Tático — movimentação do bloco</span></div>
         <div class="ex luz"><span class="ex__n">11</span><span class="ex__f">5 vs G+4</span></div>
+      </div>
+
+      <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:440px">
+          <svg class="diagrama__arte" viewBox="0 0 440 206" role="img"
+         aria-labelledby="diagTit diagDesc">
+      <title id="diagTit">A escala das estruturas, do 1v1 ao 8v8</title>
+      <desc id="diagDesc">Sete linhas, uma para cada estrutura numerada do curso. Cada
+        ponto é um jogador declarado no título do exercício: à esquerda quem tem a bola,
+        à direita quem defende, com os goleiros em contorno tracejado. As linhas crescem
+        de dois jogadores, no 1v1, até dezoito, no G+8 contra G+8.</desc>
+      <rect width="440" height="206" fill="#070905"/>
+      <path d="M300 30v152" stroke="#D7FF47" stroke-opacity=".28"
+            stroke-width="1.2" stroke-dasharray="4 4"/>
+      <text x="300" y="24" font-family="ui-monospace,Menlo,monospace" font-size="8" font-weight="400" letter-spacing=".14em" fill="#4E5540" text-anchor="middle">BOLA</text>
+      <text x="182" y="47.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">03 · 1v1 + finalização</text><circle cx="291" cy="44" r="4.3" fill="#D7FF47"/><circle cx="309" cy="44" r="4.3" fill="#4A5140"/><text x="182" y="68.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">05 · 5 vs 2</text><circle cx="291" cy="65" r="4.3" fill="#D7FF47"/><circle cx="280" cy="65" r="4.3" fill="#D7FF47"/><circle cx="269" cy="65" r="4.3" fill="#D7FF47"/><circle cx="258" cy="65" r="4.3" fill="#D7FF47"/><circle cx="247" cy="65" r="4.3" fill="#D7FF47"/><circle cx="309" cy="65" r="4.3" fill="#4A5140"/><circle cx="320" cy="65" r="4.3" fill="#4A5140"/><text x="182" y="89.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">01 e 11 · 5 vs G+4</text><circle cx="291" cy="86" r="4.3" fill="#D7FF47"/><circle cx="280" cy="86" r="4.3" fill="#D7FF47"/><circle cx="269" cy="86" r="4.3" fill="#D7FF47"/><circle cx="258" cy="86" r="4.3" fill="#D7FF47"/><circle cx="247" cy="86" r="4.3" fill="#D7FF47"/><circle cx="309" cy="86" r="4.3" fill="none" stroke="#6B7259" stroke-width="1.3" stroke-dasharray="2 1.8"/><circle cx="320" cy="86" r="4.3" fill="#4A5140"/><circle cx="331" cy="86" r="4.3" fill="#4A5140"/><circle cx="342" cy="86" r="4.3" fill="#4A5140"/><circle cx="353" cy="86" r="4.3" fill="#4A5140"/><text x="182" y="110.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">06 · 4+3 vs 4</text><circle cx="291" cy="107" r="4.3" fill="none" stroke="#D7FF47" stroke-width="1.3"/><circle cx="280" cy="107" r="4.3" fill="none" stroke="#D7FF47" stroke-width="1.3"/><circle cx="269" cy="107" r="4.3" fill="none" stroke="#D7FF47" stroke-width="1.3"/><circle cx="258" cy="107" r="4.3" fill="#D7FF47"/><circle cx="247" cy="107" r="4.3" fill="#D7FF47"/><circle cx="236" cy="107" r="4.3" fill="#D7FF47"/><circle cx="225" cy="107" r="4.3" fill="#D7FF47"/><circle cx="309" cy="107" r="4.3" fill="#4A5140"/><circle cx="320" cy="107" r="4.3" fill="#4A5140"/><circle cx="331" cy="107" r="4.3" fill="#4A5140"/><circle cx="342" cy="107" r="4.3" fill="#4A5140"/><text x="182" y="131.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">07 · G+4 vs 6</text><circle cx="291" cy="128" r="4.3" fill="#D7FF47"/><circle cx="280" cy="128" r="4.3" fill="#D7FF47"/><circle cx="269" cy="128" r="4.3" fill="#D7FF47"/><circle cx="258" cy="128" r="4.3" fill="#D7FF47"/><circle cx="247" cy="128" r="4.3" fill="none" stroke="#D7FF47" stroke-width="1.3" stroke-dasharray="2 1.8"/><circle cx="309" cy="128" r="4.3" fill="#4A5140"/><circle cx="320" cy="128" r="4.3" fill="#4A5140"/><circle cx="331" cy="128" r="4.3" fill="#4A5140"/><circle cx="342" cy="128" r="4.3" fill="#4A5140"/><circle cx="353" cy="128" r="4.3" fill="#4A5140"/><circle cx="364" cy="128" r="4.3" fill="#4A5140"/><text x="182" y="152.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">09 · G+5 vs 7</text><circle cx="291" cy="149" r="4.3" fill="#D7FF47"/><circle cx="280" cy="149" r="4.3" fill="#D7FF47"/><circle cx="269" cy="149" r="4.3" fill="#D7FF47"/><circle cx="258" cy="149" r="4.3" fill="#D7FF47"/><circle cx="247" cy="149" r="4.3" fill="#D7FF47"/><circle cx="236" cy="149" r="4.3" fill="none" stroke="#D7FF47" stroke-width="1.3" stroke-dasharray="2 1.8"/><circle cx="309" cy="149" r="4.3" fill="#4A5140"/><circle cx="320" cy="149" r="4.3" fill="#4A5140"/><circle cx="331" cy="149" r="4.3" fill="#4A5140"/><circle cx="342" cy="149" r="4.3" fill="#4A5140"/><circle cx="353" cy="149" r="4.3" fill="#4A5140"/><circle cx="364" cy="149" r="4.3" fill="#4A5140"/><circle cx="375" cy="149" r="4.3" fill="#4A5140"/><text x="182" y="173.6" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" letter-spacing=".04em" fill="#9AA08C" text-anchor="end">02 · G+8 vs G+8</text><circle cx="291" cy="170" r="4.3" fill="#D7FF47"/><circle cx="280" cy="170" r="4.3" fill="#D7FF47"/><circle cx="269" cy="170" r="4.3" fill="#D7FF47"/><circle cx="258" cy="170" r="4.3" fill="#D7FF47"/><circle cx="247" cy="170" r="4.3" fill="#D7FF47"/><circle cx="236" cy="170" r="4.3" fill="#D7FF47"/><circle cx="225" cy="170" r="4.3" fill="#D7FF47"/><circle cx="214" cy="170" r="4.3" fill="#D7FF47"/><circle cx="203" cy="170" r="4.3" fill="none" stroke="#D7FF47" stroke-width="1.3" stroke-dasharray="2 1.8"/><circle cx="309" cy="170" r="4.3" fill="none" stroke="#6B7259" stroke-width="1.3" stroke-dasharray="2 1.8"/><circle cx="320" cy="170" r="4.3" fill="#4A5140"/><circle cx="331" cy="170" r="4.3" fill="#4A5140"/><circle cx="342" cy="170" r="4.3" fill="#4A5140"/><circle cx="353" cy="170" r="4.3" fill="#4A5140"/><circle cx="364" cy="170" r="4.3" fill="#4A5140"/><circle cx="375" cy="170" r="4.3" fill="#4A5140"/><circle cx="386" cy="170" r="4.3" fill="#4A5140"/><circle cx="397" cy="170" r="4.3" fill="#4A5140"/>
+      <g>
+        <circle cx="14" cy="194" r="3.6" fill="#D7FF47"/>
+        <text x="23" y="197.4" font-family="ui-monospace,Menlo,monospace" font-size="8" font-weight="400" letter-spacing=".06em" fill="#676C5C" text-anchor="start">com a bola</text>
+        <circle cx="92" cy="194" r="3.6" fill="#4A5140"/>
+        <text x="101" y="197.4" font-family="ui-monospace,Menlo,monospace" font-size="8" font-weight="400" letter-spacing=".06em" fill="#676C5C" text-anchor="start">sem a bola</text>
+        <circle cx="170" cy="194" r="3.6" fill="none" stroke="#6B7259" stroke-width="1.2" stroke-dasharray="2 1.8"/>
+        <text x="179" y="197.4" font-family="ui-monospace,Menlo,monospace" font-size="8" font-weight="400" letter-spacing=".06em" fill="#676C5C" text-anchor="start">goleiro</text>
+        <circle cx="234" cy="194" r="3.6" fill="none" stroke="#D7FF47" stroke-width="1.2"/>
+        <text x="243" y="197.4" font-family="ui-monospace,Menlo,monospace" font-size="8" font-weight="400" letter-spacing=".06em" fill="#676C5C" text-anchor="start">apoio fixo</text>
+      </g>
+    </svg>
+        </div>
+
+        <div>
+          <p class="diagrama__rotulo">Onze estruturas</p>
+          <h3>Do duelo individual à movimentação do bloco</h3>
+          <p>As estruturas do curso não ficam numa só escala. Começam no 1v1, sobem para
+            as situações de superioridade e inferioridade numérica e terminam em dois
+            blocos de nove contra nove. Os mesmos princípios reaparecem em cada tamanho.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>1v1 ofensivo, defensivo e finalização</li>
+            <li><b>02</b>Superioridade: 5 vs 2, 4+3 com apoio fixo vs 4</li>
+            <li><b>03</b>Inferioridade: G+4 vs 6, G+5 vs 7</li>
+            <li><b>04</b>Bloco contra bloco: G+8 (4v4) vs G+8 (4v4)</li>
+            <li class="e-curso"><b>05</b>Técnico coordenativo de relação com bola — exercício 04</li>
+            <li class="e-curso"><b>06</b>Linha de defesa e movimentação do bloco — exercícios 08 e 10</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
