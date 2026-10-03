@@ -554,6 +554,43 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 /* Lista, não grade: cada curso ocupa a largura inteira da seção. Com
    quinze cursos, três colunas viravam um mosaico em que nenhum título
    se lia; em linha, cada um tem a sua faixa. */
+/* ---------- aviso de curso sem página ----------
+   Cinco cursos já têm checkout mas ainda não têm página de venda. Mandar
+   direto para o pagamento sem explicação quebraria a confiança; esconder
+   o curso perderia a venda. O aviso diz o que está acontecendo e deixa
+   os dois caminhos abertos: comprar agora ou perguntar antes. */
+.aviso-fundo{
+  position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;
+  background:rgba(4,5,3,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s}
+.aviso-fundo[open],.aviso-fundo.aberto{opacity:1;visibility:visible}
+.aviso{
+  width:min(100%,440px);border-radius:20px;padding:clamp(24px,3.4vw,32px);
+  background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04)),var(--card);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 26px 60px rgba(0,0,0,.5);
+  transform:translateY(10px) scale(.985);transition:transform .26s cubic-bezier(.22,1,.36,1)}
+.aviso-fundo.aberto .aviso{transform:none}
+.aviso__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:10px}
+.aviso h3{font-family:var(--display);font-size:clamp(18px,2vw,22px);font-weight:700;
+  letter-spacing:-.025em;line-height:1.2;color:var(--text);margin:0 0 10px}
+.aviso p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 8px}
+.aviso__curso{color:var(--text);font-weight:600}
+.aviso__acoes{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.aviso__acoes .btn{width:100%;justify-content:center}
+.aviso__fechar{
+  position:absolute;right:14px;top:14px;width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--vidro-borda);background:var(--vidro);color:var(--mute);
+  display:grid;place-items:center;cursor:pointer;transition:color .18s,border-color .18s}
+.aviso__fechar:hover{color:var(--text);border-color:var(--hair-2)}
+.aviso__fechar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+@media(prefers-reduced-motion:reduce){
+  .aviso-fundo,.aviso{transition:none}
+}
+
 /* ---------- trilha de cursos ----------
    Eram dezesseis linhas de 195px empilhadas: mais de 3.000px de seção.
    Viram tiles numa pista horizontal — que é o que "trilha" quer dizer:
@@ -1553,7 +1590,7 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
           <div class="plano__acao">
             <div class="plano__preco plano__preco--pendente" data-i18n="t209">Valor a definir</div>
-            <a class="btn btn--wire btn--full" href="#" data-i18n="t210">Ver o curso</a>
+            <button type="button" class="btn btn--wire btn--full js-sem-lp" data-link="https://pay.kiwify.com.br/aN9L7O4" data-curso="Arremessos laterais ofensivos">Ver o curso</button>
           </div>
         </div>
 
@@ -1572,7 +1609,7 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
           <div class="plano__acao">
             <div class="plano__preco plano__preco--pendente" data-i18n="t209">Valor a definir</div>
-            <a class="btn btn--wire btn--full" href="#" data-i18n="t210">Ver o curso</a>
+            <button type="button" class="btn btn--wire btn--full js-sem-lp" data-link="https://pay.kiwify.com.br/kdCUmkV" data-curso="O processo do microciclo focado nas bolas paradas">Ver o curso</button>
           </div>
         </div>
 
@@ -1590,7 +1627,7 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
           <div class="plano__acao">
             <div class="plano__preco plano__preco--pendente" data-i18n="t209">Valor a definir</div>
-            <a class="btn btn--wire btn--full" href="#" data-i18n="t210">Ver o curso</a>
+            <button type="button" class="btn btn--wire btn--full js-sem-lp" data-link="https://pay.kiwify.com.br/MH5vgpl" data-curso="Ações de bola parada">Ver o curso</button>
           </div>
         </div>
 
@@ -1628,7 +1665,7 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
           <div class="plano__acao">
             <div class="plano__preco plano__preco--pendente" data-i18n="t209">Valor a definir</div>
-            <a class="btn btn--wire btn--full" href="#" data-i18n="t210">Ver o curso</a>
+            <button type="button" class="btn btn--wire btn--full js-sem-lp" data-link="https://pay.kiwify.com.br/nB96C6x" data-curso="Bolas paradas: do planejamento à execução">Ver o curso</button>
           </div>
         </div>
 
@@ -1647,7 +1684,7 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
           <div class="plano__acao">
             <div class="plano__preco plano__preco--pendente" data-i18n="t209">Valor a definir</div>
-            <a class="btn btn--wire btn--full" href="#" data-i18n="t210">Ver o curso</a>
+            <button type="button" class="btn btn--wire btn--full js-sem-lp" data-link="https://pay.kiwify.com.br/qpJ5maM" data-curso="A rotina de um analista de bolas paradas">Ver o curso</button>
           </div>
         </div>
 
@@ -2086,6 +2123,22 @@ footer.site .wrap{position:relative;z-index:1}
     <div class="foot__legal"><span data-i18n="t158">© 2026 TotalFut</span><span data-i18n="t159">totalfut.com.br</span></div>
   </div>
 </footer>
+<!-- aviso: curso com checkout, ainda sem página de venda -->
+<div class="aviso-fundo" id="avisoFundo" role="dialog" aria-modal="true" aria-labelledby="avisoTitulo" hidden>
+  <div class="aviso" style="position:relative">
+    <button type="button" class="aviso__fechar" id="avisoFechar" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <p class="aviso__rotulo">Página em produção</p>
+    <h3 id="avisoTitulo">A página deste curso ainda está sendo feita</h3>
+    <p>A página de <span class="aviso__curso" id="avisoCurso"></span> está em produção. O curso já existe e está completo — o que falta é a página que conta o conteúdo em detalhe.</p>
+    <p>Você pode ir direto ao checkout, ou falar com o suporte antes se quiser conhecer o conteúdo módulo a módulo.</p>
+    <div class="aviso__acoes">
+      <a class="btn btn--lime" id="avisoCheckout" href="#" target="_blank" rel="noopener">Ir para o checkout</a>
+      <a class="btn btn--wire" href="https://wa.me/5551991736138" target="_blank" rel="noopener">Falar com o suporte</a>
+    </div>
+  </div>
+</div>
 <script>
 (function(){
   const cvs = document.getElementById('pitch');
@@ -2682,6 +2735,40 @@ footer.site .wrap{position:relative;z-index:1}
       + '<path class="g2" pathLength="1" d="' + d[1] + '"/></svg></span>'
       + partes[2];
   }
+
+
+  /* ---------- aviso de curso sem página ---------- */
+  (function(){
+    const fundo = document.getElementById('avisoFundo');
+    if (!fundo) return;
+    const curso = document.getElementById('avisoCurso');
+    const checkout = document.getElementById('avisoCheckout');
+    let devolverFoco = null;
+
+    function abrir(botao){
+      devolverFoco = botao;
+      curso.textContent = botao.dataset.curso || 'deste curso';
+      checkout.href = botao.dataset.link || '#';
+      fundo.hidden = false;
+      requestAnimationFrame(function(){ fundo.classList.add('aberto'); });
+      checkout.focus();
+    }
+    function fechar(){
+      fundo.classList.remove('aberto');
+      setTimeout(function(){ fundo.hidden = true; }, 220);
+      if (devolverFoco) devolverFoco.focus();
+    }
+
+    document.addEventListener('click', function(e){
+      const b = e.target.closest('.js-sem-lp');
+      if (b) { e.preventDefault(); abrir(b); return; }
+      if (e.target === fundo) fechar();
+      if (e.target.closest('#avisoFechar')) fechar();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !fundo.hidden) fechar();
+    });
+  })();
 
   /* ---------- carrossel reutilizável ----------
      Serve aos depoimentos e à trilha de cursos. O número de páginas vem
