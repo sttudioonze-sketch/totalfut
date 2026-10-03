@@ -553,6 +553,37 @@ header{
   margin:0;color:var(--text);font-family:var(--display);font-weight:500;
   font-size:clamp(16.5px,1.45vw,19.5px);line-height:1.38;letter-spacing:-.022em}
 
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1093,6 +1124,86 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="parte luz"><span class="parte__n">Parte 1</span><h3>Apresentação teórica</h3><p>Apresentação teórica dos temas principais.</p></div>
         <div class="parte luz"><span class="parte__n">Parte 2</span><h3>Sessão de treino</h3><p>Apresentação prática dos temas principais em formato de sessão de treino.</p></div>
         <div class="parte luz"><span class="parte__n">Parte 3</span><h3>Discussão da sessão</h3><p>Discussão aprofundada sobre os temas apresentados.</p></div>
+      </div>
+
+      <div class="diagrama revela">
+        <svg class="diagrama__arte" viewBox="0 0 440 236" role="img"
+     aria-labelledby="diagTitulo diagDesc">
+  <title id="diagTitulo">O raio de ação do goleiro em cruzamentos</title>
+  <desc id="diagDesc">Planta da grande área. Em torno do goleiro, três faixas:
+    a mais próxima, onde a saída é segura; a intermediária, onde a saída depende
+    de critérios; e a externa, onde o goleiro se mantém na linha. As setas marcam
+    três origens de cruzamento — fundo, intermediária e early cross — que deslocam
+    essas faixas.</desc>
+
+  <defs>
+    <radialGradient id="zA" cx="50%" cy="8%" r="70%">
+      <stop offset="0%" stop-color="#D7FF47" stop-opacity=".30"/>
+      <stop offset="100%" stop-color="#D7FF47" stop-opacity=".10"/>
+    </radialGradient>
+  </defs>
+
+  <!-- gramado e marcações -->
+  <rect x="0" y="0" width="440" height="236" fill="#070905"/>
+  <g stroke="#2E3324" stroke-width="1.4" fill="none">
+    <rect x="18" y="16" width="404" height="166"/>
+    <rect x="128" y="16" width="184" height="56"/>
+    <path d="M18 16H422"/>
+  </g>
+  <!-- baliza -->
+  <path d="M184 16h72" stroke="#9AA08C" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+
+  <!-- as três faixas, da mais próxima para a mais distante -->
+  <g transform="translate(220 22)">
+    <path d="M-132 0A132 132 0 0 0 132 0Z" fill="#9AA08C" fill-opacity=".05" stroke="#2E3324" stroke-width="1" stroke-dasharray="3 4"/>
+    <path d="M-96 0A96 96 0 0 0 96 0Z" fill="#D7FF47" fill-opacity=".07" stroke="rgba(215,255,71,.34)" stroke-width="1" stroke-dasharray="3 4"/>
+    <path d="M-58 0A58 58 0 0 0 58 0Z" fill="url(#zA)" stroke="rgba(215,255,71,.6)" stroke-width="1.2"/>
+  </g>
+
+  <!-- goleiro -->
+  <circle cx="220" cy="24" r="5" fill="#D7FF47"/>
+  <circle cx="220" cy="24" r="10" fill="none" stroke="#D7FF47" stroke-opacity=".45" stroke-width="1"/>
+
+  <!-- origens do cruzamento -->
+  <g fill="none" stroke="#9AA08C" stroke-width="1.3" stroke-dasharray="4 4">
+    <path d="M410 30C360 44 300 52 262 60"/>
+    <path d="M414 96C370 98 318 92 278 84"/>
+    <path d="M416 170C372 156 320 130 286 112"/>
+  </g>
+  <g fill="#9AA08C">
+    <circle cx="410" cy="30" r="3.4"/>
+    <circle cx="414" cy="96" r="3.4"/>
+    <circle cx="416" cy="170" r="3.4"/>
+  </g>
+
+  <!-- etiquetas -->
+  <g font-family="ui-monospace,Menlo,monospace" font-size="8.4" letter-spacing=".08em" fill="#676C5C">
+    <text x="330" y="22">FUNDO</text>
+    <text x="330" y="112">INTERMEDIÁRIA</text>
+    <text x="316" y="186">EARLY CROSS</text>
+  </g>
+  <g font-family="ui-monospace,Menlo,monospace" font-size="8.6" letter-spacing=".1em">
+    <text x="220" y="56" text-anchor="middle" fill="#D7FF47">SAÍDA SEGURA</text>
+    <text x="220" y="100" text-anchor="middle" fill="#A7AE97">ZONA DE DECISÃO</text>
+    <text x="220" y="146" text-anchor="middle" fill="#676C5C">MANTÉM A LINHA</text>
+  </g>
+</svg>
+        <div>
+          <p class="diagrama__rotulo">Módulo 03</p>
+          <h3>O raio de ação não é um número fixo</h3>
+          <p>As três faixas existem sempre, mas onde cada uma começa muda a cada
+            lance. É por isso que decorar uma distância não resolve: o que o curso
+            trabalha é como o goleiro lê as variáveis e recalcula a fronteira
+            enquanto a bola está no ar.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>Corredor de onde sai o cruzamento</li>
+            <li><b>02</b>Altura e velocidade da bola</li>
+            <li><b>03</b>Altura da linha defensiva</li>
+            <li class="e-curso"><b>04</b>Técnica de passada para cada corredor — módulo 02</li>
+            <li class="e-curso"><b>05</b>Critério de decisão em early cross — módulo 04</li>
+            <li class="e-curso"><b>06</b>Leitura do cut back — módulo 05</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
