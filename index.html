@@ -1000,20 +1000,21 @@ footer.site .wrap{position:relative;z-index:1}
 }
 
 /* ---------- assinatura do estúdio ----------
-   Um compartimento de vidro abaixo do rodapé, no mesmo sistema de vidro
-   do resto do site. Não usa lime nem o grifo de giz: os dois são
-   vocabulário da TotalFut, e repeti-los faria a assinatura do estúdio
-   parecer parte da marca do cliente. O destaque vem da interação — o
-   fio que se desenha sob o nome — e não de tamanho. */
-.assina{padding:clamp(16px,2vw,24px) 0 clamp(26px,3.4vw,40px)}
-.assina__caixa{
+   Mora dentro do rodapé, entre a grade de links e a linha legal: um
+   cartão no mesmo sistema de vidro do site, que se destaca do fundo do
+   rodapé sem virar outra seção. Não usa lime nem o grifo de giz — os
+   dois são vocabulário da TotalFut, e repeti-los faria a assinatura do
+   estúdio parecer parte da marca do cliente. A ênfase vem da interação:
+   o fio que se desenha sob o nome quando o mouse chega. */
+.assina{
+  margin-top:30px;
   background:var(--vidro);
   backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
   border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);
-  border-radius:18px;padding:clamp(20px,2.4vw,26px) clamp(20px,2.6vw,30px);
-  display:grid;gap:18px;align-items:center;grid-template-columns:1fr}
+  border-radius:16px;padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,28px);
+  display:grid;gap:16px;align-items:center;grid-template-columns:1fr}
 @media(min-width:900px){
-  .assina__caixa{grid-template-columns:auto 1fr auto;gap:clamp(24px,3.4vw,44px)}
+  .assina{grid-template-columns:auto 1fr auto;gap:clamp(22px,3.2vw,42px)}
 }
 .assina__rotulo{
   font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
@@ -1998,17 +1999,12 @@ footer.site .wrap{position:relative;z-index:1}
         </ul>
       </div>
     </div>
-    <div class="foot__legal"><span data-i18n="t158">© 2026 TotalFut</span><span data-i18n="t160">Feito por Sttudio11WD</span><span data-i18n="t159">totalfut.com.br</span></div>
-  </div>
-</footer>
-<!-- ASSINATURA DO ESTÚDIO -->
-<aside class="assina" aria-label="Quem desenvolveu este site">
-  <div class="wrap">
-    <div class="assina__caixa">
+    <!-- assinatura do estúdio -->
+    <div class="assina" aria-label="Quem desenvolveu este site">
       <div>
         <p class="assina__rotulo" data-i18n="est.rotulo">Projeto e desenvolvimento</p>
         <a class="assina__marca" href="https://sttudio11.com.br" target="_blank" rel="noopener">
-          <span class="assina__nome">Sttudio<em>11</em></span>
+          <span class="assina__nome">Sttudio<em>11WD</em></span>
           <span class="assina__fio" aria-hidden="true"></span>
         </a>
       </div>
@@ -2018,10 +2014,9 @@ footer.site .wrap{position:relative;z-index:1}
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5L13 17.5"/></svg>
       </a>
     </div>
+    <div class="foot__legal"><span data-i18n="t158">© 2026 TotalFut</span><span data-i18n="t159">totalfut.com.br</span></div>
   </div>
-</aside>
-
-
+</footer>
 <script>
 (function(){
   const cvs = document.getElementById('pitch');
