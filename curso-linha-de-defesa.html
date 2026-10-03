@@ -1,0 +1,1610 @@
+<script>
+/* marca antes de pintar: sem isto o conteúdo pisca antes de esconder */
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.js = '1';
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Linha de Defesa — A Sustentação do Modelo de Jogo</title>
+
+<!--
+  MODELO DE PÁGINA DE CURSO — trocar por curso:
+  título · subtítulo · capa · tema (fase do jogo)
+  professor: nome, função, foto, credencial, biografia
+  duração · número de blocos · lista de temas cobertos · bônus
+  quatro perfis de "para quem é"
+  preço cheio, preço com desconto, parcelamento, link de checkout Kiwify
+  Tudo o mais — entrega, certificado, dúvidas, depoimentos — é igual em todos.
+-->
+
+<link rel="icon" href="assets/icone/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icone/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icone/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icone/apple-touch-icon.png">
+<link rel="manifest" href="assets/icone/site.webmanifest">
+<meta name="theme-color" content="#060705">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TotalFut">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://totalfut.com.br/curso-linha-de-defesa.html">
+<meta property="og:title" content="Linha de defesa — A sustentação do modelo de jogo">
+<meta property="og:description" content="Linha de defesa — A sustentação do modelo de jogo — com Leandro Zago, treinador e instrutor da CBF Academy">
+<meta property="og:image" content="https://totalfut.com.br/assets/social/curso-linha-de-defesa.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="420">
+<meta property="og:image:alt" content="Fase defensiva — Aspectos para defender melhor — TotalFut">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Linha de defesa — A sustentação do modelo de jogo">
+<meta name="twitter:description" content="Linha de defesa — A sustentação do modelo de jogo — com Leandro Zago, treinador e instrutor da CBF Academy">
+<meta name="twitter:image" content="https://totalfut.com.br/assets/social/curso-linha-de-defesa.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --void:#060705;
+  --card:#0F110C;
+  --card-2:#151810;
+  --hair:#23271A;
+  --hair-2:#2E3324;
+  --lime:#D7FF47;
+  --lime-2:#C5F132;
+  --lime-ink:#0A0C05;
+  --azul:#015AFF;
+  --azul-2:#2A72FF;
+  --text:#FFFFFF;
+  --mute:#9AA08C;
+  --dim:#676C5C;
+
+  --display:"Sora","Helvetica Neue",Arial,sans-serif;
+  --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+
+  /* mesmo sistema de vidro do Portfólio Digital */
+  --vidro-desfoque:blur(16px) saturate(180%);
+  --vidro:rgba(255,255,255,.08);
+  --vidro-forte:rgba(20,20,20,.45);
+  --vidro-borda:rgba(255,255,255,.16);
+  --vidro-sombra:0 8px 28px rgba(0,0,0,.18);
+
+  --r:16px;
+  --max:1120px;
+  --pad:clamp(20px,5vw,48px);
+}
+
+*{box-sizing:border-box}
+/* display:flex nos cartões vence o [hidden] padrão do navegador:
+   sem isto, esconder um card pelo atributo não esconde nada */
+[hidden]{display:none!important}
+body{
+  margin:0;background:var(--void);color:var(--mute);
+  font-family:var(--body);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+/* camada de cor ambiente: sem algo atrás, vidro em fundo escuro
+   vira apenas um cinza mais claro */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(46vw 40vw at 10% 14%, rgba(215,255,71,.14), transparent 62%),
+    radial-gradient(42vw 36vw at 90% 52%, rgba(1,90,255,.12), transparent 64%),
+    radial-gradient(40vw 36vw at 38% 94%, rgba(215,255,71,.10), transparent 62%);
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+::selection{background:var(--azul);color:#fff}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+section{padding-block:clamp(52px,7vw,96px);position:relative;overflow-x:clip}
+
+h1,h2,h3{font-family:var(--display);color:var(--text);margin:0;text-wrap:balance;letter-spacing:-.028em}
+h1{font-size:clamp(30px,4.6vw,52px);font-weight:700;line-height:1.05}
+h2{font-size:clamp(24px,3.2vw,38px);font-weight:700;line-height:1.12}
+h3{font-size:17px;font-weight:600;line-height:1.3;letter-spacing:-.014em}
+p{margin:0}
+.lede{font-size:clamp(15px,1.15vw,17px);line-height:1.65;color:var(--mute)}
+.small{font-size:13.5px;line-height:1.55;color:var(--dim)}
+.center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:15px}
+.center .lede{max-width:56ch}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+  font-family:var(--body);font-size:15px;font-weight:600;
+  padding:15px 30px;border-radius:999px;border:1px solid transparent;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+/* botão de compra: gradiente interno com brilho no topo e sombra na base,
+   para o lime ganhar volume sem perder a leitura do texto */
+.btn--lime{
+  color:var(--lime-ink);background-color:var(--lime);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 48%),
+    linear-gradient(162deg, #E6FF8C 0%, #D3FB4E 46%, #AFE32B 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    inset 0 -7px 13px rgba(86,124,8,.28),
+    0 6px 20px rgba(215,255,71,.16);
+}
+.btn--lime:hover{
+  transform:translateY(-1px);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.68) 0%, rgba(255,255,255,0) 52%),
+    linear-gradient(162deg, #F0FFA6 0%, #DEFF6A 46%, #BCEF3A 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -7px 13px rgba(86,124,8,.24),
+    0 10px 26px rgba(215,255,71,.24);
+}
+/* o botão secundário vira vidro; o de compra fica opaco de propósito,
+   porque translúcido ele perde contraste e deixa de parecer clicável */
+.btn--wire{
+  border:1px solid var(--vidro-borda);color:var(--text);
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),var(--vidro-sombra);
+}
+.btn--wire:hover{border-color:rgba(215,255,71,.45);color:var(--lime);background:rgba(255,255,255,.12)}
+.btn--azul{
+  background:linear-gradient(180deg,rgba(42,114,255,.92),rgba(1,90,255,.78));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(255,255,255,.22);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--vidro-sombra);
+  padding:10px 18px;font-size:13.5px;white-space:nowrap;
+}
+.btn--azul:hover{background:linear-gradient(180deg,rgba(74,138,255,.96),rgba(20,104,255,.85));transform:translateY(-1px)}
+.btn--full{width:100%}
+
+/* ---------- nav ---------- */
+header{
+  position:sticky;top:0;z-index:60;
+  background:linear-gradient(180deg,rgba(24,27,19,.70),rgba(12,14,10,.54));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-bottom:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),var(--vidro-sombra);
+}
+/* os focos ficam num elemento próprio: overflow no cabeçalho cortaria
+   o painel do menu, que é posicionado a partir dele */
+.barra-luz{position:absolute;left:0;right:0;top:0;height:66px;overflow:hidden;pointer-events:none}
+.barra-luz::before,.barra-luz::after{content:"";position:absolute;border-radius:50%;filter:blur(52px)}
+.barra-luz::before{width:280px;height:130px;left:-50px;top:-64px;background:rgba(215,255,71,.30)}
+.barra-luz::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(1,90,255,.28)}
+.nav{position:relative;z-index:1}
+.nav{display:flex;align-items:center;gap:26px;height:66px}
+.nav img{height:25px;width:auto;flex:none}
+.nav__links{display:none;gap:22px;margin-left:auto;font-size:13px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.nav__links a{white-space:nowrap;transition:color .16s ease}
+.nav__links a:hover{color:var(--lime)}
+.nav__right{display:none;align-items:center;gap:10px;margin-left:20px;padding-left:20px;
+  border-left:1px solid var(--hair)}
+
+/* área do aluno: azul sólido com texto branco (5,4:1) — separa entrar na conta de comprar */
+.btn--azul{
+  background:linear-gradient(180deg,rgba(42,114,255,.92),rgba(1,90,255,.78));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(255,255,255,.22);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--vidro-sombra);
+  padding:10px 18px;font-size:13.5px;white-space:nowrap;
+}
+.btn--azul:hover{background:linear-gradient(180deg,rgba(74,138,255,.96),rgba(20,104,255,.85));transform:translateY(-1px)}
+.btn--azul svg{opacity:.85}
+
+/* controle segmentado: trilho rebaixado, inativo em círculo,
+   selecionado vira pílula e ganha o nome por extenso */
+.seg{
+  display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  padding:6px;border-radius:999px;flex:none;
+  background:linear-gradient(180deg,#0B0D08 0%,#13170C 100%);
+  border:1px solid #1C2015;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.65), 0 10px 26px rgba(0,0,0,.45);
+}
+.seg button{
+  height:44px;min-width:44px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  font-family:var(--body);font-size:14px;font-weight:600;color:#7C8270;white-space:nowrap;
+  background:linear-gradient(180deg,#15190F 0%,#0C0F08 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -3px 6px rgba(0,0,0,.45);
+  transition:background .26s ease,color .26s ease,box-shadow .26s ease,
+             padding .28s cubic-bezier(.3,.9,.3,1),gap .28s cubic-bezier(.3,.9,.3,1);
+}
+.seg button:hover{color:#AEB59C}
+.seg button svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.seg button span{max-width:0;overflow:hidden;opacity:0;
+  transition:max-width .28s cubic-bezier(.3,.9,.3,1),opacity .18s ease}
+.seg button[aria-selected="true"]{
+  padding-inline:20px 24px;gap:10px;color:var(--lime-ink);
+  background:linear-gradient(105deg,#E8FF8E 0%,#CFFB4E 44%,#A9E62B 100%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.65), inset 0 -4px 8px rgba(72,108,6,.38),
+             0 0 32px rgba(215,255,71,.24), 0 6px 16px rgba(0,0,0,.4);
+}
+.seg button[aria-selected="true"] svg{stroke-width:2}
+.seg button[aria-selected="true"] span{max-width:230px;opacity:1}
+
+/* filtro por profissional: inativo é só o rosto, selecionado ganha o nome */
+/* rosto e nome sempre visíveis: com sete professores, só a foto não
+   identifica quem é. O selecionado muda de cor, não de conteúdo. */
+.seg--rostos button{padding:0 18px 0 5px;gap:10px}
+.seg--rostos button img{
+  width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 18%;
+  flex:none;filter:grayscale(1) contrast(1.05);opacity:.7;
+  transition:filter .26s ease,opacity .26s ease;
+}
+.seg--rostos button > svg{
+  width:34px;height:34px;padding:8px;border-radius:50%;box-sizing:border-box;
+  background:rgba(255,255,255,.07);
+}
+.seg--rostos button:hover img{opacity:.92}
+.seg--rostos button span{max-width:none;opacity:1;overflow:visible}
+.seg--rostos button[aria-selected="true"]{padding-inline:5px 20px;gap:10px}
+.seg--rostos button[aria-selected="true"] img{filter:none;opacity:1;box-shadow:0 0 0 2px rgba(10,12,5,.3)}
+.seg--rostos button[aria-selected="true"] > svg{background:rgba(10,12,5,.12)}
+
+.vazio{
+  margin-top:20px;padding:26px;border:1px dashed var(--hair-2);border-radius:16px;
+  text-align:center;font-size:14.5px;color:var(--mute);
+}
+.vazio[hidden]{display:none}
+.vazio button{
+  background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  color:var(--lime);text-decoration:underline;text-underline-offset:3px;
+}
+
+/* trilha de temas: rola no celular em vez de quebrar linha */
+.seg-trilha{display:flex;justify-content:safe center;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
+.seg-trilha::-webkit-scrollbar{display:none}
+
+/* idioma no cabeçalho: só as siglas, na altura dos outros controles */
+.seg--idioma button{height:36px;min-width:40px;font-size:12.5px;letter-spacing:.06em}
+.seg--idioma button[aria-selected="true"]{padding-inline:14px;gap:0}
+.seg--idioma button span{display:none}
+
+/* idioma no painel do celular: nomes por extenso, ocupando a largura */
+.menu .seg{display:flex;width:100%;margin-top:16px}
+.menu .seg button{flex:1;font-size:13px}
+.menu .seg button span{max-width:none;opacity:1;overflow:visible}
+
+.burger{
+  margin-left:auto;width:42px;height:42px;flex:none;cursor:pointer;
+  display:grid;place-content:center;gap:6px;
+  background:transparent;border:1px solid var(--hair-2);border-radius:11px;
+}
+.burger span{display:block;width:17px;height:1.6px;background:var(--text);border-radius:2px;
+  transition:transform .2s ease}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.8px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.8px) rotate(-45deg)}
+
+.menu{
+  position:absolute;left:0;right:0;top:100%;z-index:59;
+  background:var(--card);border-bottom:1px solid var(--hair);
+  padding:14px var(--pad) 22px;display:flex;flex-direction:column;gap:4px;
+}
+.menu[hidden]{display:none}
+.menu a{padding:13px 2px;font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text);border-bottom:1px solid var(--hair)}
+.menu .btn{margin-top:14px}
+/* cinco itens mais idioma e conta não cabem em 980 */
+@media(min-width:1080px){
+  .nav__links{display:flex}
+  .nav__right{display:flex}
+  .burger{display:none}
+  .menu{display:none}
+}
+
+
+/* ---------- topo do curso ---------- */
+/* topo: retrato à direita, informação à esquerda sobre o degradê.
+   No celular o retrato vira faixa superior e o texto começa no degradê. */
+.topo{position:relative;padding-block:0;overflow:hidden}
+/* No celular a foto é uma faixa; a altura cresce com a tela mas para antes
+   de tomar a dobra inteira. */
+.topo__foto{position:relative;width:100%;height:clamp(340px,94vw,580px);overflow:hidden}
+/* Retrato já enquadrado no centro: aqui basta centrar a imagem na faixa.
+   Dimensionada pela altura, com min-width para cobrir a largura quando a
+   faixa é mais larga que a proporção da foto; nesse caso o object-position
+   escolhe a altura do recorte, e 14% mantém a cabeça inteira. */
+.topo__foto img{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  height:100%;width:auto;min-width:100%;max-width:none;
+  object-fit:cover;object-position:50% 14%;
+}
+.topo__foto::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(6,7,5,.35) 0%, rgba(6,7,5,0) 22%,
+    rgba(6,7,5,.55) 58%, rgba(6,7,5,.93) 82%, var(--void) 97%);
+}
+.topo__grade{
+  position:relative;z-index:2;display:grid;grid-template-columns:1fr;
+  margin-top:-9%;padding-bottom:clamp(32px,5vw,52px);
+}
+@media(min-width:900px){
+  /* grid em vez de flex: como item flex o .wrap encolhia para o tamanho do conteúdo */
+  /* a hero cresceu para a foto do professor ter onde aparecer: com 540
+     o retrato ancorado pela altura ficava estreito e a imagem de largura
+     inteira mostrava uma fatia fina do enquadramento */
+  .topo{min-height:clamp(560px,70vh,700px);display:grid;align-content:center;padding-block:clamp(40px,4.4vw,64px)}
+  /* a foto ocupa a largura inteira: antes ela começava em 64% e a borda do
+     contêiner criava uma quebra vertical contra o preto */
+  .topo__foto{position:absolute;inset:0;width:100%;height:100%}
+  /* A foto ocupa a metade direita e preenche a altura inteira: encostada
+     no topo e na borda direita, sem folga em lugar nenhum. Em cover
+     dentro dessa caixa a escala é redutora, não ampliadora — é o que
+     devolve o enquadramento de meio corpo em vez do rosto de perto. A
+     máscara desvanece a borda esquerda da imagem em direção ao texto, e
+     o degradê de doze paradas termina o trabalho. */
+  .topo__foto img{
+    position:absolute;right:0;top:0;left:auto;bottom:auto;
+    width:52%;height:100%;min-width:0;max-width:none;
+    object-fit:cover;object-position:52% 16%;transform:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
+  }
+  .topo__foto::after{
+    background:
+      /* doze paradas: o preto cede desde o começo, sem nenhuma aresta, e
+         só abre de verdade depois da metade, onde o texto já acabou */
+      linear-gradient(90deg,
+        var(--void) 0%, rgba(6,7,5,.99) 16%, rgba(6,7,5,.96) 28%,
+        rgba(6,7,5,.91) 38%, rgba(6,7,5,.82) 47%, rgba(6,7,5,.70) 55%,
+        rgba(6,7,5,.56) 63%, rgba(6,7,5,.41) 71%, rgba(6,7,5,.27) 79%,
+        rgba(6,7,5,.16) 86%, rgba(6,7,5,.07) 93%, rgba(6,7,5,0) 100%),
+      linear-gradient(0deg, var(--void) 0%, rgba(6,7,5,.42) 12%, rgba(6,7,5,0) 34%);
+  }
+  .topo__grade{margin-top:0;padding-bottom:0;width:100%}
+  .topo__copy{max-width:min(720px,62vw)}
+}
+
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.fase,.formato{
+  display:inline-flex;align-items:center;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 13px;border-radius:999px;
+}
+.fase{color:var(--lime);border:1px solid rgba(215,255,71,.3)}
+/* formato é informação secundária: mesma forma, peso visual menor */
+.formato{color:var(--mute);border:1px solid var(--hair-2);background:rgba(15,17,12,.6)}
+.formato::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--mute);
+  margin-right:8px;flex:none;
+}
+/* o idioma é informação de entrega, não de formato: mesma etiqueta, sem
+   o ponto, com um globo na frente */
+.formato--idioma::before{
+  width:13px;height:13px;border-radius:0;background:none;margin-right:7px;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239AA08C' stroke-width='1.9'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18'/%3E%3C/svg%3E");
+  background-size:contain;background-repeat:no-repeat;
+}
+.topo__copy{display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
+/* o nome deste curso é curto: no corpo das outras páginas ele ficaria
+     pequeno demais para o espaço que ocupa */
+.topo__copy h1{font-size:clamp(34px,4.8vw,58px);line-height:1;max-width:26ch}
+/* a linha de apoio faz parte do nome do curso, então mora dentro do h1
+   e não numa lede à parte — menor, em peso de corpo, logo abaixo */
+.topo__sub{
+  display:block;margin-top:10px;
+  font-family:var(--body);font-size:clamp(15px,1.5vw,19px);font-weight:500;
+  line-height:1.3;letter-spacing:0;color:var(--mute);
+}
+.topo__com{font-size:15px;color:var(--mute)}
+.topo__com b{color:var(--text);font-weight:600}
+
+/* ---------- caixa de oferta ---------- */
+/* A caixa tem um ritmo vertical único: os blocos são separados sempre pelo
+   mesmo gap, e nenhum elemento carrega margem própria. Onde o assunto muda,
+   entra um filete — não um espaço maior. */
+.oferta{
+  background:linear-gradient(180deg,rgba(215,255,71,.12),rgba(255,255,255,.06));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(215,255,71,.34);border-radius:18px;
+  box-shadow:var(--vidro-sombra);
+  padding:clamp(22px,2.8vw,28px);display:flex;flex-direction:column;gap:20px;
+  max-width:520px;width:100%;
+}
+.oferta--topo{align-items:stretch}
+/* ---------- a oferta no topo ----------
+   Deixa de ser caixa: sem o vidro, o preço e o botão respiram no fundo
+   da própria hero e param de competir com o título. Menores, e afastados
+   do bloco de texto por uma margem maior que o gap da coluna. */
+.oferta--topo{
+  background:none;border:0;box-shadow:none;padding:0;max-width:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  margin-top:clamp(14px,2.2vw,26px);
+}
+/* sem a caixa, o space-between jogava o botão para a outra ponta da
+   coluna de texto: preço e ação voltam a andar juntos */
+.oferta--topo .oferta__linha{gap:12px 20px;justify-content:flex-start}
+.oferta--topo .oferta__preco b{font-size:clamp(23px,2.5vw,30px)}
+.oferta--topo .oferta__preco s{font-size:14px}
+.oferta--topo .oferta__parcela{font-size:12.5px}
+.oferta--topo .btn{padding:13px 26px;font-size:14.5px}
+@media(max-width:767px){
+  .oferta--topo{margin-top:20px}
+  .oferta--topo .oferta__linha{gap:14px}
+}
+
+/* preço e ação dividem a primeira linha, com o valor à esquerda */
+.oferta__linha{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
+.oferta__valor{display:flex;flex-direction:column;gap:4px;min-width:0}
+.oferta__parcela{font-size:13px;color:var(--mute)}
+.oferta--topo .btn{flex:none}
+
+/* bandeiras de pagamento: vêm em cinza médio sobre transparência,
+   clareadas para ler no fundo escuro sem competir com o botão */
+.pagamentos img{width:100%;max-width:188px;height:auto;filter:brightness(1.6);opacity:.62}
+.fecha .pagamentos img{margin-inline:auto}
+
+/* especificações na própria caixa de preço, em faixa de filetes */
+.specs{
+  display:flex;flex-wrap:wrap;margin:0;
+  padding-top:20px;border-top:1px solid rgba(215,255,71,.18);
+}
+.specs div{
+  flex:1 1 92px;padding-inline:16px;display:flex;flex-direction:column;gap:3px;
+  border-left:1px solid var(--hair);
+}
+.specs div:first-child{padding-left:0;border-left:0}
+.specs dt{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0;
+}
+.specs dd{
+  margin:0;font-family:var(--display);font-size:15px;font-weight:600;
+  color:var(--text);letter-spacing:-.02em;line-height:1.2;
+}
+.oferta__preco{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;line-height:1}
+.oferta__preco s{font-size:16px;color:var(--dim)}
+.oferta__preco b{font-family:var(--display);font-size:clamp(30px,3.8vw,40px);font-weight:700;color:var(--text);letter-spacing:-.04em}
+.oferta__preco i{font-style:normal;font-size:14px;color:var(--mute)}
+.oferta ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.oferta li{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--mute)}
+.oferta li svg{width:16px;height:16px;flex:none;margin-top:2px}
+.oferta li circle{fill:var(--lime)}
+.oferta li path{stroke:var(--lime-ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- barra fixa de compra ---------- */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:linear-gradient(180deg,rgba(24,27,19,.80),rgba(10,12,8,.88));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-top:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 -8px 28px rgba(0,0,0,.28);
+  padding:12px var(--pad);
+  padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:16px;
+  transform:translateY(110%);transition:transform .28s cubic-bezier(.3,.9,.3,1);
+}
+.barra[data-visivel="true"]{transform:translateY(0)}
+.barra__info{display:flex;flex-direction:column;min-width:0}
+.barra__info b{font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra__info span{font-size:12.5px;color:var(--dim)}
+.barra .btn{margin-left:auto;flex:none;padding:13px 24px;font-size:14.5px}
+@media(max-width:560px){
+  .barra__info b{font-size:14px}
+  .barra .btn{padding:12px 18px;font-size:14px}
+}
+
+/* ---------- passagens do professor ---------- */
+.passagens{
+  padding-block:clamp(22px,3vw,34px);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  background:linear-gradient(180deg,#0A0C07,var(--void));
+  display:flex;flex-direction:column;gap:16px;overflow:hidden;
+}
+.passagens__rotulo{
+  text-align:center;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+}
+.esteira{
+  position:relative;overflow:hidden;
+  /* desvanece nas laterais em vez de cortar seco */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 11%,#000 89%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 11%,#000 89%,transparent 100%);
+}
+.esteira__trilho{
+  display:flex;width:max-content;
+  animation:desliza 38s linear infinite;
+}
+.esteira:hover .esteira__trilho{animation-play-state:paused}
+.esteira__grupo{display:flex;align-items:center;gap:clamp(38px,5vw,64px);padding-right:clamp(38px,5vw,64px)}
+.esteira__item{
+  display:flex;align-items:center;justify-content:center;flex:none;
+  height:46px;color:var(--dim);transition:color .24s ease,opacity .24s ease;
+}
+.esteira__item:hover{color:var(--mute)}
+/* quando entrarem os escudos, a imagem ocupa o mesmo slot */
+.esteira__item img{height:100%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.55}
+.esteira__item:hover img{filter:grayscale(0);opacity:1}
+.esteira__item span{
+  font-family:var(--display);font-size:clamp(15px,1.5vw,18px);font-weight:600;
+  letter-spacing:.02em;white-space:nowrap;
+}
+@keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .esteira__trilho{animation:none}
+  .esteira{overflow-x:auto;scrollbar-width:none}
+  .esteira::-webkit-scrollbar{display:none}
+}
+
+/* ---------- para quem é ---------- */
+.perfis{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.perfis{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.perfis{grid-template-columns:repeat(4,1fr)}}
+.perfil{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
+  padding:24px 22px;display:flex;flex-direction:column;gap:11px;
+}
+.perfil__tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.perfil p{font-size:13.5px;line-height:1.55;color:#A7AE97}
+
+/* ---------- diagrama didático ----------
+   A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
+   estrutura do raio de ação — que existem zonas e que elas se movem —
+   e para onde os critérios começam: isso é o curso.
+
+   Não há metro nenhum escrito de propósito. Atribuir distâncias ao
+   formador sem elas estarem no material seria inventar conteúdo. */
+.diagrama{
+  display:grid;gap:clamp(20px,2.6vw,34px);grid-template-columns:1fr;
+  align-items:center;margin-top:clamp(28px,3.4vw,44px);
+  padding:clamp(20px,2.6vw,30px);border-radius:var(--r);
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra)}
+@media(min-width:880px){.diagrama{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}}
+.diagrama__arte{width:100%;height:auto;display:block;border-radius:12px;background:#070905}
+.diagrama__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:8px}
+.diagrama h3{font-size:clamp(17px,1.6vw,20px);line-height:1.2;margin-bottom:10px}
+.diagrama p{font-size:14px;line-height:1.6;color:var(--mute);margin:0 0 16px}
+.diagrama__vars{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.diagrama__vars li{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);
+  font-size:13px;line-height:1.45;color:#B6BDA8}
+.diagrama__vars b{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.04em;
+  color:var(--lime);font-variant-numeric:tabular-nums}
+.diagrama__vars li.e-curso{color:var(--dim)}
+.diagrama__vars li.e-curso b{color:var(--dim)}
+
+/* Num celular de 375px o diagrama de quatro painéis cai para 293px e os
+   rótulos somem. Em vez de encolher, ele ganha rolagem lateral e mantém
+   o tamanho mínimo em que ainda se lê. */
+.diagrama__rolagem{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-radius:12px}
+.diagrama__rolagem::-webkit-scrollbar{display:none}
+@media(max-width:620px){
+  .diagrama__arte{min-width:var(--diag-min,0)}
+}
+
+/* ---------- o que o curso cobre ---------- */
+.cobre{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
+.item{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:14px;padding:20px 22px;
+  transition:border-color .2s ease;
+}
+.item:hover{border-color:var(--hair-2)}
+.item__texto{display:flex;flex-direction:column;gap:6px;min-width:0}
+/* o número do módulo no lugar de um check: com oito itens iguais, o
+   visto não informava nada e a ordem informa. Sem moldura e no corpo do
+   preço da oferta — é o outro número grande da página.
+   tabular-nums mantém 01 e 08 com a mesma largura. */
+.item__marca{
+  flex:none;color:var(--lime);
+  font-family:var(--display);font-size:clamp(30px,3.8vw,40px);font-weight:700;
+  line-height:.92;letter-spacing:-.045em;font-variant-numeric:tabular-nums;
+  min-width:1.55em;
+}
+/* a frase que organiza o curso inteiro, logo abaixo da oferta: é a tese
+   que separa este curso do debate comum sobre bloco alto e bloco baixo */
+.tese{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);border-left:2px solid var(--lime);
+  box-shadow:var(--vidro-sombra);border-radius:var(--r);
+  padding:clamp(24px,3vw,36px) clamp(24px,3.4vw,44px);
+  display:flex;flex-direction:column;gap:12px;max-width:860px;margin-inline:auto;
+}
+.tese p{
+  font-family:var(--display);font-size:clamp(18px,2.1vw,25px);font-weight:600;
+  line-height:1.38;letter-spacing:-.022em;color:var(--text);text-wrap:balance;margin:0;
+}
+/* as equipes em etiquetas: a página já tem uma grade de oito cartões e
+   uma segunda competiria com ela */
+.princs{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.princ{
+  font-size:13px;font-weight:600;color:var(--mute);padding:8px 16px;border-radius:999px;
+  background:var(--vidro);border:1px solid var(--vidro-borda);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+}
+.tese span{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.item h3{font-size:16px}
+/* a duração ao lado do nome do módulo: o aluno escolhe por onde voltar
+   e o tempo é parte dessa escolha */
+.item__tempo{
+  font-family:var(--body);font-size:12px;font-weight:600;color:var(--dim);
+  letter-spacing:.02em;margin-left:8px;white-space:nowrap;
+}
+.item p{font-size:14px;line-height:1.55;color:#A7AE97;max-width:44ch}
+
+/* as três partes do evento: uma faixa abaixo da grade de temas, para
+   dizer que cada tema é percorrido três vezes e não uma */
+.partes{display:grid;gap:12px;grid-template-columns:1fr;margin-top:12px}
+@media(min-width:720px){.partes{grid-template-columns:repeat(3,1fr)}}
+.parte{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:14px;
+  padding:20px 22px;display:flex;flex-direction:column;gap:7px;
+}
+.parte__n{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.parte p{font-size:13.5px;line-height:1.5;color:#A7AE97}
+@media(max-width:767px){.parte{text-align:center;align-items:center}}
+
+/* ---------- professor ---------- */
+.prof{display:grid;gap:clamp(26px,4vw,52px);grid-template-columns:1fr;align-items:start}
+@media(min-width:840px){.prof{grid-template-columns:.62fr 1fr}}
+.prof__foto{
+  border-radius:20px;overflow:hidden;border:1px solid var(--hair-2);aspect-ratio:4/5;
+  max-width:330px;width:100%;box-shadow:0 26px 60px rgba(0,0,0,.55);
+}
+.prof__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.prof__texto{display:flex;flex-direction:column;gap:16px;min-width:0}
+/* a função vem logo abaixo do nome e pertence a ele: o gap da coluna
+   separaria os dois como se fossem blocos diferentes */
+.prof__funcao{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-top:-10px}
+.prof__texto p{font-size:15.5px;line-height:1.68;color:var(--mute);max-width:60ch}
+/* ---------- entrega ---------- */
+.entrega{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.entrega{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.entrega{grid-template-columns:repeat(4,1fr)}}
+.ent{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
+  padding:26px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
+}
+.ent__ico{
+  width:52px;height:52px;border-radius:30%;background:var(--lime);flex:none;
+  display:grid;place-items:center;color:var(--lime-ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 6px 16px rgba(0,0,0,.4);
+}
+.ent__ico svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ent p{font-size:13.5px;line-height:1.5;color:#A7AE97}
+
+/* ---------- bônus ---------- */
+.bonus{
+  background:var(--lime);border-radius:20px;padding:clamp(26px,4vw,40px);color:var(--lime-ink);
+  display:grid;gap:22px;grid-template-columns:1fr;
+}
+@media(min-width:820px){.bonus{grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}}
+.bonus h2{color:var(--lime-ink)}
+.bonus p{font-size:15px;line-height:1.6;font-weight:500;opacity:.82;max-width:46ch}
+.bonus ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.bonus li{display:flex;gap:11px;align-items:flex-start;font-size:15px;font-weight:600;line-height:1.4}
+.bonus li svg{width:17px;height:17px;flex:none;margin-top:2px;fill:none;stroke:var(--lime-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- fechamento ---------- */
+.fecha{
+  background:linear-gradient(180deg,rgba(215,255,71,.10),rgba(255,255,255,.05));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(215,255,71,.30);border-radius:22px;
+  box-shadow:var(--vidro-sombra);
+  padding:clamp(30px,4.6vw,56px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;
+}
+.fecha .oferta{background:none;border:0;padding:0;gap:20px;align-items:center;text-align:center;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.fecha .oferta__preco{justify-content:center}
+/* no fechamento o botão não precisa da largura inteira da caixa: a essa
+   altura a decisão já foi tomada e 520px fazem o botão parecer um campo */
+.fecha .btn--full{width:100%;max-width:340px;margin-inline:auto}
+.fecha .oferta ul{align-items:flex-start;text-align:left}
+
+/* ---------- dúvidas ---------- */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:780px;margin-inline:auto}
+.faq details{background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);transition:border-color .2s ease}
+.faq details[open]{border-color:var(--hair-2)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:18px 22px;display:flex;align-items:center;gap:16px;
+  font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--text);letter-spacing:-.012em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";margin-left:auto;flex:none;width:11px;height:11px;
+  border-right:1.7px solid var(--lime);border-bottom:1.7px solid var(--lime);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s ease;
+}
+.faq details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
+.faq p{padding:0 22px 20px;font-size:14px;line-height:1.6;color:#A7AE97}
+
+/* ---------- assinatura do estúdio ----------
+   Mora dentro do rodapé, entre a grade de links e a linha legal: um
+   cartão no mesmo sistema de vidro do site, que se destaca do fundo do
+   rodapé sem virar outra seção. Não usa lime nem o grifo de giz — os
+   dois são vocabulário da TotalFut, e repeti-los faria a assinatura do
+   estúdio parecer parte da marca do cliente. A ênfase vem da interação:
+   o fio que se desenha sob o nome quando o mouse chega. */
+.assina{
+  margin-top:30px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);
+  border-radius:16px;padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,28px);
+  display:grid;gap:16px;align-items:center;grid-template-columns:1fr}
+@media(min-width:900px){
+  .assina{grid-template-columns:auto 1fr auto;gap:clamp(22px,3.2vw,42px)}
+}
+.assina__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:5px}
+.assina__marca{display:inline-block;text-decoration:none}
+.assina__nome{
+  font-family:var(--display);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(15.5px,1.35vw,18px);color:var(--text);display:block;line-height:1.1}
+.assina__nome em{font-style:normal;color:var(--mute);font-weight:600}
+.assina__fio{
+  display:block;height:1px;margin-top:6px;background:var(--text);
+  transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.22,1,.36,1)}
+.assina__marca:hover .assina__fio,
+.assina__marca:focus-visible .assina__fio{transform:scaleX(1)}
+.assina__pitch{
+  font-size:13px;line-height:1.55;color:var(--mute);max-width:44ch;margin:0}
+.assina__cta{
+  justify-self:start;display:inline-flex;align-items:center;gap:9px;
+  padding:10px 18px;border-radius:999px;text-decoration:none;
+  border:1px solid var(--vidro-borda);color:var(--text);
+  font-size:12.5px;font-weight:600;white-space:nowrap;
+  transition:border-color .2s,background .2s}
+@media(min-width:900px){.assina__cta{justify-self:end}}
+.assina__cta svg{
+  width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.assina__cta:hover,.assina__cta:focus-visible{
+  border-color:rgba(255,255,255,.36);background:rgba(255,255,255,.07)}
+.assina__cta:hover svg{transform:translateX(3px)}
+@media(prefers-reduced-motion:reduce){
+  .assina__fio,.assina__cta svg{transition:none}
+}
+
+/* ---------- rodapé ---------- */
+footer.site{
+  position:relative;overflow:hidden;padding-block:48px 28px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-top:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+}
+footer.site::before,footer.site::after{content:"";position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none}
+footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
+footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
+footer.site .wrap{position:relative;z-index:1}
+/* colunas alinhadas pelo topo: sem isto o bloco da marca centraliza o
+   próprio conteúdo e desalinha com os títulos das outras colunas */
+.foot{display:grid;gap:30px 44px;grid-template-columns:1fr;align-items:start}
+@media(min-width:820px){.foot{grid-template-columns:1.1fr .5fr .85fr .5fr}}
+.foot__marca{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.foot__marca img{height:88px;width:auto;flex:none}
+.foot__marca p{flex:1 1 260px;min-width:0}
+.foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 15px;font-family:var(--body)}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:14px;color:var(--mute)}
+.foot a:hover{color:var(--lime)}
+.redes{display:flex;gap:10px;margin-top:0;flex-wrap:wrap}
+.redes a{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--vidro);border:1px solid var(--vidro-borda);color:var(--mute);
+  transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.redes a:hover{color:var(--lime);border-color:rgba(215,255,71,.45);background:rgba(215,255,71,.08);transform:translateY(-2px)}
+.redes svg{width:18px;height:18px;fill:currentColor}
+@media(max-width:819px){
+  .redes{justify-content:center}
+  .foot__marca{flex-direction:column;align-items:center;text-align:center;gap:14px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  /* empilhado, gap sozinho não separa: cada bloco ganha um filete acima */
+  .foot{gap:0}
+  .foot > * + *{margin-top:26px;padding-top:26px;border-top:1px solid var(--hair)}
+
+  /* centralizado, as redes sobem para logo abaixo do logo e formam um
+     bloco de identidade só com ele: sem filete e sem rótulo no meio */
+  .foot__marca{order:0}
+  .foot__redes{order:1}
+  .foot > :not(.foot__marca):not(.foot__redes){order:2}
+  .foot > .foot__redes{margin-top:16px;padding-top:0;border-top:0}
+  .foot__redes h4{display:none}
+}
+
+.foot__legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
+  gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
+
+/* três itens não cabem numa linha de celular: o crédito do estúdio desce
+   sozinho e o par de sempre — copyright e domínio — fica junto em cima */
+@media(max-width:819px){
+  .foot__legal{justify-content:center;text-align:center;gap:6px 22px}
+  .foot__legal > :nth-child(2){order:1;flex-basis:100%}
+}
+
+.nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
+  font-size:13px;line-height:1.65;color:var(--dim);margin-top:22px}
+.nota b{color:var(--lime);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+
+/* ---------- faixa de foto com paralaxe ----------
+   A imagem é mais alta que a moldura e desliza mais devagar que a
+   página. background-attachment:fixed faria o mesmo em uma linha, mas
+   não funciona no iOS; aqui é um translate atualizado no scroll. */
+.faixa-foto{
+  position:relative;overflow:hidden;padding:0;
+  height:clamp(190px,23vw,310px);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+}
+.faixa-foto img{
+  position:absolute;left:0;top:-20%;width:100%;height:140%;
+  object-fit:cover;object-position:50% 28%;
+}
+.faixa-foto::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg, var(--void) 0%, rgba(6,7,5,0) 24%, rgba(6,7,5,0) 76%, var(--void) 100%),
+    linear-gradient(180deg, rgba(6,7,5,.72) 0%, rgba(6,7,5,.26) 42%, rgba(6,7,5,.82) 100%);
+}
+@media(prefers-reduced-motion:reduce){
+  .faixa-foto img{top:0;height:100%}
+}
+
+/* ---------- ícone de seção ---------- */
+.sec-ico{
+  width:46px;height:46px;border-radius:30%;flex:none;
+  display:grid;place-items:center;margin-bottom:14px;
+  border:1px solid rgba(215,255,71,.28);background:rgba(215,255,71,.06);
+  color:var(--lime);
+}
+.sec-ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.center .sec-ico{margin-inline:auto}
+/* dentro do cartão lime o contorno inverte */
+.bonus .sec-ico{border-color:rgba(10,12,5,.24);background:rgba(10,12,5,.07);color:var(--lime-ink)}
+
+/* ---------- grifo de giz ---------- */
+.giz{position:relative;white-space:nowrap;display:inline-block}
+.giz svg{
+  position:absolute;left:-3%;right:-3%;width:106%;bottom:-.22em;height:.42em;
+  overflow:visible;pointer-events:none;
+}
+.giz path{fill:none;stroke:var(--lime);stroke-linecap:round;filter:url(#giz-textura)}
+.giz .g1{stroke-width:7;opacity:.9}
+/* segunda passada, mais fina e mais fraca: é o gesto de voltar sobre o traço */
+.giz .g2{stroke-width:4;opacity:.45}
+
+[data-js] .entra .giz path{stroke-dasharray:1;stroke-dashoffset:1}
+[data-js] .entra.dentro .giz .g1{
+  stroke-dashoffset:0;
+  /* rápido no começo e freando no fim, como a mão que termina o traço */
+  transition:stroke-dashoffset .40s cubic-bezier(.22,.62,.3,1) .30s;
+}
+[data-js] .entra.dentro .giz .g2{
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset .34s cubic-bezier(.35,.5,.25,1) .70s;
+}
+
+
+/* ==================== grade de telas ==================== */
+@media(min-width:1600px){
+  :root{--max:1320px;--pad:72px}
+  h1{font-size:clamp(40px,3.4vw,58px)}
+  h2{font-size:clamp(32px,2.8vw,48px)}
+  .lede{font-size:18px}
+  .topo__copy{max-width:min(820px,55vw)}
+  .topo{min-height:clamp(660px,72vh,840px)}
+}
+@media(min-width:768px) and (max-width:1079px){
+  .perfis{grid-template-columns:repeat(2,1fr)}
+  .entrega{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:767px){
+  section{padding-block:clamp(44px,10vw,62px)}
+  h2{text-align:center}
+  .sec-ico{margin-inline:auto}
+  .topo__copy{align-items:center;text-align:center}
+  .topo__copy h1,.topo__copy .lede{text-align:center}
+  .tags{justify-content:center}
+  .fase{align-self:auto}
+  /* as três etiquetas cabem numa linha quando encolhem; quebrar em duas
+     empurrava o título para baixo sem necessidade */
+  .tags{flex-wrap:nowrap;gap:6px}
+  .fase,.formato{font-size:9.5px;letter-spacing:.07em;padding:5px 9px;white-space:nowrap}
+  .formato::before{width:5px;height:5px;margin-right:5px}
+  .formato--idioma::before{width:11px;height:11px;margin-right:5px}
+
+  /* o texto do topo ganha a largura inteira: centralizado com 44ch ele
+     ficava numa coluna estreita no meio da tela */
+  .topo__copy{align-items:stretch}
+  /* o clamp do desktop travava o título em 31px no celular, onde 4,4vw
+     valem 16: aqui ele passa a crescer com a tela e usar a largura que
+     tem, com o espaçamento apertado para caber mais por linha */
+  .topo__copy h1{max-width:none;font-size:clamp(30px,9.2vw,42px);line-height:1.04;letter-spacing:-.034em}
+  .topo__copy .lede{max-width:none!important}
+
+  .oferta--topo{text-align:center}
+  .oferta__linha{flex-direction:column;align-items:center;gap:16px}
+  .oferta__valor{align-items:center}
+  .oferta__preco{justify-content:center}
+  /* o botão acompanha a largura do bloco de preço em vez de atravessar
+     a tela inteira */
+  .oferta--topo .btn{width:auto;min-width:220px;align-self:center}
+  .oferta li,.item__texto,.perfil{text-align:left}
+  .perfil__tag{align-self:center;font-size:12.5px;letter-spacing:.08em}
+  .perfil h3,.ent h3{text-align:center}
+  /* na grade de conteúdo o título fica à esquerda, alinhado ao número,
+     e ganha a largura que precisa para caber numa linha */
+  .item{gap:12px}
+  .item h3{text-align:left;font-size:15px;line-height:1.25}
+  .item__tempo{display:block;margin-left:0;margin-top:3px}
+  .prof__texto{align-items:center;text-align:center}
+  .prof__foto{margin-inline:auto}
+  .bonus{text-align:center}
+  .bonus li{text-align:left}
+  .foot{gap:20px;flex-direction:column;text-align:center}
+  .foot__marca{flex-direction:column;align-items:center;gap:12px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  .foot__links{justify-content:center}
+}
+
+/* ==================== efeitos ====================
+   Só entram quando há JS e o visitante não pediu menos movimento.
+   Sem JS, ou com prefers-reduced-motion, tudo nasce visível e parado. */
+
+/* 1. entrada orquestrada do topo: um momento só, na ordem de leitura */
+[data-js] .entra{opacity:0;transform:translateY(13px)}
+[data-js] .entra.dentro{
+  opacity:1;transform:none;
+  transition:opacity .55s cubic-bezier(.2,.7,.3,1) var(--atraso,0s),
+             transform .55s cubic-bezier(.2,.7,.3,1) var(--atraso,0s);
+}
+
+/* 2. revelação em cascata, só nas grades */
+[data-js] .revela > *{opacity:0;transform:translateY(16px)}
+[data-js] .revela.dentro > *{
+  opacity:1;transform:none;
+  transition:opacity .5s cubic-bezier(.2,.7,.3,1), transform .5s cubic-bezier(.2,.7,.3,1);
+}
+[data-js] .revela.dentro > :nth-child(2){transition-delay:.06s}
+[data-js] .revela.dentro > :nth-child(3){transition-delay:.12s}
+[data-js] .revela.dentro > :nth-child(4){transition-delay:.18s}
+[data-js] .revela.dentro > :nth-child(5){transition-delay:.24s}
+[data-js] .revela.dentro > :nth-child(6){transition-delay:.30s}
+[data-js] .revela.dentro > :nth-child(7){transition-delay:.36s}
+[data-js] .revela.dentro > :nth-child(8){transition-delay:.42s}
+
+/* 3. luz de refletor seguindo o cursor sobre os cartões */
+.luz{position:relative}
+.luz::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;z-index:3;opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),
+             rgba(215,255,71,.085), rgba(215,255,71,0) 62%);
+}
+.luz:hover::after{opacity:1}
+@media(hover:none){.luz::after{content:none}}
+
+/* 4. brilho varrendo o botão de compra ao passar o mouse */
+.btn--lime{position:relative;overflow:hidden;isolation:isolate}
+.btn--lime::after{
+  content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;width:40%;left:-50%;
+  transform:skewX(-15deg);pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+}
+.btn--lime:hover::after{animation:varredura .8s cubic-bezier(.3,.7,.4,1)}
+@keyframes varredura{from{left:-50%}to{left:120%}}
+
+@media(prefers-reduced-motion:reduce){
+  .btn--lime:hover::after{animation:none}
+  .luz::after{content:none}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="giz-textura">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="ruido"/>
+    <feDisplacementMap in="SourceGraphic" in2="ruido" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header>
+  <div class="barra-luz" aria-hidden="true"></div>
+  <nav class="nav wrap" aria-label="Principal">
+    <a href="index.html"><img src="assets/logo-horizontal-branco.svg" alt="TotalFut"></a>
+
+    <div class="nav__links">
+      <a href="index.html#professores">Professores</a>
+      <a href="index.html#cursos">Cursos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#academy">TotalFut Academy</a>
+      <a href="index.html#suporte">Suporte</a>
+    </div>
+
+    <div class="nav__right">
+      <div class="seg seg--idioma" id="segIdioma" role="tablist" aria-label="Idioma">
+        <button type="button" role="tab" aria-selected="true" data-lang="PT">PT<span>Português</span></button>
+        <button type="button" role="tab" aria-selected="false" data-lang="EN">EN<span>English</span></button>
+        <button type="button" role="tab" aria-selected="false" data-lang="ES">ES<span>Español</span></button>
+      </div>
+
+      <a class="btn btn--azul" href="#">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
+        </svg>
+        Área do aluno
+      </a>
+    </div>
+
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="menu" id="menu" hidden>
+    <a href="index.html#professores" data-i18n="t4">Professores</a>
+    <a href="index.html#cursos" data-i18n="t5">Cursos</a>
+    <a href="index.html#sobre" data-i18n="t6">Sobre</a>
+    <a href="index.html#academy" data-i18n="t7">TotalFut Academy</a>
+    <a href="index.html#suporte" data-i18n="t8">Suporte</a>
+    <a class="btn btn--azul" href="#">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
+      </svg>
+      Área do aluno
+    </a>
+    <div class="seg" id="menuLang" role="tablist" aria-label="Idioma">
+      <button type="button" role="tab" aria-selected="true" data-lang="PT"><span>Português</span></button>
+      <button type="button" role="tab" aria-selected="false" data-lang="EN"><span>English</span></button>
+      <button type="button" role="tab" aria-selected="false" data-lang="ES"><span>Español</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- TOPO -->
+  <section class="topo">
+    <div class="topo__foto">
+      <img src="assets/professores/leandro-zago-2-hero.webp" alt="Leandro Zago" fetchpriority="high">
+    </div>
+
+    <div class="wrap topo__grade">
+      <div class="topo__copy">
+        <div class="tags entra" style="--atraso:.05s">
+          <span class="fase">Fase defensiva</span>
+          <span class="formato">Gravado</span>
+          <span class="formato formato--idioma">Português</span>
+        </div>
+        <h1 class="entra" style="--atraso:.13s">Linha de <span class="giz">defesa<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10C40 5.6 82 4.4 122 5.6c27 .8 50 2.8 74 4.8"/><path class="g2" pathLength="1" d="M188 12.4C150 9.2 104 8.4 62 9.4c-19 .5-36 1.6-52 3"/></svg></span><span class="topo__sub">A sustentação do modelo de jogo</span></h1>
+        <p class="lede entra" style="--atraso:.21s;max-width:48ch;font-size:15.5px">Técnica individual de laterais e zagueiros, defesa do funil, controle da profundidade e a conexão com as outras linhas — em qualquer esquema.</p>
+        <p class="topo__com entra" style="--atraso:.27s">com <b>Leandro Zago</b>, treinador e instrutor da CBF Academy</p>
+
+        <div class="oferta oferta--topo entra" id="ofertaTopo" style="--atraso:.34s">
+          <div class="oferta__linha">
+            <div class="oferta__valor">
+              <div class="oferta__preco"><b>R$ 147</b></div>
+              <span class="oferta__parcela">ou em até 12× de R$ 14,78</span>
+            </div>
+            <a class="btn btn--lime" href="#" id="ctaTopo" data-pendente="checkout">Comprar o curso</a>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A TESE -->
+  <section style="padding-bottom:0">
+    <div class="wrap">
+      <div class="tese luz entra">
+        <p>A dinâmica da linha de defesa diz muito sobre uma equipe. É ela que dá a sustentação à proposta de jogo escolhida — do bloco baixo que protege o funil à linha alta que pressiona.</p>
+        <span>A tese do curso</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM É -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.2 19a5.8 5.8 0 0 1 11.6 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M16 14.6A4.9 4.9 0 0 1 21 19"/></svg></div>
+        <h2 class="entra"><span class="giz">Para quem<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10.4C38 6 84 4.6 126 6c25 .8 46 2.4 70 4.2"/><path class="g2" pathLength="1" d="M186 12C148 9.4 102 8.6 60 9.6c-18 .4-34 1.4-50 2.8"/></svg></span> é este curso.</h2>
+        <p class="lede">Quem desenha a linha, quem joga nela e quem precisa ler o que ela produz.</p>
+      </div>
+      <div class="perfis revela">
+        <div class="perfil luz">
+          <span class="perfil__tag">Treinador</span>
+          <p>Quer uma linha que sustente o modelo escolhido, jogando com três, quatro ou cinco defensores.</p>
+        </div>
+        <div class="perfil luz">
+          <span class="perfil__tag">Auxiliar técnico</span>
+          <p>Quer os detalhes de comportamento individual que decidem o lance antes de ele virar problema coletivo.</p>
+        </div>
+        <div class="perfil luz">
+          <span class="perfil__tag">Analista de desempenho</span>
+          <p>Quer enxergar na imagem o tempo da saída, a orientação do corpo e a profundidade que não foi controlada.</p>
+        </div>
+        <div class="perfil luz">
+          <span class="perfil__tag">Treinador de formação</span>
+          <p>Quer formar o lateral e o zagueiro que leem o lance, e não apenas o que corre atrás dele.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO DO CURSO -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M12 4.5v15"/><circle cx="12" cy="12" r="2.6"/><path d="M3 9h3v6H3M21 9h-3v6h3"/></svg></div>
+        <h2 class="entra"><span class="giz">Conteúdo<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> do curso.</h2>
+        <p class="lede">Sete aulas, 1h21 no total. Quase metade do tempo está na terceira, que é onde o curso desce ao comportamento individual.</p>
+      </div>
+      <div class="cobre revela">
+        <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Abertura + Apresentação <span class="item__tempo">3:32</span></h3><p>A proposta do curso e a trajetória de quem o conduz.</p></div></div>
+        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>Conteúdo <span class="item__tempo">2:52</span></h3><p>O mapa do percurso — por onde o curso passa, em que ordem e por quê.</p></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>Técnica e Tática Individual na Linha de defesa <span class="item__tempo">35:12</span></h3><p>O comportamento e as ações técnicas de laterais e zagueiros: o tempo certo de sair da linha para pressionar, a orientação corporal e o momento de recuar. E como induzir o adversário para a lateral, bloqueando o cruzamento na perna não dominante e evitando o pênalti desnecessário.</p></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>O conceito de funil <span class="item__tempo">7:53</span></h3><p>A área central próxima à meia-lua, de onde sai mais de 90% dos gols: como estruturar o posicionamento na área e ajustar o corpo lateralmente para cortar cruzamentos.</p></div></div>
+        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Ações Desvantajosas <span class="item__tempo">12:38</span></h3><p>Estruturas e decisões que geram instabilidade — perder a referência do gol, desproteger o centro do campo e correr de costas em momento inadequado.</p></div></div>
+        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Controle da Profundidade <span class="item__tempo">11:38</span></h3><p>Proteger as costas e antecipar bolas longas: marcar por zona ou fazer encaixes individuais, e como coordenar a cobertura junto com o goleiro.</p></div></div>
+        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Linha de Defesa e Outras Linhas + Encerramento <span class="item__tempo">7:00</span></h3><p>Como a linha empurra o time inteiro e sustenta as distâncias de compactação com volantes e ataque — e por que é essa conexão que permite pressão agressiva.</p></div></div>
+      </div>
+
+      <div class="diagrama revela">
+        <div class="diagrama__rolagem" style="--diag-min:0">
+        <svg class="diagrama__arte" viewBox="0 0 440 244" role="img"
+     aria-labelledby="diagTituloZ diagDescZ">
+  <title id="diagTituloZ">A zona de finalização e o direcionamento para fora dela</title>
+  <desc id="diagDescZ">Planta do último terço. Um funil parte da baliza e se abre
+    até a entrada da área: é a zona de onde sai mais de 90% dos gols. Duas setas
+    mostram o direcionamento — empurrar a jogada do centro para os corredores,
+    para fora do funil.</desc>
+
+  <defs>
+    <linearGradient id="funil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D7FF47" stop-opacity=".26"/>
+      <stop offset="100%" stop-color="#D7FF47" stop-opacity=".05"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="440" height="244" fill="#070905"/>
+
+  <!-- campo -->
+  <g stroke="#23271A" stroke-width="1.3" fill="none">
+    <rect x="16" y="14" width="408" height="216"/>
+    <rect x="118" y="14" width="204" height="78"/>
+    <rect x="172" y="14" width="96" height="30"/>
+    <path d="M160 92A60 60 0 0 0 280 92"/>
+  </g>
+  <path d="M186 14h68" stroke="#9AA08C" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+
+  <!-- o funil -->
+  <path d="M186 16L254 16L312 118L128 118Z" fill="url(#funil)"
+        stroke="rgba(215,255,71,.5)" stroke-width="1.3" stroke-dasharray="5 4"/>
+
+  <!-- direcionamento: a jogada é empurrada para fora do funil -->
+  <g stroke="#9AA08C" stroke-width="1.6" fill="none">
+    <path d="M220 160C196 150 150 142 96 140"/>
+    <path d="M220 160C244 150 290 142 344 140"/>
+  </g>
+  <g fill="#9AA08C">
+    <path d="M96 140l9-4v8z"/>
+    <path d="M344 140l-9-4v8z"/>
+  </g>
+  <circle cx="220" cy="160" r="4.4" fill="#D7FF47"/>
+
+  <g font-family="ui-monospace,Menlo,monospace" letter-spacing=".09em">
+    <text x="220" y="66" text-anchor="middle" font-size="9.4" fill="#D7FF47">ZONA DE FINALIZAÇÃO</text>
+    <text x="220" y="80" text-anchor="middle" font-size="8.2" fill="rgba(215,255,71,.62)">+90% DOS GOLS</text>
+    <text x="90" y="156" text-anchor="middle" font-size="8.2" fill="#676C5C">DIRECIONAR</text>
+    <text x="350" y="156" text-anchor="middle" font-size="8.2" fill="#676C5C">DIRECIONAR</text>
+  </g>
+</svg>
+        </div>
+        <div>
+          <p class="diagrama__rotulo">Aula 04</p>
+          <h3>Defender é disputar um funil</h3>
+          <p>Mais de 90% dos gols saem da mesma região. Quase tudo que a
+            organização defensiva faz — compactar, cobrir, direcionar — existe
+            para que a bola chegue ali em pior condição, ou não chegue.</p>
+          <ul class="diagrama__vars">
+            <li><b>01</b>Proteger a área central próxima à meia-lua</li>
+            <li><b>02</b>Estruturar o posicionamento dentro da área</li>
+            <li><b>03</b>Ajustar o corpo lateralmente para cortar o cruzamento</li>
+            <li class="e-curso"><b>04</b>Induzir o adversário para a lateral — aula 03</li>
+            <li class="e-curso"><b>05</b>Controle da profundidade e cobertura do goleiro — aula 06</li>
+            <li class="e-curso"><b>06</b>A conexão com volantes e ataque — aula 07</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="nota"><b>Pendente:</b> link de checkout e confirmação do valor. O preço exibido
+        (R$ 147) foi herdado do outro curso do Leandro Zago e precisa ser confirmado.</p>
+    </div>
+  </section>
+
+  <!-- PROFESSOR -->
+  <section>
+    <div class="wrap prof">
+      <div class="prof__foto luz"><img src="assets/professores/leandro-zago-retrato.jpg" alt="Leandro Zago"></div>
+      <div class="prof__texto">
+        <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 16.5v-6a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6"/><circle cx="12" cy="13.5" r="2.4"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5"/></svg></div>
+        <h2>Leandro Zago</h2>
+        <p class="prof__funcao">Treinador</p>
+        <p>Leandro Zago tem 42 anos, é técnico de futebol com licença A CBF, onde também é instrutor CBF Academy.</p>
+        <p>É bacharel em Treinamento em Esportes pela UNICAMP, tem MBA em Gestão de Pessoas pela FAC Campinas e formação em Psicologia de Alto Rendimento pela Barça Innovation Hub.</p>
+        <p>Como treinador tem o perfil focado na organização, intensidade e busca pelo desenvolvimento individual do atleta.</p>
+        <p>Tem passagens por grandes clubes do Brasil como Sport Club Corinthians Paulista, Clube Atlético Mineiro, Sociedade Esportiva Palmeiras, Associação Atlética Ponte Preta, Guarani Futebol Clube, Fortaleza Esporte Clube e Associação Portuguesa de Desportos.</p>
+        <p>Participou das principais competições nacionais em nível de base e profissional, onde conquistou resultados importantes como campeão brasileiro Sub-17, campeão mineiro Sub-20, campeão mineiro Sub-17, vice-campeão paulista Sub-20 e vice-campeão do Interior (Paulistão 2022).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASSAGENS -->
+  <section class="passagens" aria-label="Clubes por onde o professor passou">
+    <p class="passagens__rotulo">Leandro Zago passou por</p>
+    <div class="esteira">
+      <div class="esteira__trilho">
+        <div class="esteira__grupo">
+          <div class="esteira__item"><span>S.C. Corinthians Paulista</span></div>
+          <div class="esteira__item"><span>C. Atlético Mineiro</span></div>
+          <div class="esteira__item"><span>S.E. Palmeiras</span></div>
+          <div class="esteira__item"><span>Fortaleza E.C.</span></div>
+          <div class="esteira__item"><span>A.A. Ponte Preta</span></div>
+          <div class="esteira__item"><span>Guarani F.C.</span></div>
+          <div class="esteira__item"><span>A. Portuguesa de Desportos</span></div>
+          <div class="esteira__item"><span>CBF Academy</span></div>
+        </div>
+        <div class="esteira__grupo" aria-hidden="true">
+          <div class="esteira__item"><span>S.C. Corinthians Paulista</span></div>
+          <div class="esteira__item"><span>C. Atlético Mineiro</span></div>
+          <div class="esteira__item"><span>S.E. Palmeiras</span></div>
+          <div class="esteira__item"><span>Fortaleza E.C.</span></div>
+          <div class="esteira__item"><span>A.A. Ponte Preta</span></div>
+          <div class="esteira__item"><span>Guarani F.C.</span></div>
+          <div class="esteira__item"><span>A. Portuguesa de Desportos</span></div>
+          <div class="esteira__item"><span>CBF Academy</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BÔNUS -->
+  <section>
+    <div class="wrap">
+      <div class="bonus">
+        <div>
+          <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="8.5" width="18" height="11.5" rx="2"/><path d="M3 12.5h18M12 8.5V20"/><path d="M12 8.5S9.5 4 7.5 5.2 9.5 8.5 12 8.5zM12 8.5s2.5-4.5 4.5-3.3S14.5 8.5 12 8.5z"/></svg></div>
+        <h2>Os bônus.</h2>
+          <p style="margin-top:12px">O que vem junto com o curso, além do conteúdo.</p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>TotalFut Connect</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Grupo de Alunos TotalFut</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>Coach Planner PRO</li>
+          <li><svg viewBox="0 0 16 16"><path d="M3 8.4l3.3 3.3L13 5"/></svg>E-book do Curso</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREGA -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:34px">
+        <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 8.5L12 4l8.5 4.5v7L12 20l-8.5-4.5z"/><path d="M3.5 8.5L12 13l8.5-4.5M12 13v7"/></svg></div>
+        <h2 class="entra">Como você irá <span class="giz">acessar<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> o curso.</h2>
+        <p class="lede">O curso é 100% on-line e gravado. Você terá acesso ao conteúdo completo, podendo assistir quantas vezes quiser durante 1 ano na plataforma.</p>
+      </div>
+      <div class="entrega revela">
+        <div class="ent luz">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="13" rx="2"/><path d="M8 20.5h8M12 17.5v3"/></svg></div>
+          <h3>Estilo Netflix</h3>
+          <p>Utilizamos a Kiwify para hospedar nossos cursos, uma das melhores e mais modernas plataformas de hospedagem on-line.</p>
+        </div>
+        <div class="ent luz">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg></div>
+          <h3>Alta qualidade</h3>
+          <p>Os vídeos são gravados em alta qualidade (HD) de vídeo e de áudio, proporcionando uma ótima experiência de aprendizado.</p>
+        </div>
+        <div class="ent luz">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 18.2h2"/></svg></div>
+          <h3>Assista pelo celular</h3>
+          <p>Ao fazer a sua inscrição você poderá acessar o conteúdo pelo celular ou pelo computador, como ficar melhor para você.</p>
+        </div>
+        <div class="ent luz">
+          <div class="ent__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="5"/><path d="M8.5 14l-1 6.5 4.5-2.5 4.5 2.5-1-6.5"/></svg></div>
+          <h3>Certificado exclusivo</h3>
+          <p>Ao finalizar as aulas você terá acesso a um certificado exclusivo TotalFut.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FECHAMENTO -->
+  <section id="fechamento">
+    <div class="wrap">
+      <div class="fecha luz">
+        <h2 style="max-width:22ch">Fase defensiva — aspectos para defender melhor</h2>
+        <p class="lede" style="max-width:48ch">com Leandro Zago, treinador e instrutor da CBF Academy</p>
+        <div class="oferta">
+          <div class="oferta__valor" style="align-items:center">
+            <div class="oferta__preco"><b>R$ 147</b></div>
+            <span class="oferta__parcela">ou em até 12× de R$ 14,78</span>
+          </div>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Acesso imediato e doze meses de consulta</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Certificado digital TotalFut, Coach Planner PRO e e-book</li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.3l2.5 2.5L11.6 6"/></svg>Grupo de alunos e entrada no TotalFut Connect</li>
+          </ul>
+          <a class="btn btn--lime btn--full" href="#" data-pendente="checkout" target="_blank" rel="noopener">Comprar o curso</a>
+          <div class="pagamentos">
+            <img src="assets/formas-de-pagamento.webp" alt="Formas de pagamento: Kiwify, Pix, Visa, Mastercard, American Express, Hipercard, boleto e PayPal" loading="lazy" width="460" height="174">
+          </div>
+          <p class="small" style="text-align:center;margin:0">Acesso imediato por e-mail, assim que o pagamento é confirmado.</p>
+        </div>
+      </div>
+      <p class="nota" style="max-width:780px;margin-inline:auto"><b>Pendente:</b> preço, parcelamento e link de checkout Kiwify. A duração de 1h23 foi medida somando os sete arquivos entregues.</p>
+    </div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section id="duvidas">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:32px">
+        <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.6 9.6a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2-2.4 3.5"/><path d="M12 17.1h.01"/></svg></div>
+        <h2 class="entra"><span class="giz">Dúvidas<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M5 9.2C44 4.8 88 4 130 5.2c24 .7 45 2.4 66 4.4"/><path class="g2" pathLength="1" d="M190 12.8C152 10 108 9 66 9.8c-20 .4-38 1.4-54 2.6"/></svg></span> antes de se inscrever.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>O que é a TotalFut?</summary>
+          <p>A TotalFut é uma plataforma digital focada na produção de eventos e cursos avançados para profissionais do futebol. Atuamos dentro da área técnica-tática e temos como público alvo treinadores, auxiliares técnicos, analistas, preparadores de goleiros e atletas, buscando sempre trazer conteúdos de altíssimo nível, propostos por profissionais referência e de topo no mercado brasileiro e mundial. Produzimos em parceria eventos de alguns dos maiores nomes do futebol brasileiro e temos como filosofia principal a valorização do conhecimento dos profissionais que trabalhamos.</p>
+        </details>
+        <details>
+          <summary>Como será o curso?</summary>
+          <p>Este curso foi produzido e gravado a partir de um evento on-line ao vivo e tem 1 hora e 23 minutos de conteúdo. Para facilitar a organização, busca, estudo e aprendizagem dos nossos alunos sobre temas específicos contidos no curso, dividimos o material em diversos vídeos menores que podem ter de 1 a 20 minutos ou mais. Portanto essas divisões não representam aulas, e sim partes do evento, e que algumas vezes podem ser apenas introduções rápidas a algum tema, que achamos pertinente separar. Para facilitar e qualificar a experiência dos nossos alunos, também incluímos abertura e encerramento em todos os vídeos, com o propósito de situar o tema e marcar o encerramento da parte assistida.</p>
+        </details>
+        <details>
+          <summary>Como irei acessar o curso?</summary>
+          <p>Ao realizar a sua inscrição você irá receber imediatamente um e-mail da Kiwify onde acessará o conteúdo dividido por módulos e aulas. Você poderá assistir pelo computador ou pelo celular; no celular basta baixar o app Kiwify para acessar o curso. Também terá acesso ao grupo de WhatsApp exclusivo para alunos, e terá a possibilidade de acessar o grupo TotalFut Connect, que tem como objetivo candidaturas e vagas em clubes e comissões para alunos TotalFut.</p>
+        </details>
+        <details>
+          <summary>Tem certificado?</summary>
+          <p>Sim. Ao finalizar as aulas você terá acesso a um certificado digital exclusivo TotalFut.</p>
+        </details>
+        <details>
+          <summary>Quais são as formas de pagamento?</summary>
+          <p>Cartão, Pix e boleto, pela Kiwify.</p>
+        </details>
+        <details>
+          <summary>Posso parcelar o valor?</summary>
+          <p>Pode. São R$ 147,00 à vista ou até 12× de R$ 14,78.</p>
+        </details>
+        <details>
+          <summary>E se eu não gostar?</summary>
+          <p>Você tem sete dias para desistir e receber o valor de volta, integralmente. É o direito de arrependimento garantido pelo artigo 49 do Código de Defesa do Consumidor (Lei 8.078/1990) a quem compra fora do estabelecimento comercial, como é o caso da internet. Basta pedir pelo nosso suporte dentro do prazo.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot__marca">
+        <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
+        <p class="small" style="max-width:40ch">TotalFut — Cursos e eventos avançados para profissionais do futebol.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html#professores">Professores</a></li>
+          <li><a href="index.html#cursos">Cursos</a></li>
+          <li><a href="index.html#eventos">Eventos</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#academy">TotalFut Academy</a></li>
+          <li><a href="index.html#suporte">Suporte</a></li>
+        </ul>
+      </div>
+      <div class="foot__redes">
+        <h4>Redes</h4>
+        <div class="redes">
+          <a href="https://www.linkedin.com/company/totalfut/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C20.5 8.75 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg></a>
+          <a href="https://www.youtube.com/@totalfut2022" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.2V8.8l5.2 3.2z"/></svg></a>
+          <a href="https://www.instagram.com/totalfutbr/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 3.08a6.72 6.72 0 1 0 0 13.44 6.72 6.72 0 0 0 0-13.44zm0 11.08a4.36 4.36 0 1 1 0-8.72 4.36 4.36 0 0 1 0 8.72zm8.55-11.35a1.57 1.57 0 1 1-3.14 0 1.57 1.57 0 0 1 3.14 0z"/></svg></a>
+          <a href="https://wa.me/5551991736138" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.35-1.4a9.8 9.8 0 0 0 4.59 1.17h.01c5.43 0 9.84-4.41 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.93h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.35c0-4.51 3.67-8.18 8.19-8.18a8.13 8.13 0 0 1 5.78 2.4 8.12 8.12 0 0 1 2.4 5.79c0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.55.12-.17.25-.64.8-.78.97-.14.16-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22a7.4 7.4 0 0 1-1.37-1.7c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/totalfutbr/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://wa.me/5551991736138" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://wa.me/5551991736138" target="_blank" rel="noopener">Suporte</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- assinatura do estúdio -->
+    <div class="assina" aria-label="Quem desenvolveu este site">
+      <div>
+        <p class="assina__rotulo">Projeto e desenvolvimento</p>
+        <a class="assina__marca" href="https://sttudio11.com.br" target="_blank" rel="noopener">
+          <span class="assina__nome">Sttudio<em>11WD</em></span>
+          <span class="assina__fio" aria-hidden="true"></span>
+        </a>
+      </div>
+      <p class="assina__pitch">Sites para quem busca um posicionamento de qualidade. Estrutura, texto e desempenho — do protótipo ao ar.</p>
+      <a class="assina__cta" href="https://wa.me/5551991736138" target="_blank" rel="noopener">
+        <span>Falar sobre um projeto</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5L13 17.5"/></svg>
+      </a>
+    </div>
+    <div class="foot__legal"><span>© 2026 TotalFut</span><span>totalfut.com.br</span></div>
+  </div>
+</footer>
+
+<div class="barra" id="barra">
+  <div class="barra__info">
+    <b>Fase Defensiva</b>
+    <span>com Leandro Zago</span>
+  </div>
+  <a class="btn btn--lime" href="#fechamento">Comprar o curso</a>
+</div>
+
+<script>
+(function(){
+  // a barra de compra entra só depois que o botão do topo sai da tela,
+  // e some de novo quando o bloco de fechamento aparece
+  var barra = document.getElementById('barra');
+  var topo  = document.getElementById('ctaTopo');
+  var fim   = document.getElementById('fechamento');
+  if (!barra || !topo || !fim || !('IntersectionObserver' in window)) return;
+
+  var topoVisivel = true, fimVisivel = false;
+  function atualizar(){
+    barra.dataset.visivel = String(!topoVisivel && !fimVisivel);
+  }
+  new IntersectionObserver(function(e){
+    topoVisivel = e[0].isIntersecting; atualizar();
+  }, { rootMargin: '-10px 0px 0px 0px' }).observe(topo);
+
+  // o rodapé conta como fim junto com o fechamento: observando só o
+  // fechamento, a barra voltava ao passar dele e cobria a última linha
+  var finais = [fim, document.querySelector('footer.site')].filter(Boolean);
+  var abertos = [];
+  var obsFim = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      var i = abertos.indexOf(e.target);
+      if (e.isIntersecting && i < 0) abertos.push(e.target);
+      if (!e.isIntersecting && i >= 0) abertos.splice(i, 1);
+    });
+    fimVisivel = abertos.length > 0; atualizar();
+  }, { threshold: 0.18 });
+  finais.forEach(function(el){ obsFim.observe(el); });
+})();
+</script>
+
+<script>
+(function(){
+  if (document.documentElement.dataset.js !== '1') return;
+
+  /* entrada e revelação */
+  var alvos = [].slice.call(document.querySelectorAll('.entra,.revela'));
+  function mostrar(el){ el.classList.add('dentro'); }
+
+  // rootMargin em porcentagem combinado com threshold não dispara em todos os
+  // motores: margem em pixels e threshold padrão são o que se pode garantir
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if (!e.isIntersecting) return;
+        mostrar(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -60px 0px' });
+    alvos.forEach(function(el){ obs.observe(el); });
+  } else {
+    alvos.forEach(mostrar);
+  }
+
+  // rede de segurança: se por qualquer motivo o observer não entregar,
+  // o conteúdo aparece mesmo assim em vez de ficar invisível
+  setTimeout(function(){ alvos.forEach(mostrar); }, 1500);
+
+  /* refletor: posição do cursor vira variável de CSS */
+  var pendente = false, alvo = null, px = 0, py = 0;
+  document.addEventListener('pointermove', function(e){
+    var c = e.target.closest && e.target.closest('.luz');
+    if (!c) return;
+    alvo = c; px = e.clientX; py = e.clientY;
+    if (pendente) return;
+    pendente = true;
+    requestAnimationFrame(function(){
+      pendente = false;
+      if (!alvo) return;
+      var r = alvo.getBoundingClientRect();
+      alvo.style.setProperty('--mx', ((px - r.left) / r.width * 100).toFixed(1) + '%');
+      alvo.style.setProperty('--my', ((py - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+  }, { passive: true });
+})();
+</script>
+<script>
+(function(){
+  /* ---------- menu mobile ---------- */
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('menu');
+
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    menu.hidden = !open;
+  }
+  burger.addEventListener('click', function(){
+    setMenu(burger.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  matchMedia('(min-width:1080px)').addEventListener('change', function(e){ if (e.matches) setMenu(false); });
+
+  /* ---------- idioma ---------- */
+  // troca só o estado da interface e o atributo lang;
+  // o roteamento por idioma entra na migração
+  const segsIdioma = [document.getElementById('segIdioma'), document.getElementById('menuLang')].filter(Boolean);
+
+  function pickLang(code){
+    segsIdioma.forEach(function(seg){
+      [].forEach.call(seg.querySelectorAll('button'), function(b){
+        b.setAttribute('aria-selected', String(b.dataset.lang === code));
+      });
+    });
+    if (window.aplicarIdioma) window.aplicarIdioma(code);
+  }
+  segsIdioma.forEach(function(seg){
+    seg.addEventListener('click', function(e){
+      const b = e.target.closest('button'); if (!b) return;
+      pickLang(b.dataset.lang);
+    });
+  });
+
+})();
+</script>
+
+<script>
+(function(){
+  // paralaxe da faixa de foto: a imagem tem 20% de folga em cima e
+  // embaixo, e o translate de +/-14% fica dentro dessa folga.
+  var faixas = [].slice.call(document.querySelectorAll('.faixa-foto img'));
+  if (!faixas.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var pedido = false;
+  function posicionar(){
+    pedido = false;
+    var altura = window.innerHeight;
+    for (var i = 0; i < faixas.length; i++){
+      var img = faixas[i], r = img.parentNode.getBoundingClientRect();
+      if (r.bottom < -40 || r.top > altura + 40) continue;
+      // -1 quando a faixa entra por baixo, +1 quando sai por cima
+      var avanco = (r.top + r.height / 2 - altura / 2) / (altura / 2 + r.height / 2);
+      img.style.transform = 'translateY(' + (avanco * 14).toFixed(2) + '%)';
+    }
+  }
+  function agendar(){ if (!pedido){ pedido = true; requestAnimationFrame(posicionar); } }
+
+  addEventListener('scroll', agendar, { passive: true });
+  addEventListener('resize', agendar);
+  posicionar();
+})();
+</script>
