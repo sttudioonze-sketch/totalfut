@@ -479,34 +479,43 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 .lancamento__cta{margin-top:6px}
 /* os dados passam a ficar embaixo do texto, em linha: a coluna da
    direita agora é da foto */
-/* Eram cinco caixas dentro de um cartão — caixa dentro de caixa, que é
-   o que deixava o bloco pesado. Vira uma régua de dados: sem fundo, sem
-   borda, só fios verticais separando. O rótulo some para cima, pequeno,
-   e o valor fica com todo o peso. */
+/* Primeiro eram cinco caixas dentro de um cartão — caixa dentro de
+   caixa, que pesava. Depois virou régua sem fundo, que resolveu o peso
+   mas ficou seca. Agora é UM painel de vidro, não cinco: o vidro volta
+   sem multiplicar contêiner. Os fios que separam os campos desvanecem
+   nas pontas em vez de bater nas bordas, que é o detalhe que tira o ar
+   de tabela. */
 .lancamento__dados{
-  display:flex;flex-wrap:wrap;gap:0;margin:6px 0 2px;width:100%;
-  border-top:1px solid rgba(255,255,255,.12);
-  border-bottom:1px solid rgba(255,255,255,.12);
-  padding:14px 0}
+  display:flex;flex-wrap:wrap;gap:0;margin:8px 0 2px;width:100%;
+  padding:clamp(14px,1.6vw,18px) 0;border-radius:15px;
+  background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.035));
+  backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 28px rgba(0,0,0,.22)}
 .lancamento__dados div{
-  padding:2px clamp(14px,1.8vw,22px);
-  border-left:1px solid rgba(255,255,255,.12)}
-.lancamento__dados div:first-child{padding-left:0;border-left:0}
+  position:relative;padding:2px clamp(15px,1.9vw,24px);flex:0 0 auto}
+/* o fio é um pseudo com degradê: encosta forte no meio e some nas
+   pontas, em vez do border reto de ponta a ponta */
+.lancamento__dados div+div::before{
+  content:"";position:absolute;left:0;top:6%;bottom:6%;width:1px;
+  background:linear-gradient(180deg,
+    rgba(255,255,255,0), rgba(255,255,255,.22) 30%,
+    rgba(255,255,255,.22) 70%, rgba(255,255,255,0))}
 .lancamento__dados dt{
   font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--dim);margin:0 0 3px}
+  color:var(--dim);margin:0 0 4px}
 .lancamento__dados dd{
   margin:0;font-family:var(--display);font-size:clamp(14px,1.35vw,16.5px);font-weight:600;
   color:var(--text);letter-spacing:-.02em;line-height:1.25;white-space:nowrap}
 .lancamento__pendente{color:var(--mute)!important;font-family:var(--body)!important;font-weight:500!important;font-size:13.5px!important}
-/* no celular a régua quebra em duas linhas; o fio da esquerda sai de
-   quem abre linha, senão sobra um traço solto no começo */
+/* no celular o painel quebra em duas colunas; quem abre linha não leva
+   fio, senão sobra um traço solto no começo */
 @media(max-width:620px){
-  .lancamento__dados{gap:12px 0}
-  .lancamento__dados div{padding:2px 14px}
-  .lancamento__dados div:nth-child(odd){padding-left:0;border-left:0}
-  .lancamento__dados div{flex:0 0 50%}
+  .lancamento__dados{gap:14px 0;padding:16px 0}
+  .lancamento__dados div{flex:0 0 50%;padding:2px 16px}
+  .lancamento__dados div:nth-child(odd)::before{display:none}
   .lancamento__dados div:last-child{flex:1 1 100%}
+  .lancamento__dados div:last-child::before{display:none}
 }
 @media(max-width:767px){
   .lancamento__texto{align-items:center;text-align:center}
