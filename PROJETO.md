@@ -4,15 +4,15 @@ Substitui o site atual em Wix (totalfut.com.br). Destino: Vercel.
 Plataforma de cursos técnico-táticos para profissionais do futebol — treinadores,
 auxiliares, preparadores e analistas de desempenho.
 
-Última sessão: 24/09/2026.
+Última sessão: 03/10/2026.
 
 ---
 
 ## Estado atual
 
-**Nove páginas em HTML estático, sem build.** A home e as sete landing pages de
-curso estão completas e ligadas entre si. O catálogo inteiro tem preço, duração,
-ementa e link de checkout Kiwify real.
+**Dez páginas em HTML estático, sem build.** A home e as oito landing pages de
+curso estão completas e ligadas entre si. As oito LPs têm preço, duração, ementa
+e checkout Kiwify real.
 
 | Arquivo | O que é | Artifact |
 |---|---|---|
@@ -24,6 +24,8 @@ ementa e link de checkout Kiwify real.
 | `curso-exercicios-tecnica-tatica-individual.html` | Leandro Zago — exercícios | [link](https://claude.ai/artifact/C1WJjxyJQehgjnNG4c1to5) |
 | `curso-analise-bola-parada-pombo.html` | Ricardo Pombo | [link](https://claude.ai/artifact/8zWygjNiBJvSbHmDZbQfQA) |
 | `curso-bola-parada-vitoria-burse.html` | João Burse | [link](https://claude.ai/artifact/9vpou1hs61Sqj1dG1JTgHH) |
+| `curso-organizacao-defensiva.html` | Leandro Zago — fase defensiva | [link](https://claude.ai/artifact/LysraNggcVyjh1UiDFPdQx) |
+| `ferramentas/og-card.html` | Gerador dos cards de compartilhamento | sem artifact |
 | `academy.html` | Blog, mostrando "Em breve" | sem artifact |
 | `componentes.html` | Folha de componentes | [link](https://claude.ai/artifact/Jn1rXyyvR1mh8wtvrvdb6a) |
 
@@ -98,30 +100,25 @@ bônus · como você recebe · depoimentos · **faixa de foto** · fechamento ·
 
 ### O enquadramento do hero
 
-Uma regra só, para as oito páginas — as tentativas anteriores (um caso por
-proporção de foto) sempre quebravam na foto seguinte.
+As fotos de hero chegam **2000×1333, 3:2, com o desvanecer para o preto já
+embutido na arte**, à esquerda. Isso define o tratamento: a foto ocupa a hero
+inteira, sem máscara de CSS, e o `::after` é só uma camada leve que garante a
+leitura do texto. O degradê principal é o da própria arte.
 
-A imagem ocupa uma caixa de `width:52%; height:100%` ancorada em `right:0;
-top:0`, com `object-fit:cover`. Dentro dessa caixa o `cover` **reduz** em vez de
-ampliar (≈0,63× num desktop de 1380px), e é isso que devolve o enquadramento de
-meio corpo: a abordagem anterior esticava a foto na largura inteira da página e
-ampliava os retratos a ponto de cortar cabeças.
+A tentativa anterior — caixa de 52% com máscara em CSS — somava dois degradês,
+escurecia o assunto e o empurrava para um canto.
 
-O desvanecer tem duas camadas. Uma `mask-image` em `linear-gradient(90deg,
-transparent 0%, rgba(0,0,0,.5) 20%, #000 46%)` apaga a borda esquerda da própria
-imagem; por cima, o `::after` com doze paradas leva o `--void` até zero na
-direita, sem bandeamento visível. Encostada no topo e na direita, não sobra
-folga em lugar nenhum.
+**Briefing para novas fotos.** A caixa muda de proporção conforme a tela, de 0,76
+a 1,58, então o que importa mais que o tamanho são três regras:
 
-O que varia por página é só o `object-position`: Baquete `58% 18%`, Zago fase
-defensiva `52% 16%`, Mehl `50% 8%`, as demais `50% 10%`.
+1. Assunto um pouco à direita do centro — os 46% da esquerda somem no degradê.
+2. Respiro de 15% da altura acima da cabeça; o recorte mais fechado come pelo topo.
+3. Zona segura na faixa central de 60% da largura, o único trecho que aparece em
+   todos os dispositivos.
 
-Alturas: `clamp(560px,70vh,700px)` no desktop e `clamp(660px,72vh,840px)` a
-partir de 1600px — a caixa cuida da proporção, a altura não precisa inflar.
+Meio corpo ou três quartos, em campo, com profundidade atrás.
 
-**Celular** — faixa separada de `clamp(340px,94vw,580px)` acima do texto, imagem
-dimensionada pela altura e ancorada em `left:50%` com `translateX` do centro do
-assunto. Assim o enquadramento não depende da proporção da faixa.
+**Celular** — faixa de `clamp(340px,94vw,580px)` acima do texto, mesma foto.
 
 ---
 
@@ -160,42 +157,76 @@ referência*. Nada de "descubra os segredos" ou "não perca essa oportunidade".
 
 ## A home
 
-Menu · hero (campo animado em canvas) · professores · cursos · vantagens ·
-TotalFut Academy · eventos · depoimentos · sobre · lista · suporte · rodapé.
+Menu · hero · novidades · trilha de conteúdos · professores · vantagens ·
+TotalFut Academy · depoimentos · sobre · lista · suporte · rodapé.
 
 - **Hero** — canvas 2D com projeção em perspectiva real, horizonte ancorado ao
-  CTA medido em tempo de execução. Luzes difusas em quatro focos concentrados
-  perto da headline. `prefers-reduced-motion` congela num quadro.
-- **Catálogo** — abre nos quatro cards de área de especialização, com botão para
-  ver todos os cursos. Filtros por tema e por professor.
+  CTA medido em tempo de execução. `prefers-reduced-motion` congela num quadro.
+- **Novidades** — o lançamento e o próximo evento ao vivo numa seção só,
+  separados por um rótulo entre fios em vez de outro `<h2>`. O cartão de
+  lançamento tem selo "Novo" com ponto pulsante e os dados num painel de vidro
+  único, não em cinco caixas.
+- **Trilha de conteúdos** — os dezesseis cursos numa pista horizontal com
+  scroll-snap, quatro por vez no desktop e um no celular. Os cartões são
+  ordenados por professor, para que ninguém apareça duas vezes separado. Três
+  modos de escolha: por área, por professor, todos.
+- **Parede de professores** — treze rostos em tiles quadrados, sete por fileira.
+  Era uma grade de cartões de 2.363px, um quinto da home; hoje são 860px. O tile
+  inteiro é o link e filtra a trilha por aquele professor.
+- **Assinatura do estúdio** — cartão de vidro dentro do rodapé, em todas as dez
+  páginas. Sem lime e sem grifo de giz, que são vocabulário da TotalFut.
 - **i18n** — PT/EN/ES por dicionário JS com `data-i18n`. **Só a home tem.** As
   landing pages e a academy mostram o seletor mas ele não faz nada.
-- **Treze profissionais** na seção de professores: seis conduzem curso e sete
-  palestraram no Summit, marcados com o selo lime. Todos com credencial factual.
-  Ramiro Rangles e André Fornaziero saíram em 24/09 — estavam como "em breve"
-  desde o mapeamento.
+
+### O carrossel
+
+Uma função só, `montarCarrossel(pista, pontos, setas, seletorItem)`, serve aos
+depoimentos e à trilha. O número de páginas vem da largura real da pista, não de
+uma contagem fixa, então segue valendo quando o filtro muda a quantidade de
+cartões e quando o layout passa de um para quatro por vez.
+
+Duas armadilhas que custaram caro e estão resolvidas:
+
+- **Medir a pista escondida.** O handler dos modos chamava `aplicarFiltros()`
+  antes de tornar a pista visível; largura zero, e cada curso virava uma página.
+  A vista entra primeiro, o filtro depois.
+- **Rolagem programática no painel de prévia.** O painel bloqueia `scrollTo` em
+  contêineres aninhados, então `element.click()` por script dá falso negativo.
+  Testar seta de carrossel exige clique real do mouse — não é bug do site.
+
+---
+
+## Os cursos sem página de venda
+
+Cinco cursos do Summit já têm checkout mas ainda não têm LP. O botão deles abre
+um aviso explicando que a página está em produção, que o curso existe e está
+completo, e oferecendo os dois caminhos: ir ao checkout ou falar com o suporte.
+Mandar direto ao pagamento sem explicação quebraria a confiança; esconder o curso
+perderia a venda.
+
+Três ainda não têm nem checkout: Nicolas Gagnon, Diego Favarin e Bebeto Sauthier.
 
 ---
 
 ## Pendências do cliente
 
-1. **Política de reembolso** — a última objeção antes da compra, hoje sem resposta
-   em nenhuma página. Aparece como nota em todas as sete.
-2. **Fotos dos sete palestrantes do Summit.** Hoje os cards mostram as iniciais
-   no lugar do retrato; trocar o `<div>` por um `<img>` é tudo o que falta. As
-   fotos existem na página `/globalsummit` do Wix.
-3. **Preço, duração e checkout das oito palestras do Summit.**
-4. **Fotos horizontais em campo** para a faixa com paralaxe. Hoje seis das sete
-   usam o retrato vertical, que a faixa recorta fechado no rosto. Só trocar o
-   arquivo; o CSS já está pronto.
-3. **Preço, ementa e checkout do curso do Baquete.**
-4. **O que é o combo** — quais cursos, qual preço.
-5. **Escudos dos clubes** em PNG ou SVG com fundo transparente, para as faixas de
+1. **Preços das oito palestras do Global Summit.** Cinco já têm checkout, mas os
+   cartões mostram "valor a definir" — botão de compra sem preço fica estranho.
+2. **Checkout de três cursos**: Nicolas Gagnon, Diego Favarin e Bebeto Sauthier.
+3. **Quem é** o homem de polo do Coritiba e os das fotos "duas bolas" e "Santos",
+   das últimas remessas. Ficaram fora do acervo para não arriscar nome errado.
+4. **Fotos dos palestrantes do Summit** que ainda faltam.
+5. **Licença da foto do Michael Mackin**, que tem marca d'água da Sportsfile.
+6. **Contato do estúdio na assinatura** — hoje usa `sttudio11.com.br` e o mesmo
+   WhatsApp do suporte da TotalFut. Confirmar se o estúdio tem número próprio.
+7. **URL da Área do aluno** (login Kiwify) — os botões estão em `href="#"`.
+8. **O que é o combo** — quais cursos, qual preço.
+9. **Escudos dos clubes** em PNG ou SVG com fundo transparente, para as faixas de
    passagens, que hoje são texto.
-6. **URLs das redes sociais** — os quatro ícones do rodapé estão em `href="#"`.
-7. **WhatsApp de suporte**, horário de atendimento.
-8. Confirmar, na página do Mehl, os Mundiais Sub-17 de 2011 e 2015 e a que Copa
-   América de 2022 o título se refere.
+10. Confirmar, na página do Mehl, os Mundiais Sub-17 de 2011 e 2015 e a que Copa
+    América de 2022 o título se refere.
+11. **Depoimentos por curso.** Os seis que existem são genéricos e saíram das
+    páginas de venda; hoje ficam só na home, em carrossel.
 
 ---
 
@@ -204,12 +235,31 @@ TotalFut Academy · eventos · depoimentos · sobre · lista · suporte · rodap
 - **Tirar o `target="_blank"`** dos links de curso na home e dos botões de compra.
   Era workaround para revisar dentro do artifact, onde o iframe barra a troca de
   documento.
-- **Tirar as notas tracejadas** (`.nota`) — são recados para o cliente, não vão ao ar.
+- **Tirar as notas tracejadas** (`.nota`) — são recados para o cliente, não vão ao
+  ar. Saíram das oito LPs; a home ainda tem algumas.
 - **i18n das landing pages e da academy.**
-- **Otimizar imagens** — WebP/AVIF, `srcset`, `sizes`. Hoje são JPEG de até 1400px.
-- **Favicon.**
+- **Auto-hospedar as fontes.** Sora e Plus Jakarta Sans vêm do Google Fonts, que
+  bloqueia a renderização e causa salto de layout. Com os `.ttf` no projeto
+  também dá para gerar os cards sociais em 1200×630 por PIL — hoje saem em
+  800×420, que é o teto da captura do painel.
+- **Otimizar imagens** — 6,3 MB em `assets/`, sem WebP/AVIF nem `srcset`. Os
+  "SVG" do logo são PNG em base64 dentro de um SVG, 264 KB cada, e serrilham em
+  tela grande: refazer em vetor de verdade.
 - Lista de e-mails: recomendação é Brevo (grátis até 300/dia, PT-BR, LGPD). A
   Kiwify entrega comprador, não lead.
+
+### Espaço negativo, medido e ainda por fazer
+
+Três pontos levantados em 03/10 e não resolvidos:
+
+- **Quatro medidas de corpo em 2px de diferença** (13,5 / 14 / 14,5 / 15,5). Não
+  é escala, é ruído — e 13,5px é tamanho de painel, não de leitura.
+- **Gap de 12px entre cartões contra 20–26px de padding interno.** Está
+  invertido: o respiro devia estar entre os objetos, não dentro deles.
+- **Ritmo uniforme de 72px** entre todas as seções. Intervalo idêntico do começo
+  ao fim é o que faz uma página parecer template.
+
+---
 
 ## Bloqueios
 
