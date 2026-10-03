@@ -407,6 +407,7 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
    no seletor; "area" é o quarto, onde ele já abriu uma área e vê os
    cursos dela — nele o seletor continua marcando "Por área". */
 [data-vista="areas"] .planos,[data-vista="areas"] .vazio,
+[data-vista="areas"] .trilha-nav,
 [data-vista="areas"] .seg-trilha,[data-vista="areas"] .voltar-areas{display:none}
 
 [data-vista="area"] .areas,[data-vista="area"] .seg-trilha{display:none}
@@ -2824,6 +2825,11 @@ footer.site .wrap{position:relative;z-index:1}
     }
 
     function sincronizar(){
+      const nav = setas[0].parentElement;
+      /* Pista sem largura quer dizer que a vista que a contém está
+         escondida. Contar páginas aqui daria uma por item, e os controles
+         apareceriam sozinhos, sem pista nenhuma embaixo deles. */
+      if (!pista.clientWidth){ if (nav) nav.hidden = true; return; }
       desenharPontos();
       const i = atual();
       [].forEach.call(pontos.children, function(b, k){
@@ -2833,7 +2839,6 @@ footer.site .wrap{position:relative;z-index:1}
       setas[0].disabled = pista.scrollLeft <= 2;
       setas[1].disabled = pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 2;
       // uma página só: os controles não têm o que fazer
-      const nav = setas[0].parentElement;
       if (nav) nav.hidden = paginas() < 2;
     }
 
