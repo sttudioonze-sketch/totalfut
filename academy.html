@@ -365,6 +365,22 @@ header{
   .assina__fio,.assina__cta svg{transition:none}
 }
 
+/* ---------- Academy em produção ----------
+   Enquanto não há matéria publicada, a página mostra um aviso único em vez
+   de uma grade de espaços reservados. Sem filtro e sem botão: não há para
+   onde mandar o visitante ainda. */
+.aviso-breve{
+  max-width:720px;margin-inline:auto;text-align:center;
+  border-radius:var(--r);padding:clamp(30px,4.6vw,56px) clamp(22px,4vw,48px);
+}
+.aviso-breve__selo{
+  display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--lime);border:1px solid rgba(215,255,71,.35);
+  border-radius:999px;padding:6px 14px;margin-bottom:18px;
+}
+.aviso-breve h2{font-size:clamp(23px,2.8vw,34px);margin-bottom:14px}
+.aviso-breve p{font-size:15px;line-height:1.7;color:var(--mute);margin:0 auto;max-width:56ch}
+
 /* ---------- rodapé ---------- */
 footer.site{
   position:relative;overflow:hidden;padding-block:48px 28px;
@@ -526,7 +542,7 @@ footer.site .wrap{position:relative;z-index:1}
         <button type="button" role="tab" aria-selected="false" data-lang="ES">ES<span>Español</span></button>
       </div>
 
-      <a class="btn btn--azul" href="#">
+      <a class="btn btn--azul" href="https://dashboard.kiwify.com/login/?lang=pt" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
         </svg>
@@ -545,7 +561,7 @@ footer.site .wrap{position:relative;z-index:1}
     <a href="index.html#sobre" data-i18n="t6">Sobre</a>
     <a href="index.html#academy" data-i18n="t7">TotalFut Academy</a>
     <a href="index.html#suporte" data-i18n="t8">Suporte</a>
-    <a class="btn btn--azul" href="#">
+    <a class="btn btn--azul" href="https://dashboard.kiwify.com/login/?lang=pt" target="_blank" rel="noopener">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
       </svg>
@@ -570,98 +586,16 @@ footer.site .wrap{position:relative;z-index:1}
 
   <section style="padding-top:0">
     <div class="wrap">
-      <div class="seg-trilha">
-        <div class="seg" id="segBlog" role="tablist" aria-label="Tema das matérias">
-          <button type="button" role="tab" aria-selected="true" data-blog="todos">
-            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h11"/></svg><span>Todos</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="analise">
-            <svg viewBox="0 0 24 24"><path d="M4 18V10M9.5 18V5M15 18v-5M20.5 18V8"/></svg><span>Análise</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="bola-parada">
-            <svg viewBox="0 0 24 24"><path d="M12 3.5v7.5"/><circle cx="12" cy="15.5" r="4.8"/><path d="M8.5 6.5h7"/></svg><span>Bola parada</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="treino">
-            <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17.5" cy="16.5" r="2.4"/><path d="M8.8 8.8l7 6"/></svg><span>Treino</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="goleiros">
-            <svg viewBox="0 0 24 24"><path d="M4.5 9.5h15v8h-15z"/><path d="M8 9.5V7a4 4 0 0 1 8 0v2.5"/></svg><span>Goleiros</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-blog="carreira">
-            <svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/></svg><span>Carreira</span>
-          </button>
-        </div>
+      <div class="aviso-breve luz revela">
+        <span class="aviso-breve__selo" data-i18n="acad.selo">Em produção</span>
+        <h2 data-i18n="acad.titulo">As primeiras matérias estão sendo escritas.</h2>
+        <p data-i18n="acad.texto">A Academy vai reunir textos curtos sobre o que aparece no trabalho de
+          quem analisa e treina, assinados pelos próprios formadores. Cada um sai de uma situação que
+          aconteceu, não de teoria solta. Assim que os primeiros saírem, eles entram aqui.</p>
       </div>
-
-      <div class="materias revela" id="grade">
-
-        <article class="materia luz" data-blog="analise">
-          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Análise</span>
-            <h3>O relatório pré-jogo que cabe em uma página</h3>
-            <p>O que a comissão realmente lê antes da partida, e o que costuma ser descartado no caminho.</p>
-            <div class="materia__pe"><span>6 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="bola-parada">
-          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Bola parada</span>
-            <h3>Escanteio curto: quando ele rende mais que o cruzamento</h3>
-            <p>As condições de marcação que tornam a cobrança curta a melhor escolha, com exemplos.</p>
-            <div class="materia__pe"><span>8 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="treino">
-          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Treino</span>
-            <h3>O que muda no treino quando o analista entra em campo</h3>
-            <p>Ganhos e custos de tirar o analista da sala e colocá-lo ao lado do treinador.</p>
-            <div class="materia__pe"><span>5 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="goleiros">
-          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Goleiros</span>
-            <h3>Ler o cruzamento antes da bola sair do pé</h3>
-            <p>Os indícios de corpo e de apoio que antecipam o tipo de bola que vem.</p>
-            <div class="materia__pe"><span>7 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="carreira">
-          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Carreira</span>
-            <h3>Do amador ao profissional: o que o clube pergunta</h3>
-            <p>O que costuma pesar numa entrevista para comissão técnica, na prática.</p>
-            <div class="materia__pe"><span>9 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-        <article class="materia luz" data-blog="analise">
-          <div class="materia__capa" aria-hidden="true"><svg viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="3"/><path d="M30 1v38"/><circle cx="30" cy="20" r="7"/><path d="M1 12h9v16H1M59 12h-9v16h9"/></svg></div>
-          <div class="materia__corpo">
-            <span class="materia__tema">Análise</span>
-            <h3>Métricas que a comissão usa e métricas que ela ignora</h3>
-            <p>Por que alguns números nunca saem do relatório e outros mudam a escalação.</p>
-            <div class="materia__pe"><span>6 min de leitura</span><span>Em produção</span></div>
-          </div>
-        </article>
-
-      </div>
-
-      <p class="vazio" id="semResultado" hidden>Nenhuma matéria nesse tema ainda. <button type="button" id="limparFiltro">Ver todas</button></p>
-
-      <p class="nota"><b>Pendente:</b> esta página está com seis espaços reservados para dimensionar a grade. Faltam os textos, as capas, os autores e as datas. Quando os primeiros saírem, os temas sem matéria somem do filtro em vez de virarem lista vazia.</p>
     </div>
   </section>
+
 
 </main>
 
