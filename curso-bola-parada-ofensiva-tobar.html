@@ -553,6 +553,30 @@ header{
   margin:0;color:var(--text);font-family:var(--display);font-weight:500;
   font-size:clamp(16.5px,1.45vw,19.5px);line-height:1.38;letter-spacing:-.022em}
 
+/* ---------- módulo que abre ----------
+   Vários módulos trazem uma lista de tópicos que estava enfileirada num
+   parágrafo só — justamente os mais densos ficavam os mais ilegíveis.
+   Em <details> a lista volta a ser lista, a contagem aparece fechada e
+   o cartão continua do mesmo tamanho. Sem script: é o mesmo recurso do
+   FAQ da página. */
+.item__det summary{
+  list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;outline-offset:4px}
+.item__det summary::-webkit-details-marker{display:none}
+.item__det summary h3{flex:1 1 auto}
+.item__conta{
+  flex:none;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);transition:color .18s}
+.item__seta{
+  flex:none;width:15px;height:15px;fill:none;stroke:var(--dim);stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .22s,stroke .18s;align-self:center}
+.item__det[open] .item__seta{transform:rotate(180deg)}
+.item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
+.item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
+.item__lista{list-style:none;margin:14px 0 2px;padding:0;display:flex;flex-direction:column;gap:9px}
+.item__lista li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.5;color:var(--mute)}
+.item__lista li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--hair-2)}
+@media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1033,11 +1057,11 @@ footer.site .wrap{position:relative;z-index:1}
       </div>
       <div class="cobre revela">
         <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Abertura</h3><p>Apresentação geral do curso.</p></div></div>
-        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>A bola parada ofensiva</h3><p>A importância da bola parada no futebol atual. Princípios da bola parada ofensiva. Tipos de bola parada ofensiva.</p></div></div>
-        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>Escanteios e faltas laterais</h3><p>Critérios e definições da bola parada ofensiva. Escanteio direto: formação em “I” ou coluna; formação em grupos “packs”; homem alvo e vantagem qualitativa; bloqueio dos melhores da zona. Escanteio indireto: vs. defesa zona/mista “casca”; vs. defesa zona/mista que adianta sempre que possível, “2 tempos”; vs. defesa mista/zona “curto”. Escanteio direto rápido: aproveitar vantagens circunstanciais.</p></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>Cases</h3><p>Análises, plano de jogo e execução. Escanteio direto “bolo”. Escanteio indireto “4 tempos”. Falta lateral direta ameaçada. Falta lateral indireta 1/3. Falta centro-lateral com corrida e bloqueio. Escanteio defensivo.</p></div></div>
-        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Treino (escanteios e faltas)</h3><p>Contexto de propensão. Escanteios: exemplos e distribuição semanal. Faltas laterais: exemplos e distribuição semanal.</p></div></div>
-        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Arremessos laterais</h3><p>Macro princípios e características dos jogadores. Inteligente e preciso: manutenção da posse da bola, mobilidade, criação de espaço e bloqueio. Rápido: aproveitando a vantagem do momento. Último terço: jogadas pré-determinadas e princípios de jogo.</p></div></div>
+        <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><details class="item__det"><summary><h3>A bola parada ofensiva</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>A importância da bola parada no futebol atual</li><li>Princípios da bola parada ofensiva</li><li>Tipos de bola parada ofensiva</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Escanteios e faltas laterais</h3><span class="item__conta">9 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Critérios e definições da bola parada ofensiva</li><li>Escanteio direto | formação em “I” ou coluna</li><li>Escanteio direto | formação em grupos “packs”</li><li>Escanteio direto | homem alvo e vantagem qualitativa</li><li>Escanteio direto | bloqueio dos melhores da zona</li><li>Escanteio indireto | vs. defesa em zona ou mista, “casca”</li><li>Escanteio indireto | vs. defesa que adianta sempre que possível, “2 tempos”</li><li>Escanteio indireto | vs. defesa mista ou zona, “curto”</li><li>Escanteio direto rápido | aproveitar vantagens circunstanciais</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Cases</h3><span class="item__conta">7 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Análises, plano de jogo e execução</li><li>Escanteio direto | “bolo”</li><li>Escanteio indireto | “4 tempos”</li><li>Falta lateral direta | ameaçada</li><li>Falta lateral indireta | 1/3</li><li>Falta centro-lateral | corrida com bloqueio</li><li>Escanteio defensivo</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><details class="item__det"><summary><h3>Treino (escanteios e faltas)</h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Contexto de propensão</li><li>Escanteios | exemplos e distribuição semanal</li><li>Faltas laterais | exemplos e distribuição semanal</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><details class="item__det"><summary><h3>Arremessos laterais</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Macro princípios e características dos jogadores</li><li>Inteligente e preciso | manutenção da posse, mobilidade, criação de espaço e bloqueio</li><li>Rápido | aproveitando a vantagem do momento</li><li>Último terço | jogadas pré-determinadas e princípios de jogo</li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Treino (arremessos laterais)</h3><p>Exercícios para arremesso lateral: exemplos e distribuição semanal.</p></div></div>
         <div class="item luz"><div class="item__marca">08</div><div class="item__texto"><h3>Material de apoio</h3><p>PDF da apresentação do curso.</p></div></div>
       </div>

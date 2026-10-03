@@ -553,6 +553,30 @@ header{
   margin:0;color:var(--text);font-family:var(--display);font-weight:500;
   font-size:clamp(16.5px,1.45vw,19.5px);line-height:1.38;letter-spacing:-.022em}
 
+/* ---------- módulo que abre ----------
+   Vários módulos trazem uma lista de tópicos que estava enfileirada num
+   parágrafo só — justamente os mais densos ficavam os mais ilegíveis.
+   Em <details> a lista volta a ser lista, a contagem aparece fechada e
+   o cartão continua do mesmo tamanho. Sem script: é o mesmo recurso do
+   FAQ da página. */
+.item__det summary{
+  list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;outline-offset:4px}
+.item__det summary::-webkit-details-marker{display:none}
+.item__det summary h3{flex:1 1 auto}
+.item__conta{
+  flex:none;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);transition:color .18s}
+.item__seta{
+  flex:none;width:15px;height:15px;fill:none;stroke:var(--dim);stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .22s,stroke .18s;align-self:center}
+.item__det[open] .item__seta{transform:rotate(180deg)}
+.item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
+.item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
+.item__lista{list-style:none;margin:14px 0 2px;padding:0;display:flex;flex-direction:column;gap:9px}
+.item__lista li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.5;color:var(--mute)}
+.item__lista li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--hair-2)}
+@media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
+
 /* ---------- o que o curso cobre ---------- */
 .cobre{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:720px){.cobre{grid-template-columns:repeat(2,1fr)}}
@@ -1034,8 +1058,8 @@ footer.site .wrap{position:relative;z-index:1}
       <div class="cobre revela">
         <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Introdução</h3><p>Abertura e apresentação.</p></div></div>
         <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>Análise de desempenho e a bola parada</h3><p>Análise de desempenho e os aspectos da bola parada.</p></div></div>
-        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>Escanteios</h3><p>Análise dos escanteios. Observações gerais. Tipos de marcação. Exemplos práticos e exercícios.</p></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>Faltas laterais</h3><p>Análise e observações. Exemplos práticos e exercícios.</p></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Escanteios</h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Análise dos escanteios</li><li>Observações gerais</li><li>Tipos de marcação</li><li>Exemplos práticos e exercícios</li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Faltas laterais</h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li>Análise e observações</li><li>Exemplos práticos e exercícios</li></ul></details></div></div>
         <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Arremessos laterais</h3><p>Análise e exemplos práticos.</p></div></div>
         <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Saída de meio</h3><p>Análise e exemplos práticos.</p></div></div>
         <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Perguntas e respostas</h3><p>Perguntas e respostas e encerramento.</p></div></div>
