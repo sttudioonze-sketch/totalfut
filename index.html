@@ -770,64 +770,57 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
 .plano .btn{margin-top:auto}
 
 /* ---------- formadores ---------- */
-.profs{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
-@media(min-width:780px){.profs{grid-template-columns:repeat(4,1fr)}}
-/* Um número de professores que não fecha a última linha deixa o último
-   cartão encostado à esquerda. As regras abaixo levam esse órfão ao
-   meio, e param de valer sozinhas quando entra mais um professor.
-   Com 4 e com 2 colunas o item precisa abrir o vão e depois voltar à
-   largura de uma coluna — daí o max-width descontando o gap. */
-@media(min-width:780px){
-  .profs > :last-child:nth-child(4n+1){
-    grid-column:2 / 4;justify-self:center;width:100%;
-    max-width:calc((100% - 14px) / 2);
-  }
-}
-@media(min-width:1600px){
-  .profs > :last-child:nth-child(4n+1){max-width:calc((100% - 18px) / 2)}
-}
-@media(min-width:768px) and (max-width:1079px){
-  .profs > :last-child:nth-child(4n+1){grid-column:auto;max-width:none}
-  .profs > :last-child:nth-child(3n+1){grid-column:2 / 3;justify-self:stretch;max-width:none}
-}
-@media(max-width:767px){
-  .profs > :last-child:nth-child(4n+1),
-  .profs > :last-child:nth-child(3n+1){grid-column:auto;justify-self:stretch;max-width:none}
-}
-.prof{background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);padding:14px;
-  display:flex;flex-direction:column;gap:13px;transition:border-color .2s ease}
-.prof:hover{border-color:var(--hair-2)}
-.prof__art{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--card-2)}
+/* ---------- parede de professores ----------
+   Eram treze cartões de vidro de 386px em quatro fileiras: 2.363px, um
+   quinto da home para uma seção só. A quantidade virava cansaço quando
+   devia virar argumento. Agora é uma parede de rostos — a foto é o
+   cartão, a legenda é curta e o tile inteiro é o link.
+
+   Flex em vez de grid de propósito: com justify-content:center a última
+   fileira se centra sozinha, qualquer que seja o número de professores.
+   Em grid, treze em seis colunas deixariam um órfão encostado à
+   esquerda, e a correção precisaria de uma regra por contagem. */
+.profs{display:flex;flex-wrap:wrap;gap:14px 12px;justify-content:center}
+.prof{flex:0 1 calc((100% - 2 * 12px) / 3)}
+@media(min-width:620px){.prof{flex-basis:calc((100% - 3 * 12px) / 4)}}
+@media(min-width:900px){.prof{flex-basis:calc((100% - 4 * 12px) / 5)}}
+@media(min-width:1180px){.prof{flex-basis:calc((100% - 6 * 12px) / 7)}}
+
+/* o cartão de vidro sai: a foto passa a ser o objeto, não o conteúdo
+   de uma caixa */
+.prof{position:relative;background:none;border:0;box-shadow:none;padding:0;
+  display:flex;flex-direction:column;gap:9px}
+.prof__art{position:relative;aspect-ratio:1;border-radius:13px;overflow:hidden;
+  background:var(--card-2);border:1px solid var(--vidro-borda);
+  transition:border-color .22s ease}
 .prof__art img{width:100%;height:100%;object-fit:cover;object-position:center 22%;
   filter:grayscale(1) contrast(1.05);transition:filter .35s ease,transform .5s cubic-bezier(.2,.7,.3,1)}
-.prof:hover .prof__art img{filter:grayscale(0);transform:scale(1.04)}
-.prof__badge{position:absolute;left:9px;top:9px;font-size:10px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;background:rgba(6,7,5,.82);border:1px solid var(--hair-2);color:var(--dim);padding:3px 8px;border-radius:999px}
-/* palestrante do Summit: o selo é lime porque separa quem dá curso de
-   quem palestrou no evento, e essa distinção importa na leitura */
+.prof:hover .prof__art img,.prof:focus-within .prof__art img{filter:grayscale(0);transform:scale(1.05)}
+.prof:hover .prof__art,.prof:focus-within .prof__art{border-color:rgba(215,255,71,.42)}
+.prof__badge{position:absolute;left:7px;top:7px;font-size:9px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;background:rgba(6,7,5,.82);border:1px solid var(--hair-2);color:var(--dim);
+  padding:2px 7px;border-radius:999px}
 .prof__badge--summit{color:var(--lime);border-color:rgba(215,255,71,.38);background:rgba(6,7,5,.86)}
-/* sem foto do palestrante, as iniciais ocupam o mesmo quadrado da foto;
-   quando a foto chegar, troca-se o div por um <img> e nada mais muda */
 .prof__sigla{
   width:100%;height:100%;display:grid;place-items:center;
-  font-family:var(--display);font-size:clamp(24px,3.2vw,36px);font-weight:700;
+  font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:700;
   letter-spacing:-.05em;color:rgba(215,255,71,.42);
-  background:linear-gradient(158deg,#191E11 0%,#0B0E07 100%);
-}
-.prof__r{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
-.prof__n{font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--lime);margin-top:4px;letter-spacing:-.015em}
-.prof__c{font-size:13px;line-height:1.5;color:#A7AE97;margin-top:6px}
-.prof__body{padding:0 6px 8px}
-/* o menor botão do site: leva ao catálogo já filtrado por ele, que é a
-   única coisa que existe hoje para saber mais sobre um professor */
+  background:linear-gradient(158deg,#191E11 0%,#0B0E07 100%)}
+
+/* na parede o nome lidera: é por ele que se procura alguém */
+.prof__body{padding:0 2px;display:flex;flex-direction:column}
+.prof__n{order:-1;font-family:var(--display);font-size:13.5px;font-weight:600;
+  color:var(--text);letter-spacing:-.018em;line-height:1.2;margin:0}
+.prof__r{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dim);margin-top:3px;line-height:1.3}
+.prof__c{display:none}
+
+/* o tile inteiro é o alvo; o botão continua o mesmo elemento que o
+   script já escuta, só que agora cobre o cartão em vez de ficar embaixo */
 .prof__mais{
-  display:inline-flex;align-items:center;margin-top:11px;cursor:pointer;
-  font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.05em;
-  padding:5px 12px;border-radius:999px;
-  background:transparent;border:1px solid var(--vidro-borda);color:var(--mute);
-  transition:color .18s ease,border-color .18s ease,background .18s ease;
-}
-.prof__mais:hover{color:var(--lime);border-color:rgba(215,255,71,.45);background:rgba(215,255,71,.07)}
+  position:absolute;inset:0;margin:0;padding:0;border:0;background:transparent;
+  border-radius:13px;cursor:pointer;color:transparent;font-size:0;z-index:1}
+.prof__mais:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
 
 /* ---------- depoimentos ----------
    São seis, e seis cartões numa grade empurrariam o resto da home para
@@ -1020,13 +1013,15 @@ footer.site .wrap{position:relative;z-index:1}
   /* o depoimento ficou com o texto inteiro do site antigo: centralizado,
      300 caracteres ficam esfarrapados dos dois lados no celular */
 
-  /* professor vira linha: foto à esquerda, dados à direita */
-  .profs{grid-template-columns:1fr;gap:10px}
-  .prof{flex-direction:row;align-items:center;gap:14px;padding:12px}
-  .prof__art{width:92px;flex:none;aspect-ratio:1;border-radius:12px}
-  .prof__body{padding:0;text-align:left;flex:1 1 auto;min-width:0}
-  .prof__n{margin-top:3px}
-  .prof__c{margin-top:5px}
+  /* a parede continua parede no celular: três por fileira. Virar linha
+     aqui devolvia a altura que a parede foi feita para cortar — treze
+     linhas empilhadas davam 1.954px. */
+  .profs{gap:12px 10px}
+  .prof{flex-direction:column;align-items:stretch;gap:7px;padding:0}
+  .prof__art{width:auto;aspect-ratio:1;border-radius:11px}
+  .prof__body{padding:0 1px;text-align:left;min-width:0}
+  .prof__n{font-size:12.5px}
+  .prof__r{font-size:9px;letter-spacing:.07em}
   .prof__badge{left:6px;top:6px;font-size:9px;padding:2px 6px}
   /* em coluna, o flex-basis de 260px do parágrafo vira altura reservada e
      abre um vazio enorme antes do menu: aqui ele volta a ser automático */
@@ -1669,7 +1664,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t14">Analista de desempenho</p>
             <p class="prof__n" data-i18n="t15">Bruno Baquete</p>
-          <button type="button" class="prof__mais" data-prof="baquete" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Bruno Baquete" class="prof__mais" data-prof="baquete" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1678,7 +1673,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t17">Analista de desempenho</p>
             <p class="prof__n" data-i18n="t18">Ricardo Pombo</p>
-          <button type="button" class="prof__mais" data-prof="pombo" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Ricardo Pombo" class="prof__mais" data-prof="pombo" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1687,7 +1682,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t20">Treinador</p>
             <p class="prof__n" data-i18n="t21">João Burse</p>
-          <button type="button" class="prof__mais" data-prof="burse" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de João Burse" class="prof__mais" data-prof="burse" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1696,7 +1691,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t23">Treinador</p>
             <p class="prof__n" data-i18n="t24">Leandro Zago</p>
-          <button type="button" class="prof__mais" data-prof="zago" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Leandro Zago" class="prof__mais" data-prof="zago" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1705,7 +1700,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t26">Treinador de goleiros</p>
             <p class="prof__n" data-i18n="t27">Thiago Mehl</p>
-          <button type="button" class="prof__mais" data-prof="mehl" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Thiago Mehl" class="prof__mais" data-prof="mehl" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1714,7 +1709,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t29">Treinador e auxiliar técnico</p>
             <p class="prof__n" data-i18n="t30">Julian Tobar</p>
-          <button type="button" class="prof__mais" data-prof="tobar" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Julian Tobar" class="prof__mais" data-prof="tobar" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1723,7 +1718,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t186">Treinador de bolas paradas</p>
             <p class="prof__n" data-i18n="t187">Nicolas Gagnon</p>
-          <button type="button" class="prof__mais" data-prof="gagnon" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Nicolas Gagnon" class="prof__mais" data-prof="gagnon" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1732,7 +1727,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t189">Auxiliar técnico</p>
             <p class="prof__n" data-i18n="t190">Diego Favarin</p>
-          <button type="button" class="prof__mais" data-prof="favarin" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Diego Favarin" class="prof__mais" data-prof="favarin" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1741,7 +1736,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t192">Treinador e analista</p>
             <p class="prof__n" data-i18n="t193">Rui Pedro Sousa</p>
-          <button type="button" class="prof__mais" data-prof="ruipedro" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Rui Pedro Sousa" class="prof__mais" data-prof="ruipedro" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1750,7 +1745,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t195">Scouting sênior</p>
             <p class="prof__n" data-i18n="t196">Rafael Vieira</p>
-          <button type="button" class="prof__mais" data-prof="rafaelvieira" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Rafael Vieira" class="prof__mais" data-prof="rafaelvieira" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1759,7 +1754,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t198">Auxiliar técnico</p>
             <p class="prof__n" data-i18n="t199">Bebeto Sauthier</p>
-          <button type="button" class="prof__mais" data-prof="bebeto" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Bebeto Sauthier" class="prof__mais" data-prof="bebeto" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1768,7 +1763,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t201">Treinador de bolas paradas</p>
             <p class="prof__n" data-i18n="t202">Michael Mackin</p>
-          <button type="button" class="prof__mais" data-prof="mackin" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Michael Mackin" class="prof__mais" data-prof="mackin" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
@@ -1777,7 +1772,7 @@ footer.site .wrap{position:relative;z-index:1}
           <div class="prof__body">
             <p class="prof__r" data-i18n="t204">Analista de bolas paradas</p>
             <p class="prof__n" data-i18n="t205">Stuart Reid</p>
-          <button type="button" class="prof__mais" data-prof="stuart" data-i18n="t248">Saiba mais</button>
+          <button type="button" aria-label="Ver cursos de Stuart Reid" class="prof__mais" data-prof="stuart" data-i18n="t248">Saiba mais</button>
           </div>
         </article>
 
