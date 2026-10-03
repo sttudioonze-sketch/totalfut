@@ -16,6 +16,28 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentEl
   Tudo o mais — entrega, certificado, dúvidas, depoimentos — é igual em todos.
 -->
 
+<link rel="icon" href="assets/icone/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icone/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icone/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icone/apple-touch-icon.png">
+<link rel="manifest" href="assets/icone/site.webmanifest">
+<meta name="theme-color" content="#060705">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TotalFut">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://totalfut.com.br/curso-analise-desempenho-avancada.html">
+<meta property="og:title" content="Os Segredos da Análise de Desempenho Avançada">
+<meta property="og:description" content="Os Segredos da Análise de Desempenho Avançada — com Bruno Baquete, analista da Seleção Brasileira">
+<meta property="og:image" content="https://totalfut.com.br/assets/social/curso-analise-desempenho-avancada.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="420">
+<meta property="og:image:alt" content="Os Segredos da Análise de Desempenho Avançada — TotalFut">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Os Segredos da Análise de Desempenho Avançada">
+<meta name="twitter:description" content="Os Segredos da Análise de Desempenho Avançada — com Bruno Baquete, analista da Seleção Brasileira">
+<meta name="twitter:image" content="https://totalfut.com.br/assets/social/curso-analise-desempenho-avancada.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
@@ -587,16 +609,6 @@ header{
 .bonus li{display:flex;gap:11px;align-items:flex-start;font-size:15px;font-weight:600;line-height:1.4}
 .bonus li svg{width:17px;height:17px;flex:none;margin-top:2px;fill:none;stroke:var(--lime-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 
-/* ---------- depoimentos ---------- */
-.deps{display:grid;gap:14px;grid-template-columns:1fr}
-@media(min-width:800px){.deps{grid-template-columns:repeat(3,1fr)}}
-.dep{background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);padding:26px;
-  display:flex;flex-direction:column;gap:18px}
-.dep q{font-family:var(--display);font-size:16.5px;font-weight:500;line-height:1.45;color:var(--text);letter-spacing:-.018em;quotes:"“" "”"}
-.dep__who{margin-top:auto;padding-top:16px;border-top:1px solid var(--hair)}
-.dep__n{font-size:13.5px;font-weight:600;color:#D6DBC6}
-.dep__r{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:3px}
-
 /* ---------- fechamento ---------- */
 .fecha{
   background:linear-gradient(180deg,rgba(215,255,71,.10),rgba(255,255,255,.05));
@@ -764,8 +776,6 @@ footer.site .wrap{position:relative;z-index:1}
 @media(min-width:768px) and (max-width:1079px){
   .perfis{grid-template-columns:repeat(2,1fr)}
   .entrega{grid-template-columns:repeat(2,1fr)}
-  .deps{grid-template-columns:repeat(2,1fr)}
-  .deps > :last-child{grid-column:1 / -1}
 }
 @media(max-width:767px){
   section{padding-block:clamp(44px,10vw,62px)}
@@ -810,7 +820,6 @@ footer.site .wrap{position:relative;z-index:1}
   .prof__foto{margin-inline:auto}
   .bonus{text-align:center}
   .bonus li{text-align:left}
-  .dep q,.dep__who{text-align:center}
   .foot{gap:20px;flex-direction:column;text-align:center}
   .foot__marca{flex-direction:column;align-items:center;gap:12px}
   .foot__marca p{flex:0 1 auto}
@@ -1109,41 +1118,6 @@ footer.site .wrap{position:relative;z-index:1}
     </div>
   </section>
 
-  <!-- DEPOIMENTOS -->
-  <section>
-    <div class="wrap">
-      <div class="center" style="margin-bottom:32px">
-        <div class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 6.5C6.5 8 5 10.3 5 13.2c0 2.4 1.5 4 3.5 4s3.3-1.4 3.3-3.3c0-1.8-1.2-3.1-2.9-3.1-.3 0-.6 0-.8.1.3-1.4 1.3-2.6 2.8-3.5z"/><path d="M19 6.5c-3 1.5-4.5 3.8-4.5 6.7 0 2.4 1.5 4 3.5 4s3.3-1.4 3.3-3.3c0-1.8-1.2-3.1-2.9-3.1-.3 0-.6 0-.8.1.3-1.4 1.3-2.6 2.8-3.5z"/></svg></div>
-        <h2 class="entra">O que dizem nossos <span class="giz">alunos<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="g1" pathLength="1" d="M4 10C40 5.6 82 4.4 122 5.6c27 .8 50 2.8 74 4.8"/><path class="g2" pathLength="1" d="M188 12.4C150 9.2 104 8.4 62 9.4c-19 .5-36 1.6-52 3"/></svg></span>.</h2>
-      </div>
-      <div class="deps revela">
-        <div class="dep luz">
-          <q>Curso de ótima qualidade, fiz o curso de bola parada e também o curso técnica e tática individual, os dois de altíssimo nível. Agregou muito no meu dia a dia dentro do clube que trabalho, sendo que várias situações implementei no meu dia a dia. Indico muito todos eventos do TotalFut.</q>
-          <div class="dep__who"><p class="dep__n">Fábio Silveira Junior</p><p class="dep__r">Treinador de futebol</p></div>
-        </div>
-        <div class="dep luz">
-          <q>Participei do 1º curso do TotalFut, que foi sobre bolas paradas. Este curso, para mim, abriu a mente para alguns aspectos que anteriormente eu pouco ligava em meu trabalho. Sou analista de desempenho faz 5 anos, e meses após eu ter feito o curso de bolas paradas, eu virei o responsável da análise das bolas paradas onde eu trabalho.</q>
-          <div class="dep__who"><p class="dep__n">Caio Gondo</p><p class="dep__r">Analista de desempenho</p></div>
-        </div>
-        <div class="dep luz">
-          <q>Foi muito produtivo para enriquecer ainda mais nossos conhecimentos em bolas paradas, nos atualizando de novas ideias para termos um vasto repertório nesta fase do jogo. O que valorizou ainda mais o curso foi os professores que ministraram o mesmo, com ampla sabedoria e exemplos visuais.</q>
-          <div class="dep__who"><p class="dep__n">Walmir Israel</p><p class="dep__r">Treinador</p></div>
-        </div>
-        <div class="dep luz">
-          <q>Foi a diversificação de exercícios e possibilidades de execuções para este fundamento. Gostei demais das ideias. Sem replicar treinos, mas sim vendo características de nossos goleiros e podendo colocar em prática no dia a dia.</q>
-          <div class="dep__who"><p class="dep__n">Wandomar Dionizio</p><p class="dep__r">Preparador de goleiros</p></div>
-        </div>
-        <div class="dep luz">
-          <q>O TotalFut veio para contribuir para todos amantes do futebol, desde meros curiosos até renomados treinadores e profissionais dos gramados. Parabenizo pelo curso de bolas paradas ofensivas e já estou à espera do próximo para poder agregar ao meu conhecimento.</q>
-          <div class="dep__who"><p class="dep__n">Thiago Bielsa</p><p class="dep__r">Treinador</p></div>
-        </div>
-        <div class="dep luz">
-          <q>Muito surpreso com o conteúdo. Pude aprender que a bola parada não é simplesmente uma reposição ou um cruzamento. Uma bola parada pode surpreender através da expertise em um lateral cobrada rápida ou um gol em cruzamento de bola parada onde surge um bloqueio e um atleta aparece sozinho para realizar o cabeceio.</q>
-          <div class="dep__who"><p class="dep__n">Vitor Netto</p><p class="dep__r">Analista de desempenho</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 
   <!-- BENEFÍCIOS -->

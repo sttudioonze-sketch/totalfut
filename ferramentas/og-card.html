@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Gerador de card social — TotalFut</title>
+<!--
+  Monta o card de compartilhamento (1200×630) com a tipografia e as cores do
+  site, para não depender de fonte de sistema. Os dados vêm da query:
+
+    og-card.html?t=Título&c=com Fulano, função&p=R$ 397&tag=Bola parada&f=assets/professores/x.jpg
+
+  Para exportar: abrir com a janela em 1200×630 e capturar a tela inteira.
+  A foto (f) é opcional — sem ela o card fica só com a marca, que é o estado
+  enquanto as fotos de hero não chegam.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#060705; --lime:#D7FF47; --text:#FFFFFF; --mute:#9AA08C;
+    --display:"Sora","Helvetica Neue",Arial,sans-serif;
+    --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden;background:var(--void)}
+  body{font-family:var(--body);color:var(--text);-webkit-font-smoothing:antialiased}
+
+  .card{position:relative;width:1200px;height:630px;overflow:hidden;background:var(--void)}
+
+  /* a foto ocupa a direita e desvanece para o texto, como na hero do site */
+  .foto{position:absolute;inset:0 0 0 auto;width:52%;height:100%}
+  .foto img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 12%);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 20%,#000 46%)}
+  .foto::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,
+      var(--void) 0%, rgba(6,7,5,.99) 16%, rgba(6,7,5,.96) 28%, rgba(6,7,5,.91) 38%,
+      rgba(6,7,5,.82) 47%, rgba(6,7,5,.70) 55%, rgba(6,7,5,.56) 63%, rgba(6,7,5,.41) 71%,
+      rgba(6,7,5,.27) 79%, rgba(6,7,5,.16) 86%, rgba(6,7,5,.07) 93%, rgba(6,7,5,0) 100%)}
+
+  /* sem foto, um brilho discreto no canto evita o retângulo chapado */
+  .brilho{position:absolute;right:-180px;top:-180px;width:620px;height:620px;border-radius:50%;
+    background:radial-gradient(circle,rgba(215,255,71,.10) 0%,rgba(215,255,71,0) 68%)}
+
+  .conteudo{position:relative;height:100%;padding:68px 72px;display:flex;flex-direction:column;
+    justify-content:space-between;max-width:760px}
+
+  .marca{display:flex;align-items:center;gap:14px}
+  .marca img{width:44px;height:44px}
+  .marca span{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em}
+
+  /* [hidden] é estilo do navegador e perde para a classe: precisa ser explícito */
+  [hidden]{display:none !important}
+
+  .tag{display:inline-block;align-self:flex-start;font-size:14px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--lime);
+    border:1px solid rgba(215,255,71,.34);border-radius:999px;padding:9px 18px;margin-bottom:22px}
+
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.032em;line-height:1.04;
+    font-size:60px;text-wrap:balance}
+  h1.longo{font-size:50px}
+  h1.muito-longo{font-size:43px}
+
+  .com{margin-top:20px;font-size:21px;color:var(--mute);line-height:1.4}
+  .com b{color:var(--text);font-weight:600}
+
+  .rodape{display:flex;align-items:baseline;gap:16px}
+  .preco{font-family:var(--display);font-weight:700;font-size:34px;color:var(--lime);letter-spacing:-.02em}
+  .parcela{font-size:17px;color:var(--mute)}
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="brilho" id="brilho"></div>
+    <div class="foto" id="foto" hidden><img id="fotoImg" alt=""></div>
+    <div class="conteudo">
+      <div class="marca">
+        <img src="../assets/icone/icone-512.png" alt="">
+        <span>TotalFut</span>
+      </div>
+      <div>
+        <span class="tag" id="tag" hidden></span>
+        <h1 id="titulo"></h1>
+        <p class="com" id="com"></p>
+      </div>
+      <div class="rodape">
+        <span class="preco" id="preco"></span>
+        <span class="parcela" id="parcela"></span>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  const põe = (id, valor) => {
+    const el = document.getElementById(id);
+    if (valor) { el.innerHTML = valor; el.hidden = false; } else { el.hidden = true; }
+  };
+
+  const titulo = q.get('t') || 'Cursos e eventos avançados para profissionais do futebol';
+  const h1 = document.getElementById('titulo');
+  h1.textContent = titulo;
+  // o título manda no tamanho: três faixas em vez de encolher sem critério
+  if (titulo.length > 62) h1.className = 'muito-longo';
+  else if (titulo.length > 38) h1.className = 'longo';
+
+  põe('tag', q.get('tag'));
+  põe('com', q.get('c'));
+  põe('preco', q.get('p'));
+  põe('parcela', q.get('parc'));
+
+  const foto = q.get('f');
+  if (foto) {
+    document.getElementById('fotoImg').src = '../' + foto;
+    if (q.get('pos')) document.getElementById('foto').style.setProperty('--pos', q.get('pos'));
+    document.getElementById('foto').hidden = false;
+    document.getElementById('brilho').hidden = true;
+  }
+</script>
+</body>
+</html>
