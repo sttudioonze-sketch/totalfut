@@ -580,8 +580,30 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
   .hero__inner h1{font-size:clamp(24px,4.2vw,36px);max-width:24ch}
   .hero__inner .lede{font-size:14px;max-width:60ch}
 }
+/* No celular a hero sai de dentro da miniatura da capa: começa com a mesma
+   linguagem de cartão — cantos arredondados, fio de borda, sombra — e perde
+   a moldura conforme toma a tela. --abre nasce em 1 (hero normal), então
+   sem script, ou com movimento reduzido, não sobra nenhum resto de moldura. */
+.hero{--abre:1}
+@media(max-width:979px){
+  .hero{
+    transform:scale(calc(.93 + .07*var(--abre)));
+    transform-origin:50% 0;
+    border-radius:calc(20px*(1 - var(--abre)));
+    box-shadow:0 34px 64px -30px rgba(0,0,0,calc(.92*(1 - var(--abre))));
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    border:1px solid rgba(255,255,255,calc(.14*(1 - var(--abre))));
+    border-radius:inherit;
+  }
+  .capa__tela{transform-origin:50% 100%}
+}
+
 @media(prefers-reduced-motion:reduce){
   .atmo__grao,.capa__simbolo .marca{animation:none}
+  .hero{transform:none;border-radius:0;box-shadow:none}
+  .hero::before{display:none}
 }
 
 /* ---------- grid de features ---------- */
@@ -3102,10 +3124,11 @@ footer.site .wrap{position:relative;z-index:1}
     const palavra = capa.querySelector('.capa__palavra');
     const simbolo = capa.querySelector('.capa__simbolo');
     const pe      = capa.querySelector('.capa__pe');
-    const role    = capa.querySelector('.capa__role');
+    const role    = capa.querySelector('.capa__rolar');
     const atmo    = capa.querySelector('.atmo');
     const fundo   = null;
     const tela = capa.querySelector('.capa__tela');
+    const hero = document.querySelector('.hero');
     const camadas = [palavra, simbolo, pe, role, atmo, tela].filter(Boolean);
     const reduz = matchMedia('(prefers-reduced-motion:reduce)');
     let pedido = false;
@@ -3125,6 +3148,7 @@ footer.site .wrap{position:relative;z-index:1}
       pedido = false;
       if (reduz.matches){
         camadas.forEach(function(e){ e.style.transform = ''; e.style.opacity = ''; });
+        if (hero) hero.style.removeProperty('--abre');
         return;
       }
       /* No desktop a capa é um palco preso e o percurso é a sobra de altura.
@@ -3148,10 +3172,34 @@ footer.site .wrap{position:relative;z-index:1}
       simbolo.style.transform = 'translate3d(0,' + (-16 * p * f).toFixed(1) + 'px,0) scale(' + (1 + p * 0.55 * f).toFixed(4) + ')';
       simbolo.style.opacity   = trava((1 - p) / foco).toFixed(3);
       atmo.style.transform    = 'translate3d(0,' + (-70 * p * f).toFixed(1) + 'px,0)';
-      const sai = trava(1 - p * some).toFixed(3);
-      if (pe)   pe.style.opacity = sai;
-      if (role) role.style.opacity = sai;
-      if (tela) { tela.style.opacity = sai; tela.style.transform = 'translate3d(0,' + (34 * p).toFixed(1) + 'px,0)'; }
+      const sai = trava(1 - p * some);
+      if (pe)   pe.style.opacity = sai.toFixed(3);
+      if (role) role.style.opacity = sai.toFixed(3);
+
+      if (telaCheia){
+        if (hero) hero.style.removeProperty('--abre');
+        if (tela){
+          tela.style.opacity = sai.toFixed(3);
+          tela.style.transform = 'translate3d(0,' + (34 * p).toFixed(1) + 'px,0)';
+        }
+        return;
+      }
+
+      /* No celular a miniatura não some sozinha: ela entrega o lugar à hero.
+         Os dois saem do mesmo número — quanto o topo da hero já subiu —, de
+         modo que a moldura da miniatura se desfaz no mesmo quadro em que a
+         da hero se abre, e o olho lê um objeto só crescendo. */
+      if (!hero) return;
+      const topo = hero.getBoundingClientRect().top;
+      const abre = trava((innerHeight * 0.86 - topo) / (innerHeight * 0.60));
+      hero.style.setProperty('--abre', abre.toFixed(3));
+      if (tela){
+        /* aqui a miniatura não acompanha o resto da capa: ela só se apaga
+           quando a hero começa a abrir, senão sobra um trecho de rolagem
+           com a capa vazia e a hero ainda fechada */
+        tela.style.opacity   = trava(1 - abre * 1.45).toFixed(3);
+        tela.style.transform = 'scale(' + (1 + abre * 0.13).toFixed(4) + ')';
+      }
     }
     function pedir(){ if (!pedido){ pedido = true; requestAnimationFrame(desenhar); } }
     addEventListener('scroll', pedir, { passive:true });
