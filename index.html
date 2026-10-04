@@ -494,9 +494,11 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
     position:static;display:grid;gap:clamp(22px,3.6vh,38px);
     padding:clamp(26px,4.5vh,48px) var(--pad) 0;
   }
-  .capa__pe,.capa__tela,.capa__rolar{position:static;transform:none}
+  .capa__pe,.capa__rolar{position:static;transform:none}
   .capa__pe{bottom:auto;left:auto;max-width:none}
-  .capa__tela{display:block;width:100%;right:auto;bottom:auto}
+  /* a miniatura é um recurso de tela larga: no celular ela ocupava quase a
+     largura toda e deixava de parecer uma telinha, virando mais um bloco */
+  .capa__tela{display:none}
   .capa__rolar{justify-items:center;bottom:auto;left:auto}
   .capa__rolar i{height:28px}
 }
@@ -597,7 +599,6 @@ button[aria-selected="true"] .rosto-sigla{color:var(--lime-ink);background:rgba(
     border:1px solid rgba(255,255,255,calc(.14*(1 - var(--abre))));
     border-radius:inherit;
   }
-  .capa__tela{transform-origin:50% 100%}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -3185,21 +3186,12 @@ footer.site .wrap{position:relative;z-index:1}
         return;
       }
 
-      /* No celular a miniatura não some sozinha: ela entrega o lugar à hero.
-         Os dois saem do mesmo número — quanto o topo da hero já subiu —, de
-         modo que a moldura da miniatura se desfaz no mesmo quadro em que a
-         da hero se abre, e o olho lê um objeto só crescendo. */
+      /* No celular não há miniatura: a hero é que faz a entrada, abrindo a
+         partir da moldura de cartão conforme o topo dela sobe na tela. */
       if (!hero) return;
       const topo = hero.getBoundingClientRect().top;
       const abre = trava((innerHeight * 0.86 - topo) / (innerHeight * 0.60));
       hero.style.setProperty('--abre', abre.toFixed(3));
-      if (tela){
-        /* aqui a miniatura não acompanha o resto da capa: ela só se apaga
-           quando a hero começa a abrir, senão sobra um trecho de rolagem
-           com a capa vazia e a hero ainda fechada */
-        tela.style.opacity   = trava(1 - abre * 1.45).toFixed(3);
-        tela.style.transform = 'scale(' + (1 + abre * 0.13).toFixed(4) + ')';
-      }
     }
     function pedir(){ if (!pedido){ pedido = true; requestAnimationFrame(desenhar); } }
     addEventListener('scroll', pedir, { passive:true });
