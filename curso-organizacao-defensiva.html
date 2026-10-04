@@ -538,6 +538,41 @@ header{
 .perfil__tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
 .perfil p{font-size:13.5px;line-height:1.55;color:#A7AE97}
 
+/* ---------- módulo que abre ----------
+   Vários módulos trazem uma lista de tópicos que estava enfileirada num
+   parágrafo só — justamente os mais densos ficavam os mais ilegíveis.
+   Em <details> a lista volta a ser lista, a contagem aparece fechada e
+   o cartão continua do mesmo tamanho. Sem script: é o mesmo recurso do
+   FAQ da página. */
+.item__det summary{
+  list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;outline-offset:4px}
+.item__det summary::-webkit-details-marker{display:none}
+.item__det summary h3{flex:1 1 auto}
+.item__conta{
+  flex:none;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);transition:color .18s}
+.item__seta{
+  flex:none;width:15px;height:15px;fill:none;stroke:var(--dim);stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .22s,stroke .18s;align-self:center}
+.item__det[open] .item__seta{transform:rotate(180deg)}
+.item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
+.item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
+/* O tópico era um traço discreto em cinza: sumia, e justamente onde o
+   volume é o argumento. Vira linha numerada com fio — a contagem fica
+   visível enquanto se lê, não só no rótulo fechado. E como 45% dos
+   tópicos já vêm como "Escanteio direto | formação em I", o que vem
+   antes da barra assume o peso e o resto fica como qualificador. */
+.item__lista{list-style:none;margin:15px 0 0;padding:0;border-top:1px solid var(--hair)}
+.item__lista li{
+  display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair)}
+.sub__n{
+  color:var(--lime);font-family:var(--display);font-weight:700;font-size:11px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.sub__t{font-size:14px;line-height:1.45;color:#AEB69E}
+.sub__t b{font-weight:600;color:var(--text)}
+@media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
+
 /* ---------- diagrama didático ----------
    A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
    estrutura do raio de ação — que existem zonas e que elas se movem —
@@ -1140,10 +1175,10 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Abertura <span class="item__tempo">1:57</span></h3><p>A proposta do curso: sair do modelo convencional e tratar o detalhe que costuma escapar do debate.</p></div></div>
         <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>Apresentação profissional <span class="item__tempo">1:00</span></h3><p>Quem conduz o curso e a trajetória que sustenta o que vem a seguir.</p></div></div>
         <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>Conteúdos <span class="item__tempo">2:32</span></h3><p>O mapa do percurso — por onde o curso passa, em que ordem e por quê.</p></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>Princípios estruturais de defesa e ataque <span class="item__tempo">6:40</span></h3><p>Posicionamento, cobertura, equilíbrio, compactação, flutuação, recuperação, bloco e direcionamento. Com os três princípios operacionais e a zona de finalização, o funil de onde sai mais de 90% dos gols.</p></div></div>
-        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Técnica e tática individual defensiva <span class="item__tempo">22:50</span></h3><p>O apoio de pé no duelo, a indução pela perna dominante, a leitura do salto de pressão, a pressão na trajetória de passe e defender a frente e as costas ao mesmo tempo.</p></div></div>
-        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Fase defensiva do Atlético de Madrid <span class="item__tempo">22:55</span></h3><p>Por que a equipe não sobe, como fecha o centro com os pontas por dentro, como sustenta as distâncias quando a bola entra e o que o direcionamento provoca no adversário.</p></div></div>
-        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Dinâmicas de organização defensiva <span class="item__tempo">25:30</span></h3><p>Bloco médio, pressão alta, subida de pressão, pressão continuada e encaixes individuais — o que cada escolha custa, lida em Liverpool, City, Bayern e Real Madrid.</p></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>Princípios estruturais de defesa e ataque <span class="item__tempo">6:40</span></h3><span class="item__conta">8 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>Com os três princípios operacionais e a zona de finalização — o funil de onde sai mais de 90% dos gols.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Posicionamento</span></li><li><span class="sub__n">02</span><span class="sub__t">Cobertura</span></li><li><span class="sub__n">03</span><span class="sub__t">Equilíbrio</span></li><li><span class="sub__n">04</span><span class="sub__t">Compactação</span></li><li><span class="sub__n">05</span><span class="sub__t">Flutuação</span></li><li><span class="sub__n">06</span><span class="sub__t">Recuperação</span></li><li><span class="sub__n">07</span><span class="sub__t">Bloco</span></li><li><span class="sub__n">08</span><span class="sub__t">Direcionamento</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e tática individual defensiva <span class="item__tempo">22:50</span></h3><span class="item__conta">5 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">O apoio de pé no duelo</span></li><li><span class="sub__n">02</span><span class="sub__t">A indução pela perna dominante</span></li><li><span class="sub__n">03</span><span class="sub__t">A leitura do salto de pressão</span></li><li><span class="sub__n">04</span><span class="sub__t">A pressão na trajetória de passe</span></li><li><span class="sub__n">05</span><span class="sub__t">Defender a frente e as costas ao mesmo tempo</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><details class="item__det"><summary><h3>Fase defensiva do Atlético de Madrid <span class="item__tempo">22:55</span></h3><span class="item__conta">4 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Por que a equipe não sobe</span></li><li><span class="sub__n">02</span><span class="sub__t">Como fecha o centro com os pontas por dentro</span></li><li><span class="sub__n">03</span><span class="sub__t">Como sustenta as distâncias quando a bola entra</span></li><li><span class="sub__n">04</span><span class="sub__t">O que o direcionamento provoca no adversário</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><details class="item__det"><summary><h3>Dinâmicas de organização defensiva <span class="item__tempo">25:30</span></h3><span class="item__conta">5 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>O que cada escolha custa, lida em Liverpool, City, Bayern e Real Madrid.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Bloco médio</span></li><li><span class="sub__n">02</span><span class="sub__t">Pressão alta</span></li><li><span class="sub__n">03</span><span class="sub__t">Subida de pressão</span></li><li><span class="sub__n">04</span><span class="sub__t">Pressão continuada</span></li><li><span class="sub__n">05</span><span class="sub__t">Encaixes individuais</span></li></ul></details></div></div>
       </div>
 
       <div class="diagrama revela">
