@@ -1,0 +1,19 @@
+# Material de trabalho que vive no repositório mas não é o site.
+# Em host estático tudo que sobe fica acessível por URL: estes ficam de fora.
+
+PROJETO.md
+TotalFut-Apresentacao.pdf
+PALETA DE CORES.jpg
+REF DE DESIGN *.jpg
+REF DE HERO.jpg
+LOGOS  HORIZONTAIS/
+LOGOS VERTICAIS/
+
+# ferramenta interna de geração de card social
+ferramentas/
+
+# página sem link no site, ainda em rascunho
+apresentacao-palestrante.html
+
+backup-*.zip
+.DS_Store
