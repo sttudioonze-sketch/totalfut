@@ -538,6 +538,41 @@ header{
 .perfil__tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
 .perfil p{font-size:13.5px;line-height:1.55;color:#A7AE97}
 
+/* ---------- módulo que abre ----------
+   Vários módulos trazem uma lista de tópicos que estava enfileirada num
+   parágrafo só — justamente os mais densos ficavam os mais ilegíveis.
+   Em <details> a lista volta a ser lista, a contagem aparece fechada e
+   o cartão continua do mesmo tamanho. Sem script: é o mesmo recurso do
+   FAQ da página. */
+.item__det summary{
+  list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;outline-offset:4px}
+.item__det summary::-webkit-details-marker{display:none}
+.item__det summary h3{flex:1 1 auto}
+.item__conta{
+  flex:none;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);transition:color .18s}
+.item__seta{
+  flex:none;width:15px;height:15px;fill:none;stroke:var(--dim);stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .22s,stroke .18s;align-self:center}
+.item__det[open] .item__seta{transform:rotate(180deg)}
+.item__det summary:hover .item__conta,.item__det[open] .item__conta{color:var(--lime)}
+.item__det summary:hover .item__seta,.item__det[open] .item__seta{stroke:var(--lime)}
+/* O tópico era um traço discreto em cinza: sumia, e justamente onde o
+   volume é o argumento. Vira linha numerada com fio — a contagem fica
+   visível enquanto se lê, não só no rótulo fechado. E como 45% dos
+   tópicos já vêm como "Escanteio direto | formação em I", o que vem
+   antes da barra assume o peso e o resto fica como qualificador. */
+.item__lista{list-style:none;margin:15px 0 0;padding:0;border-top:1px solid var(--hair)}
+.item__lista li{
+  display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair)}
+.sub__n{
+  color:var(--lime);font-family:var(--display);font-weight:700;font-size:11px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.sub__t{font-size:14px;line-height:1.45;color:#AEB69E}
+.sub__t b{font-weight:600;color:var(--text)}
+@media(prefers-reduced-motion:reduce){.item__seta{transition:none}}
+
 /* ---------- diagrama didático ----------
    A página conta o que o curso cobre; o diagrama mostra. Aqui ele dá a
    estrutura do raio de ação — que existem zonas e que elas se movem —
@@ -601,25 +636,27 @@ header{
 /* a frase que organiza o curso inteiro, logo abaixo da oferta: é a tese
    que separa este curso do debate comum sobre bloco alto e bloco baixo */
 .tese{
-  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
-  border:1px solid var(--vidro-borda);border-left:2px solid var(--lime);
-  box-shadow:var(--vidro-sombra);border-radius:var(--r);
-  padding:clamp(24px,3vw,36px) clamp(24px,3.4vw,44px);
-  display:flex;flex-direction:column;gap:12px;max-width:860px;margin-inline:auto;
+  position:relative;max-width:920px;margin-inline:auto;
+  padding-top:clamp(52px,6.4vw,92px);
+  display:flex;flex-direction:column;gap:clamp(16px,2vw,24px);
+  align-items:center;text-align:center;
+}
+/* a aspa é o único ornamento: grande, atrás da frase e quase apagada */
+.tese::before{
+  content:"\201C";position:absolute;left:50%;top:0;transform:translateX(-50%);
+  font-family:var(--display);font-weight:800;line-height:.78;
+  font-size:clamp(104px,13vw,186px);color:var(--lime);opacity:.17;
+  pointer-events:none;user-select:none;
 }
 .tese p{
-  font-family:var(--display);font-size:clamp(18px,2.1vw,25px);font-weight:600;
-  line-height:1.38;letter-spacing:-.022em;color:var(--text);text-wrap:balance;margin:0;
+  font-family:var(--display);font-size:clamp(21px,2.7vw,34px);font-weight:700;
+  line-height:1.26;letter-spacing:-.03em;color:var(--text);
+  text-wrap:balance;margin:0;max-width:26ch;
 }
-/* as equipes em etiquetas: a página já tem uma grade de oito cartões e
-   uma segunda competiria com ela */
-.princs{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
-.princ{
-  font-size:13px;font-weight:600;color:var(--mute);padding:8px 16px;border-radius:999px;
-  background:var(--vidro);border:1px solid var(--vidro-borda);
-  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+.tese span{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);
 }
-.tese span{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .item h3{font-size:16px}
 /* a duração ao lado do nome do módulo: o aluno escolhe por onde voltar
    e o tempo é parte dessa escolha */
@@ -1090,7 +1127,7 @@ footer.site .wrap{position:relative;z-index:1}
   <!-- A TESE -->
   <section style="padding-bottom:0">
     <div class="wrap">
-      <div class="tese luz entra">
+      <div class="tese entra">
         <p>A dinâmica da linha de defesa diz muito sobre uma equipe. É ela que dá a sustentação à proposta de jogo escolhida — do bloco baixo que protege o funil à linha alta que pressiona.</p>
         <span>A tese do curso</span>
       </div>
@@ -1137,11 +1174,11 @@ footer.site .wrap{position:relative;z-index:1}
       <div class="cobre revela">
         <div class="item luz"><div class="item__marca">01</div><div class="item__texto"><h3>Abertura + Apresentação <span class="item__tempo">3:32</span></h3><p>A proposta do curso e a trajetória de quem o conduz.</p></div></div>
         <div class="item luz"><div class="item__marca">02</div><div class="item__texto"><h3>Conteúdo <span class="item__tempo">2:52</span></h3><p>O mapa do percurso — por onde o curso passa, em que ordem e por quê.</p></div></div>
-        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><h3>Técnica e Tática Individual na Linha de defesa <span class="item__tempo">35:12</span></h3><p>O comportamento e as ações técnicas de laterais e zagueiros: o tempo certo de sair da linha para pressionar, a orientação corporal e o momento de recuar. E como induzir o adversário para a lateral, bloqueando o cruzamento na perna não dominante e evitando o pênalti desnecessário.</p></div></div>
-        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><h3>O conceito de funil <span class="item__tempo">7:53</span></h3><p>A área central próxima à meia-lua, de onde sai mais de 90% dos gols: como estruturar o posicionamento na área e ajustar o corpo lateralmente para cortar cruzamentos.</p></div></div>
-        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><h3>Ações Desvantajosas <span class="item__tempo">12:38</span></h3><p>Estruturas e decisões que geram instabilidade — perder a referência do gol, desproteger o centro do campo e correr de costas em momento inadequado.</p></div></div>
-        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><h3>Controle da Profundidade <span class="item__tempo">11:38</span></h3><p>Proteger as costas e antecipar bolas longas: marcar por zona ou fazer encaixes individuais, e como coordenar a cobertura junto com o goleiro.</p></div></div>
-        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><h3>Linha de Defesa e Outras Linhas + Encerramento <span class="item__tempo">7:00</span></h3><p>Como a linha empurra o time inteiro e sustenta as distâncias de compactação com volantes e ataque — e por que é essa conexão que permite pressão agressiva.</p></div></div>
+        <div class="item luz"><div class="item__marca">03</div><div class="item__texto"><details class="item__det"><summary><h3>Técnica e Tática Individual na Linha de defesa <span class="item__tempo">35:12</span></h3><span class="item__conta">3 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>O comportamento e as ações técnicas de laterais e zagueiros: o tempo certo de sair da linha para pressionar, a orientação corporal e o momento de recuar. E como induzir o adversário para a lateral, bloqueando o cruzamento na perna não dominante e evitando o pênalti desnecessário.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Comportamento e ações técnicas de laterais e zagueiros</span></li><li><span class="sub__n">02</span><span class="sub__t">O tempo de sair da linha, a orientação corporal e o momento de recuar</span></li><li><span class="sub__n">03</span><span class="sub__t"><b>Induzir para a lateral</b> · bloquear o cruzamento na perna não dominante</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">04</div><div class="item__texto"><details class="item__det"><summary><h3>O conceito de funil <span class="item__tempo">7:53</span></h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>A área central próxima à meia-lua, de onde sai mais de 90% dos gols: como estruturar o posicionamento na área e ajustar o corpo lateralmente para cortar cruzamentos.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t"><b>A área central próxima à meia-lua</b> · de onde sai mais de 90% dos gols</span></li><li><span class="sub__n">02</span><span class="sub__t">Posicionamento dentro da área e ajuste do corpo para cortar o cruzamento</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">05</div><div class="item__texto"><details class="item__det"><summary><h3>Ações Desvantajosas <span class="item__tempo">12:38</span></h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>Estruturas e decisões que geram instabilidade — perder a referência do gol, desproteger o centro do campo e correr de costas em momento inadequado.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Estruturas e decisões que geram instabilidade</span></li><li><span class="sub__n">02</span><span class="sub__t">Perder a referência do gol, desproteger o centro e correr de costas</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">06</div><div class="item__texto"><details class="item__det"><summary><h3>Controle da Profundidade <span class="item__tempo">11:38</span></h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>Proteger as costas e antecipar bolas longas: marcar por zona ou fazer encaixes individuais, e como coordenar a cobertura junto com o goleiro.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">Proteger as costas e antecipar a bola longa</span></li><li><span class="sub__n">02</span><span class="sub__t"><b>Marcação por zona ou encaixe individual</b> · e a cobertura junto com o goleiro</span></li></ul></details></div></div>
+        <div class="item luz"><div class="item__marca">07</div><div class="item__texto"><details class="item__det"><summary><h3>Linha de Defesa e Outras Linhas + Encerramento <span class="item__tempo">7:00</span></h3><span class="item__conta">2 tópicos</span><svg class="item__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></summary><p>Como a linha empurra o time inteiro e sustenta as distâncias de compactação com volantes e ataque — e por que é essa conexão que permite pressão agressiva.</p><ul class="item__lista"><li><span class="sub__n">01</span><span class="sub__t">A linha empurra o time e sustenta as distâncias de compactação</span></li><li><span class="sub__n">02</span><span class="sub__t">A conexão que permite pressão agressiva sobre o adversário</span></li></ul></details></div></div>
       </div>
 
       <div class="diagrama revela">

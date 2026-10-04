@@ -601,25 +601,27 @@ header{
 /* a frase que organiza o curso inteiro, logo abaixo da oferta: é a tese
    que separa este curso do debate comum sobre bloco alto e bloco baixo */
 .tese{
-  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
-  border:1px solid var(--vidro-borda);border-left:2px solid var(--lime);
-  box-shadow:var(--vidro-sombra);border-radius:var(--r);
-  padding:clamp(24px,3vw,36px) clamp(24px,3.4vw,44px);
-  display:flex;flex-direction:column;gap:12px;max-width:860px;margin-inline:auto;
+  position:relative;max-width:920px;margin-inline:auto;
+  padding-top:clamp(52px,6.4vw,92px);
+  display:flex;flex-direction:column;gap:clamp(16px,2vw,24px);
+  align-items:center;text-align:center;
+}
+/* a aspa é o único ornamento: grande, atrás da frase e quase apagada */
+.tese::before{
+  content:"\201C";position:absolute;left:50%;top:0;transform:translateX(-50%);
+  font-family:var(--display);font-weight:800;line-height:.78;
+  font-size:clamp(104px,13vw,186px);color:var(--lime);opacity:.17;
+  pointer-events:none;user-select:none;
 }
 .tese p{
-  font-family:var(--display);font-size:clamp(18px,2.1vw,25px);font-weight:600;
-  line-height:1.38;letter-spacing:-.022em;color:var(--text);text-wrap:balance;margin:0;
+  font-family:var(--display);font-size:clamp(21px,2.7vw,34px);font-weight:700;
+  line-height:1.26;letter-spacing:-.03em;color:var(--text);
+  text-wrap:balance;margin:0;max-width:26ch;
 }
-/* as equipes em etiquetas: a página já tem uma grade de oito cartões e
-   uma segunda competiria com ela */
-.princs{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
-.princ{
-  font-size:13px;font-weight:600;color:var(--mute);padding:8px 16px;border-radius:999px;
-  background:var(--vidro);border:1px solid var(--vidro-borda);
-  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+.tese span{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);
 }
-.tese span{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .item h3{font-size:16px}
 /* a duração ao lado do nome do módulo: o aluno escolhe por onde voltar
    e o tempo é parte dessa escolha */
@@ -1090,8 +1092,8 @@ footer.site .wrap{position:relative;z-index:1}
   <!-- A TESE -->
   <section style="padding-bottom:0">
     <div class="wrap">
-      <div class="tese luz entra">
-        <p>“Defender bem não é defender alto nem defender baixo. Defender bem é gerar poucas situações de chance para o adversário.”</p>
+      <div class="tese entra">
+        <p>Defender bem não é defender alto nem defender baixo. Defender bem é gerar poucas situações de chance para o adversário.</p>
         <span>Leandro Zago, na abertura do curso</span>
       </div>
     </div>
