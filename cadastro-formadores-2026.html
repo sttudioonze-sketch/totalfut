@@ -1,0 +1,914 @@
+<script>
+/* marca antes de pintar: sem isto o conteúdo pisca antes de esconder */
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.js = '1';
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cadastro de formadores — TotalFut</title>
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="icon" href="assets/icone/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icone/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icone/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icone/apple-touch-icon.png">
+<link rel="manifest" href="assets/icone/site.webmanifest">
+<meta name="theme-color" content="#060705">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --void:#060705;
+  --card:#0F110C;
+  --hair:#23271A;
+  --hair-2:#2E3324;
+  --lime:#D7FF47;
+  --lime-2:#C5F132;
+  --lime-ink:#0A0C05;
+  --azul:#015AFF;
+  --azul-2:#2A72FF;
+  --text:#FFFFFF;
+  --mute:#9AA08C;
+  --dim:#676C5C;
+  --display:"Sora","Helvetica Neue",Arial,sans-serif;
+  --body:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+  /* mesmo sistema de vidro do Portfólio Digital */
+  --vidro-desfoque:blur(16px) saturate(180%);
+  --vidro:rgba(255,255,255,.08);
+  --vidro-borda:rgba(255,255,255,.16);
+  --vidro-sombra:0 8px 28px rgba(0,0,0,.18);
+
+  --r:16px;
+  --max:1120px;
+  --pad:clamp(20px,5vw,48px);
+}
+
+*{box-sizing:border-box}
+/* display:flex nos cartões vence o [hidden] padrão do navegador:
+   sem isto, esconder um card pelo atributo não esconde nada */
+[hidden]{display:none!important}
+body{margin:0;background:var(--void);color:var(--mute);font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+/* camada de cor ambiente: sem algo atrás, vidro em fundo escuro
+   vira apenas um cinza mais claro */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(46vw 40vw at 10% 14%, rgba(215,255,71,.14), transparent 62%),
+    radial-gradient(42vw 36vw at 90% 52%, rgba(1,90,255,.12), transparent 64%),
+    radial-gradient(40vw 36vw at 38% 94%, rgba(215,255,71,.10), transparent 62%);
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+::selection{background:var(--azul);color:#fff}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+section{padding-block:clamp(40px,5vw,64px);position:relative;overflow-x:clip}
+
+h1,h2,h3{font-family:var(--display);color:var(--text);margin:0;text-wrap:balance;letter-spacing:-.028em}
+h1{font-size:clamp(30px,4.4vw,50px);font-weight:700;line-height:1.05}
+h3{font-size:17px;font-weight:600;line-height:1.28;letter-spacing:-.014em}
+p{margin:0}
+.lede{font-size:clamp(15px,1.15vw,17px);line-height:1.65;color:var(--mute)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+  font-family:var(--body);font-size:14.5px;font-weight:600;
+  padding:13px 26px;border-radius:999px;border:1px solid transparent;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+/* o botão secundário vira vidro; o de compra fica opaco de propósito,
+   porque translúcido ele perde contraste e deixa de parecer clicável */
+.btn--wire{
+  border:1px solid var(--vidro-borda);color:var(--text);
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),var(--vidro-sombra);
+}
+.btn--wire:hover{border-color:rgba(215,255,71,.45);color:var(--lime);background:rgba(255,255,255,.12)}
+.btn--azul{
+  background:linear-gradient(180deg,rgba(42,114,255,.92),rgba(1,90,255,.78));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(255,255,255,.22);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--vidro-sombra);
+  padding:10px 18px;font-size:13.5px;white-space:nowrap;
+}
+.btn--azul:hover{background:linear-gradient(180deg,rgba(74,138,255,.96),rgba(20,104,255,.85));transform:translateY(-1px)}
+
+/* ---------- nav ---------- */
+header{
+  position:sticky;top:0;z-index:60;
+  background:linear-gradient(180deg,rgba(24,27,19,.70),rgba(12,14,10,.54));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-bottom:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),var(--vidro-sombra);
+}
+/* os focos ficam num elemento próprio: overflow no cabeçalho cortaria
+   o painel do menu, que é posicionado a partir dele */
+.barra-luz{position:absolute;left:0;right:0;top:0;height:66px;overflow:hidden;pointer-events:none}
+.barra-luz::before,.barra-luz::after{content:"";position:absolute;border-radius:50%;filter:blur(52px)}
+.barra-luz::before{width:280px;height:130px;left:-50px;top:-64px;background:rgba(215,255,71,.30)}
+.barra-luz::after{width:320px;height:140px;right:-70px;bottom:-76px;background:rgba(1,90,255,.28)}
+.nav{position:relative;z-index:1}
+.nav{display:flex;align-items:center;gap:26px;height:66px}
+.nav img{height:25px;width:auto;flex:none}
+.nav__links{display:none;gap:22px;margin-left:auto;font-size:13px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.nav__links a{white-space:nowrap;transition:color .16s ease}
+.nav__links a:hover{color:var(--lime)}
+.nav__right{display:none;align-items:center;gap:10px;margin-left:20px;padding-left:20px;
+  border-left:1px solid var(--hair)}
+
+/* área do aluno: azul sólido com texto branco (5,4:1) — separa entrar na conta de comprar */
+.btn--azul{
+  background:linear-gradient(180deg,rgba(42,114,255,.92),rgba(1,90,255,.78));
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid rgba(255,255,255,.22);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--vidro-sombra);
+  padding:10px 18px;font-size:13.5px;white-space:nowrap;
+}
+.btn--azul:hover{background:linear-gradient(180deg,rgba(74,138,255,.96),rgba(20,104,255,.85));transform:translateY(-1px)}
+.btn--azul svg{opacity:.85}
+
+/* controle segmentado: trilho rebaixado, inativo em círculo,
+   selecionado vira pílula e ganha o nome por extenso */
+.seg{
+  display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  padding:6px;border-radius:999px;flex:none;
+  background:linear-gradient(180deg,#0B0D08 0%,#13170C 100%);
+  border:1px solid #1C2015;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.65), 0 10px 26px rgba(0,0,0,.45);
+}
+.seg button{
+  height:44px;min-width:44px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  font-family:var(--body);font-size:14px;font-weight:600;color:#7C8270;white-space:nowrap;
+  background:linear-gradient(180deg,#15190F 0%,#0C0F08 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -3px 6px rgba(0,0,0,.45);
+  transition:background .26s ease,color .26s ease,box-shadow .26s ease,
+             padding .28s cubic-bezier(.3,.9,.3,1),gap .28s cubic-bezier(.3,.9,.3,1);
+}
+.seg button:hover{color:#AEB59C}
+.seg button svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.seg button span{max-width:0;overflow:hidden;opacity:0;
+  transition:max-width .28s cubic-bezier(.3,.9,.3,1),opacity .18s ease}
+.seg button[aria-selected="true"]{
+  padding-inline:20px 24px;gap:10px;color:var(--lime-ink);
+  background:linear-gradient(105deg,#E8FF8E 0%,#CFFB4E 44%,#A9E62B 100%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.65), inset 0 -4px 8px rgba(72,108,6,.38),
+             0 0 32px rgba(215,255,71,.24), 0 6px 16px rgba(0,0,0,.4);
+}
+.seg button[aria-selected="true"] svg{stroke-width:2}
+.seg button[aria-selected="true"] span{max-width:230px;opacity:1}
+
+/* filtro por profissional: inativo é só o rosto, selecionado ganha o nome */
+/* rosto e nome sempre visíveis: com sete professores, só a foto não
+   identifica quem é. O selecionado muda de cor, não de conteúdo. */
+.seg--rostos button{padding:0 18px 0 5px;gap:10px}
+.seg--rostos button img{
+  width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center 18%;
+  flex:none;filter:grayscale(1) contrast(1.05);opacity:.7;
+  transition:filter .26s ease,opacity .26s ease;
+}
+.seg--rostos button > svg{
+  width:34px;height:34px;padding:8px;border-radius:50%;box-sizing:border-box;
+  background:rgba(255,255,255,.07);
+}
+.seg--rostos button:hover img{opacity:.92}
+.seg--rostos button span{max-width:none;opacity:1;overflow:visible}
+.seg--rostos button[aria-selected="true"]{padding-inline:5px 20px;gap:10px}
+.seg--rostos button[aria-selected="true"] img{filter:none;opacity:1;box-shadow:0 0 0 2px rgba(10,12,5,.3)}
+.seg--rostos button[aria-selected="true"] > svg{background:rgba(10,12,5,.12)}
+
+.vazio{
+  margin-top:20px;padding:26px;border:1px dashed var(--hair-2);border-radius:16px;
+  text-align:center;font-size:14.5px;color:var(--mute);
+}
+.vazio[hidden]{display:none}
+.vazio button{
+  background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  color:var(--lime);text-decoration:underline;text-underline-offset:3px;
+}
+
+/* trilha de temas: rola no celular em vez de quebrar linha */
+.seg-trilha{display:flex;justify-content:safe center;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
+.seg-trilha::-webkit-scrollbar{display:none}
+
+/* idioma no cabeçalho: só as siglas, na altura dos outros controles */
+.seg--idioma button{height:36px;min-width:40px;font-size:12.5px;letter-spacing:.06em}
+.seg--idioma button[aria-selected="true"]{padding-inline:14px;gap:0}
+.seg--idioma button span{display:none}
+
+/* idioma no painel do celular: nomes por extenso, ocupando a largura */
+.menu .seg{display:flex;width:100%;margin-top:16px}
+.menu .seg button{flex:1;font-size:13px}
+.menu .seg button span{max-width:none;opacity:1;overflow:visible}
+
+.burger{
+  margin-left:auto;width:42px;height:42px;flex:none;cursor:pointer;
+  display:grid;place-content:center;gap:6px;
+  background:transparent;border:1px solid var(--hair-2);border-radius:11px;
+}
+.burger span{display:block;width:17px;height:1.6px;background:var(--text);border-radius:2px;
+  transition:transform .2s ease}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.8px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.8px) rotate(-45deg)}
+
+.menu{
+  position:absolute;left:0;right:0;top:100%;z-index:59;
+  background:var(--card);border-bottom:1px solid var(--hair);
+  padding:14px var(--pad) 22px;display:flex;flex-direction:column;gap:4px;
+}
+.menu[hidden]{display:none}
+.menu a{padding:13px 2px;font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text);border-bottom:1px solid var(--hair)}
+.menu .btn{margin-top:14px}
+/* cinco itens mais idioma e conta não cabem em 980 */
+@media(min-width:1080px){
+  .nav__links{display:flex}
+  .nav__right{display:flex}
+  .burger{display:none}
+  .menu{display:none}
+}
+
+
+/* ---------- topo ---------- */
+.topo{padding-block:clamp(40px,5.5vw,72px) clamp(24px,3vw,34px)}
+.topo__inner{display:flex;flex-direction:column;gap:14px;max-width:56ch}
+
+/* ---------- filtro ---------- */
+.seg{
+  display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  padding:6px;border-radius:999px;flex:none;
+  background:linear-gradient(180deg,#0B0D08 0%,#13170C 100%);
+  border:1px solid #1C2015;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.65), 0 10px 26px rgba(0,0,0,.45);
+}
+.seg button{
+  height:44px;min-width:44px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  font-family:var(--body);font-size:14px;font-weight:600;color:#7C8270;white-space:nowrap;
+  background:linear-gradient(180deg,#15190F 0%,#0C0F08 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -3px 6px rgba(0,0,0,.45);
+  transition:background .26s ease,color .26s ease,box-shadow .26s ease,
+             padding .28s cubic-bezier(.3,.9,.3,1),gap .28s cubic-bezier(.3,.9,.3,1);
+}
+.seg button:hover{color:#AEB59C}
+.seg button svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.seg button span{max-width:0;overflow:hidden;opacity:0;transition:max-width .28s cubic-bezier(.3,.9,.3,1),opacity .18s ease}
+.seg button[aria-selected="true"]{
+  padding-inline:20px 24px;gap:10px;color:var(--lime-ink);
+  background:linear-gradient(105deg,#E8FF8E 0%,#CFFB4E 44%,#A9E62B 100%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.65), inset 0 -4px 8px rgba(72,108,6,.38),
+             0 0 32px rgba(215,255,71,.24), 0 6px 16px rgba(0,0,0,.4);
+}
+.seg button[aria-selected="true"] svg{stroke-width:2}
+.seg button[aria-selected="true"] span{max-width:230px;opacity:1}
+.seg-trilha{display:flex;overflow-x:auto;padding-block:2px 6px;scrollbar-width:none}
+.seg-trilha::-webkit-scrollbar{display:none}
+
+/* ---------- matérias ---------- */
+.materias{display:grid;gap:14px;grid-template-columns:1fr;margin-top:26px}
+@media(min-width:700px){.materias{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.materias{grid-template-columns:repeat(3,1fr)}}
+.materia{
+  background:var(--vidro);backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);border-radius:var(--r);
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:border-color .2s ease,transform .2s ease;
+}
+.materia:hover{border-color:rgba(215,255,71,.3);transform:translateY(-3px)}
+.materia__capa{
+  aspect-ratio:16/10;border-bottom:1px solid var(--hair);
+  background:radial-gradient(120% 120% at 20% 0%, #1A1F12 0%, #0C0F08 70%);
+  display:grid;place-items:center;
+}
+.materia__capa svg{width:44%;height:auto;opacity:.16;stroke:var(--lime);fill:none;stroke-width:1.2}
+.materia__corpo{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.materia__tema{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.materia p{font-size:13.5px;line-height:1.5;color:#A7AE97}
+.materia__pe{
+  margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:12.5px;color:var(--dim);
+}
+
+.vazio{
+  margin-top:20px;padding:30px;border:1px dashed var(--hair-2);border-radius:16px;
+  text-align:center;font-size:14.5px;color:var(--mute);
+}
+.vazio[hidden]{display:none}
+.vazio button{background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- assinatura do estúdio ----------
+   Mora dentro do rodapé, entre a grade de links e a linha legal: um
+   cartão no mesmo sistema de vidro do site, que se destaca do fundo do
+   rodapé sem virar outra seção. Não usa lime nem o grifo de giz — os
+   dois são vocabulário da TotalFut, e repeti-los faria a assinatura do
+   estúdio parecer parte da marca do cliente. A ênfase vem da interação:
+   o fio que se desenha sob o nome quando o mouse chega. */
+.assina{
+  margin-top:30px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);
+  border-radius:16px;padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,28px);
+  display:grid;gap:16px;align-items:center;grid-template-columns:1fr}
+@media(min-width:900px){
+  .assina{grid-template-columns:auto 1fr auto;gap:clamp(22px,3.2vw,42px)}
+}
+.assina__rotulo{
+  font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:5px}
+.assina__marca{display:inline-block;text-decoration:none}
+.assina__nome{
+  font-family:var(--display);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(15.5px,1.35vw,18px);color:var(--text);display:block;line-height:1.1}
+.assina__nome em{font-style:normal;color:var(--mute);font-weight:600}
+.assina__fio{
+  display:block;height:1px;margin-top:6px;background:var(--text);
+  transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.22,1,.36,1)}
+.assina__marca:hover .assina__fio,
+.assina__marca:focus-visible .assina__fio{transform:scaleX(1)}
+.assina__pitch{
+  font-size:13px;line-height:1.55;color:var(--mute);max-width:44ch;margin:0}
+.assina__cta{
+  justify-self:start;display:inline-flex;align-items:center;gap:9px;
+  padding:10px 18px;border-radius:999px;text-decoration:none;
+  border:1px solid var(--vidro-borda);color:var(--text);
+  font-size:12.5px;font-weight:600;white-space:nowrap;
+  transition:border-color .2s,background .2s}
+@media(min-width:900px){.assina__cta{justify-self:end}}
+.assina__cta svg{
+  width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.assina__cta:hover,.assina__cta:focus-visible{
+  border-color:rgba(255,255,255,.36);background:rgba(255,255,255,.07)}
+.assina__cta:hover svg{transform:translateX(3px)}
+@media(prefers-reduced-motion:reduce){
+  .assina__fio,.assina__cta svg{transition:none}
+}
+
+/* ---------- Academy em produção ----------
+   Enquanto não há matéria publicada, a página mostra um aviso único em vez
+   de uma grade de espaços reservados. Sem filtro e sem botão: não há para
+   onde mandar o visitante ainda. */
+.aviso-breve{
+  max-width:720px;margin-inline:auto;text-align:center;
+  border-radius:var(--r);padding:clamp(30px,4.6vw,56px) clamp(22px,4vw,48px);
+}
+.aviso-breve__selo{
+  display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--lime);border:1px solid rgba(215,255,71,.35);
+  border-radius:999px;padding:6px 14px;margin-bottom:18px;
+}
+.aviso-breve h2{font-size:clamp(23px,2.8vw,34px);margin-bottom:14px}
+.aviso-breve p{font-size:15px;line-height:1.7;color:var(--mute);margin:0 auto;max-width:56ch}
+
+/* ---------- rodapé ---------- */
+footer.site{
+  position:relative;overflow:hidden;padding-block:48px 28px;
+  background:var(--vidro);
+  backdrop-filter:var(--vidro-desfoque);-webkit-backdrop-filter:var(--vidro-desfoque);
+  border-top:1px solid var(--vidro-borda);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+}
+footer.site::before,footer.site::after{content:"";position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none}
+footer.site::before{width:380px;height:200px;left:-80px;top:-90px;background:rgba(215,255,71,.22)}
+footer.site::after{width:340px;height:190px;right:-70px;bottom:-100px;background:rgba(1,90,255,.20)}
+footer.site .wrap{position:relative;z-index:1}
+/* colunas alinhadas pelo topo: sem isto o bloco da marca centraliza o
+   próprio conteúdo e desalinha com os títulos das outras colunas */
+.foot{display:grid;gap:30px 44px;grid-template-columns:1fr;align-items:start}
+@media(min-width:820px){.foot{grid-template-columns:1.1fr .5fr .85fr .5fr}}
+.foot__marca{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.foot__marca img{height:88px;width:auto;flex:none}
+.foot__marca p{flex:1 1 260px;min-width:0}
+.foot h4{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:0 0 15px;font-family:var(--body)}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:14px;color:var(--mute)}
+.foot a:hover{color:var(--lime)}
+.redes{display:flex;gap:10px;margin-top:0;flex-wrap:wrap}
+.redes a{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--vidro);border:1px solid var(--vidro-borda);color:var(--mute);
+  transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.redes a:hover{color:var(--lime);border-color:rgba(215,255,71,.45);background:rgba(215,255,71,.08);transform:translateY(-2px)}
+.redes svg{width:18px;height:18px;fill:currentColor}
+@media(max-width:819px){
+  .redes{justify-content:center}
+  .foot__marca{flex-direction:column;align-items:center;text-align:center;gap:14px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  /* empilhado, gap sozinho não separa: cada bloco ganha um filete acima */
+  .foot{gap:0}
+  .foot > * + *{margin-top:26px;padding-top:26px;border-top:1px solid var(--hair)}
+
+  /* centralizado, as redes sobem para logo abaixo do logo e formam um
+     bloco de identidade só com ele: sem filete e sem rótulo no meio */
+  .foot__marca{order:0}
+  .foot__redes{order:1}
+  .foot > :not(.foot__marca):not(.foot__redes){order:2}
+  .foot > .foot__redes{margin-top:16px;padding-top:0;border-top:0}
+  .foot__redes h4{display:none}
+}
+
+.foot__legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
+  gap:8px 22px;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#565B4B}
+
+/* três itens não cabem numa linha de celular: o crédito do estúdio desce
+   sozinho e o par de sempre — copyright e domínio — fica junto em cima */
+@media(max-width:819px){
+  .foot__legal{justify-content:center;text-align:center;gap:6px 22px}
+  .foot__legal > :nth-child(2){order:1;flex-basis:100%}
+}
+
+.nota{border:1px dashed var(--hair-2);background:#0C0E08;border-radius:12px;padding:16px 20px;
+  font-size:13px;line-height:1.65;color:var(--dim);margin-top:26px}
+.nota b{color:var(--lime);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+
+
+/* ==================== grade de telas ==================== */
+@media(min-width:1600px){
+  :root{--max:1320px;--pad:72px}
+  h1{font-size:clamp(40px,3.4vw,62px)}
+  .lede{font-size:18px}
+  .materias{gap:18px}
+}
+@media(min-width:768px) and (max-width:1079px){
+  .materias{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:767px){
+  section{padding-block:clamp(40px,9vw,58px)}
+  .seg-trilha{justify-content:flex-start}
+  .materia h3,.materia__tema{text-align:center}
+  .materia__corpo{align-items:center;text-align:center}
+  .foot{gap:20px;flex-direction:column;text-align:center}
+  .foot__marca{flex-direction:column;align-items:center;gap:12px}
+  .foot__marca p{flex:0 1 auto}
+  .foot__marca img{height:72px}
+  .foot__links{justify-content:center}
+}
+
+/* ==================== efeitos ====================
+   Só entram quando há JS e o visitante não pediu menos movimento.
+   Sem JS, ou com prefers-reduced-motion, tudo nasce visível e parado. */
+
+/* 1. entrada orquestrada do topo: um momento só, na ordem de leitura */
+[data-js] .entra{opacity:0;transform:translateY(13px)}
+[data-js] .entra.dentro{
+  opacity:1;transform:none;
+  transition:opacity .55s cubic-bezier(.2,.7,.3,1) var(--atraso,0s),
+             transform .55s cubic-bezier(.2,.7,.3,1) var(--atraso,0s);
+}
+
+/* 2. revelação em cascata, só nas grades */
+[data-js] .revela > *{opacity:0;transform:translateY(16px)}
+[data-js] .revela.dentro > *{
+  opacity:1;transform:none;
+  transition:opacity .5s cubic-bezier(.2,.7,.3,1), transform .5s cubic-bezier(.2,.7,.3,1);
+}
+[data-js] .revela.dentro > :nth-child(2){transition-delay:.06s}
+[data-js] .revela.dentro > :nth-child(3){transition-delay:.12s}
+[data-js] .revela.dentro > :nth-child(4){transition-delay:.18s}
+[data-js] .revela.dentro > :nth-child(5){transition-delay:.24s}
+[data-js] .revela.dentro > :nth-child(6){transition-delay:.30s}
+[data-js] .revela.dentro > :nth-child(7){transition-delay:.36s}
+[data-js] .revela.dentro > :nth-child(8){transition-delay:.42s}
+
+/* 3. luz de refletor seguindo o cursor sobre os cartões */
+.luz{position:relative}
+.luz::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;z-index:3;opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),
+             rgba(215,255,71,.085), rgba(215,255,71,0) 62%);
+}
+.luz:hover::after{opacity:1}
+@media(hover:none){.luz::after{content:none}}
+
+/* 4. brilho varrendo o botão de compra ao passar o mouse */
+.btn--lime{position:relative;overflow:hidden;isolation:isolate}
+.btn--lime::after{
+  content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;width:40%;left:-50%;
+  transform:skewX(-15deg);pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+}
+.btn--lime:hover::after{animation:varredura .8s cubic-bezier(.3,.7,.4,1)}
+@keyframes varredura{from{left:-50%}to{left:120%}}
+
+@media(prefers-reduced-motion:reduce){
+  .btn--lime:hover::after{animation:none}
+  .luz::after{content:none}
+}
+
+/* ---------- formulário ----------
+   Campos com o mesmo vidro das caixas do site. A borda muda de cor no foco
+   em vez de ganhar contorno do sistema, que destoaria do resto. */
+.form{display:grid;gap:clamp(18px,2.2vw,26px);max-width:760px}
+.campos{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:720px){
+  .campos{grid-template-columns:repeat(2,1fr)}
+  .campo--largo{grid-column:1/-1}
+}
+.campo{display:flex;flex-direction:column;gap:7px;min-width:0}
+.campo label{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--mute)}
+.campo label .req{color:var(--lime);margin-left:3px}
+.campo input,.campo select,.campo textarea{
+  width:100%;font:inherit;font-size:15px;color:var(--text);
+  background:rgba(255,255,255,.05);border:1px solid var(--hair-2);border-radius:12px;
+  padding:13px 14px;transition:border-color .18s ease,background .18s ease;
+  -webkit-appearance:none;appearance:none;
+}
+.campo textarea{min-height:120px;resize:vertical;line-height:1.55}
+.campo select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%239AA08C' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:12px;
+  padding-right:38px;cursor:pointer;
+}
+.campo input::placeholder,.campo textarea::placeholder{color:var(--dim)}
+.campo input:focus,.campo select:focus,.campo textarea:focus{
+  outline:none;border-color:var(--lime);background:rgba(255,255,255,.07);
+}
+.campo input:focus-visible,.campo select:focus-visible,.campo textarea:focus-visible{
+  outline:2px solid var(--lime);outline-offset:2px;
+}
+/* o aviso de erro só aparece depois de uma tentativa de envio: validar
+   enquanto a pessoa ainda digita acusa campo vazio que ela ia preencher */
+.campo__erro{font-size:12.5px;color:#FF8B6B;display:none}
+.form[data-tentou] .campo:has(:invalid) .campo__erro{display:block}
+.form[data-tentou] .campo:has(:invalid) input,
+.form[data-tentou] .campo:has(:invalid) select,
+.form[data-tentou] .campo:has(:invalid) textarea{border-color:#FF8B6B}
+
+.form__pe{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.form__nota{font-size:13px;color:var(--dim);max-width:46ch;line-height:1.5}
+.form__estado{font-size:14px;line-height:1.5}
+.form__estado[data-tipo="erro"]{color:#FF8B6B}
+.form__estado[data-tipo="indo"]{color:var(--mute)}
+.btn[disabled]{opacity:.55;pointer-events:none}
+
+/* confirmação: substitui o formulário, não empurra ele para baixo */
+.obrigado{
+  display:none;background:var(--card);border:1px solid var(--hair-2);border-radius:var(--r);
+  padding:clamp(28px,4vw,44px);max-width:620px;
+}
+.obrigado h2{margin:0 0 10px}
+.obrigado p{margin:0;color:var(--mute);line-height:1.6}
+.enviado .form{display:none}
+.enviado .obrigado{display:block}
+</style>
+
+<header>
+  <div class="barra-luz" aria-hidden="true"></div>
+  <nav class="nav wrap" aria-label="Principal">
+    <a href="index.html"><img src="assets/logo-horizontal-branco.svg" alt="TotalFut"></a>
+
+    <div class="nav__links">
+      <a href="index.html#professores">Professores</a>
+      <a href="index.html#cursos">Cursos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#academy">TotalFut Academy</a>
+      <a href="index.html#suporte">Suporte</a>
+    </div>
+
+    <div class="nav__right">
+
+      <a class="btn btn--azul" href="https://dashboard.kiwify.com/login/?lang=pt" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
+        </svg>
+        Área do aluno
+      </a>
+    </div>
+
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="menu" id="menu" hidden>
+    <a href="index.html#professores" data-i18n="t4">Professores</a>
+    <a href="index.html#cursos" data-i18n="t5">Cursos</a>
+    <a href="index.html#sobre" data-i18n="t6">Sobre</a>
+    <a href="index.html#academy" data-i18n="t7">TotalFut Academy</a>
+    <a href="index.html#suporte" data-i18n="t8">Suporte</a>
+    <a class="btn btn--azul" href="https://dashboard.kiwify.com/login/?lang=pt" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-3"/><path d="M6.5 11L9.5 8 6.5 5"/><path d="M9.5 8H2"/>
+      </svg>
+      Área do aluno
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="topo">
+    <div class="wrap topo__inner">
+      <h1 class="entra" style="--atraso:.05s">Cadastro de formadores.</h1>
+      <p class="lede entra" style="--atraso:.14s">Se você trabalha no futebol e tem conhecimento que se aplica no dia a dia de quem treina e joga, conte o que faz. Lemos tudo e respondemos os cadastros que tiverem aderência com o que publicamos.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap" id="bloco">
+
+      <form class="form entra" style="--atraso:.22s" id="cadastro" novalidate>
+        <div class="campos">
+
+          <div class="campo">
+            <label for="nome">Nome completo<span class="req" aria-hidden="true">*</span></label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required>
+            <span class="campo__erro">Preencha seu nome.</span>
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail<span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <span class="campo__erro">Confira o e-mail.</span>
+          </div>
+
+          <div class="campo">
+            <label for="whatsapp">WhatsApp<span class="req" aria-hidden="true">*</span></label>
+            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel"
+                   placeholder="+55 51 99999-0000" required>
+            <span class="campo__erro">Preencha um número com DDD.</span>
+          </div>
+
+          <div class="campo">
+            <label for="local">Cidade e país<span class="req" aria-hidden="true">*</span></label>
+            <input id="local" name="local" type="text" placeholder="Porto Alegre, Brasil" required>
+            <span class="campo__erro">Preencha cidade e país.</span>
+          </div>
+
+          <div class="campo">
+            <label for="clube">Clube ou instituição atual</label>
+            <input id="clube" name="clube" type="text" placeholder="Se não estiver vinculado, deixe em branco">
+          </div>
+
+          <div class="campo">
+            <label for="funcao">Função<span class="req" aria-hidden="true">*</span></label>
+            <input id="funcao" name="funcao" type="text" placeholder="Treinador, analista, preparador…" required>
+            <span class="campo__erro">Preencha sua função.</span>
+          </div>
+
+          <div class="campo campo--largo">
+            <label for="area">Área de atuação<span class="req" aria-hidden="true">*</span></label>
+            <select id="area" name="area" required>
+              <option value="">Selecione</option>
+              <option>Fase defensiva</option>
+              <option>Fase ofensiva</option>
+              <option>Bola parada</option>
+              <option>Tática individual</option>
+              <option>Análise de desempenho</option>
+              <option>Treinamento de goleiros</option>
+              <option>Preparação física</option>
+              <option>Metodologia e periodização</option>
+              <option>Categorias de base</option>
+              <option>Outra</option>
+            </select>
+            <span class="campo__erro">Escolha uma área.</span>
+          </div>
+
+          <div class="campo campo--largo">
+            <label for="link">Link de currículo, portfólio ou perfil profissional</label>
+            <input id="link" name="link" type="url" placeholder="https://">
+          </div>
+
+          <div class="campo campo--largo">
+            <label for="proposta">O que você propõe<span class="req" aria-hidden="true">*</span></label>
+            <textarea id="proposta" name="proposta" required
+              placeholder="Tema que domina, o que já entregou na prática e em que formato imagina — curso, artigo, encontro ao vivo."></textarea>
+            <span class="campo__erro">Conte, em poucas linhas, o que você propõe.</span>
+          </div>
+
+        </div>
+
+        <div class="form__pe">
+          <button class="btn btn--lime" type="submit" id="enviar">Enviar cadastro</button>
+          <p class="form__estado" id="estado" role="status" aria-live="polite"></p>
+        </div>
+
+        <p class="form__nota">Os dados vão direto para a TotalFut e não são compartilhados com terceiros. Use-os para falar de trabalho — não publicamos nada sem combinar antes com você.</p>
+      </form>
+
+      <div class="obrigado" id="obrigado" role="status">
+        <h2>Cadastro recebido.</h2>
+        <p>Obrigado. Vamos ler com atenção e respondemos pelo e-mail que você deixou. Se o que você propõe tiver aderência com o que publicamos, entramos em contato para conversar.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot__marca">
+        <img src="assets/logo-vertical-branco.svg" alt="TotalFut">
+        <p class="small" style="max-width:40ch">TotalFut — Cursos e eventos avançados para profissionais do futebol.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html#professores">Professores</a></li>
+          <li><a href="index.html#cursos">Cursos</a></li>
+          <li><a href="index.html#eventos">Eventos</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#academy">TotalFut Academy</a></li>
+          <li><a href="index.html#suporte">Suporte</a></li>
+        </ul>
+      </div>
+      <div class="foot__redes">
+        <h4>Redes</h4>
+        <div class="redes">
+          <a href="https://www.linkedin.com/company/totalfut/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C20.5 8.75 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg></a>
+          <a href="https://www.youtube.com/@totalfut2022" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.2V8.8l5.2 3.2z"/></svg></a>
+          <a href="https://www.instagram.com/totalfutbr/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 3.08a6.72 6.72 0 1 0 0 13.44 6.72 6.72 0 0 0 0-13.44zm0 11.08a4.36 4.36 0 1 1 0-8.72 4.36 4.36 0 0 1 0 8.72zm8.55-11.35a1.57 1.57 0 1 1-3.14 0 1.57 1.57 0 0 1 3.14 0z"/></svg></a>
+          <a href="https://wa.me/5551991736138" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.35-1.4a9.8 9.8 0 0 0 4.59 1.17h.01c5.43 0 9.84-4.41 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.93h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.35c0-4.51 3.67-8.18 8.19-8.18a8.13 8.13 0 0 1 5.78 2.4 8.12 8.12 0 0 1 2.4 5.79c0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.55.12-.17.25-.64.8-.78.97-.14.16-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22a7.4 7.4 0 0 1-1.37-1.7c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/totalfutbr/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://wa.me/5551991736138" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://wa.me/5551991736138" target="_blank" rel="noopener">Suporte</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- assinatura do estúdio -->
+    <div class="assina" aria-label="Quem desenvolveu este site">
+      <div>
+        <p class="assina__rotulo">Projeto e desenvolvimento</p>
+        <a class="assina__marca" href="https://sttudio11.com.br" target="_blank" rel="noopener">
+          <span class="assina__nome">Sttudio<em>11WD</em></span>
+          <span class="assina__fio" aria-hidden="true"></span>
+        </a>
+      </div>
+      <p class="assina__pitch">Sites para quem busca um posicionamento de qualidade. Estrutura, texto e desempenho — do protótipo ao ar.</p>
+      <a class="assina__cta" href="https://wa.me/5551991736138" target="_blank" rel="noopener">
+        <span>Falar sobre um projeto</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5L13 17.5"/></svg>
+      </a>
+    </div>
+    <div class="foot__legal"><span>© 2026 TotalFut</span><span>totalfut.com.br</span></div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  if (document.documentElement.dataset.js !== '1') return;
+
+  /* entrada e revelação */
+  var alvos = [].slice.call(document.querySelectorAll('.entra,.revela'));
+  function mostrar(el){ el.classList.add('dentro'); }
+
+  // rootMargin em porcentagem combinado com threshold não dispara em todos os
+  // motores: margem em pixels e threshold padrão são o que se pode garantir
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if (!e.isIntersecting) return;
+        mostrar(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -60px 0px' });
+    alvos.forEach(function(el){ obs.observe(el); });
+  } else {
+    alvos.forEach(mostrar);
+  }
+
+  // rede de segurança: se por qualquer motivo o observer não entregar,
+  // o conteúdo aparece mesmo assim em vez de ficar invisível
+  setTimeout(function(){ alvos.forEach(mostrar); }, 1500);
+
+  /* refletor: posição do cursor vira variável de CSS */
+  var pendente = false, alvo = null, px = 0, py = 0;
+  document.addEventListener('pointermove', function(e){
+    var c = e.target.closest && e.target.closest('.luz');
+    if (!c) return;
+    alvo = c; px = e.clientX; py = e.clientY;
+    if (pendente) return;
+    pendente = true;
+    requestAnimationFrame(function(){
+      pendente = false;
+      if (!alvo) return;
+      var r = alvo.getBoundingClientRect();
+      alvo.style.setProperty('--mx', ((px - r.left) / r.width * 100).toFixed(1) + '%');
+      alvo.style.setProperty('--my', ((py - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+  }, { passive: true });
+})();
+</script>
+<script>
+(function(){
+  /* ---------- menu mobile ---------- */
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('menu');
+
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    menu.hidden = !open;
+  }
+  burger.addEventListener('click', function(){
+    setMenu(burger.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  matchMedia('(min-width:1080px)').addEventListener('change', function(e){ if (e.matches) setMenu(false); });
+
+  /* ---------- idioma ---------- */
+  // troca só o estado da interface e o atributo lang;
+  // o roteamento por idioma entra na migração
+  const segsIdioma = [document.getElementById('segIdioma'), document.getElementById('menuLang')].filter(Boolean);
+
+  function pickLang(code){
+    segsIdioma.forEach(function(seg){
+      [].forEach.call(seg.querySelectorAll('button'), function(b){
+        b.setAttribute('aria-selected', String(b.dataset.lang === code));
+      });
+    });
+    if (window.aplicarIdioma) window.aplicarIdioma(code);
+  }
+  segsIdioma.forEach(function(seg){
+    seg.addEventListener('click', function(e){
+      const b = e.target.closest('button'); if (!b) return;
+      pickLang(b.dataset.lang);
+    });
+  });
+
+})();
+</script>
+<script>
+(function(){
+  /* ---------- envio do cadastro ----------
+     O Apps Script responde sem cabeçalho de CORS, então o POST vai em
+     'no-cors': o navegador entrega a requisição mas devolve uma resposta
+     opaca, sem status para ler. Em troca, mandamos os campos como
+     form-urlencoded, que não dispara preflight — assim o pedido chega
+     inteiro na primeira tentativa, e tratamos como sucesso o fetch que
+     não lançou erro de rede. */
+  var ENDERECO = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+
+  var form   = document.getElementById('cadastro');
+  var botao  = document.getElementById('enviar');
+  var estado = document.getElementById('estado');
+  if (!form) return;
+
+  function aviso(texto, tipo){
+    estado.textContent = texto;
+    if (tipo) estado.dataset.tipo = tipo; else estado.removeAttribute('data-tipo');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    form.dataset.tentou = '1';
+
+    if (!form.checkValidity()){
+      aviso('Faltam campos obrigatórios.', 'erro');
+      var falho = form.querySelector(':invalid');
+      if (falho) falho.focus({ preventScroll:true });
+      if (falho) falho.scrollIntoView({ block:'center', behavior:'smooth' });
+      return;
+    }
+
+    if (ENDERECO.indexOf('http') !== 0){
+      aviso('O formulário ainda não está ligado à planilha.', 'erro');
+      return;
+    }
+
+    botao.disabled = true;
+    aviso('Enviando…', 'indo');
+
+    var dados = new URLSearchParams(new FormData(form));
+    dados.append('origem', location.pathname);
+
+    fetch(ENDERECO, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: dados.toString()
+    }).then(function(){
+      document.getElementById('bloco').classList.add('enviado');
+      document.getElementById('obrigado').scrollIntoView({ block:'center', behavior:'smooth' });
+    }).catch(function(){
+      botao.disabled = false;
+      aviso('Não consegui enviar. Confira a conexão e tente de novo — ou escreva para contato@totalfut.com.br.', 'erro');
+    });
+  });
+
+  /* mensagem de erro some assim que a pessoa corrige o campo */
+  form.addEventListener('input', function(){
+    if (form.dataset.tentou && form.checkValidity()) aviso('');
+  });
+})();
+</script>

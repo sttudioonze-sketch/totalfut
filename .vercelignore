@@ -15,5 +15,8 @@ ferramentas/
 # página sem link no site, ainda em rascunho
 apresentacao-palestrante.html
 
+# código do Apps Script: vive no repositório, não é servido
+apps-script-*.gs
+
 backup-*.zip
 .DS_Store
