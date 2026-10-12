@@ -890,6 +890,7 @@ footer.site .wrap{position:relative;z-index:1}
     aviso('Enviando…', 'indo');
 
     var dados = new URLSearchParams(new FormData(form));
+    dados.append('form', 'formadores');
     dados.append('origem', location.pathname);
 
     fetch(ENDERECO, {
