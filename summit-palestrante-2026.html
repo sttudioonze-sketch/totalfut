@@ -600,6 +600,13 @@ footer.site .wrap{position:relative;z-index:1}
 
 .contador{font-size:12px;color:var(--dim);text-align:right}
 .contador[data-estourou]{color:#FF8B6B}
+
+/* o lockup do Summit entra no topo da página: quem recebe o link precisa ver
+   de cara que é o evento, não um formulário genérico da TotalFut */
+.summit__selo{
+  width:min(100%,300px);height:auto;display:block;margin-bottom:clamp(14px,2vw,22px);
+  filter:drop-shadow(0 0 40px rgba(215,255,71,.14));
+}
 </style>
 
 <header>
@@ -649,7 +656,10 @@ footer.site .wrap{position:relative;z-index:1}
 
   <section class="topo">
     <div class="wrap topo__inner">
-      <h1 class="entra" style="--atraso:.05s">Dados do palestrante.</h1>
+      <img class="summit__selo entra" style="--atraso:.03s"
+           src="assets/summit/summit-lockup.webp"
+           alt="TotalFut Summit Internacional" width="1200" height="721">
+      <h1 class="entra" style="--atraso:.09s">Dados do palestrante.</h1>
       <p class="lede entra" style="--atraso:.14s">Você foi confirmado na 2ª edição do TotalFut Summit Internacional — 23, 25 e 27 de novembro de 2026, on-line e ao vivo. Precisamos destes dados para a divulgação e para montar a grade. Leva uns cinco minutos.</p>
     </div>
   </section>
