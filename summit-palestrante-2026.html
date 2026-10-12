@@ -671,9 +671,8 @@ footer.site .wrap{position:relative;z-index:1}
         <div class="campos">
 
           <div class="campo">
-            <label for="nome">Nome completo<span class="req" aria-hidden="true">*</span></label>
-            <input id="nome" name="nome" type="text" autocomplete="name" required>
-            <span class="campo__erro">Preencha seu nome.</span>
+            <label for="nome">Nome completo</label>
+            <input id="nome" name="nome" type="text" autocomplete="name">
           </div>
 
           <div class="campo">
@@ -682,34 +681,30 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
 
           <div class="campo">
-            <label for="funcao">Função atual<span class="req" aria-hidden="true">*</span></label>
-            <input id="funcao" name="funcao" type="text" placeholder="Treinador, analista, diretor…" required>
-            <span class="campo__erro">Preencha sua função.</span>
+            <label for="funcao">Função atual</label>
+            <input id="funcao" name="funcao" type="text" placeholder="Treinador, analista, diretor…">
           </div>
 
           <div class="campo">
-            <label for="clube">Clube ou instituição<span class="req" aria-hidden="true">*</span></label>
-            <input id="clube" name="clube" type="text" required>
-            <span class="campo__erro">Preencha o clube ou a instituição.</span>
+            <label for="clube">Clube ou instituição</label>
+            <input id="clube" name="clube" type="text">
           </div>
 
           <div class="campo">
-            <label for="pais">País<span class="req" aria-hidden="true">*</span></label>
-            <input id="pais" name="pais" type="text" placeholder="Brasil" required>
-            <span class="campo__erro">Preencha o país.</span>
+            <label for="pais">País</label>
+            <input id="pais" name="pais" type="text" placeholder="Brasil">
           </div>
 
           <div class="campo">
-            <label for="email">E-mail<span class="req" aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-            <span class="campo__erro">Confira o e-mail.</span>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email">
+            <span class="campo__erro">Esse e-mail parece incompleto.</span>
           </div>
 
           <div class="campo">
-            <label for="whatsapp">WhatsApp<span class="req" aria-hidden="true">*</span></label>
+            <label for="whatsapp">WhatsApp</label>
             <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel"
-                   placeholder="+55 51 99999-0000" required>
-            <span class="campo__erro">Preencha um número com código do país.</span>
+                   placeholder="+55 51 99999-0000">
           </div>
 
           <div class="campo">
@@ -723,44 +718,40 @@ footer.site .wrap{position:relative;z-index:1}
           </div>
 
           <div class="campo campo--largo">
-            <label for="tema">Tema da palestra<span class="req" aria-hidden="true">*</span></label>
-            <input id="tema" name="tema" type="text" placeholder="O título que vai no material de divulgação" required>
-            <span class="campo__erro">Preencha o tema.</span>
+            <label for="tema">Tema da palestra</label>
+            <input id="tema" name="tema" type="text" placeholder="O título que vai no material de divulgação">
           </div>
 
           <div class="campo campo--largo">
-            <label for="resumo">Resumo do tema<span class="req" aria-hidden="true">*</span></label>
-            <textarea id="resumo" name="resumo" required maxlength="600"
+            <label for="resumo">Resumo do tema</label>
+            <textarea id="resumo" name="resumo" maxlength="600"
               placeholder="O que você vai abordar e o que quem assiste leva de prático."></textarea>
             <span class="contador" data-para="resumo">0 / 600</span>
-            <span class="campo__erro">Escreva um resumo do que vai abordar.</span>
           </div>
 
           <fieldset class="campo campo--largo" style="border:0;padding:0;margin:0">
             <legend style="font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--mute);padding:0 0 7px">
-              Dia de preferência<span class="req" aria-hidden="true">*</span>
+              Dia de preferência
             </legend>
             <div class="radios">
-              <label><input type="radio" name="dia" value="23 de novembro (segunda)" required><span>23, segunda</span></label>
+              <label><input type="radio" name="dia" value="23 de novembro (segunda)"><span>23, segunda</span></label>
               <label><input type="radio" name="dia" value="25 de novembro (quarta)"><span>25, quarta</span></label>
               <label><input type="radio" name="dia" value="27 de novembro (sexta)"><span>27, sexta</span></label>
               <label><input type="radio" name="dia" value="Qualquer um"><span>Tanto faz</span></label>
             </div>
-            <span class="campo__erro">Escolha um dia.</span>
           </fieldset>
 
           <div class="campo campo--largo">
-            <label for="bio">Mini-bio para a divulgação<span class="req" aria-hidden="true">*</span></label>
-            <textarea id="bio" name="bio" required maxlength="500"
+            <label for="bio">Mini-bio para a divulgação</label>
+            <textarea id="bio" name="bio" maxlength="500"
               placeholder="Em terceira pessoa, do jeito que você quer ser apresentado. Trajetória, clubes e o que te posiciona no tema."></textarea>
             <span class="contador" data-para="bio">0 / 500</span>
-            <span class="campo__erro">Escreva a mini-bio.</span>
           </div>
 
           <div class="campo campo--largo">
-            <label for="foto">Foto para a divulgação<span class="req" aria-hidden="true">*</span></label>
+            <label for="foto">Foto para a divulgação</label>
             <div class="arquivo">
-              <input id="foto" name="foto" type="file" accept="image/jpeg,image/png,image/webp" required>
+              <input id="foto" name="foto" type="file" accept="image/jpeg,image/png,image/webp">
               <label class="arquivo__botao" for="foto">
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M8 11V2.5"/><path d="M4.5 6L8 2.5 11.5 6"/><path d="M2.5 11v2a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/>
@@ -771,7 +762,6 @@ footer.site .wrap{position:relative;z-index:1}
               <span class="arquivo__nome" id="fotoNome">Nenhuma imagem escolhida</span>
             </div>
             <span class="form__nota" style="margin:0">Enquadramento vertical ou quadrado, rosto visível, sem texto por cima. Reduzimos o arquivo no envio, então pode mandar a original.</span>
-            <span class="campo__erro">Escolha uma imagem.</span>
           </div>
 
           <div class="campo campo--largo">
@@ -1020,8 +1010,10 @@ footer.site .wrap{position:relative;z-index:1}
     e.preventDefault();
     form.dataset.tentou = '1';
 
+    /* Nenhum campo é obrigatório, então o que sobra do checkValidity é o
+       formato: um e-mail ou um link preenchido torto ainda é acusado. */
     if (!form.checkValidity()){
-      aviso('Faltam campos obrigatórios.', 'erro');
+      aviso('Confira os campos marcados.', 'erro');
       var falho = form.querySelector(':invalid');
       if (falho){ falho.focus({ preventScroll:true }); falho.scrollIntoView({ block:'center', behavior:'smooth' }); }
       return;
@@ -1031,25 +1023,29 @@ footer.site .wrap{position:relative;z-index:1}
       return;
     }
 
-    var arquivo = campoFoto.files[0];
-    if (arquivo.size > PESO_MAX){
+    var arquivo = campoFoto.files[0];      // a foto também é opcional agora
+    if (arquivo && arquivo.size > PESO_MAX){
       aviso('A imagem passa de 25 MB. Escolha uma menor.', 'erro');
       return;
     }
 
     botao.disabled = true;
-    aviso('Preparando a imagem…', 'indo');
+    aviso(arquivo ? 'Preparando a imagem…' : 'Enviando…', 'indo');
 
-    reduzir(arquivo).then(function(foto){
+    var comFoto = arquivo ? reduzir(arquivo) : Promise.resolve(null);
+
+    comFoto.then(function(foto){
       aviso('Enviando…', 'indo');
 
       var dados = new URLSearchParams(new FormData(form));
       dados.delete('foto');                 // o arquivo em si não vai no FormData
       dados.append('form', 'summit');
-      dados.append('fotoDados', foto.dados);
-      dados.append('fotoTipo', foto.tipo);
-      dados.append('fotoNome', arquivo.name);
       dados.append('origem', location.pathname);
+      if (foto){
+        dados.append('fotoDados', foto.dados);
+        dados.append('fotoTipo', foto.tipo);
+        dados.append('fotoNome', arquivo.name);
+      }
 
       return fetch(ENDERECO, {
         method: 'POST',
