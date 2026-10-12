@@ -31,7 +31,10 @@
    entre /d/ e /edit. */
 var PLANILHA_ID = '1s78e5aOznbriZBOFTWtJnGirPrYOL4bbMgff2oxxiWs';
 
-var PASTA_FOTOS = 'TotalFut Summit — fotos dos palestrantes';
+/* Pasta do Drive onde entram as fotos e os currículos. É o id que aparece na
+   URL da pasta, depois de /folders/. Apontar por id, e não por nome, evita
+   criar uma pasta nova se alguém renomear essa. */
+var PASTA_ID = '1G2JR3k4-2tsoCOaYrZrLjNdp8l2o8fOr';
 
 var FORMULARIOS = {
   formadores: {
@@ -69,6 +72,7 @@ var FORMULARIOS = {
       ['bio',        'Mini-bio'],
       ['obs',        'Observações'],
       ['fotoUrl',    'Foto'],
+      ['cvUrl',      'Currículo'],
       ['origem',     'Página de origem']
     ]
   }
@@ -80,10 +84,16 @@ function doPost(e) {
     var cfg = FORMULARIOS[campos.form];
     if (!cfg) return resposta_({ ok: false, erro: 'formulário desconhecido: ' + campos.form });
 
-    // a foto chega em base64 num campo comum, porque o envio é form-urlencoded
+    /* Os arquivos chegam em base64 num campo comum, porque o envio é
+       form-urlencoded — multipart dispararia o preflight de CORS, que o
+       Apps Script não responde. */
     if (campos.fotoDados) {
-      campos.fotoUrl = guardarFoto_(campos.fotoDados, campos.fotoTipo,
-                                    campos.fotoNome, campos.nome);
+      campos.fotoUrl = guardarArquivo_(campos.fotoDados, campos.fotoTipo,
+                                       campos.fotoNome, campos.nome, 'foto');
+    }
+    if (campos.cvDados) {
+      campos.cvUrl = guardarArquivo_(campos.cvDados, campos.cvTipo,
+                                     campos.cvNome, campos.nome, 'curriculo');
     }
 
     var linha = cfg.colunas.map(function (c) {
@@ -123,28 +133,24 @@ function aba_(cfg) {
   return aba;
 }
 
-function guardarFoto_(base64, tipo, nomeArquivo, pessoa) {
-  var pasta = pasta_(PASTA_FOTOS);
+function guardarArquivo_(base64, tipo, nomeArquivo, pessoa, rotulo) {
+  var pasta = DriveApp.getFolderById(PASTA_ID);
 
   // o navegador manda "data:image/jpeg;base64,xxxx": só o depois da vírgula
   var corte = base64.indexOf(',');
   var puro = corte >= 0 ? base64.substring(corte + 1) : base64;
 
   var ext = (nomeArquivo || '').split('.').pop().toLowerCase();
-  if (!ext || ext.length > 4) ext = (tipo === 'image/png') ? 'png' : 'jpg';
+  if (!ext || ext.length > 4) ext = (rotulo === 'foto') ? 'jpg' : 'pdf';
 
+  // o nome da pessoa vira nome de arquivo: fora os caracteres que o Drive recusa
   var nome = (pessoa || 'palestrante').replace(/[\\/:*?"<>|]/g, '').trim();
   var carimbo = Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'yyyyMMdd-HHmmss');
 
   var blob = Utilities.newBlob(Utilities.base64Decode(puro),
-                               tipo || 'image/jpeg',
-                               nome + ' — ' + carimbo + '.' + ext);
+                               tipo || 'application/octet-stream',
+                               nome + ' — ' + rotulo + ' — ' + carimbo + '.' + ext);
   return pasta.createFile(blob).getUrl();
-}
-
-function pasta_(nome) {
-  var achadas = DriveApp.getFoldersByName(nome);
-  return achadas.hasNext() ? achadas.next() : DriveApp.createFolder(nome);
 }
 
 function resposta_(obj) {
