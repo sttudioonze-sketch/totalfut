@@ -68,9 +68,9 @@ var FORMULARIOS = {
       ['linkedin',   'LinkedIn'],
       ['tema',       'Tema da palestra'],
       ['resumo',     'Resumo do tema'],
-      ['dia',        'Dia de preferência'],
       ['bio',        'Mini-bio'],
       ['obs',        'Observações'],
+      ['imagem',     'Uso de imagem'],
       ['fotoUrl',    'Foto'],
       ['cvUrl',      'Currículo'],
       ['origem',     'Página de origem']

@@ -17,8 +17,10 @@
   html,body{width:1200px;height:630px;overflow:hidden;background:var(--void)}
   body{font-family:"Plus Jakarta Sans",Arial,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
 
+  /* marca à esquerda, texto à direita. A coluna da marca é fixa para o texto
+     não empurrar o logo quando o título cresce. */
   .card{position:relative;width:1200px;height:630px;overflow:hidden;background:var(--void);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:0 70px}
+    display:grid;grid-template-columns:470px 1fr;align-items:center;gap:56px;padding:0 70px}
 
   /* o mesmo brilho discreto da capa do site, para o fundo não ficar chapado */
   .brilho{position:absolute;width:900px;height:900px;border-radius:50%;top:-340px;
@@ -26,16 +28,20 @@
   .brilho--b{top:auto;bottom:-420px;left:-220px;
     background:radial-gradient(circle,rgba(1,90,255,.14) 0%,rgba(1,90,255,0) 66%)}
 
-  .marca{position:relative;width:520px;height:auto;
+  .marca{position:relative;width:100%;height:auto;
     filter:drop-shadow(0 0 54px rgba(215,255,71,.18))}
+  .texto{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+  /* o fio separa as duas colunas sem fechar uma caixa em volta */
+  .texto::before{content:"";position:absolute;left:-28px;top:6px;bottom:6px;width:1px;
+    background:linear-gradient(180deg,transparent,rgba(215,255,71,.3) 30%,rgba(215,255,71,.3) 70%,transparent)}
 
-  h1{position:relative;font-family:Sora,Arial,sans-serif;font-weight:700;font-size:52px;
-    letter-spacing:-.03em;line-height:1.05;text-align:center}
-  p{position:relative;font-size:21px;color:var(--mute);text-align:center;line-height:1.45;max-width:46ch}
+  h1{font-family:Sora,Arial,sans-serif;font-weight:700;font-size:50px;
+    letter-spacing:-.03em;line-height:1.06;text-align:left}
+  p{font-size:20px;color:var(--mute);text-align:left;line-height:1.5}
 
-  .datas{position:relative;display:flex;gap:10px;align-items:center;
-    font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);
-    border:1px solid rgba(215,255,71,.34);border-radius:999px;padding:11px 22px}
+  .datas{display:inline-flex;gap:10px;align-items:center;
+    font-size:13.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--lime);
+    border:1px solid rgba(215,255,71,.34);border-radius:999px;padding:11px 20px}
 </style>
 </head>
 <body>
@@ -43,9 +49,11 @@
     <span class="brilho" aria-hidden="true"></span>
     <span class="brilho brilho--b" aria-hidden="true"></span>
     <img class="marca" src="../assets/summit/summit-lockup.webp" alt="">
-    <h1 id="t">Dados do palestrante</h1>
-    <p id="s">Preencha os dados para a divulgação da 2ª edição.</p>
-    <span class="datas">23, 25 e 27 de novembro de 2026</span>
+    <div class="texto">
+      <h1 id="t">Dados do palestrante</h1>
+      <p id="s">Preencha os dados para a divulgação da 2ª edição.</p>
+      <span class="datas">23, 25 e 27 de novembro de 2026</span>
+    </div>
   </div>
 <script>
   var q = new URLSearchParams(location.search);
