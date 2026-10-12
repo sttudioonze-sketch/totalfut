@@ -646,8 +646,11 @@ footer.site .wrap{position:relative;z-index:1}
 /* o topo é centralizado; o formulário abaixo segue alinhado à esquerda,
    porque campo de formulário centralizado atrapalha a leitura em coluna */
 .topo__inner{align-items:center;text-align:center;max-width:62ch;margin-inline:auto}
+/* o lockup carrega linhas finas — "on-line | ao-vivo e gravado", as datas e
+   o "reserve esta data". Abaixo de ~360px essas linhas somem, então ele ocupa
+   a largura toda no celular em vez de ficar num tamanho de cortesia. */
 .summit__selo{
-  width:min(100%,300px);height:auto;display:block;
+  width:min(100%,400px);height:auto;display:block;
   margin:0 auto clamp(14px,2vw,22px);
   filter:drop-shadow(0 0 40px rgba(215,255,71,.14));
 }
@@ -739,8 +742,8 @@ footer.site .wrap{position:relative;z-index:1}
   <section class="topo">
     <div class="wrap topo__inner">
       <img class="summit__selo entra" style="--atraso:.03s"
-           src="assets/summit/summit-lockup.webp"
-           alt="TotalFut Summit Internacional" width="1200" height="721">
+           src="assets/summit/summit-lockup-2026.webp"
+           alt="TotalFut Summit Internacional — 2ª edição, 23, 25 e 27 de novembro de 2026" width="847" height="792">
       <h1 class="entra" style="--atraso:.09s">Dados do palestrante.</h1>
       <p class="lede entra" style="--atraso:.14s">Confirmação de dados para a divulgação do TotalFut Summit Internacional — 23, 25 e 27 de novembro de 2026, on-line e ao vivo. Todos os envios são opcionais e podem ser alterados posteriormente. Além das informações pessoais e sobre a apresentação, no final do formulário está disponível o envio de fotos para utilizarmos na página de vendas, cards e todo o tipo de divulgação, e também o envio do atual CV, caso queira disponibilizar para uso da trajetória de clubes.</p>
     </div>
