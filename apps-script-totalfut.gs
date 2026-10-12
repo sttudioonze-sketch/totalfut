@@ -24,6 +24,13 @@
  * Gerenciar implantações → editar → Nova versão). Salvar não basta.
  */
 
+/* A planilha é apontada pelo id, não por getActiveSpreadsheet(): este script
+   roda como app da Web, e nesse contexto getActiveSpreadsheet() só devolve
+   algo quando o projeto está preso a uma planilha. Num projeto solto ele
+   devolve null e a gravação falha calada. O id está na URL da planilha,
+   entre /d/ e /edit. */
+var PLANILHA_ID = '1s78e5aOznbriZBOFTWtJnGirPrYOL4bbMgff2oxxiWs';
+
 var PASTA_FOTOS = 'TotalFut Summit — fotos dos palestrantes';
 
 var FORMULARIOS = {
@@ -88,8 +95,12 @@ function doPost(e) {
     return resposta_({ ok: true });
 
   } catch (erro) {
-    console.error(erro);          // fica no log de execuções, para investigar
-    return resposta_({ ok: false, erro: String(erro) });
+    /* Relança depois de registrar: o site envia em no-cors e nunca lê esta
+       resposta, então engolir a exceção faria a execução aparecer como
+       "Concluído" no log mesmo tendo falhado. Relançando, o log mostra
+       "Falha" e a mensagem real. */
+    console.error(erro);
+    throw erro;
   }
 }
 
@@ -100,7 +111,7 @@ function doGet() {
 }
 
 function aba_(cfg) {
-  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var doc = SpreadsheetApp.openById(PLANILHA_ID);
   var aba = doc.getSheetByName(cfg.aba);
 
   if (!aba) {
