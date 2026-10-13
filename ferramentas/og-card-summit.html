@@ -42,6 +42,19 @@
   .datas{display:inline-flex;gap:10px;align-items:center;
     font-size:13.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--lime);
     border:1px solid rgba(215,255,71,.34);border-radius:999px;padding:11px 20px}
+
+/* Card da ficha de palestrante: mesma direção visual da página. */
+html,body{background:#122015}
+.card{padding:56px 64px;gap:58px;background:radial-gradient(ellipse at 0% 10%,#526c32 0,transparent 65%),radial-gradient(ellipse at 100% 90%,#1b3e59 0,transparent 65%),#122015}
+.card::before{content:"";position:absolute;inset:26px;border:1px solid #ffffff40;border-radius:28px;background:linear-gradient(120deg,#ffffff15,#ffffff07);box-shadow:inset 0 1px #ffffff33}
+.brilho{display:none}
+.marca{width:350px;justify-self:center;filter:none}
+.texto{gap:25px}
+.texto::before{background:linear-gradient(transparent,#ffffff30,transparent)}
+h1{font-size:48px;line-height:1.12;color:#f6f8f0}
+p{font-size:22px;line-height:1.55;color:#d0d9c9}
+.convite{font-size:15px;color:#d7ff47;font-weight:600;letter-spacing:.04em}
+
 </style>
 </head>
 <body>
@@ -50,8 +63,9 @@
     <span class="brilho brilho--b" aria-hidden="true"></span>
     <img class="marca" src="../assets/summit/summit-lockup-2026.webp" alt="">
     <div class="texto">
+      <span class="convite">Ficha do palestrante</span>
       <h1 id="t">Dados do palestrante</h1>
-      <p id="s">Confirme seus dados para a divulgação: identificação, tema, bio, foto e currículo.</p>
+      <p id="s">Sua participação no Summit 2026. Envie seus dados, tema, bio e foto para a divulgação.</p>
     </div>
   </div>
 <script>

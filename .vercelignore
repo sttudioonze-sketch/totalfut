@@ -21,3 +21,9 @@ apps-script-*.gs
 
 backup-*.zip
 .DS_Store
+
+# Variantes de comparação: disponíveis só no ambiente local.
+summit-palestrante-clean.html
+summit-palestrante-glass.html
+summit-palestrante-material.html
+summit-palestrante-skeuomorphism.html
