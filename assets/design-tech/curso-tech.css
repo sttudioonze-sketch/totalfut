@@ -54,3 +54,15 @@ main{padding-top:24px}section{padding-block:64px;scroll-margin-top:100px}h1,h2{f
 
 /* Retrato: ponto focal medido na imagem, preservando proporções. */
 .topo__foto img[data-focus-x]{width:var(--portrait-width,100%);height:var(--portrait-height,100%);left:var(--portrait-left,0px);top:var(--portrait-top,0px);right:auto;bottom:auto;object-fit:cover;object-position:70% 43%}
+
+/* Cada trecho destacado recebe seu próprio gradiente, evitando texto transparente. */
+h1 .giz,h2 .giz{display:inline;white-space:normal;line-height:inherit;letter-spacing:inherit}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+ .topo__copy h1 .giz,.center h2 .giz,.prof__texto h2 .giz,.bonus h2 .giz,.fecha h2 .giz{background:linear-gradient(110deg,#f4f7ef 10%,#e9f5cf 46%,#d7ff47 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+}
+h1,h2,h3{overflow-wrap:break-word}
+
+/* Impede que etiquetas e textos longos ampliem a coluna da abertura. */
+.topo__grade,.topo__copy{min-width:0;max-width:100%}
+.topo__copy>*{max-width:100%}
+@media(max-width:760px){.topo{grid-template-columns:minmax(0,1fr)}.topo__copy>div:first-child{flex-wrap:wrap}.oferta--topo{width:100%;min-width:0}.oferta--topo .btn{min-width:0;white-space:normal}}

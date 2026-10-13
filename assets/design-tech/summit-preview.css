@@ -63,3 +63,7 @@ main{padding-top:24px}section{padding-block:72px;scroll-margin-top:105px}h1,h2{f
 .capa__simbolo{margin:0;flex:0 0 100px}
 .capa__hud{grid-column:2;grid-row:1;justify-self:start;width:auto;height:auto}
 @media(max-width:760px){.capa__hud{grid-column:1;grid-row:2;margin-top:0}.capa__simbolo{flex-basis:74px}.capa__pilha{justify-content:flex-start}}
+
+/* Os títulos podem quebrar por palavra sem manter trechos inteiros em uma caixa. */
+h1 .giz,h2 .giz,h3 .giz{display:inline;white-space:normal;line-height:inherit;letter-spacing:inherit}
+h1,h2,h3{overflow-wrap:break-word}

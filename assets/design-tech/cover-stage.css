@@ -1,0 +1,126 @@
+/* A capa ocupa sua própria tela; o site sobe sobre ela durante a rolagem. */
+.cover-sequence{position:relative;height:145svh;z-index:10;isolation:isolate}
+.cover-sequence .intro-cover{position:sticky;top:0;width:100%;max-width:none;height:100svh;min-height:400px;margin:0;border:0;border-radius:0;background:radial-gradient(ellipse 60% 85% at 20% 40%,#5b753930,transparent 76%),radial-gradient(ellipse 50% 80% at 88% 60%,#24557855,transparent 76%),#101a13;box-shadow:none}
+.cover-site{position:relative;z-index:20;margin-top:-45svh;background:#101a13;border-top:1px solid #eaffcf30;border-radius:30px 30px 0 0;box-shadow:0 -24px 80px #0005;isolation:isolate}
+.cover-site header{border-radius:30px 30px 0 0}
+.cover-sequence .intro-cover__name{font-size:clamp(58px,14vw,210px);color:#eaffcf12;opacity:var(--cover-opacity,1)}
+.cover-sequence .intro-cover__symbol{width:clamp(200px,22vw,300px);aspect-ratio:23.8/30.4;opacity:var(--cover-opacity,1);filter:drop-shadow(0 24px 38px #0009) drop-shadow(0 0 1px #d7ff4766)}
+/* Material feito sobre o desenho original da marca: metal escuro e linhas finas. */
+.intro-cover__emblem{display:block;position:absolute;inset:0;mask:url('totalfut-symbol.svg') center/contain no-repeat;-webkit-mask:url('totalfut-symbol.svg') center/contain no-repeat;background:repeating-linear-gradient(0deg,#ffffff13 0 1px,transparent 1px 4px),radial-gradient(circle at 50% 47%,#4090ef 0 3%,#d7ff47 3.5% 6%,transparent 7%),linear-gradient(128deg,#3b5347 0%,#92a99b 18%,#edf7ef 25%,#647c6e 40%,#344d40 62%,#9db3a5 79%,#d7eadd 92%,#7b9287 100%)}
+.intro-cover__emblem::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,#e3ffdd20 43%,transparent 58%);mix-blend-mode:screen}
+.cover-sequence .intro-cover__field{opacity:.6}
+.cover-sequence .intro-cover__footer{left:clamp(24px,5vw,80px);right:clamp(24px,5vw,80px);bottom:32px;opacity:var(--cover-opacity,1)}
+@media(max-width:760px){.cover-sequence{height:125svh}.cover-site{margin-top:-25svh;border-radius:20px 20px 0 0}.cover-site header{border-radius:20px 20px 0 0}.cover-sequence .intro-cover__name{font-size:clamp(44px,13vw,98px);top:42%}.cover-sequence .intro-cover__symbol{width:clamp(180px,48vw,250px);margin-top:-40px}.cover-sequence .intro-cover__footer{bottom:24px;gap:16px}.cover-sequence .intro-cover__field{inset:8% 5%;height:75%}}
+@media(prefers-reduced-motion:reduce){.cover-sequence{height:100svh}.cover-sequence .intro-cover{position:relative}.cover-site{margin-top:0}.cover-sequence .intro-cover__symbol,.cover-sequence .intro-cover__name,.cover-sequence .intro-cover__footer{opacity:1!important}}
+
+/* Render 3D da marca, com transparência e movimento discreto. */
+.cover-sequence .intro-cover__symbol{width:clamp(310px,34vw,460px);aspect-ratio:1;filter:drop-shadow(0 26px 34px #0008)}
+.cover-sequence .intro-cover__render{display:block;width:100%;height:100%;object-fit:contain}
+@media(max-width:760px){.cover-sequence .intro-cover__symbol{width:clamp(255px,72vw,340px)}}
+
+/* Nome em metal claro; o símbolo permanece em primeiro plano. */
+.cover-sequence .intro-cover__name{color:#cbd3d0;background:linear-gradient(170deg,#f8fcfa 7%,#c1ceca 32%,#eef4f0 43%,#788d84 51%,#dbe5df 70%,#a3b4ac 95%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:calc(var(--cover-opacity,1) * .62);text-shadow:0 2px 2px #0002;line-height:1.55;padding:.06em .08em}
+.cover-sequence .intro-cover__field{stroke:#eaffcf35;stroke-width:1.3;opacity:.7}
+.intro-cover__pitch-dots{fill:#eaffcf55;stroke:none}
+
+/* Vidro restrito ao interior do campo, sob o relevo metálico. */
+.cover-sequence .intro-cover__symbol{isolation:isolate}
+.intro-cover__glass{position:absolute;inset:8.4% 18.2% 8.8% 18.2%;z-index:0;border-radius:7% / 5%;background:linear-gradient(125deg,#eafbf21c,#dcecff08 44%,#9fc8ed16);backdrop-filter:blur(12px) saturate(.85);-webkit-backdrop-filter:blur(12px) saturate(.85);box-shadow:inset 1px 1px 1px #f3fff830,inset -1px -1px 1px #a3d5ed24;pointer-events:none}
+.cover-sequence .intro-cover__render{position:relative;z-index:1}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.intro-cover__glass{background:linear-gradient(125deg,#405449aa,#243d37aa)}}
+
+/* Metal mais claro e vidro mais fosco, mantendo o fundo visível através dele. */
+.cover-sequence .intro-cover__name{background-image:linear-gradient(170deg,#ffffff 7%,#dce5e1 32%,#ffffff 43%,#a5b7ae 51%,#f5faf7 70%,#d3e1d9 95%);opacity:calc(var(--cover-opacity,1) * .88)}
+.cover-sequence .intro-cover__symbol{filter:none;isolation:auto}
+.cover-sequence .intro-cover__render{filter:drop-shadow(0 22px 26px #0007)}
+.intro-cover__glass{background:linear-gradient(125deg,#e5f5ea4d,#dce9e12e 44%,#b9d5e43d);backdrop-filter:blur(26px) saturate(.65);-webkit-backdrop-filter:blur(26px) saturate(.65);box-shadow:inset 1px 1px 2px #f3fff850,inset -1px -1px 2px #a3d5ed40}
+
+/* A transparência da entrada fica no metal para não bloquear o blur do vidro. */
+.cover-sequence .intro-cover__symbol{animation:none;opacity:1!important}
+.cover-sequence .intro-cover__render,.intro-cover__glass{opacity:var(--cover-opacity,1)}
+@media(prefers-reduced-motion:no-preference){.cover-sequence .intro-cover__render{animation:cover-entry .9s ease both}}
+
+/* Campo amplo, discreto, revelado localmente pela luz do ponteiro. */
+.cover-sequence .intro-cover{background:radial-gradient(ellipse at 24% 25%,#14201966,transparent 65%),radial-gradient(ellipse at 90% 85%,#101c2966,transparent 70%),linear-gradient(145deg,#080d0a 0%,#040806 54%,#070c11 100%)}
+.intro-cover__glass{background:linear-gradient(125deg,#e5f5ea30,#dce9e11a 44%,#b9d5e427);backdrop-filter:blur(16px) saturate(.8);-webkit-backdrop-filter:blur(16px) saturate(.8)}
+.cover-sequence .intro-cover__field{inset:3% 2.5%;width:95%;height:94%;stroke:#d9ead51a;stroke-width:.65;opacity:.55}
+.cover-sequence .intro-cover__field *{vector-effect:non-scaling-stroke}
+.cover-sequence .intro-cover__pitch-dots{fill:#d9ead520}
+.cover-sequence .intro-cover__field--lit{stroke:#e1f4d599;opacity:0;mask-image:radial-gradient(220px circle at var(--field-light-x,50%) var(--field-light-y,50%),#000 0%,#000b 30%,transparent 100%);-webkit-mask-image:radial-gradient(220px circle at var(--field-light-x,50%) var(--field-light-y,50%),#000 0%,#000b 30%,transparent 100%);transition:opacity .35s ease}
+.cover-sequence .intro-cover__field--lit .intro-cover__pitch-dots{fill:#e1f4d599}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.cover-sequence .intro-cover:hover .intro-cover__field--lit{opacity:1}.cover-sequence .intro-cover::after{background:radial-gradient(300px circle at var(--cover-light-x,50%) var(--cover-light-y,45%),#d7ff470a,transparent 78%)}}
+@media(prefers-reduced-motion:reduce){.cover-sequence .intro-cover__field--lit{display:none}}
+
+/* Nome acima do centro e símbolo um pouco abaixo, com sobreposição parcial. */
+.cover-sequence .intro-cover__name{top:35%}
+.cover-sequence .intro-cover__symbol{top:5svh}
+@media(max-width:760px){.cover-sequence .intro-cover__name{top:34%}.cover-sequence .intro-cover__symbol{top:6svh}}
+
+/* Atmosfera de estádio: luz lateral distante e névoa, sem movimento contínuo. */
+.intro-cover__atmosphere{position:absolute;inset:0;z-index:-3;pointer-events:none;overflow:hidden;background:radial-gradient(ellipse 32% 65% at -4% 20%,#b4db7630,transparent 76%),radial-gradient(ellipse 30% 70% at 104% 68%,#5d9acb30,transparent 78%);opacity:.8}
+.intro-cover__atmosphere::before{content:"";position:absolute;inset:-15%;background:radial-gradient(ellipse 3% 34% at 10% 26%,#e4f8c928,transparent 75%),radial-gradient(ellipse 3% 35% at 90% 58%,#b6ddff2b,transparent 75%),linear-gradient(119deg,transparent 13%,#d9eccb07 23%,transparent 37%),linear-gradient(66deg,transparent 66%,#9bc9ed07 78%,transparent 88%);filter:blur(18px);transform:rotate(-8deg)}
+.intro-cover__atmosphere::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 66% 12% at 40% 63%,#b4c3bb0d,transparent 85%),radial-gradient(ellipse 50% 19% at 72% 76%,#7597ab0b,transparent 83%);filter:blur(24px)}
+@keyframes cover-stadium-arrival{0%{opacity:0}38%{opacity:1}100%{opacity:.8}}
+@keyframes cover-pitch-pulse{0%,14%{stroke:#d9ead51a;opacity:.55}42%{stroke:#dbeedc70;opacity:.8}100%{stroke:#d9ead51a;opacity:.55}}
+@media(prefers-reduced-motion:no-preference){.intro-cover__atmosphere{animation:cover-stadium-arrival 2.6s ease-out both}.cover-sequence .intro-cover__field:not(.intro-cover__field--lit){animation:cover-pitch-pulse 2.8s ease-out both}}
+@media(max-width:760px){.intro-cover__atmosphere{background:radial-gradient(ellipse 65% 50% at -10% 20%,#b4db7625,transparent 78%),radial-gradient(ellipse 60% 55% at 110% 65%,#5d9acb27,transparent 80%)}.intro-cover__atmosphere::before{filter:blur(12px)}}
+
+/* Composição invertida: símbolo ampliado ao fundo e nome menor à frente. */
+.cover-sequence .intro-cover__symbol{width:clamp(380px,43vw,560px);top:-4svh;z-index:0}
+.cover-sequence .intro-cover__name{top:73%;z-index:2;font-size:clamp(52px,6.8vw,96px);letter-spacing:-.035em;opacity:var(--cover-opacity,1);text-shadow:0 4px 18px #0007;pointer-events:none}
+@media(max-width:760px){.cover-sequence .intro-cover__symbol{width:clamp(285px,82vw,365px);top:-3svh;margin-top:-40px}.cover-sequence .intro-cover__name{top:65%;font-size:clamp(40px,11.5vw,64px)}}
+@media(max-height:600px) and (min-width:761px){.cover-sequence .intro-cover__symbol{width:min(38vw,70svh);top:-5svh}.cover-sequence .intro-cover__name{top:68%;font-size:clamp(42px,6vw,72px)}}
+
+/* Nome com mais presença e reflexo breve sobre o metal. */
+.cover-sequence .intro-cover__symbol{width:clamp(340px,38vw,495px)}
+.cover-sequence .intro-cover__name{font-size:clamp(62px,8.2vw,116px);top:72%;background-image:linear-gradient(108deg,#c9d6ce 0%,#e4ece7 30%,#ffffff 43%,#f8fffb 47%,#a8bcb0 53%,#e4eee7 68%,#c9d6ce 100%);background-size:240% 100%;background-position:65% 50%;filter:drop-shadow(0 1px 1px #f2fff22e) drop-shadow(0 6px 16px #0008);text-shadow:none}
+@keyframes cover-title-reflection{from{background-position:115% 50%}to{background-position:65% 50%}}
+@media(prefers-reduced-motion:no-preference){.cover-sequence .intro-cover__name{animation:cover-title-reflection 1.8s cubic-bezier(.2,.65,.3,1) .3s both}}
+@media(max-width:760px){.cover-sequence .intro-cover__symbol{width:clamp(265px,75vw,330px)}.cover-sequence .intro-cover__name{font-size:clamp(46px,13.5vw,72px);top:65%}}
+@media(max-height:600px) and (min-width:761px){.cover-sequence .intro-cover__symbol{width:min(35vw,64svh)}.cover-sequence .intro-cover__name{top:68%;font-size:clamp(48px,7vw,82px)}}
+
+/* Reflexo brasileiro: cores breves sobre a base metálica clara. */
+.cover-sequence .intro-cover__symbol{top:-7svh}
+.cover-sequence .intro-cover__name{background-image:linear-gradient(108deg,transparent 35%,#009b3a65 40%,#ffdf0080 46%,#ffffffa6 49%,#247cff70 54%,transparent 61%),linear-gradient(170deg,#f9fcfa 7%,#dae4de 32%,#ffffff 43%,#acbdb3 51%,#edf5ef 70%,#d3e1d9 95%);background-size:240% 100%,100% 100%;background-position:-15% 50%,center;transform:translateY(var(--cover-title-scroll,0px))}
+@keyframes cover-title-reflection{from{background-position:115% 50%,center}to{background-position:-15% 50%,center}}
+/* A página entra sobre uma sombra difusa enquanto a capa se afasta. */
+.cover-sequence{height:160svh}
+.cover-site{margin-top:-60svh;border-top-color:#eaffcf18;box-shadow:0 -12px 45px #0006}
+.cover-site::before{content:"";position:absolute;top:-72px;left:0;right:0;height:72px;background:linear-gradient(transparent,#101a1333 62%,#101a13b3);pointer-events:none;z-index:-1}
+@media(max-width:760px){.cover-sequence{height:140svh}.cover-site{margin-top:-40svh}.cover-sequence .intro-cover__symbol{top:-6svh}.cover-site::before{top:-48px;height:48px}}
+@media(max-height:600px) and (min-width:761px){.cover-sequence .intro-cover__symbol{top:-8svh}}
+@media(prefers-reduced-motion:reduce){.cover-sequence{height:100svh}.cover-site{margin-top:0}.cover-site::before{display:none}.cover-sequence .intro-cover__name{transform:none}}
+
+.cover-sequence .intro-cover__render{opacity:var(--cover-opacity,1)!important}
+
+/* Nome à frente do símbolo: sombra curta de contato e sombra difusa de profundidade. */
+.cover-sequence .intro-cover__symbol{top:-9svh}
+.cover-sequence .intro-cover__name{filter:drop-shadow(0 2px 1px #000a) drop-shadow(0 9px 6px #0009) drop-shadow(0 18px 16px #0006)}
+@media(max-width:760px){.cover-sequence .intro-cover__symbol{top:-8svh}.cover-sequence .intro-cover__name{filter:drop-shadow(0 2px 1px #000a) drop-shadow(0 6px 4px #0009) drop-shadow(0 12px 10px #0006)}}
+@media(max-height:600px) and (min-width:761px){.cover-sequence .intro-cover__symbol{top:-10svh}}
+
+/* Frase de posicionamento com hierarquia e uma única entrada após o título. */
+.cover-sequence .intro-cover__footer{align-items:center;padding-top:22px}
+.cover-sequence .intro-cover__footer .intro-cover__tagline{font-size:clamp(19px,1.7vw,25px);font-weight:500;line-height:1.45;color:#edf4e8;letter-spacing:-.015em;max-width:38ch;margin:0}
+.intro-cover__tagline span{color:#d7ff47;font-weight:650}
+.intro-cover__tagline-break{display:block}
+@keyframes cover-tagline-entry{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(-12px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0)}}
+@media(prefers-reduced-motion:no-preference){.intro-cover__tagline{animation:cover-tagline-entry .95s cubic-bezier(.2,.65,.3,1) .85s both}}
+@media(max-width:760px){.cover-sequence .intro-cover__footer{align-items:flex-start;padding-top:18px;gap:16px}.cover-sequence .intro-cover__footer .intro-cover__tagline{font-size:19px;line-height:1.5;max-width:28ch}.intro-cover__tagline-break{display:none}}
+@media(max-height:600px) and (min-width:761px){.cover-sequence .intro-cover__footer .intro-cover__tagline{font-size:18px}.cover-sequence .intro-cover__footer{padding-top:14px}}
+@media(prefers-reduced-motion:reduce){.intro-cover__tagline{animation:none;clip-path:none;transform:none}}
+
+/* Acesso ao Summit com vidro escuro, borda luminosa e seta de rolagem. */
+.cover-sequence .intro-cover__next{position:relative;isolation:isolate;min-height:62px;padding:10px 12px 10px 24px;gap:24px;border:1px solid #d7ff4759;border-radius:14px;background:linear-gradient(120deg,#d7ff4712,#ffffff06 58%,#b1d4ff0a);color:#f4f8ef;font-family:var(--body);font-size:16px;font-weight:600;letter-spacing:-.01em;box-shadow:inset 0 1px #ffffff20,0 8px 22px #0004;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .25s ease,background .25s ease,box-shadow .25s ease,transform .25s ease;text-decoration:none}
+.cover-sequence .intro-cover__next span{width:40px;height:40px;border-radius:9px;border:1px solid #d7ff4745;background:linear-gradient(140deg,#d7ff4720,#d7ff4708);color:#d7ff47;box-shadow:inset 0 1px #ffffff16}
+.intro-cover__next svg{width:21px;height:21px;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s ease}
+.cover-sequence .intro-cover__next:focus-visible{outline:2px solid #d7ff47;outline-offset:5px}
+@media(hover:hover) and (pointer:fine){.cover-sequence .intro-cover__next:hover{border-color:#d7ff47a6;background:linear-gradient(120deg,#d7ff4720,#ffffff09 58%,#b1d4ff12);box-shadow:inset 0 1px #ffffff30,0 8px 26px #0005,0 0 24px #d7ff4710;color:#ffffff}.cover-sequence .intro-cover__next:hover svg{transform:translateY(3px)}}
+@media(max-width:760px){.cover-sequence .intro-cover__next{width:100%;justify-content:space-between;min-height:58px;padding-left:20px;font-size:15px}.cover-sequence .intro-cover__next span{width:36px;height:36px}}
+@media(prefers-reduced-motion:reduce){.cover-sequence .intro-cover__next,.intro-cover__next svg{transition:none}.cover-sequence .intro-cover__next:hover svg{transform:none}}
+
+/* Entrada do nome independente da rolagem e do reflexo metálico. */
+.cover-sequence .intro-cover__footer{border-top:0}
+@keyframes cover-title-arrival{from{opacity:0;translate:-50% calc(-50% + 14px);clip-path:none}to{opacity:var(--cover-opacity,1);translate:-50% -50%;clip-path:none}}
+@media(prefers-reduced-motion:no-preference){.cover-sequence .intro-cover__name{animation:cover-title-arrival .85s cubic-bezier(.2,.65,.3,1) .15s both,cover-title-reflection 1.8s cubic-bezier(.2,.65,.3,1) .7s both}}
+@media(prefers-reduced-motion:reduce){.cover-sequence .intro-cover__name{animation:none;clip-path:none}}
