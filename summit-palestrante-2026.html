@@ -692,6 +692,189 @@ footer.site .wrap{position:relative;z-index:1}
 @media(min-width:560px){
   #enviar{width:auto;align-self:center;min-width:280px}
 }
+
+/* ==========================================================================
+   TEMA CLARO — skeuomorfismo
+   Esta página destoa de propósito do resto do site, que é escuro. A premissa
+   do estilo é que cada coisa pareça ter volume: o que recebe texto afunda,
+   o que é clicável salta. Como a pessoa vai digitar bastante, o contraste do
+   texto manda sobre o efeito — fundo branco puro no campo, tinta quase preta.
+   ========================================================================== */
+:root{
+  --papel:#EEF0E7;          /* fundo da página, levemente esverdeado */
+  --papel-2:#E4E7DB;
+  --branco:#FFFFFF;
+  --tinta:#15180F;          /* 14:1 sobre o branco */
+  --tinta-2:#474D3C;        /* 7,5:1 — rótulos e apoio */
+  --tinta-3:#5F6654;        /* 5,2:1 sobre o papel — nota, contador, apoio */
+  --borda:#CBD1BC;
+  --borda-2:#B4BCA2;
+  --sombra:rgba(40,46,28,.16);
+}
+body{
+  background:
+    radial-gradient(1100px 620px at 50% -140px, #F7F8F2 0%, rgba(247,248,242,0) 70%),
+    linear-gradient(180deg, var(--papel) 0%, var(--papel-2) 100%);
+  background-attachment:fixed;
+  color:var(--tinta);
+}
+main{position:relative}
+
+/* grão leve: sem ele o gradiente abre banding em tela grande */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+}
+main,footer{position:relative;z-index:1}
+
+/* ---------- hero ---------- */
+.topo{padding-top:clamp(34px,5vw,64px)}
+.topo__inner{gap:clamp(16px,2vw,22px)}
+
+/* a placa: o lockup é branco e lime, some em fundo claro. Aqui ele ganha um
+   suporte escuro, embutido na página como uma peça aplicada */
+.placa{
+  display:inline-flex;padding:clamp(20px,2.6vw,30px) clamp(26px,3.4vw,40px);
+  border-radius:22px;background:linear-gradient(170deg,#1C2117 0%,#0A0D06 100%);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.17),
+    inset 0 -14px 26px rgba(0,0,0,.4),
+    0 2px 3px rgba(40,46,28,.16),
+    0 18px 34px -16px rgba(40,46,28,.5);
+}
+.summit__selo{width:min(100%,208px);height:auto;display:block;filter:none;margin:0}
+
+.sobre-titulo{
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#4E6B00;margin:0;
+}
+.topo__inner h1{color:var(--tinta);letter-spacing:-.03em;max-width:17ch}
+.topo__inner .lede{color:var(--tinta-2);max-width:60ch}
+
+/* três fatos, como numa LP: placas pequenas, levemente salientes */
+.fatos{
+  list-style:none;margin:clamp(8px,1.4vw,14px) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+}
+.fatos li{
+  display:flex;flex-direction:column;gap:2px;padding:12px 20px;border-radius:14px;
+  background:linear-gradient(180deg,#FFFFFF 0%,#F4F6EE 100%);
+  border:1px solid var(--borda);
+  box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(40,46,28,.1), 0 8px 16px -12px var(--sombra);
+}
+.fatos b{font-family:var(--display);font-size:16px;font-weight:700;color:var(--tinta);letter-spacing:-.01em}
+.fatos span{font-size:12.5px;color:var(--tinta-3)}
+
+/* ---------- formulário ---------- */
+.form{margin-inline:auto}
+.campo label,
+.consentimento b,
+fieldset legend{color:var(--tinta-2)}
+.campo label{font-size:13.5px}
+
+/* campo afundado: a sombra interna é o que dá a leitura de "escreva aqui" */
+.campo input,.campo select,.campo textarea{
+  background:var(--branco);color:var(--tinta);
+  border:1px solid var(--borda-2);border-radius:11px;
+  box-shadow:inset 0 2px 4px rgba(40,46,28,.11), inset 0 1px 1px rgba(40,46,28,.07);
+}
+.campo input::placeholder,.campo textarea::placeholder{color:#767D6B}
+.campo input:focus,.campo select:focus,.campo textarea:focus{
+  background:var(--branco);border-color:#6E8B00;
+  box-shadow:inset 0 2px 4px rgba(40,46,28,.09), 0 0 0 3px rgba(149,196,0,.22);
+}
+.campo select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%236B7260' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+}
+.contador{color:var(--tinta-3)}
+.campo__erro{color:#B3261E}
+.form[data-tentou] .campo:has(:invalid) input,
+.form[data-tentou] .campo:has(:invalid) select,
+.form[data-tentou] .campo:has(:invalid) textarea{border-color:#B3261E}
+
+/* botão de arquivo: salta, para separar do campo que afunda */
+.arquivo__botao{
+  color:var(--tinta);
+  background:linear-gradient(180deg,#FFFFFF 0%,#EDEFE6 100%);
+  border:1px solid var(--borda-2);
+  box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(40,46,28,.14), 0 6px 12px -8px var(--sombra);
+}
+.arquivo__botao:hover{color:#3C5200;border-color:#8FA55F;background:linear-gradient(180deg,#FFFFFF 0%,#F2F6E4 100%)}
+.arquivo__nome{color:var(--tinta-3)}
+.arquivo__previa{border-color:var(--borda)}
+
+.consentimento{
+  background:linear-gradient(180deg,#FFFFFF 0%,#F5F7EF 100%);
+  border:1px solid var(--borda);
+  box-shadow:inset 0 1px 0 #fff, 0 1px 2px rgba(40,46,28,.1), 0 10px 20px -16px var(--sombra);
+}
+.consentimento:hover{background:linear-gradient(180deg,#FFFFFF 0%,#F1F5E6 100%);border-color:var(--borda-2)}
+.consentimento:has(input:checked){border-color:#8FA55F;background:linear-gradient(180deg,#FBFEF2 0%,#EFF6DC 100%)}
+.consentimento input{
+  background:var(--branco);border:1px solid var(--borda-2);
+  box-shadow:inset 0 2px 3px rgba(40,46,28,.14);
+}
+.consentimento input:checked{background:#95C400;border-color:#6E8B00;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.consentimento input::after{border-color:#fff}
+.consentimento span{color:var(--tinta-3)}
+
+.form__nota{color:var(--tinta-3)}
+.form__estado[data-tipo="indo"]{color:var(--tinta-2)}
+.form__estado[data-tipo="erro"]{color:#B3261E}
+
+/* o enviar é a peça mais saliente da página */
+#enviar{
+  background:linear-gradient(180deg,#E6FF8C 0%,#CDF83F 48%,#A8DE1E 100%);
+  color:#161D00;border:1px solid #8FB300;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 -8px 14px rgba(86,124,8,.22),
+    0 2px 3px rgba(40,46,28,.2),
+    0 14px 26px -12px rgba(100,140,0,.6);
+}
+#enviar:hover{
+  background:linear-gradient(180deg,#EEFFA8 0%,#D8FF5C 48%,#B6EC2C 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -8px 14px rgba(86,124,8,.18),
+    0 3px 5px rgba(40,46,28,.2),
+    0 18px 32px -12px rgba(100,140,0,.65);
+}
+#enviar:active{
+  transform:translateY(1px);
+  box-shadow:inset 0 2px 6px rgba(86,124,8,.45), 0 1px 2px rgba(40,46,28,.2);
+}
+
+.obrigado{
+  background:linear-gradient(180deg,#FFFFFF 0%,#F6F8F0 100%);
+  border:1px solid var(--borda);
+  box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(40,46,28,.1), 0 24px 44px -28px var(--sombra);
+}
+.obrigado h2{color:var(--tinta)}
+.obrigado p{color:var(--tinta-2)}
+
+/* a seleção precisa de contraste próprio: o azul do site some no papel */
+::selection{background:#D7FF47;color:var(--tinta)}
+
+
+/* ---------- rodapé ----------
+   O rodapé do site é um branco a 8% pensado para página escura: no papel ele
+   desaparece e os links ficam cinza sobre cinza. Aqui ele recebe fundo
+   próprio e vira o pé escuro da página, no mesmo material da placa. */
+footer.site{
+  background:linear-gradient(180deg,#141910 0%,#090C05 100%);
+  border-top:1px solid rgba(255,255,255,.1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+  color:#C6CBB8;
+}
+footer.site h4{color:#FFFFFF}
+footer.site a{color:#C6CBB8}
+footer.site a:hover{color:var(--lime)}
+footer.site .small,footer.site p{color:#A8AE98}
+footer.site svg{fill:currentColor}
+
+@media(prefers-reduced-motion:reduce){ #enviar:active{transform:none} }
 </style>
 
 <header>
@@ -741,11 +924,23 @@ footer.site .wrap{position:relative;z-index:1}
 
   <section class="topo">
     <div class="wrap topo__inner">
-      <img class="summit__selo entra" style="--atraso:.03s"
-           src="assets/summit/summit-lockup-2026.webp"
-           alt="TotalFut Summit Internacional — 2ª edição, 23, 25 e 27 de novembro de 2026" width="847" height="792">
-      <h1 class="entra" style="--atraso:.09s">Dados do palestrante.</h1>
-      <p class="lede entra" style="--atraso:.14s">Confirmação de dados para a divulgação do TotalFut Summit Internacional — 23, 25 e 27 de novembro de 2026, on-line e ao vivo. Todos os envios são opcionais e podem ser alterados posteriormente. Além das informações pessoais e sobre a apresentação, no final do formulário está disponível o envio de fotos para utilizarmos na página de vendas, cards e todo o tipo de divulgação, e também o envio do atual CV, caso queira disponibilizar para uso da trajetória de clubes.</p>
+
+      <div class="placa entra" style="--atraso:.03s">
+        <img class="summit__selo"
+             src="assets/summit/summit-lockup-2026.webp"
+             alt="TotalFut Summit Internacional — 2ª edição, 23, 25 e 27 de novembro de 2026" width="847" height="792">
+      </div>
+
+      <p class="sobre-titulo entra" style="--atraso:.08s">Confirmação de dados · 2ª edição</p>
+      <h1 class="entra" style="--atraso:.12s">Seus dados para a divulgação do Summit.</h1>
+      <p class="lede entra" style="--atraso:.17s">Confirmação de dados para a divulgação do TotalFut Summit Internacional — 23, 25 e 27 de novembro de 2026, on-line e ao vivo. Todos os envios são opcionais e podem ser alterados posteriormente. Além das informações pessoais e sobre a apresentação, no final do formulário está disponível o envio de fotos para utilizarmos na página de vendas, cards e todo o tipo de divulgação, e também o envio do atual CV, caso queira disponibilizar para uso da trajetória de clubes.</p>
+
+      <ul class="fatos entra" style="--atraso:.22s">
+        <li><b>23, 25 e 27</b><span>novembro de 2026</span></li>
+        <li><b>On-line</b><span>ao vivo e gravado</span></li>
+        <li><b>Cinco minutos</b><span>e nada é obrigatório</span></li>
+      </ul>
+
     </div>
   </section>
 
