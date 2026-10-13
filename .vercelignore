@@ -27,3 +27,9 @@ summit-palestrante-clean.html
 summit-palestrante-glass.html
 summit-palestrante-material.html
 summit-palestrante-skeuomorphism.html
+
+
+# Laboratório de design: somente local.
+home-lab*.html
+curso-*-tech.html
+assets/home-lab/

@@ -1542,6 +1542,8 @@ footer.site .wrap{position:relative;z-index:1}
   .luz::after{content:none}
 }
 </style>
+<link rel="stylesheet" href="assets/design-tech/signature-lime.css">
+<link rel="stylesheet" href="assets/design-tech/summit-tech.css">
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <filter id="giz-textura">
@@ -1606,6 +1608,56 @@ footer.site .wrap{position:relative;z-index:1}
 <main>
 
   <!-- CAPA -->
+
+
+  <!-- HERO — Summit (temporária; a hero padrão volta revertendo este commit) -->
+  <section class="hero hero--summit">
+
+    <div class="wrap hero__inner">
+
+      <p class="summit__edicao entra" style="--atraso:.05s">
+        <i aria-hidden="true"></i>2ª edição
+      </p>
+
+      <div class="summit-tech__visual">
+        <svg class="summit-tech__pitch" viewBox="0 0 500 500" aria-hidden="true">
+          <rect x="45" y="30" width="410" height="440" rx="1"/>
+          <path d="M45 250H455M130 30V110H370V30M185 30V65H315V30M130 470V390H370V470M185 470V435H315V470"/>
+          <circle cx="250" cy="250" r="70"/>
+          <path d="M238 250H262M250 238V262"/>
+        </svg>
+      <img class="summit__marca entra" style="--atraso:.12s"
+           src="assets/summit/summit-lockup-2026.webp"
+           alt="TotalFut Summit Internacional — 2026" width="847" height="792" fetchpriority="high">
+      </div>
+
+      <h1 class="entra" style="--atraso:.20s">O ponto de encontro de quem pensa o futebol brasileiro</h1>
+
+      <div class="summit__datas entra" style="--atraso:.26s">
+        <span class="summit__dia"><b>23</b><span>segunda</span></span>
+        <span class="summit__dia"><b>25</b><span>quarta</span></span>
+        <span class="summit__dia"><b>27</b><span>sexta</span></span>
+        <span class="summit__mes">novembro de 2026</span>
+      </div>
+
+      <p class="summit__selos entra" style="--atraso:.30s">
+        <span>On-line</span><span>Ao vivo</span><span>Fica gravado</span>
+      </p>
+
+      <p class="lede entra" style="--atraso:.34s">Três noites com referências do mercado nacional e internacional debatendo cases reais, análises de bastidores e visões práticas sobre o rumo do futebol. Para quem entende que o próximo nível exige repertório.</p>
+
+      <div class="hero__cta entra" style="--atraso:.40s">
+        <a class="btn btn--lime" href="#lista">Avisar quando abrir inscrição</a>
+        <a class="btn btn--wire" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=TotalFut%20Summit%20Internacional%20%E2%80%94%202%C2%AA%20edi%C3%A7%C3%A3o&amp;dates=20261123%2F20261124&amp;recur=RRULE%3AFREQ%3DDAILY%3BINTERVAL%3D2%3BCOUNT%3D3&amp;details=Tr%C3%AAs%20noites%20com%20refer%C3%AAncias%20do%20mercado%20nacional%20e%20internacional%20debatendo%20cases%20reais%2C%20an%C3%A1lises%20de%20bastidores%20e%20vis%C3%B5es%20pr%C3%A1ticas%20sobre%20o%20rumo%20do%20futebol.%0A%0AEvento%20on-line%2C%20ao%20vivo%20e%20gravado.%0A%0Ahttps%3A%2F%2Ftotalfut.com.br%2F%23eventos&amp;location=On-line&amp;ctz=America%2FSao_Paulo" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12"/><path d="M5.5 1.5v2.5M10.5 1.5v2.5"/>
+          </svg>
+          Marcar na agenda
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="capa" id="capa">
     <div class="capa__palco">
       <div class="campo" aria-hidden="true">
@@ -1658,46 +1710,6 @@ footer.site .wrap{position:relative;z-index:1}
           <span data-i18n="capa.role">role para entrar</span>
           <i aria-hidden="true"></i>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HERO — Summit (temporária; a hero padrão volta revertendo este commit) -->
-  <section class="hero hero--summit">
-    <canvas id="pitch" aria-hidden="true"></canvas>
-    <div class="wrap hero__inner">
-
-      <p class="summit__edicao entra" style="--atraso:.05s">
-        <i aria-hidden="true"></i>2ª edição
-      </p>
-
-      <img class="summit__marca entra" style="--atraso:.12s"
-           src="assets/summit/summit-lockup.webp"
-           alt="TotalFut Summit Internacional" width="1200" height="721" fetchpriority="high">
-
-      <h1 class="entra" style="--atraso:.20s">O ponto de encontro de quem pensa, lidera e ajuda a moldar o futebol.</h1>
-
-      <div class="summit__datas entra" style="--atraso:.26s">
-        <span class="summit__dia"><b>23</b><span>segunda</span></span>
-        <span class="summit__dia"><b>25</b><span>quarta</span></span>
-        <span class="summit__dia"><b>27</b><span>sexta</span></span>
-        <span class="summit__mes">novembro de 2026</span>
-      </div>
-
-      <p class="summit__selos entra" style="--atraso:.30s">
-        <span>On-line</span><span>Ao vivo</span><span>Fica gravado</span>
-      </p>
-
-      <p class="lede entra" style="--atraso:.34s">Três noites com referências do mercado nacional e internacional debatendo cases reais, análises de bastidores e visões práticas sobre o rumo do futebol. Para quem entende que o próximo nível exige repertório.</p>
-
-      <div class="hero__cta entra" style="--atraso:.40s">
-        <a class="btn btn--lime" href="#lista">Avisar quando abrir inscrição</a>
-        <a class="btn btn--wire" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=TotalFut%20Summit%20Internacional%20%E2%80%94%202%C2%AA%20edi%C3%A7%C3%A3o&amp;dates=20261123%2F20261124&amp;recur=RRULE%3AFREQ%3DDAILY%3BINTERVAL%3D2%3BCOUNT%3D3&amp;details=Tr%C3%AAs%20noites%20com%20refer%C3%AAncias%20do%20mercado%20nacional%20e%20internacional%20debatendo%20cases%20reais%2C%20an%C3%A1lises%20de%20bastidores%20e%20vis%C3%B5es%20pr%C3%A1ticas%20sobre%20o%20rumo%20do%20futebol.%0A%0AEvento%20on-line%2C%20ao%20vivo%20e%20gravado.%0A%0Ahttps%3A%2F%2Ftotalfut.com.br%2F%23eventos&amp;location=On-line&amp;ctz=America%2FSao_Paulo" target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12"/><path d="M5.5 1.5v2.5M10.5 1.5v2.5"/>
-          </svg>
-          Marcar na agenda
-        </a>
       </div>
     </div>
   </section>
@@ -2462,363 +2474,6 @@ footer.site .wrap{position:relative;z-index:1}
 </div>
 <script>
 (function(){
-  const cvs = document.getElementById('pitch');
-  const ctx = cvs.getContext('2d');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- câmera ---------- */
-  const Z_NEAR = 2.0, Z_FAR = 8.5;
-  let W = 0, H = 0, CX = 0, HZ = 0, F = 0, CAM_H = 0.6;
-
-  // a última linha de texto do hero: o campo começa abaixo dela
-  const ctaEl = document.querySelector('.hero__fatos') ||
-                document.querySelector('.hero__cta');
-
-  /* ---------- luz difusa ----------
-     Manchas largas de cor que derivam devagar e respiram, compostas em modo
-     aditivo. Desenhadas numa tela auxiliar a 1/4 da resolução e ampliadas na
-     composição: a interpolação da ampliação entrega a difusão sem custo de
-     desfoque por quadro. */
-  const lux = document.createElement('canvas');
-  const lctx = lux.getContext('2d');
-  let LW = 0, LH = 0;
-
-  // cada mancha tem período próprio nos dois eixos, então o conjunto
-  // nunca volta ao mesmo arranjo
-  // concentradas na faixa do logo e da headline, com deriva curta para
-  // não escaparem da área central
-  const focos = [
-    { x:0.41, y:0.21, r:0.34, cor:'215,255,71',  i:0.36, px:31, py:23, ax:0.07, ay:0.05, pr:41 },
-    { x:0.62, y:0.29, r:0.30, cor:'1,90,255',    i:0.28, px:27, py:19, ax:0.08, ay:0.06, pr:35 },
-    { x:0.50, y:0.39, r:0.38, cor:'176,240,92',  i:0.26, px:37, py:29, ax:0.09, ay:0.05, pr:47 },
-    { x:0.33, y:0.33, r:0.26, cor:'128,246,206', i:0.18, px:23, py:33, ax:0.07, ay:0.06, pr:29 }
-  ];
-
-  function drawLuzes(t){
-    if (!LW) return;
-    lctx.clearRect(0, 0, LW, LH);
-    lctx.globalCompositeOperation = 'lighter';
-    const d = Math.max(LW, LH);
-    focos.forEach(function(f){
-      const cx = (f.x + Math.sin(t / f.px * Math.PI * 2) * f.ax) * LW;
-      const cy = (f.y + Math.cos(t / f.py * Math.PI * 2) * f.ay) * LH;
-      const raio = d * f.r * (0.88 + 0.12 * Math.sin(t / f.pr * Math.PI * 2));
-      const forca = f.i * (0.78 + 0.22 * Math.sin(t / (f.px * 0.7) * Math.PI * 2));
-      const g = lctx.createRadialGradient(cx, cy, 0, cx, cy, raio);
-      g.addColorStop(0,    'rgba(' + f.cor + ',' + forca.toFixed(3) + ')');
-      g.addColorStop(0.45, 'rgba(' + f.cor + ',' + (forca * 0.32).toFixed(3) + ')');
-      g.addColorStop(1,    'rgba(' + f.cor + ',0)');
-      lctx.fillStyle = g;
-      lctx.beginPath(); lctx.arc(cx, cy, raio, 0, Math.PI * 2); lctx.fill();
-    });
-    lctx.globalCompositeOperation = 'source-over';
-  }
-
-  function resize(){
-    const r = cvs.getBoundingClientRect();
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    W = Math.max(r.width, 1); H = Math.max(r.height, 1);
-    cvs.width = Math.round(W * dpr); cvs.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    CX = W / 2;
-    F  = Math.max(W * 1.10, 520);         // laterais sangram fora da tela
-
-    // horizonte ancorado na base real dos botões, não numa fração cega da altura:
-    // acompanha o refluxo do título em qualquer tela sem nunca cortar o conteúdo
-    const folga = W < 700 ? 14 : 30;
-    const base  = ctaEl.getBoundingClientRect().bottom - r.top + folga;
-    HZ = Math.min(Math.max(base, H * 0.34), H * 0.74);
-
-    // respiro abaixo do campo: a linha de fundo para antes da borda do hero
-    const margem = Math.min(Math.max(H * 0.07, 22), 60);
-    const faixa  = Math.max(H - HZ - margem, 110);
-    CAM_H = faixa * Z_NEAR / F;
-
-    LW = Math.max(1, Math.round(W / 4));
-    LH = Math.max(1, Math.round(H / 4));
-    lux.width = LW; lux.height = LH;
-  }
-
-  function proj(px, pz){
-    const s = F / pz;
-    return { x: CX + px * s, y: HZ + CAM_H * s, s: s };
-  }
-
-  /* ---------- formações ---------- */
-  // x: -1 (esquerda) a 1 (direita) | z: profundidade absoluta | line: índice da linha
-  function build(rows){
-    const players = [];
-    rows.forEach((row, li) => {
-      row.xs.forEach((x, i) => {
-        players.push({ x: x, z: row.z, line: li, idx: i, ph: players.length * 1.7 });
-      });
-    });
-    // ligações: dentro da linha + para os 2 mais próximos da linha seguinte
-    const links = [];
-    const byLine = {};
-    players.forEach((p, i) => { (byLine[p.line] = byLine[p.line] || []).push(i); });
-    const lines = Object.keys(byLine).map(Number).sort((a, b) => a - b);
-
-    lines.forEach(li => {
-      const cur = byLine[li];
-      for (let i = 0; i < cur.length - 1; i++) links.push([cur[i], cur[i + 1]]);
-      const next = byLine[li + 1];
-      if (!next) return;
-      cur.forEach(a => {
-        const ranked = next.slice().sort((m, n) =>
-          Math.abs(players[m].x - players[a].x) - Math.abs(players[n].x - players[a].x));
-        ranked.slice(0, Math.min(2, ranked.length)).forEach(b => links.push([a, b]));
-      });
-    });
-    return { players: players, links: links };
-  }
-
-  const Z0 = Z_NEAR;
-  // uma formação por enquanto; a máquina de interpolação continua pronta
-  // caso a home passe a alternar entre desenhos táticos
-  const FORMATIONS = {
-    '433': build([
-      { z: Z0 + 0.45, xs: [0] },
-      { z: Z0 + 1.65, xs: [-0.74, -0.26, 0.26, 0.74] },
-      { z: Z0 + 3.20, xs: [-0.48, 0, 0.48] },
-      { z: Z0 + 4.85, xs: [-0.78, 0, 0.78] }
-    ])
-  };
-
-  let current = FORMATIONS['433'];
-  let target  = current;
-  let morph   = 1;      // 0..1 transição entre formações
-  let from    = current;
-
-  /* ---------- desenho do campo ---------- */
-  function seg(a, b){
-    const p = proj(a[0], a[1]), q = proj(b[0], b[1]);
-    ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-  }
-  function arcPath(cz, cx, rx, rz, from, to){
-    const N = 54;
-    for (let i = 0; i <= N; i++){
-      const a = from + (to - from) * (i / N);
-      const p = proj(cx + Math.cos(a) * rx, cz + Math.sin(a) * rz);
-      if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
-    }
-  }
-
-  function drawPitch(){
-    // em tela estreita o campo é o elemento que segura a atenção:
-    // linha mais grossa e mais opaca para ele não sumir
-    const m = W < 700;
-    const g = ctx.createLinearGradient(0, HZ, 0, H);
-    g.addColorStop(0,    m ? 'rgba(215,255,71,0.08)' : 'rgba(215,255,71,0.05)');
-    g.addColorStop(0.30, m ? 'rgba(215,255,71,0.26)' : 'rgba(215,255,71,0.15)');
-    g.addColorStop(0.72, m ? 'rgba(215,255,71,0.22)' : 'rgba(215,255,71,0.13)');
-    g.addColorStop(1,    m ? 'rgba(215,255,71,0.04)' : 'rgba(215,255,71,0.02)');
-    ctx.strokeStyle = g;
-    ctx.lineWidth = m ? 1.5 : 1.1;
-    ctx.beginPath();
-
-    const zc = (Z_NEAR + Z_FAR) / 2;
-    // laterais e linhas de fundo
-    seg([-1, Z_NEAR], [-1, Z_FAR]);
-    seg([ 1, Z_NEAR], [ 1, Z_FAR]);
-    seg([-1, Z_NEAR], [ 1, Z_NEAR]);
-    seg([-1, Z_FAR ], [ 1, Z_FAR ]);
-    // meio de campo
-    seg([-1, zc], [1, zc]);
-    // grandes áreas
-    [[Z_NEAR, 1.05], [Z_FAR, -1.05]].forEach(function(e){
-      const z0 = e[0], d = e[1];
-      seg([-0.60, z0], [-0.60, z0 + d]);
-      seg([ 0.60, z0], [ 0.60, z0 + d]);
-      seg([-0.60, z0 + d], [0.60, z0 + d]);
-      seg([-0.27, z0], [-0.27, z0 + d * 0.33]);
-      seg([ 0.27, z0], [ 0.27, z0 + d * 0.33]);
-      seg([-0.27, z0 + d * 0.33], [0.27, z0 + d * 0.33]);
-    });
-    ctx.stroke();
-
-    // círculo central
-    ctx.beginPath();
-    arcPath(zc, 0, 0.28, 0.62, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // marca central
-    ctx.beginPath();
-    const c = proj(0, zc);
-    ctx.arc(c.x, c.y, 1.6, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(215,255,71,0.22)';
-    ctx.fill();
-  }
-
-  /* ---------- luz ---------- */
-  // sem aresta: só o clarão nascendo do horizonte, por trás do texto e dos botões
-  function drawGlow(){
-    ctx.save();
-    ctx.translate(CX, HZ);
-    ctx.scale(1, 0.40);
-    const R = W * 0.82;
-    const g = ctx.createRadialGradient(0, 0, R * 0.04, 0, 0, R);
-    const m = W < 700;
-    g.addColorStop(0,    m ? 'rgba(215,255,71,0.34)' : 'rgba(215,255,71,0.24)');
-    g.addColorStop(0.30, m ? 'rgba(179,222,54,0.17)' : 'rgba(179,222,54,0.11)');
-    g.addColorStop(0.66, 'rgba(110,150,28,0.035)');
-    g.addColorStop(1,    'rgba(110,150,28,0)');
-    ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2); ctx.fill();
-    ctx.restore();
-  }
-
-  /* ---------- jogadores ---------- */
-  function posOf(p, t){
-    const shift   = Math.sin(t * 0.23) * 0.30;
-    const push    = Math.sin(t * 0.15) * 0.72;
-    const compact = 0.88 + 0.12 * Math.sin(t * 0.15 + 0.9);
-    const weight  = 0.55 + 0.15 * p.line;           // linhas à frente acompanham mais o lado da bola
-    const x = p.x + shift * weight + Math.sin(t * 0.9 + p.ph) * 0.035;
-    const z = Z_NEAR + (p.z - Z_NEAR) * compact + push + Math.sin(t * 0.7 + p.ph * 1.6) * 0.09;
-    return { x: x, z: Math.max(z, Z_NEAR + 0.15) };
-  }
-
-  function lerpSet(a, b, k, t){
-    const n = Math.max(a.players.length, b.players.length);
-    const out = [];
-    for (let i = 0; i < n; i++){
-      const pa = a.players[Math.min(i, a.players.length - 1)];
-      const pb = b.players[Math.min(i, b.players.length - 1)];
-      const A = posOf(pa, t), B = posOf(pb, t);
-      out.push({ x: A.x + (B.x - A.x) * k, z: A.z + (B.z - A.z) * k, live: i < b.players.length });
-    }
-    return out;
-  }
-
-  /* ---------- a bola ----------
-     único elemento azul do campo: percorre as ligações como um passe,
-     e o trecho em uso acende em azul. O resto permanece lime. */
-  let bDe = 0, bPara = 1, bT = 0, bEspera = 0.6;
-
-  function passe(dt, pts, links){
-    if (bDe >= pts.length) bDe = 0;
-    if (bPara >= pts.length) bPara = Math.min(1, pts.length - 1);
-    if (bEspera > 0){ bEspera -= dt; return; }
-    bT += dt * 0.8;
-    if (bT < 1) return;
-    bT = 0; bEspera = 0.30 + Math.random() * 0.55;
-    bDe = bPara;
-    const saidas = links.filter(function(l){
-      return (l[0] === bDe || l[1] === bDe) && l[0] < pts.length && l[1] < pts.length;
-    });
-    if (!saidas.length) return;
-    const l = saidas[(Math.random() * saidas.length) | 0];
-    bPara = l[0] === bDe ? l[1] : l[0];
-  }
-
-  function draw(t, dt){
-    ctx.clearRect(0, 0, W, H);
-
-    drawLuzes(t);
-    ctx.save();
-    ctx.globalCompositeOperation = 'lighter';
-    ctx.drawImage(lux, 0, 0, W, H);
-    ctx.restore();
-
-    drawGlow();
-    drawPitch();
-
-    const k = morph < 1 ? (morph * morph * (3 - 2 * morph)) : 1;
-    const pts = lerpSet(from, target, k, t);
-    const links = k > 0.5 ? target.links : from.links;
-
-    passe(dt || 0, pts, links);
-
-    // ligações
-    ctx.lineCap = 'round';
-    links.forEach(function(l){
-      const a = pts[l[0]], b = pts[l[1]];
-      if (!a || !b) return;
-      const ativo = (l[0] === bDe && l[1] === bPara) || (l[1] === bDe && l[0] === bPara);
-      const p = proj(a.x, a.z), q = proj(b.x, b.z);
-      const depth = Math.min(p.s, q.s) / (F / Z_NEAR);
-      const base = W < 700 ? 0.18 : 0.10;
-      ctx.strokeStyle = ativo
-        ? 'rgba(1,90,255,' + (0.45 + depth * 0.40).toFixed(3) + ')'
-        : 'rgba(215,255,71,' + (base + depth * 0.30).toFixed(3) + ')';
-      ctx.lineWidth = Math.max(0.6, Math.min(ativo ? 2.4 : 1.8, depth * (ativo ? 3 : 2.2)));
-      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-    });
-
-    // nós
-    pts.forEach(function(pt, i){
-      const p = proj(pt.x, pt.z);
-      const r = Math.max(W < 700 ? 3.2 : 2.4, Math.min(W < 700 ? 8.5 : 7, p.s * (W < 700 ? 0.017 : 0.0125)));
-      const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 5);
-      halo.addColorStop(0,   W < 700 ? 'rgba(215,255,71,0.58)' : 'rgba(215,255,71,0.42)');
-      halo.addColorStop(0.5, 'rgba(215,255,71,0.10)');
-      halo.addColorStop(1,   'rgba(215,255,71,0)');
-      ctx.fillStyle = halo;
-      ctx.beginPath(); ctx.arc(p.x, p.y, r * 5, 0, Math.PI * 2); ctx.fill();
-
-      ctx.fillStyle = i === 0 ? '#FFFFFF' : '#D7FF47';
-      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2); ctx.fill();
-    });
-
-    // a bola, por cima de tudo
-    const a = pts[bDe], b = pts[bPara];
-    if (a && b){
-      const e = bEspera > 0 ? 0 : bT * bT * (3 - 2 * bT);      // acelera e desacelera
-      const bx = a.x + (b.x - a.x) * e;
-      const bz = a.z + (b.z - a.z) * e;
-      const p  = proj(bx, bz);
-      const alt = Math.sin(Math.PI * (bEspera > 0 ? 0 : bT)) * p.s * 0.022;  // passe no ar
-      const y = p.y - alt;
-      const r = Math.max(2.2, Math.min(5.4, p.s * 0.0095));
-
-      const halo = ctx.createRadialGradient(p.x, y, 0, p.x, y, r * 6);
-      halo.addColorStop(0,   'rgba(1,90,255,0.55)');
-      halo.addColorStop(0.45,'rgba(1,90,255,0.16)');
-      halo.addColorStop(1,   'rgba(1,90,255,0)');
-      ctx.fillStyle = halo;
-      ctx.beginPath(); ctx.arc(p.x, y, r * 6, 0, Math.PI * 2); ctx.fill();
-
-      ctx.fillStyle = '#015AFF';
-      ctx.beginPath(); ctx.arc(p.x, y, r, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
-      ctx.beginPath(); ctx.arc(p.x - r * 0.28, y - r * 0.32, r * 0.34, 0, Math.PI * 2); ctx.fill();
-    }
-  }
-
-  /* ---------- loop ---------- */
-  let last = 0, raf = 0;
-  function frame(ms){
-    const t = ms / 1000;
-    const dt = last ? Math.min(t - last, 0.05) : 0;   // limite protege contra abas em segundo plano
-    last = t;
-    if (morph < 1) morph = Math.min(1, morph + 0.02);
-    draw(t, dt);
-    raf = requestAnimationFrame(frame);
-  }
-
-  function start(){
-    resize();
-    if (reduce){ draw(6.2, 0); return; }
-    cancelAnimationFrame(raf);
-    last = 0;
-    raf = requestAnimationFrame(frame);
-  }
-
-  function remeasure(){ resize(); if (reduce) draw(6.2, 0); }
-
-  // o hero muda de altura quando a Sora termina de carregar e o título reflui;
-  // sem isto o horizonte fica fora de lugar até o primeiro resize manual
-  if (window.ResizeObserver){
-    new ResizeObserver(remeasure).observe(cvs.parentElement);
-  } else {
-    addEventListener('resize', remeasure);
-  }
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
-  addEventListener('orientationchange', function(){ setTimeout(remeasure, 120); });
-
-  start();
-
   /* ---------- menu mobile ---------- */
   const burger = document.getElementById('burger');
   const menu   = document.getElementById('menu');
@@ -3204,6 +2859,7 @@ footer.site .wrap{position:relative;z-index:1}
      o nome e o símbolo crescem e se apagam em ritmos diferentes: dá a
      sensação de atravessar a capa em vez de empurrá-la para cima. */
   (function(){
+    return; // Esta prévia usa uma assinatura estática.
     const capa  = document.querySelector('.capa');
     const palco = capa && capa.querySelector('.capa__palco');
     if (!capa || !palco) return;
@@ -3288,6 +2944,7 @@ footer.site .wrap{position:relative;z-index:1}
      Medido contra a própria camada de atmosfera, que o scrub desloca: usar
      a capa como referência deixaria o brilho atrasado ao rolar. */
   (function(){
+    return; // Sem animação de cursor na assinatura.
     const brilho = document.getElementById('brilhoCursor');
     if (!brilho) return;
     const capa = brilho.closest('.capa');
@@ -3336,3 +2993,5 @@ footer.site .wrap{position:relative;z-index:1}
   };
 })();
 </script>
+
+<script src="assets/design-tech/summit-interactions.js" defer></script>

@@ -1,0 +1,8 @@
+/* Assinatura Sttudio11WD: verde-lima e luz discreta. */
+footer.site .assina__marca{position:relative;isolation:isolate}
+footer.site .assina__nome,footer.site .assina__nome em{color:#d7ff47;text-shadow:0 0 16px #d7ff472e;transition:text-shadow .25s ease}
+footer.site .assina__marca::before{content:"";position:absolute;inset:-14px -22px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#d7ff4712,transparent 70%);opacity:.65;transition:opacity .25s ease}
+footer.site .assina__marca:hover .assina__nome,footer.site .assina__marca:focus-visible .assina__nome{color:#e2ff7e;text-shadow:0 0 12px #d7ff4752,0 0 28px #d7ff472e}
+footer.site .assina__marca:hover::before,footer.site .assina__marca:focus-visible::before{opacity:1}
+footer.site .assina__fio{background:#d7ff47;box-shadow:0 0 8px #d7ff4740}
+@media(prefers-reduced-motion:reduce){footer.site .assina__marca::before,footer.site .assina__nome{transition:none}}
