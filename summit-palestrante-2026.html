@@ -923,6 +923,24 @@ main > .preenchimento{padding-block:32px 44px}
   main > .preenchimento{background:#233224}
 }
 
+
+/* Downloads de apoio à apresentação. */
+main > .materiais{padding-block:32px 36px;border:1px solid #ebffde36;border-radius:26px;background:linear-gradient(125deg,#ffffff18,#ffffff08);box-shadow:inset 0 1px #ffffff26,0 18px 50px #00000026;backdrop-filter:blur(30px) saturate(125%);-webkit-backdrop-filter:blur(30px) saturate(125%);scroll-margin-top:90px}
+.materiais__inner{max-width:760px;margin-inline:auto}
+.materiais h2{color:var(--tinta);font-size:clamp(19px,2.5vw,24px);line-height:1.5;overflow-wrap:anywhere}
+.materiais__intro{color:var(--tinta-2);font-size:15px;line-height:1.7;margin-top:14px;max-width:60ch}
+.materiais__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+.material-download{display:flex;flex-direction:column;align-items:flex-start;padding:24px;gap:12px;min-width:0;background:linear-gradient(135deg,#ffffff0f,#ffffff05);border:1px solid var(--fio);border-radius:16px;box-shadow:inset 0 1px #ffffff15}
+.material-download h3{font-family:var(--body);font-weight:700;color:var(--tinta);font-size:20px;line-height:1.4;letter-spacing:-.02em}
+.material-download p{color:var(--tinta-2);font-size:14px;line-height:1.65}
+.material-download__tipo{font-size:12px;font-weight:600;color:var(--tinta-3)}
+.material-download__link{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;margin-top:auto;padding:13px 20px;border:1px solid #e6ffac;border-radius:10px;background:linear-gradient(135deg,#e0ff84,#c8ef53);color:#1e3010;font-size:15px;font-weight:700;box-shadow:inset 0 1px #ffffff80,0 5px 18px #baff3920;transition:background .18s ease,box-shadow .18s ease}
+.material-download__link:hover{background:linear-gradient(135deg,#eaffaa,#d4f76a);box-shadow:inset 0 1px #ffffff80,0 7px 24px #baff3938;color:#1e3010}
+.material-download__link:focus-visible{outline:2px solid var(--acento);outline-offset:4px}
+.materiais__nota{margin-top:20px;padding:16px 20px;border:1px solid #d7ff4733;border-radius:12px;background:#d7ff4709;color:var(--tinta-2);font-size:14px;line-height:1.65}
+@media(max-width:600px){main > .materiais{padding-block:26px 28px;border-radius:20px}.materiais__grid{grid-template-columns:1fr}.material-download{padding:20px}.material-download__link{width:100%}}
+@supports not (backdrop-filter:blur(1px)){main > .materiais{background:#233224}}
+
 </style>
 
 <header>
@@ -978,7 +996,7 @@ main > .preenchimento{padding-block:32px 44px}
            alt="TotalFut Summit Internacional — 2ª edição, 23, 25 e 27 de novembro de 2026" width="847" height="792">
 
       <p class="sobre-titulo entra" style="--atraso:.08s">Ficha do palestrante · 2ª edição</p>
-      <h1 class="entra" style="--atraso:.12s">Seus dados para a divulgação do Summit.</h1>
+      <h1 class="entra" style="--atraso:.12s">Dados para a divulgação do Summit</h1>
       <p class="lede entra" style="--atraso:.17s">Preencha sua ficha para a divulgação do TotalFut Summit Internacional, nos dias <strong>23, 25 e 27 de novembro de 2026</strong>, on-line e ao vivo. Todos os campos são opcionais. Você pode atualizar seus dados enviando o formulário novamente.</p>
 
     </div>
@@ -1124,6 +1142,42 @@ main > .preenchimento{padding-block:32px 44px}
         <p>Obrigado. A produção confere o material e fala com você pelo WhatsApp sobre o dia e o horário da sua participação. Se precisar trocar alguma informação, é só responder o formulário de novo — consideramos sempre o envio mais recente.</p>
       </div>
 
+    </div>
+  </section>
+
+  <section class="materiais" id="materiais-apresentacao" aria-labelledby="materiais-titulo">
+    <div class="wrap">
+      <div class="materiais__inner">
+        <h2 id="materiais-titulo">Materiais para sua apresentação.</h2>
+        <p class="materiais__intro">Baixe a matriz para o programa que você utiliza, as fontes e o guia de desenvolvimento do TotalFut Summit 2026. Os downloads estão disponíveis sem precisar enviar o formulário.</p>
+        <div class="materiais__grid">
+        <article class="material-download">
+          <span class="material-download__tipo">PPTX · 27,9 MB</span>
+          <h3>Matriz PowerPoint</h3>
+          <p>Modelo de slides do Summit para preparar sua apresentação no PowerPoint.</p>
+          <a class="material-download__link" href="assets/downloads/summit-2026/matriz-slides-summit-2026.pptx" download>Baixar PowerPoint <span aria-hidden="true">↓</span></a>
+        </article>
+        <article class="material-download">
+          <span class="material-download__tipo">ZIP · KEY · 28,6 MB</span>
+          <h3>Matriz Keynote</h3>
+          <p>Modelo de slides para o Keynote. Descompacte o ZIP para acessar o arquivo .key.</p>
+          <a class="material-download__link" href="assets/downloads/summit-2026/matriz-slides-summit-2026-keynote.zip" download>Baixar Keynote <span aria-hidden="true">↓</span></a>
+        </article>
+        <article class="material-download">
+          <span class="material-download__tipo">ZIP · TTF · 0,2 MB</span>
+          <h3>Fontes Boldonse e Exo</h3>
+          <p>Pacote com as fontes em TTF, versões normal e itálica da Exo e as licenças originais.</p>
+          <a class="material-download__link" href="assets/downloads/summit-2026/fontes-totalfut.zip" download>Baixar fontes <span aria-hidden="true">↓</span></a>
+        </article>
+        <article class="material-download">
+          <span class="material-download__tipo">PDF · 1,4 MB</span>
+          <h3>Guia de desenvolvimento</h3>
+          <p>Consulte as orientações para desenvolver sua apresentação para o Summit.</p>
+          <a class="material-download__link" href="assets/downloads/summit-2026/guia-desenvolvimento-summit-2026.pdf" download>Baixar guia em PDF <span aria-hidden="true">↓</span></a>
+        </article>
+        </div>
+        <p class="materiais__nota"><strong>Antes de abrir a matriz:</strong> descompacte o pacote e instale as fontes Boldonse e Exo no computador. Depois, abra o PowerPoint ou o Keynote e confira se os textos aparecem corretamente.</p>
+      </div>
     </div>
   </section>
 
