@@ -144,3 +144,6 @@
 .intro-cover__fluid-canvas{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:1;pointer-events:none;filter:drop-shadow(0 22px 26px #0007);opacity:var(--cover-opacity,1)}
 .intro-cover__fluid-canvas.is-active{display:block}
 .cover-sequence .intro-cover__render.is-fluid-source{opacity:0!important}
+
+/* O metal fica imóvel: somente a área tocada pelo ponteiro se deforma. */
+.cover-sequence .intro-cover__symbol{transform:perspective(1100px) translateY(var(--cover-scroll,0px)) scale(var(--cover-scale,1))}

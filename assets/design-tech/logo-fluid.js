@@ -10,9 +10,9 @@
  const fragment=shader(gl.FRAGMENT_SHADER,`precision mediump float;
  varying vec2 uv;uniform sampler2D logo;uniform vec4 points[12];uniform float time;
  void main(){vec2 offset=vec2(0.);float weights=0.;
- for(int i=0;i<12;i++){vec4 p=points[i];vec2 q=uv-p.xy;float c=cos(p.w),s=sin(p.w);vec2 local=vec2(c*q.x+s*q.y,-s*q.x+c*q.y);float zone=exp(-dot(local/vec2(.14,.065),local/vec2(.14,.065))*2.);float w=zone*p.z;
+ for(int i=0;i<12;i++){vec4 p=points[i];vec2 q=uv-p.xy;float c=cos(p.w),s=sin(p.w);vec2 local=vec2(c*q.x+s*q.y,-s*q.x+c*q.y);float radius=length(local/vec2(.075,.045));float zone=1.-smoothstep(.25,1.,radius);float w=zone*p.z;
  vec2 direction=vec2(c,s);vec2 cross=vec2(-s,c);
- offset+=w*(direction*(.023*sin(local.y*72.+time*3.)) + cross*(.012*sin(local.x*48.-time*2.)));weights+=w;}
+ offset+=w*(direction*(.013*sin(local.y*90.+time*3.)) + cross*(.007*sin(local.x*65.-time*2.)));weights+=w;}
  offset/=max(1.,weights*.65);vec2 sampleUV=uv+offset;
  if(sampleUV.x<0.||sampleUV.x>1.||sampleUV.y<0.||sampleUV.y>1.)gl_FragColor=vec4(0.);else gl_FragColor=texture2D(logo,sampleUV);}`);
  if(!vertex||!fragment)return;
@@ -26,9 +26,9 @@
  function load(){try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);ready=true;}catch{ready=false;}}
  if(image.complete&&image.naturalWidth)load();else image.addEventListener('load',load,{once:true});
  function reset(){cancelAnimationFrame(frame);frame=0;trail=[];last=null;canvas.classList.remove('is-active');image.classList.remove('is-fluid-source');}
- function draw(now){frame=0;trail=trail.filter(p=>now-p.time<720);if(!trail.length||!ready){reset();return;}
+ function draw(now){frame=0;trail=trail.filter(p=>now-p.time<450);if(!trail.length||!ready){reset();return;}
  const r=image.getBoundingClientRect(),size=Math.min(800,Math.max(320,Math.round(r.width*Math.min(devicePixelRatio,1.5))));if(canvas.width!==size){canvas.width=size;canvas.height=size;gl.viewport(0,0,size,size);}
- data.fill(0);trail.slice(-12).forEach((p,i)=>{const life=1-(now-p.time)/720;data.set([p.x,p.y,life*life*(3-2*life),p.angle],i*4);});
+ data.fill(0);trail.slice(-12).forEach((p,i)=>{const life=1-(now-p.time)/450;data.set([p.x,p.y,life*life*(3-2*life),p.angle],i*4);});
  gl.uniform4fv(pointUniform,data);gl.uniform1f(timeUniform,now*.001);gl.drawArrays(gl.TRIANGLES,0,6);
  canvas.classList.add('is-active');image.classList.add('is-fluid-source');frame=requestAnimationFrame(draw);}
  cover.addEventListener('pointermove',e=>{if(!ready||reduce.matches||!pointer.matches||e.pointerType==='touch')return;
@@ -37,7 +37,7 @@
  const now=performance.now(),distance=last?Math.hypot(x-last.x,y-last.y):0,angle=last?Math.atan2(y-last.y,x-last.x):0;
  const steps=last?Math.min(4,Math.max(1,Math.ceil(distance/.035))):1;
  for(let i=1;i<=steps;i++){const t=i/steps;trail.push({x:last?last.x+(x-last.x)*t:x,y:last?last.y+(y-last.y)*t:y,time:now-(1-t)*40,angle});}
- trail=trail.slice(-12);last={x,y};if(!frame)frame=requestAnimationFrame(draw);
+ trail=trail.filter(p=>Math.hypot(p.x-x,p.y-y)<.16).slice(-6);last={x,y};if(!frame)frame=requestAnimationFrame(draw);
  },{passive:true});
  cover.addEventListener('pointerleave',()=>{last=null;});reduce.addEventListener('change',reset);pointer.addEventListener('change',reset);addEventListener('scroll',reset,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;reset();});
 })();
