@@ -887,6 +887,42 @@ footer.site{background:#0d17154d;border-top:1px solid #ffffff1f;box-shadow:none}
 @media(max-width:760px){main{border-width:1px;border-radius:20px}.topo{padding-top:32px}}
 @supports not (backdrop-filter:blur(1px)){main{background:#233224f5}header{background:#111b13f7}}
 
+
+/* Cabeçalho e preenchimento em painéis independentes. */
+main{
+  display:grid;gap:28px;background:none;border:0;border-radius:0;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+main > .topo,main > .preenchimento{
+  border:1px solid #ebffde36;border-radius:26px;
+  background:linear-gradient(125deg,#ffffff18,#ffffff08);
+  box-shadow:inset 0 1px #ffffff26,0 18px 50px #00000026;
+  backdrop-filter:blur(30px) saturate(125%);-webkit-backdrop-filter:blur(30px) saturate(125%);
+}
+main > .topo{
+  padding-block:52px;border-color:#dbf7b85c;
+  background:linear-gradient(120deg,#eaffcf25,#ffffff0c);
+  box-shadow:inset 0 1px #ffffff45,0 20px 55px #00000030;
+}
+.topo__inner{grid-template-columns:216px 1fr;column-gap:38px;row-gap:18px}
+.summit__selo{width:216px;margin-top:0}
+.topo__inner h1{font-size:clamp(26px,3vw,34px)}
+main > .preenchimento{padding-block:32px 44px}
+.form-section:first-child{border-top:0;padding-top:0}
+@media(max-width:760px){
+  main{gap:22px}
+  main > .topo,main > .preenchimento{border-radius:20px}
+  main > .topo{padding-block:34px}
+  .summit__selo{width:176px}
+  .topo__inner h1{font-size:26px}
+  main > .preenchimento{padding-block:26px 32px}
+}
+@supports not (backdrop-filter:blur(1px)){
+  main{background:none}
+  main > .topo{background:#2c4029}
+  main > .preenchimento{background:#233224}
+}
+
 </style>
 
 <header>
@@ -948,7 +984,7 @@ footer.site{background:#0d17154d;border-top:1px solid #ffffff1f;box-shadow:none}
     </div>
   </section>
 
-  <section style="padding-top:0">
+  <section class="preenchimento">
     <div class="wrap" id="bloco">
 
       <form class="form entra" style="--atraso:.22s" id="palestrante" novalidate>
