@@ -1,0 +1,16 @@
+.summit-countdown{--timer-ink:#edf5e8;--timer-mute:#b2c0a9;--timer-line:#d7ff472d;--timer-card:#d7ff4709;display:flex;flex-direction:column;gap:14px;border:1px solid var(--timer-line);border-left:2px solid #d7ff47;border-radius:8px;padding:18px 20px;background:var(--timer-card);color:var(--timer-ink);max-width:100%}
+.summit-countdown__title{font-family:Exo,Arial,sans-serif;font-size:12px;line-height:1.5;font-weight:500;color:var(--timer-mute);margin:0}
+.summit-countdown__digits{display:flex;align-items:start;gap:0}
+.summit-countdown__digits[hidden]{display:none}
+.summit-countdown__segment{min-width:0;flex:1;text-align:left;display:flex;flex-direction:column;gap:5px}
+.summit-countdown__segment+.summit-countdown__segment{border-left:1px solid var(--timer-line);padding-left:16px;margin-left:16px}
+.summit-countdown__segment strong{font-family:Exo,Arial,sans-serif;font-size:clamp(28px,3vw,37px);font-weight:550;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--timer-ink)}
+.summit-countdown__segment:first-child strong{color:#d7ff47}
+.summit-countdown__segment span{font-family:Exo,Arial,sans-serif;font-size:11px;line-height:1.4;color:var(--timer-mute)}
+.hero--summit .summit-countdown{grid-column:2;width:100%;margin-top:2px}
+.summit-countdown--light{--timer-ink:#173322;--timer-mute:#59705d;--timer-line:#294f2524;--timer-card:#ffffffa6;border-left-color:#96bc1c;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);width:min(100%,420px);margin-top:27px;box-shadow:inset 0 1px #fff,0 8px 24px #26462108}
+.summit-countdown--light .summit-countdown__segment:first-child strong{color:#53720c}
+@media(max-width:760px){.summit-countdown{padding:17px 18px;gap:13px}.summit-countdown__segment strong{font-size:29px}.summit-countdown__segment+.summit-countdown__segment{padding-left:12px;margin-left:12px}.hero--summit .summit-countdown{order:6}.hero--summit .hero__cta{order:7}.summit-countdown--light{margin-top:23px}.summit-countdown__segment span{font-size:10px}}
+
+.summit-countdown__title{font-size:13px}.summit-countdown__segment span{font-size:12px;font-weight:500}
+@media(max-width:760px){.summit-countdown__segment span{font-size:11px}}
