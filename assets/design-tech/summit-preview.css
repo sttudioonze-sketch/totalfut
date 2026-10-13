@@ -80,3 +80,7 @@ h1,h2,h3{overflow-wrap:break-word}
 }
 
 @media(max-width:760px){main .lancamento .lede,.news .lede{ text-align:left }main .lancamento__texto{align-items:flex-start;text-align:left}}
+
+/* Respiro uniforme entre os cards de vantagens. */
+.features{gap:24px}
+@media(max-width:760px){.features{gap:20px}}

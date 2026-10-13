@@ -1,4 +1,4 @@
-@import url('summit-preview.css?v=20261013-alinhamento2');
+@import url('summit-preview.css?v=20261013-vantagens');
 /* Direção Tech: instrumentação da análise de jogo, com luz concentrada. */
 :root{--void:#04070b;--card:#0b1219;--card-2:#101b24;--text:#f3f6f8;--mute:#c4ced5;--dim:#98a7b3;--hair:#c3e5ff26;--hair-2:#c3e5ff40;--vidro:linear-gradient(130deg,#ffffff0a,#7dbdff04);--vidro-borda:#c3e5ff2b;--vidro-sombra:inset 0 1px #ffffff0e,0 16px 50px #0006;--azul:#7bbfff;--azul-2:#9bd0ff}
 body{background:#04070b}

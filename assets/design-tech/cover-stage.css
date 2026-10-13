@@ -139,3 +139,8 @@
  .cover-sequence .intro-cover__footer .intro-cover__tagline{text-align:center;max-width:30ch;width:100%;font-size:18px;line-height:1.5}
  .cover-sequence .intro-cover__next{margin-top:auto}
 }
+
+/* Canvas fluido independente dos filtros SVG externos, com transparência. */
+.intro-cover__fluid-canvas{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:1;pointer-events:none;filter:drop-shadow(0 22px 26px #0007);opacity:var(--cover-opacity,1)}
+.intro-cover__fluid-canvas.is-active{display:block}
+.cover-sequence .intro-cover__render.is-fluid-source{opacity:0!important}
