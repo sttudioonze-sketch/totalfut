@@ -107,3 +107,23 @@ h1,h2{line-height:1.5}
  .speaker-monogram{transition:color .25s,box-shadow .25s}
  .speaker-card:hover .speaker-monogram{color:#315821;box-shadow:inset 0 0 0 1px #86a26c35}
 }
+
+/* Cards preparados para os retratos, palestras e trajetórias individuais. */
+.speaker-card--complete{display:block;padding:0;overflow:hidden;align-self:start;background:#fbfcf7}
+.speaker-photo{position:relative;width:100%;aspect-ratio:1.35;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 85%,#d7ff4733,transparent 68%),linear-gradient(140deg,#e4ebda,#f3f6ed);border-bottom:1px solid #14251c1c}
+.speaker-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.speaker-photo__initials{font-size:clamp(52px,5vw,76px);font-weight:450;letter-spacing:-.06em;color:#78896b}
+.speaker-photo__status{position:absolute;bottom:16px;left:20px;font-size:12px;color:#5f7155;border:1px solid #14251c20;border-radius:5px;padding:4px 9px;background:#f9fcf0aa}
+.speaker-card:nth-child(3n+2) .speaker-photo{background:radial-gradient(ellipse at 50% 85%,#015aff0c,transparent 68%),linear-gradient(140deg,#e2eaf0,#f1f5f7)}
+.speaker-content{padding:25px}
+.speaker-identity h3{font-size:23px;line-height:1.4}
+.speaker-identity>p{font-size:14px;color:#52664b;margin-top:4px}
+.speaker-talk{margin-top:23px;padding-block:20px;border-block:1px solid #14251c1c}
+.speaker-field-label{font-size:12px;color:#66785b;margin:0 0 7px!important}
+.speaker-talk h4{font-size:21px;line-height:1.45;font-weight:600;margin:0;color:#243c20}
+.speaker-talk .speaker-talk__subtitle{margin-top:8px;color:#6b7765;font-size:14px;line-height:1.6}
+.speaker-bio,.speaker-clubs{margin-top:20px}
+.speaker-bio h4,.speaker-clubs h4{margin:0;font-size:14px;font-weight:650;line-height:1.5;color:#344b2e}
+.speaker-bio p,.speaker-clubs p{font-size:14px;line-height:1.65;margin-top:6px;color:#6b7765}
+@media(max-width:1100px){.speaker-content{padding:22px}.speaker-identity h3{font-size:21px}.speaker-talk h4{font-size:20px}}
+@media(max-width:760px){.speaker-grid{gap:24px}.speaker-content{padding:25px}.speaker-photo{aspect-ratio:1.35}.speaker-photo__initials{font-size:76px}.speaker-identity h3{font-size:25px}.speaker-talk h4{font-size:22px}.speaker-bio p,.speaker-clubs p,.speaker-talk .speaker-talk__subtitle{font-size:15px}}
