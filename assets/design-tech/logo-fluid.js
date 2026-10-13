@@ -3,11 +3,11 @@
  if(!cover||!image)return;
  const reduce=matchMedia('(prefers-reduced-motion:reduce)'),pointer=matchMedia('(any-hover:hover) and (any-pointer:fine)');
  const canvas=document.createElement('canvas');canvas.className='intro-cover__fluid-canvas';canvas.setAttribute('aria-hidden','true');image.parentElement.append(canvas);
- const gl=canvas.getContext('webgl',{alpha:true,premultipliedAlpha:false,antialias:false,depth:false});
+ const gl=canvas.getContext('webgl',{alpha:true,premultipliedAlpha:true,antialias:false,depth:false});
  if(!gl)return;
  function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){gl.deleteShader(s);return null;}return s;}
  const vertex=shader(gl.VERTEX_SHADER,'attribute vec2 position; varying vec2 uv; void main(){uv=vec2((position.x+1.)*.5,(1.-position.y)*.5);gl_Position=vec4(position,0.,1.);}');
- const fragment=shader(gl.FRAGMENT_SHADER,`precision mediump float;
+ const fragment=shader(gl.FRAGMENT_SHADER,`precision highp float;
  varying vec2 uv;uniform sampler2D logo;uniform vec4 points[12];uniform float time;
  void main(){vec2 offset=vec2(0.);float weights=0.;
  for(int i=0;i<12;i++){vec4 p=points[i];vec2 q=uv-p.xy;float c=cos(p.w),s=sin(p.w);vec2 local=vec2(c*q.x+s*q.y,-s*q.x+c*q.y);float radius=length(local/vec2(.075,.045));float zone=1.-smoothstep(.25,1.,radius);float w=zone*p.z;
@@ -23,11 +23,11 @@
  gl.uniform1i(gl.getUniformLocation(program,'logo'),0);
  const pointUniform=gl.getUniformLocation(program,'points[0]'),timeUniform=gl.getUniformLocation(program,'time'),data=new Float32Array(48);
  let ready=false,trail=[],frame=0,last=null;
- function load(){try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);ready=true;}catch{ready=false;}}
+ function load(){try{gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);ready=true;}catch{ready=false;}}
  if(image.complete&&image.naturalWidth)load();else image.addEventListener('load',load,{once:true});
  function reset(){cancelAnimationFrame(frame);frame=0;trail=[];last=null;canvas.classList.remove('is-active');image.classList.remove('is-fluid-source');}
  function draw(now){frame=0;trail=trail.filter(p=>now-p.time<450);if(!trail.length||!ready){reset();return;}
- const r=image.getBoundingClientRect(),size=Math.min(800,Math.max(320,Math.round(r.width*Math.min(devicePixelRatio,1.5))));if(canvas.width!==size){canvas.width=size;canvas.height=size;gl.viewport(0,0,size,size);}
+ const r=image.getBoundingClientRect(),size=Math.min(image.naturalWidth,Math.max(320,Math.round(r.width*Math.min(devicePixelRatio,2))));if(canvas.width!==size){canvas.width=size;canvas.height=size;gl.viewport(0,0,size,size);}
  data.fill(0);trail.slice(-12).forEach((p,i)=>{const life=1-(now-p.time)/450;data.set([p.x,p.y,life*life*(3-2*life),p.angle],i*4);});
  gl.uniform4fv(pointUniform,data);gl.uniform1f(timeUniform,now*.001);gl.drawArrays(gl.TRIANGLES,0,6);
  canvas.classList.add('is-active');image.classList.add('is-fluid-source');frame=requestAnimationFrame(draw);}
