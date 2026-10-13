@@ -124,3 +124,18 @@
 @keyframes cover-title-arrival{from{opacity:0;translate:-50% calc(-50% + 14px);clip-path:none}to{opacity:var(--cover-opacity,1);translate:-50% -50%;clip-path:none}}
 @media(prefers-reduced-motion:no-preference){.cover-sequence .intro-cover__name{animation:cover-title-arrival .85s cubic-bezier(.2,.65,.3,1) .15s both,cover-title-reflection 1.8s cubic-bezier(.2,.65,.3,1) .7s both}}
 @media(prefers-reduced-motion:reduce){.cover-sequence .intro-cover__name{animation:none;clip-path:none}}
+
+/* Rastro fluido localizado no metal; encerra em menos de meio segundo. */
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.cover-sequence .intro-cover__render.is-fluid{filter:url(#logo-fluid) drop-shadow(0 22px 26px #0007)}}
+/* No celular o eixo mais longo do campo acompanha a tela vertical. */
+@media(max-width:760px){.cover-sequence .intro-cover__field{inset:auto;left:50%;top:50%;width:94svh;height:95vw;transform:translate(-50%,-50%) rotate(90deg)}}
+
+.cover-sequence .intro-cover__symbol{user-select:none;-webkit-user-select:none}
+
+/* No celular, símbolo, nome e frase formam uma composição central. */
+@media(max-width:760px){
+ .cover-sequence .intro-cover__name{top:56%}
+ .cover-sequence .intro-cover__footer{left:24px;right:24px;top:63%;bottom:24px;padding-top:0;align-items:center;justify-content:space-between;gap:20px}
+ .cover-sequence .intro-cover__footer .intro-cover__tagline{text-align:center;max-width:30ch;width:100%;font-size:18px;line-height:1.5}
+ .cover-sequence .intro-cover__next{margin-top:auto}
+}

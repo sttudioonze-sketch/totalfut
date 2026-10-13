@@ -1543,7 +1543,7 @@ footer.site .wrap{position:relative;z-index:1}
 }
 </style>
 <link rel="stylesheet" href="assets/design-tech/cover-tech.css">
-<link rel="stylesheet" href="assets/design-tech/cover-stage.css?v=20261013-entrada-alinhada">
+<link rel="stylesheet" href="assets/design-tech/cover-stage.css?v=20261013-mobile-composicao">
 <link rel="stylesheet" href="assets/design-tech/signature-lime.css">
 <link rel="stylesheet" href="assets/design-tech/summit-tech.css?v=20261013-titulos">
 
@@ -1553,6 +1553,17 @@ footer.site .wrap{position:relative;z-index:1}
     <feDisplacementMap in="SourceGraphic" in2="ruido" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
 </svg>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none"><defs>
+<filter id="logo-fluid" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".025 .055" numOctaves="2" seed="8" result="noise"/>
+<feImage id="logo-fluid-zone" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="zone"/>
+<feComposite in="noise" in2="zone" operator="in" result="localNoise"/>
+<feFlood flood-color="#808080" result="neutral"/>
+<feComposite in="neutral" in2="zone" operator="out" result="outside"/>
+<feMerge result="map"><feMergeNode in="outside"/><feMergeNode in="localNoise"/></feMerge>
+<feDisplacementMap id="logo-fluid-warp" in="SourceGraphic" in2="map" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+</filter></defs></svg>
 
 <div class="cover-sequence">
   <section class="intro-cover" aria-label="TotalFut — apresentação">
@@ -1572,7 +1583,7 @@ footer.site .wrap{position:relative;z-index:1}
       <path d="M205 241A72 72 0 0 1 205 359M795 241A72 72 0 0 0 795 359M70 270H52V330H70M930 270H948V330H930M78 35A8 8 0 0 1 70 43M922 35A8 8 0 0 0 930 43M70 557A8 8 0 0 1 78 565M922 565A8 8 0 0 1 930 557"/>
       <g class="intro-cover__pitch-dots"><circle cx="500" cy="300" r="2.5"/><circle cx="160" cy="300" r="2.5"/><circle cx="840" cy="300" r="2.5"/></g>
     </svg>
-    <div class="intro-cover__symbol"><span class="intro-cover__glass" aria-hidden="true"></span><img class="intro-cover__render" src="assets/design-tech/totalfut-graphite-3d.webp" width="1280" height="1280" alt="Símbolo TotalFut em metal 3D com luz verde-lima e azul" fetchpriority="high" decoding="async"></div>
+    <div class="intro-cover__symbol"><span class="intro-cover__glass" aria-hidden="true"></span><img class="intro-cover__render" draggable="false" src="assets/design-tech/totalfut-graphite-3d.webp" width="1280" height="1280" alt="Símbolo TotalFut em metal 3D com luz verde-lima e azul" fetchpriority="high" decoding="async"></div>
     <div class="intro-cover__footer">
       <p class="intro-cover__tagline" data-i18n-rich="cover.tagline">Cursos e eventos <span>avançados</span><br class="intro-cover__tagline-break"> para profissionais do futebol.</p>
       <a class="intro-cover__next" href="#summit-abertura" data-i18n-rich="cover.button">Conheça o Summit <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M5 13l7 7 7-7"/></svg></span></a>
@@ -2977,4 +2988,6 @@ footer.site .wrap{position:relative;z-index:1}
 <script src="assets/design-tech/summit-interactions.js" defer></script>
 
 <script src="assets/design-tech/cover-tech.js?v=20261013-posicao" defer></script>
-<script src="assets/design-tech/cover-stage.js?v=20261013-entrada-alinhada" defer></script>
+<script src="assets/design-tech/cover-stage.js?v=20261013-mobile-composicao" defer></script>
+
+<script src="assets/design-tech/logo-fluid.js?v=20261013-rastro" defer></script>
