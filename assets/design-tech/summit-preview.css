@@ -67,3 +67,16 @@ main{padding-top:24px}section{padding-block:72px;scroll-margin-top:105px}h1,h2{f
 /* Os títulos podem quebrar por palavra sem manter trechos inteiros em uma caixa. */
 h1 .giz,h2 .giz,h3 .giz{display:inline;white-space:normal;line-height:inherit;letter-spacing:inherit}
 h1,h2,h3{overflow-wrap:break-word}
+
+/* Padrão mobile: títulos e textos de conteúdo compartilham o eixo esquerdo. */
+@media(max-width:760px){
+ main :is(.center,.lancamento__texto,.evento,.plano,.feat,.em-breve,.sobre__texto-bloco,.news,.contato) :is(h1,h2,h3,p,li,blockquote){text-align:left}
+ main .center h2,main .center .lede,main .news h2,main .news .lede{margin-inline:0}
+ main .center,main .news,main .feat,main .evento>div{align-items:flex-start;text-align:left}
+ main .lancamento__linha{justify-content:flex-start}
+ main .plano__tema,main .plano__prof,main .plano__dur{align-self:flex-start;text-align:left}
+ main .news .form{justify-content:flex-start}
+ .sobre .sobre__texto-bloco :is(h2,p),.news :is(h2,p){text-align:left}
+}
+
+@media(max-width:760px){main .lancamento .lede,.news .lede{ text-align:left }main .lancamento__texto{align-items:flex-start;text-align:left}}

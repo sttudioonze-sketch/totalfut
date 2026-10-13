@@ -66,3 +66,18 @@ h1,h2,h3{overflow-wrap:break-word}
 .topo__grade,.topo__copy{min-width:0;max-width:100%}
 .topo__copy>*{max-width:100%}
 @media(max-width:760px){.topo{grid-template-columns:minmax(0,1fr)}.topo__copy>div:first-child{flex-wrap:wrap}.oferta--topo{width:100%;min-width:0}.oferta--topo .btn{min-width:0;white-space:normal}}
+
+/* Padrão mobile: leitura à esquerda; apenas a abertura de Dúvidas é centralizada. */
+@media(max-width:760px){
+ main :is(.topo__copy,.center,.prof__texto,.bonus,.ent,.fecha,.perfil,.tese,.oferta) :is(h1,h2,h3,p,li,blockquote){text-align:left}
+ main .topo__copy,main .prof__texto,main .bonus,main .ent,main .fecha{align-items:flex-start;text-align:left}
+ main .center h2,main .center .lede,main .prof__texto h2,main .fecha h2{margin-inline:0}
+ main .ent__ico{margin-inline:0}
+ main #duvidas .center :is(h2,p){text-align:center;margin-inline:auto}
+}
+
+@media(max-width:760px){main .topo__copy>.lede,main .fecha .lede,main .center .lede{ text-align:left }}
+
+@media(max-width:760px){main .fecha .oferta .small,main .passagens__rotulo{text-align:left}}
+
+@media(max-width:760px){main .fecha .oferta .small{text-align:left!important}main .parte :is(h3,p){text-align:left}main .parte{text-align:left;align-items:flex-start}}
