@@ -71,3 +71,19 @@ h1,h2{line-height:1.5}
 @media(prefers-reduced-motion:no-preference){.motion-ready .section-heading,.motion-ready .registration-copy{opacity:0;filter:blur(3px);transition:opacity .65s ease,filter .65s ease}.motion-ready .is-revealed{opacity:1;filter:none}.motion-ready .pitch-divider path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.2s ease}.motion-ready .pitch-divider.is-revealed path{stroke-dashoffset:0}}
 @media(max-width:1100px) and (min-width:761px){.registration-section .registration{gap:36px;grid-template-columns:1fr 1fr}.ticket-lots{gap:12px}.ticket-lot{padding:24px 16px;min-height:160px}.ticket-lot strong{font-size:42px}.ticket-lot strong small{font-size:18px}}
 @media(max-width:760px){.pitch-divider{height:85px}.benefits-section>.container{padding-block:90px}.registration-section{padding-block:90px}.registration-section .registration{grid-template-columns:1fr;gap:38px}.ticket-lots{gap:12px}.ticket-lot{padding:24px 15px;min-height:154px}.ticket-lot strong{font-size:clamp(33px,9vw,48px)}.ticket-lot strong small{font-size:16px}.ticket-lot>span{font-size:17px}.registration-action .ticket-heading{font-size:20px}}
+
+/* Espaços para as quatro apresentações de cada dia. */
+.schedule-grid{align-items:start}
+.schedule-grid article{padding:30px 26px}
+.program-group{margin-top:30px;padding-top:25px;border-top:1px solid #14251c24}
+.program-group h3{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:650}
+.program-live-dot{width:7px;height:7px;background:#609400;border-radius:50%}
+.program-slot{display:flex;align-items:center;gap:13px;margin-top:18px;min-width:0}
+.program-slot__portrait{width:46px;height:54px;display:grid;place-items:center;flex:none;border:1px solid #14251c20;border-radius:7px;background:#e7eddc;color:#789066}
+.program-slot__portrait svg{width:22px;height:22px}
+.program-slot strong{font-size:15px;font-weight:550;line-height:1.5;display:block}
+.program-slot p{font-size:13px;margin-top:3px;line-height:1.5;color:#667461}
+.program-delivery{font-size:12px;margin-top:3px}
+.program-group--recorded .program-slot__portrait{background:#e7edf2;color:#6c8091}
+@media(max-width:1100px) and (min-width:761px){.schedule-grid{gap:15px}.schedule-grid article{padding:26px 18px}.program-slot{gap:9px}.program-slot strong{font-size:14px}.program-slot__portrait{width:38px;height:46px}}
+@media(max-width:760px){.schedule-grid article{padding:28px 24px}.program-slot strong{font-size:16px}.program-slot p{font-size:14px}.program-group h3{font-size:18px}}
