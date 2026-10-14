@@ -22,6 +22,19 @@
           "value": "noindex, noarchive"
         }
       ]
+    },
+    {
+      "source": "/summit-2026.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "same-origin"
+        }
+      ]
     }
   ]
 }
