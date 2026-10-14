@@ -1,0 +1,54 @@
+
+/* Teste só na home: preto e grafite neutros, com os acentos brasileiros. */
+body.theme-brasil-home.theme-brasil-black{--void:#090b0e;--card:#191d23;--card-2:#242a32;--text:#f5f7fa;--mute:#d1d5dc;--dim:#aab2be;--hair:#ccd5e629;--hair-2:#ccd5e647;--vidro:linear-gradient(125deg,#ffffff12,#ffffff07);--vidro-borda:#ccd5e63c;background:#090b0e;color:var(--mute)}
+.theme-brasil-home.theme-brasil-black::before{background:radial-gradient(ellipse 60% 70% at 100% 15%,#7bbfff0c,transparent 76%),radial-gradient(ellipse 50% 65% at 0% 78%,#00d68f08,transparent 78%),#090b0e}
+.theme-brasil-home.theme-brasil-black .cover-site{background:#0c0e12;border-color:#d1ddf32b}
+.theme-brasil-home.theme-brasil-black .cover-site::before{background:linear-gradient(transparent,#0c0e1233 62%,#0c0e12b3)}
+.theme-brasil-home.theme-brasil-black .cover-sequence .intro-cover{background:radial-gradient(ellipse at 82% 54%,#7bbfff12,transparent 74%),radial-gradient(ellipse at 6% 38%,#00d68f09,transparent 76%),linear-gradient(145deg,#080a0e,#050609 54%,#101318)}
+.theme-brasil-home.theme-brasil-black .intro-cover__atmosphere{background:radial-gradient(ellipse 34% 70% at 104% 62%,#7bbfff24,transparent 78%),radial-gradient(ellipse 34% 60% at -4% 24%,#00d68f16,transparent 78%)}
+.theme-brasil-home.theme-brasil-black .intro-cover__atmosphere::before{background:radial-gradient(ellipse 3% 34% at 10% 26%,#ffcf3313,transparent 78%),radial-gradient(ellipse 3% 35% at 90% 58%,#7bbfff24,transparent 78%),linear-gradient(66deg,transparent 66%,#7bbfff09 78%,transparent 88%)}
+.theme-brasil-home.theme-brasil-black .intro-cover__glass{background:linear-gradient(125deg,#e3e8ef22,#d4dce414 44%,#7bbfff18)}
+.theme-brasil-home.theme-brasil-black header{background:#0b0d11e8;border-color:#c9d8ed29}
+.theme-brasil-home.theme-brasil-black .menu{background:#13161bf5;border-color:#c9d8ed35}
+.theme-brasil-home.theme-brasil-black .hero.hero--summit{background:linear-gradient(125deg,#ffffff13,#ffffff08);border-color:#c9d8ed40}
+.theme-brasil-home.theme-brasil-black .summit-tech__visual{background:radial-gradient(ellipse at 70% 35%,#7bbfff0d,transparent 80%),#090c10bb;border-color:#7bbfff35}
+.theme-brasil-home.theme-brasil-black .summit__datas{background:#15191fb3;border-color:#c9d8ed33}
+.theme-brasil-home.theme-brasil-black .evento,.theme-brasil-home.theme-brasil-black .em-breve,.theme-brasil-home.theme-brasil-black .news{background:linear-gradient(120deg,#ffffff12,#ffffff07);border-color:#c9d8ed35}
+.theme-brasil-home.theme-brasil-black .seg--modo{background:#14181db3}
+.theme-brasil-home.theme-brasil-black .prof__art,.theme-brasil-home.theme-brasil-black .prof__sigla{background:#191d23}
+.theme-brasil-home.theme-brasil-black .dialog{background:#14181df5;border-color:#c9d8ed40}
+.theme-brasil-home.theme-brasil-black .news .form input{background:#090b0e;border-color:#c9d8ed35}
+.theme-brasil-home.theme-brasil-black footer.site{background:#090b0e;border-color:#c9d8ed30}
+.theme-brasil-home.theme-brasil-black .cover-sequence .intro-cover__next{background:linear-gradient(120deg,#ffffff10,#ffffff06);border-color:#7bbfff45}
+@supports not (backdrop-filter:blur(1px)){.theme-brasil-home.theme-brasil-black :is(.hero.hero--summit,.lancamento,.news,.em-breve,.plano){background:#191d23}}
+
+/* LPs de cursos: mesmas bases neutras e acentos brasileiros. */
+body.theme-brasil-course.theme-brasil-black{--void:#090b0e;--card:#191d23;--card-2:#242a32;--text:#f5f7fa;--mute:#d1d5dc;--dim:#aab2be;--hair:#ccd5e629;--hair-2:#ccd5e647;--vidro:linear-gradient(125deg,#ffffff12,#ffffff07);--vidro-forte:#191d23ed;--vidro-borda:#ccd5e63c;background:#090b0e;color:var(--mute)}
+.theme-brasil-course.theme-brasil-black::before{background:radial-gradient(ellipse 60% 70% at 100% 8%,#7bbfff0e,transparent 78%),radial-gradient(ellipse 50% 60% at 0% 58%,#00d68f08,transparent 78%),#090b0e}
+.theme-brasil-course.theme-brasil-black header{background:#0b0d11e8;border-color:#c9d8ed29}
+.theme-brasil-course.theme-brasil-black .menu{background:#13161bf5;border-color:#c9d8ed35}
+.theme-brasil-course.theme-brasil-black .topo{background:linear-gradient(125deg,#ffffff13,#ffffff08);border-color:#c9d8ed40}
+.theme-brasil-course.theme-brasil-black .topo__foto::after{background:linear-gradient(0deg,#090b0e66,transparent 60%),linear-gradient(90deg,#191d2330,transparent 35%)}
+.theme-brasil-course.theme-brasil-black .passagens{background:#ffffff05;border-color:#c9d8ed30}
+.theme-brasil-course.theme-brasil-black .bonus{background:var(--vidro);border-color:#c9d8ed40}
+.theme-brasil-course.theme-brasil-black .fecha{background:linear-gradient(125deg,#ffffff13,#ffffff08);border-color:#c9d8ed40}
+.theme-brasil-course.theme-brasil-black .fecha .oferta{background:#090b0e99;border-color:#c9d8ed35}
+.theme-brasil-course.theme-brasil-black .barra{background:#13161bf2;border-color:#c9d8ed35}
+.theme-brasil-course.theme-brasil-black footer.site{background:#090b0e;border-color:#c9d8ed30}
+@supports not (backdrop-filter:blur(1px)){.theme-brasil-course.theme-brasil-black :is(.topo,.item,.ent,.fecha,.bonus){background:#191d23}}
+
+/* Summit mantém o papel claro, com grafite nos momentos de ênfase. */
+body.theme-brasil-summit.theme-brasil-black{--paper:#f5f7f8;--ink:#17212b;--mute:#596674;--line:#17212b24;background:var(--paper)}
+.theme-brasil-summit.theme-brasil-black .benefits-section,.theme-brasil-summit.theme-brasil-black .registration-section{background:radial-gradient(ellipse at 90% 15%,#7bbfff0c,transparent 68%),linear-gradient(125deg,#1b2026,#0b0e12);border-color:#c9d8ed29}
+.theme-brasil-summit.theme-brasil-black .schedule-grid article{background:linear-gradient(140deg,#20252c,#111419);border-color:#c9d8ed35}
+.theme-brasil-summit.theme-brasil-black .audience-section{background:#edf1f5}
+.theme-brasil-summit.theme-brasil-black .speaker-talk h4,.theme-brasil-summit.theme-brasil-black .ticket-lot strong{color:#17212b}
+
+/* Entrada mobile central: largura fixa e movimento só no eixo vertical. */
+@media(max-width:760px){
+ .theme-brasil-home.theme-brasil-black .cover-sequence .intro-cover__name{left:0;right:0;width:100%;box-sizing:border-box;text-align:center;translate:0 -50%;transform-origin:center center}
+}
+@keyframes cover-title-mobile-centered{from{opacity:0;translate:0 calc(-50% + 8px)}to{opacity:var(--cover-opacity,1);translate:0 -50%}}
+@media(max-width:760px) and (prefers-reduced-motion:no-preference){
+ .theme-brasil-home.theme-brasil-black .cover-sequence .intro-cover__name{animation:cover-title-mobile-centered .85s cubic-bezier(.2,.65,.3,1) .15s both,cover-title-reflection 1.8s cubic-bezier(.2,.65,.3,1) .7s both}
+}
