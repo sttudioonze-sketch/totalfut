@@ -52,3 +52,17 @@ body.theme-brasil-summit.theme-brasil-black{--paper:#f5f7f8;--ink:#17212b;--mute
 @media(max-width:760px) and (prefers-reduced-motion:no-preference){
  .theme-brasil-home.theme-brasil-black .cover-sequence .intro-cover__name{animation:cover-title-mobile-centered .85s cubic-bezier(.2,.65,.3,1) .15s both,cover-title-reflection 1.8s cubic-bezier(.2,.65,.3,1) .7s both}
 }
+
+/* Títulos luminosos neutros: cinza-claro nas bordas e branco no centro. */
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+ body.theme-brasil-home.theme-brasil-black :is(h1,h2),
+ body.theme-brasil-course.theme-brasil-black :is(h1,h2),
+ body.theme-brasil-summit.theme-brasil-black :is(.benefits-section,.registration) h2{
+  background-image:linear-gradient(110deg,#aeb8c4 0%,#f2f5f8 28%,#ffffff 50%,#dce2e9 72%,#b6c0cc 100%);background-size:100% 100%;background-repeat:no-repeat;background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent
+ }
+ body.theme-brasil-home.theme-brasil-black :is(h1,h2) .giz,
+ body.theme-brasil-course.theme-brasil-black :is(h1,h2) .giz{
+  background-image:linear-gradient(110deg,#aeb8c4 0%,#f2f5f8 28%,#ffffff 50%,#dce2e9 72%,#b6c0cc 100%);background-size:100% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;box-decoration-break:clone;-webkit-box-decoration-break:clone
+ }
+ body.theme-brasil-course.theme-brasil-black .topo__copy h1 .topo__sub{background:none;background-clip:border-box;-webkit-background-clip:border-box;color:var(--mute);-webkit-text-fill-color:var(--mute)}
+}
