@@ -36,5 +36,42 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/globalsummit",
+      "destination": "https://totalfut.com.br/#cursos",
+      "permanent": true
+    },
+    {
+      "source": "/blank-1",
+      "destination": "https://totalfut.com.br/curso-analise-desempenho-avancada.html",
+      "permanent": true
+    },
+    {
+      "source": "/bolaparadaofensiva",
+      "destination": "https://totalfut.com.br/curso-bola-parada-ofensiva-tobar.html",
+      "permanent": true
+    },
+    {
+      "source": "/cruzamentosnofutebol",
+      "destination": "https://totalfut.com.br/curso-cruzamentos-no-futebol.html",
+      "permanent": true
+    },
+    {
+      "source": "/leandrozagocaetaticaindividual",
+      "destination": "https://totalfut.com.br/curso-tecnica-tatica-individual.html",
+      "permanent": true
+    },
+    {
+      "source": "/exerciciostecnicaetaticaindividual",
+      "destination": "https://totalfut.com.br/curso-exercicios-tecnica-tatica-individual.html",
+      "permanent": true
+    },
+    {
+      "source": "/analisedasbolasparadas",
+      "destination": "https://totalfut.com.br/curso-analise-bola-parada-pombo.html",
+      "permanent": true
+    }
   ]
 }
