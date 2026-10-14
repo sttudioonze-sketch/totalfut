@@ -36,3 +36,7 @@ assets/home-lab/
 
 # Prévia local da página do Summit.
 summit-2026-claro-preview.html
+
+# Artes de campanha e novas variantes locais.
+artes/
+summit-2026-*-preview.html

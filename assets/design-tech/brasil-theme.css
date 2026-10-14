@@ -1,0 +1,97 @@
+
+/* Brasil contemporâneo: marinho dominante, luz azul e verdes em funções distintas. */
+:root{--br-navy:#0b1628;--br-card:#172a46;--br-lime:#d7ff47;--br-sky:#7bbfff;--br-digital:#00d68f;--br-yellow:#ffcf33}
+body.theme-brasil-home{--void:#0d1b30;--card:#172a46;--card-2:#1c3452;--text:#f5f7fa;--mute:#d0d9e7;--dim:#a8b9cf;--hair:#aac9ef2e;--hair-2:#aac9ef4c;--azul:#7bbfff;--azul-2:#a4d2ff;--vidro:linear-gradient(125deg,#aec9ff12,#7bbfff08);--vidro-borda:#7bbfff40;background:#0d1b30;color:var(--mute)}
+.theme-brasil-home::before{background:radial-gradient(ellipse 60% 65% at 95% 20%,#3871bc2b,transparent 76%),radial-gradient(ellipse 50% 60% at 0% 75%,#00d68f0d,transparent 78%),#0d1b30}
+.theme-brasil-home .cover-site{background:#0d1b30;border-color:#7bbfff35}
+.theme-brasil-home .cover-site::before{background:linear-gradient(transparent,#0d1b3033 62%,#0d1b30b3)}
+.theme-brasil-home .cover-sequence .intro-cover{background:radial-gradient(ellipse at 76% 45%,#224c8145,transparent 70%),radial-gradient(ellipse at 10% 70%,#00d68f0c,transparent 72%),linear-gradient(145deg,#081221,#0b172b 54%,#10233c)}
+.theme-brasil-home .intro-cover__atmosphere{background:radial-gradient(ellipse 35% 70% at 103% 58%,#7bbfff3c,transparent 78%),radial-gradient(ellipse 35% 60% at -3% 25%,#00d68f1c,transparent 78%)}
+.theme-brasil-home .intro-cover__atmosphere::before{background:radial-gradient(ellipse 3% 34% at 10% 26%,#ffcf3318,transparent 78%),radial-gradient(ellipse 3% 35% at 90% 58%,#7bbfff30,transparent 78%),linear-gradient(66deg,transparent 66%,#7bbfff0c 78%,transparent 88%)}
+.theme-brasil-home .intro-cover__glass{background:linear-gradient(125deg,#d8ebff28,#c7ddf51a 44%,#7bbfff20);box-shadow:inset 1px 1px 2px #f5faff40,inset -1px -1px 2px #7bbfff35}
+.theme-brasil-home header{background:#0b1628e6;border-color:#7bbfff2e}
+.theme-brasil-home .menu{background:#10233cf5;border-color:#7bbfff35}
+.theme-brasil-home .hero.hero--summit{background:linear-gradient(125deg,#aac9ff16,#7bbfff0b);border-color:#7bbfff45}
+.theme-brasil-home .summit-tech__visual{background:radial-gradient(ellipse at 70% 35%,#7bbfff1a,transparent 80%),#0b172bbb;border-color:#7bbfff40}
+.theme-brasil-home .summit-tech__visual::before{background-image:linear-gradient(#7bbfff0c 1px,transparent 1px),linear-gradient(90deg,#7bbfff0c 1px,transparent 1px)}
+.theme-brasil-home .summit-tech__pitch{stroke:#7bbfff;opacity:.38}
+.theme-brasil-home .summit-tech__visual::after{border-color:#00d68f45}
+.theme-brasil-home .summit__datas{background:#10223bbb;border-color:#7bbfff35}
+.theme-brasil-home .summit__selos span::before{background:#00d68f}
+.theme-brasil-home .evento,.theme-brasil-home .em-breve,.theme-brasil-home .news{background:linear-gradient(120deg,#7bbfff16,#ffffff08);border-color:#7bbfff45}
+.theme-brasil-home .area__ico{color:#00d68f;background:#00d68f0b;border-color:#00d68f40}
+.theme-brasil-home .area__conta{color:#7bbfff}
+.theme-brasil-home .area:hover{background:#7bbfff0b}
+.theme-brasil-home .seg--modo{background:#10233cb3}
+.theme-brasil-home .prof__art,.theme-brasil-home .prof__sigla{background:#172a46}
+.theme-brasil-home .dialog{background:#10233cf5;border-color:#7bbfff40}
+.theme-brasil-home .news .form input{background:#0b1628;border-color:#7bbfff35}
+.theme-brasil-home .btn--azul{background:linear-gradient(135deg,#7bbfff24,#3679b51a);color:#badeff;border-color:#7bbfff65}
+.theme-brasil-home .feature__ico{color:#00d68f}
+.theme-brasil-home footer.site{background:#0b1628;border-color:#7bbfff30}
+.theme-brasil-home .summit-countdown{border-left-color:#ffcf33;background:linear-gradient(135deg,#7bbfff0c,#ffffff06)}
+.theme-brasil-home .summit-countdown__segment:first-child strong{color:#d7ff47}
+.theme-brasil-home .cover-sequence .intro-cover__next{border-color:#7bbfff60;background:linear-gradient(120deg,#7bbfff14,#ffffff06)}
+@media(hover:hover) and (pointer:fine){.theme-brasil-home .lancamento:hover,.theme-brasil-home .plano:hover{border-color:#00d68f70}}
+@supports not (backdrop-filter:blur(1px)){.theme-brasil-home .hero.hero--summit,.theme-brasil-home .lancamento,.theme-brasil-home .news,.theme-brasil-home .em-breve,.theme-brasil-home .plano{background:#172a46}}
+
+/* LP clara: o marinho entra nas seções de ênfase, não no papel. */
+body.theme-brasil-summit{--paper:#f5f7fa;--ink:#12233c;--mute:#51627a;--line:#12233c24;--blue:#337dcc;background:var(--paper)}
+.theme-brasil-summit .site-header{background:#f5f7fade;border-color:#12233c20}
+.theme-brasil-summit .hero-stadium{background:#f5f7fa}
+.theme-brasil-summit .hero-stadium::after{background:linear-gradient(90deg,#f5f7faf5 0%,#f5f7fadf 26%,#f5f7fa70 61%,#f5f7fa38 100%),linear-gradient(0deg,#f5f7fa 0%,transparent 18%,transparent 90%,#f5f7fa66 100%)}
+.theme-brasil-summit .hero-stadium .hero-art{background:linear-gradient(140deg,#ffffffb0,#edf3fa94);border-color:#7aa2cf45}
+.theme-brasil-summit .benefits-section,.theme-brasil-summit .registration-section{background:radial-gradient(ellipse at 90% 15%,#7bbfff18,transparent 66%),linear-gradient(125deg,#172a46,#0b1628);border-color:#7bbfff30}
+.theme-brasil-summit .benefits-section h2,.theme-brasil-summit .benefits-section h3,.theme-brasil-summit .registration h2{color:#f5f7fa}
+.theme-brasil-summit .benefits-section p,.theme-brasil-summit .registration p,.theme-brasil-summit .registration-meta{color:#cbd7e7}
+.theme-brasil-summit .benefits-section .eyebrow,.theme-brasil-summit .registration .eyebrow{color:#d7ff47}
+.theme-brasil-summit .benefit-icon{color:#00d68f;background:#00d68f0e;border-color:#00d68f40}
+.theme-brasil-summit .football-lines{stroke:#337dcc28}
+.theme-brasil-summit .pitch-divider{stroke:#7bbfff65}
+.theme-brasil-summit .audience-section{background:#eaf1fa}
+.theme-brasil-summit .schedule-grid article{background:radial-gradient(ellipse at 100% 0%,#7bbfff10,transparent 68%),linear-gradient(140deg,#172a46,#0b1628);border-color:#7bbfff35;color:#f5f7fa}
+.theme-brasil-summit .schedule-date strong{color:#d7ff47}
+.theme-brasil-summit .schedule-date span,.theme-brasil-summit .schedule-grid article>p,.theme-brasil-summit .program-group h3,.theme-brasil-summit .program-slot strong{color:#edf3fb}
+.theme-brasil-summit .schedule-status,.theme-brasil-summit .program-slot p,.theme-brasil-summit .program-delivery{color:#b8c9df}
+.theme-brasil-summit .program-group{border-color:#7bbfff35}
+.theme-brasil-summit .program-live-dot{background:#00d68f}
+.theme-brasil-summit .program-slot__portrait{background:#00d68f0a;color:#00d68f;border-color:#00d68f30}
+.theme-brasil-summit .program-group--recorded .program-slot__portrait{background:#7bbfff0d;color:#7bbfff;border-color:#7bbfff30}
+.theme-brasil-summit .speaker-photo{background:radial-gradient(ellipse at 50% 85%,#7bbfff1c,transparent 70%),linear-gradient(140deg,#e2ebf7,#f5f7fa)}
+.theme-brasil-summit .speaker-photo__initials{color:#7794b3}
+.theme-brasil-summit .speaker-talk h4{color:#12233c}
+.theme-brasil-summit .ticket-lot{background:#f5f7fa;border-color:#f5f7fa}
+.theme-brasil-summit .ticket-lot--first{background:linear-gradient(140deg,#e1ff79,#d7ff47);border-color:#d7ff47}
+.theme-brasil-summit .ticket-lot strong{color:#12233c}
+.theme-brasil-summit .registration-action .ticket-heading{color:#f5f7fa}
+.theme-brasil-summit .summit-countdown--light{border-left-color:#ffcf33}
+.theme-brasil-summit .status-dot{background:#00af75}
+@media(max-width:760px){.theme-brasil-summit .hero-stadium::after{background:linear-gradient(180deg,#f5f7fae8 0%,#f5f7fabf 37%,#f5f7fa70 72%,#f5f7fa 100%)}}
+
+/* LPs de cursos derivadas da mesma identidade da home. */
+body.theme-brasil-course{--void:#0d1b30;--card:#172a46;--card-2:#1c3452;--text:#f5f7fa;--mute:#d0d9e7;--dim:#a8b9cf;--hair:#aac9ef2e;--hair-2:#aac9ef4c;--vidro:linear-gradient(125deg,#aec9ff12,#7bbfff08);--vidro-forte:#172a46ed;--vidro-borda:#7bbfff40;--vidro-sombra:inset 0 1px #ffffff1c,0 18px 50px #00000026;background:#0d1b30;color:var(--mute)}
+.theme-brasil-course::before{background:radial-gradient(ellipse 60% 70% at 100% 8%,#3871bc32,transparent 78%),radial-gradient(ellipse 50% 60% at 0% 58%,#00d68f0b,transparent 78%),#0d1b30}
+.theme-brasil-course header{background:#0b1628e6;border-color:#7bbfff2e}
+.theme-brasil-course .menu{background:#10233cf5;border-color:#7bbfff35}
+.theme-brasil-course .topo{background:linear-gradient(125deg,#aac9ff18,#7bbfff0b);border-color:#7bbfff45}
+.theme-brasil-course .topo__foto::after{background:linear-gradient(0deg,#0b162866,transparent 60%),linear-gradient(90deg,#172a4630,transparent 35%)}
+.theme-brasil-course .topo__foto::before{border-color:#7bbfff65}
+.theme-brasil-course .fase{color:#00d68f;background:#00d68f0b;border-color:#00d68f40}
+.theme-brasil-course .formato{color:#d0d9e7;border-color:#7bbfff35}
+.theme-brasil-course .btn--lime{color:#12233c}
+.theme-brasil-course .btn--azul{background:linear-gradient(135deg,#7bbfff24,#3679b51a);color:#badeff;border-color:#7bbfff65}
+.theme-brasil-course .item__marca{background:#7bbfff0d;color:#7bbfff;border-color:#7bbfff45}
+.theme-brasil-course .tese{border-color:#ffcf33}
+.theme-brasil-course .passagens{background:#7bbfff06;border-color:#7bbfff30}
+.theme-brasil-course .bonus{background:linear-gradient(125deg,#7bbfff13,#ffffff08);border-color:#7bbfff45}
+.theme-brasil-course .bonus li svg{stroke:#00d68f}
+.theme-brasil-course .ent__ico{color:#00d68f;background:#00d68f0c;border-color:#00d68f40}
+.theme-brasil-course .ent__ico svg{stroke:#00d68f}
+.theme-brasil-course .fecha{background:linear-gradient(125deg,#7bbfff18,#ffffff08);border-color:#7bbfff50}
+.theme-brasil-course .fecha .oferta{background:#0b162899;border-color:#7bbfff35}
+.theme-brasil-course .barra{background:#10233cf2;border-color:#7bbfff40}
+.theme-brasil-course footer.site{background:#0b1628;border-color:#7bbfff30}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+ .theme-brasil-course :is(.topo__copy h1,.center h2,.prof__texto h2,.bonus h2,.fecha h2),.theme-brasil-course :is(.topo__copy h1,.center h2,.prof__texto h2,.bonus h2,.fecha h2) .giz{background-image:linear-gradient(110deg,#f5f7fa 10%,#d5e9ff 52%,#7bbfff 100%)}
+}
+@supports not (backdrop-filter:blur(1px)){.theme-brasil-course :is(.topo,.item,.ent,.fecha,.bonus){background:#172a46}}
