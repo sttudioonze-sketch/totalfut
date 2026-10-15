@@ -91,3 +91,9 @@ footer.site .assina__cta svg{width:14px;height:14px}
 footer.site .assina__cta:hover{background:#ffffff0d;border-color:#ffffff5c}
 footer.site .foot__legal{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;margin-top:26px;padding-top:18px;border-top:1px solid #c9d8ed25;font-size:10px;color:#a4b4c6;text-align:center}
 @media(max-width:650px){footer.site{padding-inline:22px}footer.site .foot{grid-template-columns:1fr;gap:24px}footer.site .foot>:not(.foot__marca):not(.foot__redes){border-top:1px solid #c9d8ed25;padding-top:24px}footer.site .foot__legal{flex-direction:column}}
+
+/* Fotografia com recorte limpo, seguindo as fotos das LPs. */
+.portrait-header{background:#b4b8bb}
+.portrait-header .portrait{mask-image:none;-webkit-mask-image:none}
+.portrait-header::after{display:none}
+.profile{margin-top:0;padding-top:19px}
