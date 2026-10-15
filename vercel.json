@@ -22,19 +22,6 @@
           "value": "noindex, noarchive"
         }
       ]
-    },
-    {
-      "source": "/summit-2026.html",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "same-origin"
-        }
-      ]
     }
   ],
   "redirects": [
@@ -72,6 +59,17 @@
       "source": "/analisedasbolasparadas",
       "destination": "https://totalfut.com.br/curso-analise-bola-parada-pombo.html",
       "permanent": true
+    },
+    {
+      "source": "/summit-2026.html",
+      "destination": "https://totalfut.com.br/summit2026",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/summit2026",
+      "destination": "/summit-2026.html"
     }
   ]
 }

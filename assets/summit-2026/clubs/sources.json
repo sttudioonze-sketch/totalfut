@@ -1,0 +1,79 @@
+[
+  {
+    "name": "LDU Quito",
+    "file": "ldu-quito.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Liga_Deportiva_Universitaria_%28Ecuador%29_logo_%285_stars%29.svg/330px-Liga_Deportiva_Universitaria_%28Ecuador%29_logo_%285_stars%29.svg.png",
+    "page": "https://en.wikipedia.org/wiki/L.D.U._Quito",
+    "bytes": 40641
+  },
+  {
+    "name": "Athletico-PR",
+    "file": "athletico-pr.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Athletico_Paranaense_%28Logo_2019%29.svg/330px-Athletico_Paranaense_%28Logo_2019%29.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Club_Athletico_Paranaense",
+    "bytes": 27606
+  },
+  {
+    "name": "Cuiabá",
+    "file": "cuiaba.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Cuiab%C3%A1_Esporte_Clube.svg/330px-Cuiab%C3%A1_Esporte_Clube.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Cuiabá_Esporte_Clube",
+    "bytes": 24548
+  },
+  {
+    "name": "Chapecoense",
+    "file": "chapecoense.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_Associa%C3%A7%C3%A3o_Chapecoense_de_Futebol.svg/330px-Logo_Associa%C3%A7%C3%A3o_Chapecoense_de_Futebol.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Associação_Chapecoense_de_Futebol",
+    "bytes": 67441
+  },
+  {
+    "name": "Remo",
+    "file": "remo.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Clube_do_Remo.svg/330px-Clube_do_Remo.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Clube_do_Remo",
+    "bytes": 38992
+  },
+  {
+    "name": "Figueirense",
+    "file": "figueirense.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Figueirense_Futebol_Clube_logo.svg/330px-Figueirense_Futebol_Clube_logo.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Figueirense_FC",
+    "bytes": 41293
+  },
+  {
+    "name": "Joinville",
+    "file": "joinville.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/14/Joinville_Esporte_Clube_logo.svg/330px-Joinville_Esporte_Clube_logo.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Joinville_Esporte_Clube",
+    "bytes": 48109
+  },
+  {
+    "name": "Tombense",
+    "file": "tombense.png",
+    "source": "https://upload.wikimedia.org/wikipedia/en/a/a2/Tombense_FC.png",
+    "page": "https://en.wikipedia.org/wiki/Tombense_Futebol_Clube",
+    "bytes": 140763
+  },
+  {
+    "name": "CSA",
+    "file": "csa.png",
+    "source": "https://upload.wikimedia.org/wikipedia/en/9/93/Centro_Sportivo_Alagoano.png",
+    "page": "https://en.wikipedia.org/wiki/Centro_Sportivo_Alagoano",
+    "bytes": 95986
+  },
+  {
+    "name": "São Bernardo",
+    "file": "sao-bernardo.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/8a/S%C3%A3o_Bernardo_Futebol_Clube_logo.svg/330px-S%C3%A3o_Bernardo_Futebol_Clube_logo.svg.png",
+    "page": "https://en.wikipedia.org/wiki/São_Bernardo_Futebol_Clube",
+    "bytes": 40183
+  },
+  {
+    "name": "Boavista (Portugal)",
+    "file": "boavista.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/40/Boavista_F.C._logo.svg/330px-Boavista_F.C._logo.svg.png",
+    "page": "https://en.wikipedia.org/wiki/Boavista_F.C.",
+    "bytes": 64593
+  }
+]

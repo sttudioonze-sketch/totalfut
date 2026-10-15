@@ -1,8 +1,12 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://totalfut.com.br/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+  <url>
+    <loc>https://totalfut.com.br/summit2026</loc>
+    <lastmod>2026-10-15</lastmod>
   </url>
   <url>
     <loc>https://totalfut.com.br/curso-analise-bola-parada-pombo.html</loc>
