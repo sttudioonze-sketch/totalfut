@@ -70,6 +70,10 @@
     {
       "source": "/summit2026",
       "destination": "/summit-2026.html"
+    },
+    {
+      "source": "/juliantobar",
+      "destination": "/julian-tobar.html"
     }
   ]
 }
