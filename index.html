@@ -1553,8 +1553,9 @@ footer.site .wrap{position:relative;z-index:1}
 <link rel="stylesheet" href="assets/design-tech/summit-countdown.css?v=20261013-rotulos">
 <link rel="stylesheet" href="assets/design-tech/summit-tech.css?v=20261013-vantagens">
 <link rel="stylesheet" href="assets/design-tech/brasil-theme.css?v=20261014-marinho">
-<link rel="stylesheet" href="assets/design-tech/brasil-black-theme.css?v=20261014-titulos-claros">
-<body class="theme-brasil-home theme-brasil-black">
+<link rel="stylesheet" href="assets/design-tech/brasil-black-theme.css?v=20261014-titulos-centro">
+<link rel="stylesheet" href="assets/design-tech/cover-video.css?v=20261014-all-devices">
+<body class="theme-brasil-home theme-brasil-black has-cover-video">
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <filter id="giz-textura">
@@ -1576,22 +1577,10 @@ footer.site .wrap{position:relative;z-index:1}
 
 <div class="cover-sequence">
   <section class="intro-cover" aria-label="TotalFut — apresentação">
+    <div class="intro-cover__match" aria-hidden="true"><video class="intro-cover__video" autoplay muted loop playsinline webkit-playsinline preload="none" poster="assets/design-tech/cover-video/football-night-poster.avif" data-src="assets/design-tech/cover-video/football-night.mp4?v=1" tabindex="-1"></video></div>
+    <button type="button" class="intro-cover__video-toggle" aria-label="Pausar vídeo de fundo" title="Pausar vídeo de fundo" hidden><svg class="video-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><svg class="video-play" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z"/></svg></button>
     <div class="intro-cover__atmosphere" aria-hidden="true"></div>
     <p class="intro-cover__name" aria-hidden="true">TotalFut</p>
-    <svg class="intro-cover__field" viewBox="50 20 900 560" preserveAspectRatio="none" aria-hidden="true">
-      <rect x="70" y="35" width="860" height="530"/>
-      <path d="M500 35V565M70 143H205V457H70M930 143H795V457H930M70 228H115V372H70M930 228H885V372H930"/>
-      <circle cx="500" cy="300" r="72"/>
-      <path d="M205 241A72 72 0 0 1 205 359M795 241A72 72 0 0 0 795 359M70 270H52V330H70M930 270H948V330H930M78 35A8 8 0 0 1 70 43M922 35A8 8 0 0 0 930 43M70 557A8 8 0 0 1 78 565M922 565A8 8 0 0 1 930 557"/>
-      <g class="intro-cover__pitch-dots"><circle cx="500" cy="300" r="2.5"/><circle cx="160" cy="300" r="2.5"/><circle cx="840" cy="300" r="2.5"/></g>
-    </svg>
-    <svg class="intro-cover__field intro-cover__field--lit" viewBox="50 20 900 560" preserveAspectRatio="none" aria-hidden="true">
-      <rect x="70" y="35" width="860" height="530"/>
-      <path d="M500 35V565M70 143H205V457H70M930 143H795V457H930M70 228H115V372H70M930 228H885V372H930"/>
-      <circle cx="500" cy="300" r="72"/>
-      <path d="M205 241A72 72 0 0 1 205 359M795 241A72 72 0 0 0 795 359M70 270H52V330H70M930 270H948V330H930M78 35A8 8 0 0 1 70 43M922 35A8 8 0 0 0 930 43M70 557A8 8 0 0 1 78 565M922 565A8 8 0 0 1 930 557"/>
-      <g class="intro-cover__pitch-dots"><circle cx="500" cy="300" r="2.5"/><circle cx="160" cy="300" r="2.5"/><circle cx="840" cy="300" r="2.5"/></g>
-    </svg>
     <div class="intro-cover__symbol"><span class="intro-cover__glass" aria-hidden="true"></span><img class="intro-cover__render" draggable="false" src="assets/design-tech/totalfut-graphite-3d.webp" width="1280" height="1280" alt="Símbolo TotalFut em metal 3D com luz verde-lima e azul" fetchpriority="high" decoding="async"></div>
     <div class="intro-cover__footer">
       <p class="intro-cover__tagline" data-i18n-rich="cover.tagline">Cursos e eventos <span>avançados</span><br class="intro-cover__tagline-break"> para profissionais do futebol.</p>
@@ -3003,3 +2992,5 @@ footer.site .wrap{position:relative;z-index:1}
 <script src="assets/design-tech/logo-fluid.js?v=20261013-alpha-corrigido" defer></script>
 
 <script src="assets/design-tech/summit-countdown.js" defer></script>
+
+<script src="assets/design-tech/cover-video.js?v=20261014-all-devices" defer></script>

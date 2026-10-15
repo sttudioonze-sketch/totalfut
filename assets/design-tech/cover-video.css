@@ -1,0 +1,14 @@
+/* Teste de partida sob o preto: imagem e movimento integram a mesma camada. */
+.has-cover-video .intro-cover__match{position:absolute;inset:0;z-index:-4;pointer-events:none;overflow:hidden;background:#050609}
+.has-cover-video .intro-cover__match::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 47%,#050609d9 0%,#0506099c 38%,#05060940 80%),linear-gradient(180deg,#05060966 0%,#05060926 40%,#050609b3 100%)}
+.has-cover-video .intro-cover__video{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.35);opacity:.55}
+.has-cover-video .intro-cover__video-toggle{position:absolute;top:24px;right:clamp(24px,5vw,80px);z-index:4;display:grid;place-items:center;width:36px;height:36px;padding:8px;border:1px solid #ffffff30;border-radius:50%;background:#090b0e66;color:#e3e9ef;cursor:pointer;transition:background .2s,border-color .2s}
+.has-cover-video .intro-cover__video-toggle[hidden]{display:none}
+.has-cover-video .intro-cover__video-toggle:hover{background:#090b0eaa;border-color:#d7ff4780}
+.has-cover-video .intro-cover__video-toggle:focus-visible{outline:2px solid #d7ff47;outline-offset:4px}
+.intro-cover__video-toggle svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.intro-cover__video-toggle .video-play{display:none}
+.intro-cover__video-toggle.is-paused .video-play{display:block}
+.intro-cover__video-toggle.is-paused .video-pause{display:none}
+@media(max-width:760px){.has-cover-video .intro-cover__video{object-position:48% center;opacity:.42}}
+@media(prefers-reduced-motion:reduce){.has-cover-video .intro-cover__video-toggle{display:none}}
