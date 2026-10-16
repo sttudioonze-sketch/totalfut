@@ -43,3 +43,7 @@ summit-2026-*-preview.html
 
 # Prévia da página de links do Julian: somente local.
 julian-tobar-links-preview.html
+
+# Alternativas locais do retrato de Julian.
+julian-tobar-*-preview.html
+assets/julian-links/*-preview.css
