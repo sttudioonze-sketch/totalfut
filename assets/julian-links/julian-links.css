@@ -142,3 +142,10 @@ footer.site .foot__legal{display:flex;justify-content:center;flex-wrap:wrap;gap:
 .event-status i{width:6px;height:6px;box-shadow:0 0 6px #00d68f40;animation:confirmation-light 2.8s ease-in-out infinite}
 @keyframes confirmation-light{0%,100%{opacity:.65;box-shadow:0 0 4px #00d68f30}50%{opacity:1;box-shadow:0 0 10px #00d68f80,0 0 17px #00d68f25}}
 @media(prefers-reduced-motion:reduce){.event-status i{animation:none;opacity:1}}
+
+/* Reflexo neutro sobre o nome: a luz atravessa os glifos, sem deslocar o texto. */
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+ .portrait-caption h1{background-image:linear-gradient(110deg,transparent 35%,#ffffffcc 48%,#fff 50%,#ffffffcc 52%,transparent 65%),linear-gradient(110deg,#afb5be 0%,#fff 30%,#f2f3f5 48%,#b7bec7 76%,#e1e4e8 100%);background-size:250% 100%,100% 100%;background-position:160% 0,0 0;background-repeat:no-repeat;background-clip:text;-webkit-background-clip:text;animation:julian-name-light 8s ease-in-out 1s infinite;text-shadow:0 0 20px #ffffff10}
+}
+@keyframes julian-name-light{0%,65%{background-position:160% 0,0 0}90%,100%{background-position:-60% 0,0 0}}
+@media(prefers-reduced-motion:reduce){.portrait-caption h1{animation:none;background-image:linear-gradient(110deg,#afb5be,#fff 40%,#b7bec7);background-size:100% 100%;background-position:0 0}}
