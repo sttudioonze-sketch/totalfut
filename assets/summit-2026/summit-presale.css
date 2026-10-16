@@ -75,3 +75,21 @@
 /* Título da apresentação com a tipografia de destaque da TotalFut. */
 .summit-presale .featured-speaker__talk h4{font-family:var(--display);font-weight:400;font-size:clamp(21px,2.05vw,29px);line-height:1.45;letter-spacing:-.02em;padding-block:.1em;text-wrap:balance}
 @media(max-width:760px){.summit-presale .featured-speaker__talk h4{font-size:22px;line-height:1.5}}
+
+/* Padrão do retrato: região da cabeça à cintura, independente da altura do texto. */
+.summit-presale .featured-speaker__portrait>.speaker-portrait{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;overflow:hidden;fill:none;stroke:none}
+.summit-presale .featured-speaker__role{display:block}
+.speaker-socials{display:flex;align-items:center;gap:8px;margin-top:14px}
+.summit-presale .speaker-socials>a{display:grid;margin-top:0;place-items:center;width:40px;height:40px;border:1px solid #cfddf333;border-radius:50%;background:#ffffff05;color:#c0dff6;transition:background .2s,border-color .2s}
+.speaker-socials>a>svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6}
+@media(hover:hover) and (pointer:fine){.speaker-socials>a:hover{border-color:#d7ff4777;background:#d7ff4710;color:#d7ff47}}
+@media(max-width:760px){
+ .summit-presale .featured-speaker__portrait{aspect-ratio:933/1150}
+ .summit-presale .hero>.hero-art{order:-1;display:flex;flex-direction:column;gap:15px;padding:24px}
+ .summit-presale .hero-art>.summit-logo{order:-1;width:220px;max-width:90%}
+ .summit-presale .hero-art>.art-edition{margin:0;font-size:11px;text-align:center}
+ .summit-presale .hero-art>.art-footer{width:100%;margin-top:0}
+}
+
+/* Contorno claro acompanha apenas a transparência do escudo do Athletico-PR. */
+.summit-presale .club-carousel__viewport img[src$="/athletico-pr.png"]{filter:drop-shadow(.65px 0 0 #dce5ef) drop-shadow(-.65px 0 0 #dce5ef) drop-shadow(0 .65px 0 #dce5ef) drop-shadow(0 -.65px 0 #dce5ef) drop-shadow(0 3px 6px #0006)}
