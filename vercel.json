@@ -74,6 +74,10 @@
     {
       "source": "/juliantobar",
       "destination": "/julian-tobar.html"
+    },
+    {
+      "source": "/cristiandesouza",
+      "destination": "/cristian-de-souza.html"
     }
   ]
 }

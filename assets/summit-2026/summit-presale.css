@@ -93,3 +93,10 @@
 
 /* Contorno claro acompanha apenas a transparência do escudo do Athletico-PR. */
 .summit-presale .club-carousel__viewport img[src$="/athletico-pr.png"]{filter:drop-shadow(.65px 0 0 #dce5ef) drop-shadow(-.65px 0 0 #dce5ef) drop-shadow(0 .65px 0 #dce5ef) drop-shadow(0 -.65px 0 #dce5ef) drop-shadow(0 3px 6px #0006)}
+
+/* Segundo convidado: retrato completo com a cabeça preservada em todos os formatos. */
+.featured-speaker+.featured-speaker{margin-top:32px}
+.summit-presale #cristian-de-souza .featured-speaker__portrait{background:#171b25}
+.summit-presale #cristian-de-souza .featured-speaker__portrait>img{object-fit:contain;object-position:50% 0%}
+.summit-presale .first-reveal+.first-reveal{margin-top:10px}
+@media(max-width:760px){.summit-presale #cristian-de-souza .featured-speaker__portrait{aspect-ratio:1122/1402}}
