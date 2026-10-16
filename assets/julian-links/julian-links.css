@@ -92,18 +92,11 @@ footer.site .assina__cta:hover{background:#ffffff0d;border-color:#ffffff5c}
 footer.site .foot__legal{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;margin-top:26px;padding-top:18px;border-top:1px solid #c9d8ed25;font-size:10px;color:#a4b4c6;text-align:center}
 @media(max-width:650px){footer.site{padding-inline:22px}footer.site .foot{grid-template-columns:1fr;gap:24px}footer.site .foot>:not(.foot__marca):not(.foot__redes){border-top:1px solid #c9d8ed25;padding-top:24px}footer.site .foot__legal{flex-direction:column}}
 
-/* Alternativa inspirada no quadro do logo na hero do Summit. */
-.portrait-header{height:auto;aspect-ratio:auto;padding:0;background:var(--black);overflow:visible}
-.portrait-header::after{display:none}
-.portrait-window{position:relative;isolation:isolate;overflow:hidden;width:100%;max-width:none;margin:0 auto;padding:34px;border:1px solid #b8d4ec3d;border-radius:18px;background:radial-gradient(ellipse at 5% 0,#d7ff4712,transparent 55%),linear-gradient(140deg,#1c2833ed,#10171de8),url('../summit-2026/summit-stadium.webp') center/cover;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:inset 0 1px 0 #ffffff24,0 18px 45px #0005}
-.portrait-window::before,.portrait-window::after{content:"";position:absolute;z-index:2;pointer-events:none;width:28px;height:28px;border:solid #a1c8df85;background:none}
-.portrait-window::before{left:14px;top:14px;border-width:1px 0 0 1px}
-.portrait-window::after{right:14px;bottom:14px;inset:auto 14px 14px auto;border-width:0 1px 1px 0;border-color:#00d68f88}
-.portrait-pitch{position:absolute;inset:3%;z-index:0;width:94%;height:94%;fill:none;stroke:#7bbfff38;stroke-width:1;pointer-events:none}
-.portrait-header .portrait{position:relative;z-index:1;inset:auto;left:auto;top:auto;transform:none;display:block;width:min(100%,370px);height:auto;margin-inline:auto;aspect-ratio:933/900;overflow:hidden;border:1px solid #c9d8ed70;border-radius:5px;mask-image:none;-webkit-mask-image:none;box-shadow:0 14px 30px #0005}
-.profile{margin-top:0;padding-top:31px}
-@media(max-width:650px){.portrait-header{height:auto;aspect-ratio:auto;padding:0}.portrait-window{padding:26px;border-radius:0 0 18px 18px}.portrait-window::before{left:12px;top:12px;width:22px;height:22px}.portrait-window::after{right:12px;bottom:12px;inset:auto 12px 12px auto;width:22px;height:22px}.profile{padding-top:29px}}
-
-/* Símbolo da marca acima do nome, fora do retrato. */
+/* Fotografia de coletiva em toda a largura, integrada ao fundo pelo rodapé. */
+.portrait-header{position:relative;height:auto;aspect-ratio:3/2;padding:0;overflow:hidden;background:var(--black)}
+.portrait-header .portrait{position:absolute;inset:0;left:0;top:0;transform:none;display:block;width:100%;height:100%;max-width:none;margin:0;object-fit:cover;object-position:50% 50%;border:0;border-radius:0;mask-image:none;-webkit-mask-image:none;box-shadow:none}
+.portrait-header::after{display:block;position:absolute;inset:0;z-index:2;content:"";background:linear-gradient(180deg,transparent 44%,#090b0e1a 60%,#090b0e99 81%,#090b0ef2 96%,var(--black));pointer-events:none}
+.profile{margin-top:-5px;padding-top:0}
 .profile-brand{display:block;width:38px;margin:0 auto 12px;line-height:0}
 .profile-brand img{display:block;width:38px;height:49px;object-fit:contain}
+@media(max-width:650px){.portrait-header{height:auto;aspect-ratio:1.12}.portrait-header .portrait{object-position:50% 50%}.profile{margin-top:-5px;padding-top:0}}
