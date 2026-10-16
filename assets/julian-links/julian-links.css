@@ -143,9 +143,10 @@ footer.site .foot__legal{display:flex;justify-content:center;flex-wrap:wrap;gap:
 @keyframes confirmation-light{0%,100%{opacity:.65;box-shadow:0 0 4px #00d68f30}50%{opacity:1;box-shadow:0 0 10px #00d68f80,0 0 17px #00d68f25}}
 @media(prefers-reduced-motion:reduce){.event-status i{animation:none;opacity:1}}
 
-/* Reflexo neutro sobre o nome: a luz atravessa os glifos, sem deslocar o texto. */
+/* Metal claro com faixas de prata e um reflexo que atravessa apenas as letras. */
+.portrait-caption h1{filter:drop-shadow(0 1px 0 #ffffff38) drop-shadow(0 3px 1px #000b) drop-shadow(0 7px 12px #0008);text-shadow:none}
 @supports ((background-clip:text) or (-webkit-background-clip:text)){
- .portrait-caption h1{background-image:linear-gradient(110deg,transparent 35%,#ffffffcc 48%,#fff 50%,#ffffffcc 52%,transparent 65%),linear-gradient(110deg,#afb5be 0%,#fff 30%,#f2f3f5 48%,#b7bec7 76%,#e1e4e8 100%);background-size:250% 100%,100% 100%;background-position:160% 0,0 0;background-repeat:no-repeat;background-clip:text;-webkit-background-clip:text;animation:julian-name-light 8s ease-in-out 1s infinite;text-shadow:0 0 20px #ffffff10}
+ .portrait-caption h1{background-image:linear-gradient(112deg,transparent 40%,#ffffff38 45%,#fff 49%,#fff 51%,#ffffff38 55%,transparent 60%),linear-gradient(180deg,#fff 0%,#e3e7ec 23%,#a7afb9 45%,#f9fbff 49%,#fff 54%,#c6cdd6 75%,#f0f3f7 100%);background-size:250% 100%,100% 100%;background-position:160% 0,0 0;background-repeat:no-repeat;background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:julian-metal-reflection 7s cubic-bezier(.35,0,.2,1) .2s infinite}
 }
-@keyframes julian-name-light{0%,65%{background-position:160% 0,0 0}90%,100%{background-position:-60% 0,0 0}}
-@media(prefers-reduced-motion:reduce){.portrait-caption h1{animation:none;background-image:linear-gradient(110deg,#afb5be,#fff 40%,#b7bec7);background-size:100% 100%;background-position:0 0}}
+@keyframes julian-metal-reflection{0%{background-position:160% 0,0 0}52%,100%{background-position:-60% 0,0 0}}
+@media(prefers-reduced-motion:reduce){.portrait-caption h1{animation:none;background-image:linear-gradient(180deg,#fff,#c6cdd6 42%,#fff 54%,#c6cdd6 78%,#f0f3f7);background-size:100% 100%;background-position:0 0}}
