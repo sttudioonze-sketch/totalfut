@@ -73,7 +73,7 @@
 @media(max-width:760px){.summit-presale .club-carousel__viewport{mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}.summit-presale .featured-speaker__talk>.featured-speaker__subtitle{font-size:17px}}
 
 /* Título da apresentação com a tipografia de destaque da TotalFut. */
-.summit-presale .featured-speaker__talk h4{font-family:var(--display);font-weight:400;font-size:clamp(21px,2.05vw,29px);line-height:1.45;letter-spacing:-.02em;padding-block:.1em;text-wrap:balance}
+.summit-presale .featured-speaker__talk h4{text-transform:uppercase;font-family:var(--display);font-weight:400;font-size:clamp(21px,2.05vw,29px);line-height:1.45;letter-spacing:-.02em;padding-block:.1em;text-wrap:balance}
 @media(max-width:760px){.summit-presale .featured-speaker__talk h4{font-size:22px;line-height:1.5}}
 
 /* Padrão do retrato: região da cabeça à cintura, independente da altura do texto. */
