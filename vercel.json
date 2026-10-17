@@ -78,6 +78,10 @@
     {
       "source": "/cristiandesouza",
       "destination": "/cristian-de-souza.html"
+    },
+    {
+      "source": "/gabrielbussinger",
+      "destination": "/gabriel-bussinger.html"
     }
   ]
 }

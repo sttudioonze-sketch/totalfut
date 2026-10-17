@@ -100,3 +100,6 @@
 .summit-presale #cristian-de-souza .featured-speaker__portrait>img{object-fit:contain;object-position:50% 0%}
 .summit-presale .first-reveal+.first-reveal{margin-top:10px}
 @media(max-width:760px){.summit-presale #cristian-de-souza .featured-speaker__portrait{aspect-ratio:1122/1402}}
+
+/* Terceiro convidado: Gabriel Bussinger. */
+#gabriel-bussinger .featured-speaker__portrait{background:#080b14}body.summit-presale #gabriel-bussinger .featured-speaker__portrait>img{object-fit:contain;object-position:50% 0%}#gabriel-bussinger .speaker-biography+.speaker-biography{margin-top:14px}@media(max-width:760px){body.summit-presale #gabriel-bussinger .featured-speaker__portrait{aspect-ratio:854/1100}body.summit-presale #gabriel-bussinger .featured-speaker__portrait>img{object-fit:cover;object-position:50% 20%}}
