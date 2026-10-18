@@ -150,3 +150,10 @@ footer.site .foot__legal{display:flex;justify-content:center;flex-wrap:wrap;gap:
 }
 @keyframes julian-metal-reflection{0%{background-position:160% 0,0 0}52%,100%{background-position:-60% 0,0 0}}
 @media(prefers-reduced-motion:reduce){.portrait-caption h1{animation:none;background-image:linear-gradient(180deg,#fff,#c6cdd6 42%,#fff 54%,#c6cdd6 78%,#f0f3f7);background-size:100% 100%;background-position:0 0}}
+
+/* A mesma área óptica dos carrosséis do Summit, no tamanho compacto dos perfis. */
+.profile-clubs li{flex-basis:60px;height:48px}
+.profile-clubs img{width:48px;height:40px;max-width:none;object-fit:contain}
+@media(max-width:650px){.profile-clubs li{flex-basis:56px}.profile-clubs img{width:46px;height:38.333px}}
+/* Compensação óptica do ornamento superior escuro do Manaus. */
+.club-carousel img[src$="/manaus.png"]{transform:scale(1.16);transform-origin:50% 65%}

@@ -109,3 +109,10 @@ body.summit-presale #ricardo-catala .featured-speaker__portrait{background:#1217
 body.summit-presale #ricardo-catala .featured-speaker__portrait>img{object-fit:cover;object-position:50% 0%}
 @media(max-width:760px){body.summit-presale #ricardo-catala .featured-speaker__portrait{aspect-ratio:2/3}}
 body.summit-presale #ricardo-catala .featured-speaker__talk>.featured-speaker__subtitle{color:#cbdda9}
+
+/* Escudos com área óptica equilibrada e posições fixas, inclusive com nomes em duas linhas. */
+.summit-presale .club-carousel__viewport li{display:grid;grid-template-rows:80px minmax(34px,auto);align-content:start;align-items:center;justify-items:center;gap:8px;padding:14px 6px 10px;min-height:148px}
+.summit-presale .club-carousel__viewport img{display:block;width:96px;height:80px;max-width:none;padding:0;object-fit:contain}
+.summit-presale .club-carousel__viewport li>span{align-self:start;max-width:100%}
+/* Compensação óptica do ornamento superior escuro do Manaus. */
+.club-carousel img[src$="/manaus.png"]{transform:scale(1.16);transform-origin:50% 65%}
