@@ -103,3 +103,9 @@
 
 /* Terceiro convidado: Gabriel Bussinger. */
 #gabriel-bussinger .featured-speaker__portrait{background:#080b14}body.summit-presale #gabriel-bussinger .featured-speaker__portrait>img{object-fit:contain;object-position:50% 0%}#gabriel-bussinger .speaker-biography+.speaker-biography{margin-top:14px}@media(max-width:760px){body.summit-presale #gabriel-bussinger .featured-speaker__portrait{aspect-ratio:854/1100}body.summit-presale #gabriel-bussinger .featured-speaker__portrait>img{object-fit:cover;object-position:50% 20%}}
+
+/* Quarto convidado: Ricardo Catalá, com a cabeça inteira no retrato. */
+body.summit-presale #ricardo-catala .featured-speaker__portrait{background:#12171b}
+body.summit-presale #ricardo-catala .featured-speaker__portrait>img{object-fit:cover;object-position:50% 0%}
+@media(max-width:760px){body.summit-presale #ricardo-catala .featured-speaker__portrait{aspect-ratio:2/3}}
+body.summit-presale #ricardo-catala .featured-speaker__talk>.featured-speaker__subtitle{color:#cbdda9}
