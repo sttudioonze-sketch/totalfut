@@ -941,6 +941,30 @@ main > .materiais{padding-block:32px 36px;border:1px solid #ebffde36;border-radi
 @media(max-width:600px){main > .materiais{padding-block:26px 28px;border-radius:20px}.materiais__grid{grid-template-columns:1fr}.material-download{padding:20px}.material-download__link{width:100%}}
 @supports not (backdrop-filter:blur(1px)){main > .materiais{background:#233224}}
 
+
+/* Três etapas do cadastro e ativação da coprodução. */
+.cadastro-resumo{margin-top:26px;font-size:14px;font-weight:600;color:var(--tinta-2)}
+.cadastro-etapas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:760px;margin:16px auto 0;text-align:left}
+.cadastro-etapas a{display:flex;gap:12px;align-items:center;padding:17px;border:1px solid #d7ff4738;border-radius:12px;background:#d7ff4708;text-decoration:none;color:inherit}
+.cadastro-etapas span{color:var(--lime);font-size:13px;font-weight:700}.cadastro-etapas strong{font-size:13px;line-height:1.5}.cadastro-etapas a:hover{background:#d7ff4718;border-color:var(--lime)}
+.cadastro-passo{font-size:12px;letter-spacing:.06em;color:var(--lime);font-weight:650;margin-bottom:12px}
+#bloco,#materiais-apresentacao,#cadastro-hotmart{scroll-margin-top:100px}
+.hotmart-passos{counter-reset:hotmart;list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.hotmart-passos li{counter-increment:hotmart;position:relative;padding:20px 20px 20px 63px;border:1px solid #ffffff20;border-radius:12px;background:#ffffff04}
+.hotmart-passos li::before{content:counter(hotmart);position:absolute;left:19px;top:21px;width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:#d7ff4718;color:var(--lime);font-size:13px;font-weight:700}
+.hotmart-passos li>strong{display:block;font-size:16px;line-height:1.55}.hotmart-passos p{margin-top:8px;font-size:14px;line-height:1.7;color:var(--tinta-2)}
+.hotmart-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.hotmart-ajuda{background:#ffffff0a!important;color:var(--tinta)!important;border-color:#ffffff40!important}
+.hotmart-fonte{font-size:12px;color:var(--tinta-2);margin-top:20px}.hotmart-fonte a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.cadastro-etapas{grid-template-columns:1fr;gap:9px}.cadastro-etapas a{padding:14px 16px}.hotmart-passos li{padding:18px 16px 18px 55px}.hotmart-passos li::before{left:15px;top:19px}.hotmart-acoes{flex-direction:column}.hotmart-acoes a{text-align:center;justify-content:center}}
+
+
+.cadastro-etapas a{display:grid;grid-template-columns:42px minmax(0,1fr);gap:3px 12px}
+.cadastro-etapas .etapa-icone{grid-column:1;grid-row:1/3;width:42px;height:42px;object-fit:contain}
+.cadastro-etapas a>span,.cadastro-etapas a>strong{grid-column:2}
+.etapa-titulo{display:flex;align-items:center;gap:15px}.etapa-titulo img{flex:none;width:44px;height:44px;object-fit:contain}
+@media(max-width:600px){.etapa-titulo{gap:12px}.etapa-titulo img{width:36px;height:36px}}
+
+.topo__inner .cadastro-resumo,.topo__inner .cadastro-etapas{grid-column:1/-1;width:100%}.topo__inner .cadastro-resumo{text-align:center;margin-top:8px}.topo__inner .cadastro-etapas{margin-top:0}
 </style>
 
 <header>
@@ -998,6 +1022,12 @@ main > .materiais{padding-block:32px 36px;border:1px solid #ebffde36;border-radi
       <p class="sobre-titulo entra" style="--atraso:.08s">Ficha do palestrante · 2ª edição</p>
       <h1 class="entra" style="--atraso:.12s">Dados para a divulgação do Summit</h1>
       <p class="lede entra" style="--atraso:.17s">Preencha sua ficha para a divulgação do TotalFut Summit Internacional, nos dias <strong>23, 25 e 27 de novembro de 2026</strong>, on-line e ao vivo. Todos os campos são opcionais. Você pode atualizar seus dados enviando o formulário novamente.</p>
+      <p class="cadastro-resumo">Prepare sua participação em 3 passos:</p>
+      <nav class="cadastro-etapas" aria-label="Cadastro em três passos">
+        <a href="#bloco"><img class="etapa-icone" src="assets/summit/summit-lockup-2026.webp" width="42" height="42" alt="" aria-hidden="true"><span>01</span><strong>Cadastrar dados da palestra</strong></a>
+        <a href="#materiais-apresentacao"><img class="etapa-icone" src="assets/summit/summit-lockup-2026.webp" width="42" height="42" alt="" aria-hidden="true"><span>02</span><strong>Baixar arquivos</strong></a>
+        <a href="#cadastro-hotmart"><img class="etapa-icone" src="assets/brands/hotmart.svg" width="42" height="42" alt="" aria-hidden="true"><span>03</span><strong>Cadastrar Hotmart</strong></a>
+      </nav>
 
     </div>
   </section>
@@ -1148,7 +1178,8 @@ main > .materiais{padding-block:32px 36px;border:1px solid #ebffde36;border-radi
   <section class="materiais" id="materiais-apresentacao" aria-labelledby="materiais-titulo">
     <div class="wrap">
       <div class="materiais__inner">
-        <h2 id="materiais-titulo">Materiais para sua apresentação.</h2>
+        <p class="cadastro-passo">Passo 2 · Baixar arquivos</p>
+        <h2 class="etapa-titulo" id="materiais-titulo"><img src="assets/summit/summit-lockup-2026.webp" width="46" height="46" alt="" aria-hidden="true">Materiais para sua apresentação.</h2>
         <p class="materiais__intro">Baixe a matriz para o programa que você utiliza, as fontes e o guia de desenvolvimento do TotalFut Summit 2026. Os downloads estão disponíveis sem precisar enviar o formulário.</p>
         <div class="materiais__grid">
         <article class="material-download">
@@ -1179,6 +1210,29 @@ main > .materiais{padding-block:32px 36px;border:1px solid #ebffde36;border-radi
         <p class="materiais__nota"><strong>Antes de abrir a matriz:</strong> descompacte o pacote e instale as fontes Boldonse e Exo no computador. Depois, abra o PowerPoint ou o Keynote e confira se os textos aparecem corretamente.</p>
       </div>
     </div>
+  </section>
+
+
+  <section class="materiais hotmart-cadastro" id="cadastro-hotmart" aria-labelledby="hotmart-titulo">
+    <div class="wrap"><div class="materiais__inner">
+      <p class="cadastro-passo">Passo 3 · Cadastrar Hotmart</p>
+      <h2 class="etapa-titulo" id="hotmart-titulo"><img src="assets/brands/hotmart.svg" width="40" height="40" alt="" aria-hidden="true">Crie e valide sua conta na Hotmart.</h2>
+      <p class="materiais__intro">Na Hotmart, você pode acessar como <strong>aluno</strong>, para consumir cursos, ou usar o <strong>perfil de produtor</strong>, para vender e participar de coproduções. <strong>Para o Summit, estamos falando do perfil de produtor/coprodutor.</strong> Se já possui uma conta de aluno, utilize a mesma conta e habilite o acesso à área de negócios da plataforma.</p>
+      <p class="materiais__intro"><strong>Criar a conta é só o começo.</strong> Para visualizar e aceitar o convite de coprodução do Summit, você precisa concluir a validação dos seus dados na Hotmart.</p>
+      <ol class="hotmart-passos">
+        <li><strong>Acesse ou crie sua conta.</strong><p>Entre na Hotmart pela opção <b>Gerenciar meus negócios</b>, que dá acesso à área de produtor. Se ainda não tem cadastro, crie sua conta para vender e participar de coproduções. O acesso à área do aluno, sozinho, não conclui esta etapa.</p></li>
+        <li><strong>Abra Minha Conta → Dados Pessoais.</strong><p>No menu superior da plataforma, acesse <b>Minha Conta</b> e selecione a aba <b>Dados Pessoais</b>.</p></li>
+        <li><strong>Complete os dados e valide sua identidade.</strong><p>Confira todas as informações solicitadas e envie a documentação exigida pela Hotmart. Aguarde a aprovação e resolva eventuais pendências: o cadastro precisa estar validado.</p></li>
+        <li><strong>Confira os dados bancários.</strong><p>Dependendo do modelo de coprodução, pode ser necessário cadastrar e validar uma conta bancária, especialmente em <b>Parceria de Negócio</b>. Siga as solicitações exibidas na sua conta.</p></li>
+        <li><strong>Aceite o convite de coprodução.</strong><p>Após a validação, acesse o convite enviado pela produção do Summit, confira as condições e aceite na própria Hotmart para participar da coprodução e receber sua parte nas vendas.</p></li>
+      </ol>
+      <div class="materiais__nota"><strong>Você mora fora do Brasil?</strong> Como o produto está em uma conta brasileira, a Hotmart exige conta Hotmart Brasil e conta bancária brasileira para receber e sacar as comissões de produtos brasileiros. Fale com a produção para conferir seu caso antes de criar outra conta ou solicitar alteração do país cadastrado.</div>
+      <div class="hotmart-acoes">
+        <a class="material-download__link" href="https://hotmart.com/pt-br" target="_blank" rel="noopener">Acessar ou criar conta na Hotmart <span aria-hidden="true">↗</span></a>
+        <a class="material-download__link hotmart-ajuda" href="https://wa.me/5551991736138?text=Ol%C3%A1%21%20Sou%20palestrante%20do%20TotalFut%20Summit%20e%20preciso%20de%20ajuda%20para%20cadastrar%20e%20validar%20minha%20conta%20na%20Hotmart." target="_blank" rel="noopener">Preciso de ajuda pelo WhatsApp <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="hotmart-fonte">Orientações: <a href="https://help.hotmart.com/pt-br/article/215828398/como-configurar-a-coproducao-de-um-produto" target="_blank" rel="noopener">Central de Ajuda da Hotmart</a>.</p>
+    </div></div>
   </section>
 
 </main>
