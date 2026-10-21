@@ -82,6 +82,10 @@
     {
       "source": "/gabrielbussinger",
       "destination": "/gabriel-bussinger.html"
+    },
+    {
+      "source": "/tiagonunes",
+      "destination": "/tiago-nunes.html"
     }
   ]
 }
