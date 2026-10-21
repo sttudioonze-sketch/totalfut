@@ -1,0 +1,6 @@
+.hero-portraits--frames .hero-speaker__photo{width:72px;height:72px;overflow:hidden;border-radius:9px;border:1px solid #ffffffd9;background:#dce2de;box-shadow:0 2px 12px #153b3026}
+.hero-portraits--frames .hero-speaker__photo svg{position:static;width:100%;height:100%;overflow:hidden;filter:none}
+.hero-portraits--frames .hero-speaker__identity{gap:2px}
+.hero-portraits--frames .hero-speaker__identity strong{min-height:0;line-height:1.25}
+@media(max-width:760px){.hero-portraits--frames .hero-speaker__photo{width:62px;height:62px;border-radius:8px}.hero-centered__guests nav.hero-portraits--frames{row-gap:17px}}
+@media(max-width:360px){.hero-portraits--frames .hero-speaker__photo{width:58px;height:58px}}
