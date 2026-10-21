@@ -1,0 +1,15 @@
+/* Equal face scale uses a separate source crop for each professional. */
+.hero-centered__guests{max-width:1080px;padding-top:22px}
+.hero-centered__guests>p{margin-bottom:18px}
+.hero-centered__guests nav.hero-portraits{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;align-items:start}
+.hero-centered__guests .hero-speaker{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;padding:8px 4px 12px;border-radius:12px;text-align:center;text-decoration:none;min-width:0;transition:background .2s,transform .2s}
+.hero-speaker__photo{display:block;flex:none;width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid #ffffffcc;background:#dce2de;box-shadow:0 0 0 1px #256c4940,0 4px 14px #153b3020}
+.hero-speaker__photo svg{display:block;width:100%;height:100%;overflow:hidden;fill:none;stroke:none}
+.hero-speaker__identity{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0;width:100%}
+.hero-speaker__identity strong{display:block;min-height:2.6em;font:650 13px/1.3 Exo,Arial,sans-serif;color:#213d35;overflow-wrap:normal}
+.hero-speaker__identity>span{display:block;font:450 11px/1.4 Exo,Arial,sans-serif;color:#51655d}
+.hero-speaker:focus-visible{outline:2px solid #24734f;outline-offset:4px}
+@media(hover:hover){.hero-centered__guests .hero-speaker:hover{transform:translateY(-3px);background:#ffffff8c}.hero-speaker:hover .hero-speaker__photo{box-shadow:0 0 0 1px #00a86b77,0 6px 17px #153b3030}}
+@media(max-width:760px){.hero-centered__guests nav.hero-portraits{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px 7px}.hero-centered__guests .hero-speaker{padding:5px 2px;gap:8px}.hero-speaker__photo{width:60px;height:60px}.hero-speaker__identity strong{font-size:12px}.hero-speaker__identity>span{font-size:10px}.hero-centered__guests>p{margin-bottom:16px}}
+@media(max-width:360px){.hero-speaker__photo{width:56px;height:56px}.hero-speaker__identity strong{font-size:11px}.hero-centered__guests nav.hero-portraits{gap:14px 5px}}
+@media(prefers-reduced-motion:reduce){.hero-centered__guests .hero-speaker{transition:none}.hero-centered__guests .hero-speaker:hover{transform:none}}

@@ -86,6 +86,10 @@
     {
       "source": "/tiagonunes",
       "destination": "/tiago-nunes.html"
+    },
+    {
+      "source": "/lucasoliveira",
+      "destination": "/lucas-oliveira.html"
     }
   ]
 }
