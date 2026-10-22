@@ -90,6 +90,10 @@
     {
       "source": "/lucasoliveira",
       "destination": "/lucas-oliveira.html"
+    },
+    {
+      "source": "/jorgemaciel",
+      "destination": "/jorge-maciel.html"
     }
   ]
 }
