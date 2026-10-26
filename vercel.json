@@ -98,6 +98,10 @@
     {
       "source": "/brunobaquete",
       "destination": "/bruno-baquete.html"
+    },
+    {
+      "source": "/leandrozago",
+      "destination": "/leandro-zago.html"
     }
   ]
 }
