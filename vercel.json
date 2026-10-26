@@ -94,6 +94,10 @@
     {
       "source": "/jorgemaciel",
       "destination": "/jorge-maciel.html"
+    },
+    {
+      "source": "/brunobaquete",
+      "destination": "/bruno-baquete.html"
     }
   ]
 }
