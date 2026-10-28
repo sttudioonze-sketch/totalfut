@@ -4,6 +4,7 @@
   const viewport=carousel.querySelector('.club-carousel__viewport'),track=viewport?.querySelector('ul');
   if(!viewport||!track)return;
   carousel.querySelectorAll('[data-clubs-toggle],.club-carousel__controls').forEach(control=>control.remove());
+  if(carousel.hasAttribute('data-clubs-static')){viewport.setAttribute('aria-label','Clubes da trajetória');viewport.removeAttribute('tabindex');return;}
   viewport.setAttribute('aria-label','Clubes da trajetória; deslize ou use as setas do teclado para percorrer.');
   const originals=Array.from(track.children);
   if(!originals.length)return;
