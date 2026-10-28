@@ -1,0 +1,20 @@
+/* Fundo compartilhado das listas de links: grafite, luz e linhas de campo. */
+body.links-background{isolation:isolate;background:#07090d}
+.links-background::before{display:none}
+.links-atmosphere{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% 0,#20282e 0,transparent 55%),linear-gradient(145deg,#10171c,#080b10 52%,#10181c)}
+.links-atmosphere__light{position:absolute;inset:-15%;background:radial-gradient(ellipse at 20% 38%,#00d68f29,transparent 38%),radial-gradient(ellipse at 82% 62%,#7bbfff2b,transparent 40%),radial-gradient(ellipse at 57% 100%,#d7ff470b,transparent 36%);animation:links-light-drift 28s ease-in-out infinite alternate;will-change:transform}
+.links-atmosphere__field{position:absolute;left:50%;top:50%;width:1100px;height:1350px;max-width:none;transform:translate(-50%,-50%) rotate(-12deg);fill:none;stroke:#a8ccca;stroke-width:.85;opacity:.11;mask-image:radial-gradient(ellipse,#000 12%,transparent 73%);-webkit-mask-image:radial-gradient(ellipse,#000 12%,transparent 73%)}
+.links-atmosphere::after{content:"";position:absolute;inset:0;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.5' d='M0 0h160v160H0z'/%3E%3C/svg%3E")}
+.links-background .link-page{background:linear-gradient(165deg,#121b2199,#0a1015a6 70%,#0c141bb3);border-color:#b9d9dd24;box-shadow:0 25px 110px #0008,0 0 65px #7bbfff05}
+.links-background .profile .bio{color:#bdc8d4}
+.links-background .summit-feature{background:linear-gradient(120deg,#23363b9c,#172733b3);border-color:#b9d9dd38;box-shadow:inset 0 1px 0 #ffffff0a,0 14px 40px #0002;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.links-background .course-link{background:linear-gradient(120deg,#2d414b70,#24344380);border-color:#a9d3e144;box-shadow:inset 0 1px 0 #f1ffff0a,0 8px 25px #0002;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.links-background .course-link:hover{background:linear-gradient(120deg,#355349a6,#2b4359a3);border-color:#a7dfc280}
+.links-background .site{background:transparent}
+@keyframes links-light-drift{from{transform:translate3d(-2%,-2%,0) scale(1)}to{transform:translate3d(3%,4%,0) scale(1.06)}}
+@media(max-width:650px){.links-atmosphere__light{background:radial-gradient(ellipse at 0 34%,#00d68f20,transparent 48%),radial-gradient(ellipse at 100% 75%,#7bbfff24,transparent 48%)}.links-atmosphere__field{width:780px;height:1140px;opacity:.095;transform:translate(-50%,-50%) rotate(-8deg)}.links-background .link-page{background:linear-gradient(165deg,#111b2166,#0a101573 70%,#0c141b88)}}
+@media(prefers-reduced-motion:reduce){.links-atmosphere__light{animation:none;will-change:auto}}
+/* A foto desaparece no próprio fundo, sem faixa preta na junção. */
+.links-background .portrait-header{background:transparent}
+.links-background .portrait-header::after{display:none}
+.links-background .portrait-header .portrait{mask-image:linear-gradient(180deg,#000 44%,#000e 60%,#0006 81%,#0001 96%,transparent);-webkit-mask-image:linear-gradient(180deg,#000 44%,#000e 60%,#0006 81%,#0001 96%,transparent)}

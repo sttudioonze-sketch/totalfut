@@ -102,6 +102,10 @@
     {
       "source": "/leandrozago",
       "destination": "/leandro-zago.html"
+    },
+    {
+      "source": "/teobenjamin",
+      "destination": "/teo-benjamin.html"
     }
   ]
 }
