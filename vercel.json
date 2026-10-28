@@ -116,6 +116,16 @@
       "source": "/summit-2026.html",
       "destination": "https://totalfut.com.br/summit2026",
       "permanent": true
+    },
+    {
+      "source": "/summit2026/checkout",
+      "destination": "https://pay.hotmart.com/J102509501A",
+      "permanent": false
+    },
+    {
+      "source": "/summit-2026-checkout.html",
+      "destination": "https://pay.hotmart.com/J102509501A",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -158,10 +168,6 @@
     {
       "source": "/teobenjamin",
       "destination": "/teo-benjamin.html"
-    },
-    {
-      "source": "/summit2026/checkout",
-      "destination": "/summit-2026-checkout.html"
     },
     {
       "source": "/summit2026/boas-vindas",
