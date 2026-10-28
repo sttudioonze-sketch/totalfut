@@ -22,6 +22,58 @@
           "value": "noindex, noarchive"
         }
       ]
+    },
+    {
+      "source": "/summit2026/checkout",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/summit-2026-checkout.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/summit2026/boas-vindas",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/summit-2026-obrigado.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -106,6 +158,14 @@
     {
       "source": "/teobenjamin",
       "destination": "/teo-benjamin.html"
+    },
+    {
+      "source": "/summit2026/checkout",
+      "destination": "/summit-2026-checkout.html"
+    },
+    {
+      "source": "/summit2026/boas-vindas",
+      "destination": "/summit-2026-obrigado.html"
     }
   ]
 }
