@@ -1,0 +1,9 @@
+/* Supplied transparent compositions include their own circle and portrait cutout. */
+.hero-portraits--cutouts .hero-speaker__photo{width:104px;height:104px;overflow:visible;border:0;border-radius:0;background:none;box-shadow:none}
+.hero-portraits--cutouts .hero-speaker__photo img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 5px #14251c15)}
+.hero-portraits--cutouts .hero-speaker__identity{gap:2px}
+.hero-portraits--cutouts .hero-speaker__identity strong{min-height:0;line-height:1.25}
+.hero-centered__guests .hero-portraits--cutouts .hero-speaker{gap:5px}
+@media(hover:hover){.hero-portraits--cutouts .hero-speaker:hover .hero-speaker__photo{box-shadow:none}}
+@media(max-width:760px){.hero-portraits--cutouts .hero-speaker__photo{width:94px;height:94px}.hero-centered__guests nav.hero-portraits--cutouts{row-gap:17px}}
+@media(max-width:360px){.hero-portraits--cutouts .hero-speaker__photo{width:84px;height:84px}}
