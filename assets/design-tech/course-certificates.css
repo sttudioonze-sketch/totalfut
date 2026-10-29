@@ -1,0 +1,11 @@
+/* Certificate previews retain the full supplied layout and open at readable size. */
+section.course-certificate{padding-block:60px;border-block:1px solid #ffffff15;background:linear-gradient(120deg,#ffffff03,transparent)}
+.course-certificate__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,72px);align-items:center}
+.course-certificate__copy h2{max-width:19ch;line-height:1.5}
+.course-certificate__copy p{margin-top:20px;max-width:46ch;color:#b8c1cd;line-height:1.75}
+.course-certificate__image{display:block;min-width:0;border:1px solid #cbd5e630;border-radius:12px;overflow:hidden;background:#0b0e13;box-shadow:0 14px 35px #0004;text-decoration:none}
+.course-certificate__image img{display:block;width:100%;height:auto;object-fit:contain}
+.course-certificate__image span{display:block;text-align:center;padding:11px 16px;font-size:13px;color:#c3cedb}
+.course-certificate__image:hover{border-color:#d7ff4770}
+.course-certificate__image:focus-visible{outline:2px solid #d7ff47;outline-offset:5px}
+@media(max-width:760px){section.course-certificate{padding-block:44px}.course-certificate__grid{grid-template-columns:1fr;gap:25px}.course-certificate__copy{text-align:center}.course-certificate__copy h2,.course-certificate__copy p{margin-inline:auto}.course-certificate__copy h2{max-width:100%}.course-certificate__copy p{font-size:15px;margin-top:15px}}
